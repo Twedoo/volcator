@@ -1,0 +1,92 @@
+<?php
+
+namespace Twedoo\Stone\Http\Controllers\Auth;
+
+use Illuminate\Support\Facades\Config;
+use Twedoo\Stone\Http\Controllers\Controller;
+use Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+
+class LoginController extends Controller
+{
+    /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
+
+    use AuthenticatesUsers;
+
+
+    /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/';
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+
+
+    public function authenticated()
+    {
+        if (Auth::user()->type != null) {
+            return redirect(app('urlBack'));
+        }
+        return redirect('/');
+    }
+
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+
+    public function logout(Request $request)
+    {
+        if (!Auth::user()) {
+            return redirect('login');
+        }
+
+        if (Auth::user()->type != null) {
+            $this->guard()->logout();
+            $request->session()->invalidate();
+            return redirect(app('urlBack') . '/login');
+        } else {
+            $this->guard()->logout();
+            $request->session()->invalidate();
+            return redirect('/');
+        }
+    }
+
+//    public function __construct()
+//    {
+//        $this->middleware('guest')->except('logout');
+//    }
+
+
+    public function showLoginForm()
+    {
+        if (Auth::user()) {
+            if (Auth::user()->type != null) {
+                return redirect(app('urlBack'));
+            } else {
+                return redirect('login');
+            }
+        } else {
+            return view('elements.super.auth.login');
+        }
+
+    }
+
+}
