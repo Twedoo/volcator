@@ -16,7 +16,7 @@
         "illuminate/console": "~8.0",
         "illuminate/support": "~8.0",
         "illuminate/cache": "~8.0",
-        "codebot/entrust": "^8.0"
+        "twedoo/stoneGuard": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "^8",

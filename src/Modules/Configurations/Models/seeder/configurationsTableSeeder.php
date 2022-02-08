@@ -4,7 +4,7 @@ namespace Twedoo\Stone\Modules\Configurations\Models\seeder;
 use Twedoo\Stone\Models\Menuback;
 use Twedoo\Stone\Modules\Configurations\Models\confsettings;
 use Twedoo\Stone\InstallerModule\Models\modules;
-use App\Models\Permission;
+use Twedoo\Stone\Models\Permission;
 use Illuminate\Database\Seeder;
 use DB;
 

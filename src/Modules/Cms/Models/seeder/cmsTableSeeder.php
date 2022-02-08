@@ -4,7 +4,7 @@ namespace Twedoo\Stone\Modules\Cms\Models\seeder;
 use Twedoo\Stone\InstallerModule\Models\modules;
 use Twedoo\Stone\Models\Menuback;
 use Illuminate\Database\Seeder;
-use App\Models\Permission;
+use Twedoo\Stone\Models\Permission;
 use DB;
 
 class cmsTableSeeder extends Seeder

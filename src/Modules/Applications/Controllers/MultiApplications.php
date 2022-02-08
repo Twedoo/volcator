@@ -14,7 +14,7 @@ use Session;
 use Validator;
 use DB;
 use App;
-use App\Models\User;
+use Twedoo\Stone\Models\User;
 
 class MultiApplications extends Controller
 {

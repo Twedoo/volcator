@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use Twedoo\Stone\Http\Controllers\Controller;
-use App\Models\User;
+use Twedoo\Stone\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Validator;
 

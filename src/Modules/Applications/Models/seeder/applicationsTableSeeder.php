@@ -4,8 +4,8 @@ namespace Twedoo\Stone\Modules\Applications\Models\seeder;
 use Twedoo\Stone\InstallerModule\Models\modules;
 use Illuminate\Database\Seeder;
 use Twedoo\Stone\Models\Menuback;
-use App\Models\Permission;
-use App\Models\User;
+use Twedoo\Stone\Models\Permission;
+use Twedoo\Stone\Models\User;
 use DB;
 
 class applicationsTableSeeder extends Seeder

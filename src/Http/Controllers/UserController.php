@@ -3,8 +3,8 @@
 namespace Twedoo\Stone\Http\Controllers;
 
 use App;
-use App\Models\Role;
-use App\Models\User;
+use Twedoo\Stone\Models\Role;
+use Twedoo\Stone\Models\User;
 use DB;
 use Hash;
 use Illuminate\Http\Request;

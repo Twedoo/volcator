@@ -25,7 +25,7 @@ use Twedoo\Stone\Http\Middleware\CheckModules;
 use Twedoo\Stone\Http\Middleware\Language;
 use Twedoo\Stone\Models\Parameters;
 use Twedoo\Stone\Core\Utils\StoneMediaStyle;
-use Zizaco\Entrust\EntrustServiceProvider;
+use Twedoo\StoneGuard\StoneGuardServiceProvider;
 
 class StoneServiceProvider extends ServiceProvider
 {
@@ -47,13 +47,9 @@ class StoneServiceProvider extends ServiceProvider
     public function boot() {
         $router = $this->app->make(Router::class);
         $router->pushMiddlewareToGroup('web', Language::class);
-        $router->aliasMiddleware('role', \Zizaco\Entrust\Middleware\EntrustRole::class);
-        $router->aliasMiddleware('permission', \Zizaco\Entrust\Middleware\EntrustPermission::class);
-        $router->aliasMiddleware('ability', \Zizaco\Entrust\Middleware\EntrustAbility::class);
-        // Publish config files
-        $this->publishes([
-            __DIR__.'/../config/config.php' => app()->basePath() . '/config/entrust.php',
-        ]);
+        $router->aliasMiddleware('role', \Twedoo\StoneGuard\Middleware\StoneGuardRole::class);
+        $router->aliasMiddleware('permission', \Twedoo\StoneGuard\Middleware\StoneGuardPermission::class);
+        $router->aliasMiddleware('ability', \Twedoo\StoneGuard\Middleware\StoneGuardAbility::class);
     }
 
     /**
@@ -68,7 +64,7 @@ class StoneServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/languages.php', 'languages');
         $this->app->register(StoneRouteServiceProvider::class);
         $this->app->register(StoneTranslationServiceProvider::class);
-        $this->app->register(EntrustServiceProvider::class);
+        $this->app->register(StoneGuardServiceProvider::class);
         $this->registerStone();
     }
 
