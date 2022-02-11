@@ -2,7 +2,7 @@
 
 namespace Twedoo\Stone\Http\Controllers;
 
-use Twedoo\Stone\Models\Permission;
+use Twedoo\StoneGuard\Models\Permission;
 use Artisan;
 use DB;
 use Hash;

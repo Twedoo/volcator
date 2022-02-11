@@ -26,6 +26,8 @@ use Twedoo\Stone\Http\Middleware\Language;
 use Twedoo\Stone\Models\Parameters;
 use Twedoo\Stone\Core\Utils\StoneMediaStyle;
 use Twedoo\StoneGuard\StoneGuardServiceProvider;
+use Twedoo\Stone\MigrationCommand;
+use Twedoo\Stone\SeederCommand;
 
 class StoneServiceProvider extends ServiceProvider
 {
@@ -50,6 +52,14 @@ class StoneServiceProvider extends ServiceProvider
         $router->aliasMiddleware('role', \Twedoo\StoneGuard\Middleware\StoneGuardRole::class);
         $router->aliasMiddleware('permission', \Twedoo\StoneGuard\Middleware\StoneGuardPermission::class);
         $router->aliasMiddleware('ability', \Twedoo\StoneGuard\Middleware\StoneGuardAbility::class);
+        // Publish config files
+        $this->publishes([
+            __DIR__.'/../config/config.php' => app()->basePath() . '/config/stone.php',
+        ]);
+
+        // Register commands
+        $this->commands('command.stone.migration');
+        $this->commands('command.stone.seeder');
     }
 
     /**
@@ -66,6 +76,7 @@ class StoneServiceProvider extends ServiceProvider
         $this->app->register(StoneTranslationServiceProvider::class);
         $this->app->register(StoneGuardServiceProvider::class);
         $this->registerStone();
+        $this->registerCommands();
     }
 
     /**
@@ -102,15 +113,22 @@ class StoneServiceProvider extends ServiceProvider
         });
     }
 
-//    /**
-//     * Get the services provided by the provider.
-//     *
-//     * @return array
-//     */
-//    public function provides()
-//    {
-//        return ['stone', 'command.entrust.migration'];
-//    }
+    /**
+     * Register the artisan commands.
+     *
+     * @return void
+     */
+    private function registerCommands()
+    {
+        $this->app->singleton('command.stone.migration', function ($app) {
+            return new MigrationCommand();
+        });
+
+        $this->app->singleton('command.stone.seeder', function ($app) {
+            return new SeederCommand();
+        });
+    }
+
 
     /**
      * Console-specific booting.

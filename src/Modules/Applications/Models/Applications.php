@@ -2,7 +2,7 @@
 
 namespace App\Modules\Applications\Models;
 use Illuminate\Database\Eloquent\Model;
-use Twedoo\Stone\Models\User;
+use Twedoo\StoneGuard\Models\User;
 
 class Applications extends Model
 {

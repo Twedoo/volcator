@@ -3,7 +3,7 @@
 namespace Twedoo\Stone\InstallerModule\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Twedoo\Stone\Models\Permission;
+use Twedoo\StoneGuard\Models\Permission;
 
 class modules extends Model
 {

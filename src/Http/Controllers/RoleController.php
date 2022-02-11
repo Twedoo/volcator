@@ -4,15 +4,15 @@ namespace Twedoo\Stone\Http\Controllers;
 
 use App;
 use Twedoo\Stone\InstallerModule\Models\modules;
-use Twedoo\Stone\Models\Permission;
-use Twedoo\Stone\Models\Role;
+use Twedoo\StoneGuard\Models\Permission;
+use Twedoo\StoneGuard\Models\Role;
 use DB;
 use Config;
 use Illuminate\Http\Request;
 use Schema;
 use Session;
 use Validator;
-use Twedoo\Stone\Models\User;
+use Twedoo\StoneGuard\Models\User;
 
 class RoleController extends Controller
 {
