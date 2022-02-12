@@ -24,6 +24,7 @@ return [
     'check_module_notactive' => "Not install",
     'check_module_fullinstall' => "Install",
     'choose_file' => "Choose File",
+    'upload_file_module_zip' => "Upload file ZIP module",
     'btn_save' => "Save",
     'nofile_select' => "No file selected",
     'module_managment' => "Modules managment",

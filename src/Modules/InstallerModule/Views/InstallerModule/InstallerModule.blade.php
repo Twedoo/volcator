@@ -2,13 +2,63 @@
 @section('content')
 
     <section id="middle">
+        <div class="cui__layout__content">
+            <div class="cui__breadcrumbs">
+                <div class="cui__breadcrumbs__path">
+                    <a href="javascript: void(0);">Home</a>
+                    <span>
+            <span class="cui__breadcrumbs__arrow"></span>
+            <strong class="cui__breadcrumbs__current">{{ trans('InstallerModule::InstallerModule/InstallerModule.module_managment')  }}</strong>
+          </span>
+                </div>
+            </div>
+        <div class="cui__utils__content">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-12 mb-5 has-danger">
+                                    <h5 class="mb-4">
+                                        <strong>{{ trans('InstallerModule::InstallerModule/InstallerModule.upload_file_module_zip') }}</strong>
+                                    </h5>
+                                    <div class="mb-5 @if ($errors->has('filezipupload')) has-danger @endif">
+                                        {!! Form::open(array('route' => app('urlBack').'.super.modules.upload','method'=>'POST', 'enctype' => 'multipart/form-data')) !!}
+                                            <input type="file" name="filezipupload" class="dropify has-danger" data-default-file="" />
+                                            <div class="col-md-1 col-sm-1">
+                                                <div class="pull-right">
+                                                    <button type="submit"
+                                                            class="btn btn-primary">{{ trans('InstallerModule::InstallerModule/InstallerModule.btn_save')  }} </button>
+                                                </div>
+                                            </div>
+                                        {!! Form::close() !!}
 
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                ;(function ($) {
+                    'use strict'
+                    $(function () {
+                        $('.dropify').dropify()
+                    })
+                })(jQuery)
+            </script>
+
+        </div>
         <!-- page title -->
         <header id="page-header">
             <h1> {{ trans('InstallerModule::InstallerModule/InstallerModule.title_InstallerModule')  }}  </h1>
 
             <ol class="breadcrumb">
-                <li><a href="{{url(app('urlBack').'/')}}"><i class="glyphicon glyphicon-home" aria-hidden="true"></i></a>
+                <li><a href="{{url(app('urlBack').'/')}}"><i class="glyphicon glyphicon-home"
+                                                             aria-hidden="true"></i></a>
                 </li>
                 <li class="active">{{ trans('InstallerModule::InstallerModule/InstallerModule.title_InstallerModule')  }}  </li>
             </ol>
@@ -22,7 +72,7 @@
              style="height:140px;margin-top:15px;"
              @elseif(Session::has('message') || Session::has('messageErr'))
              style="height:50px;margin-top:15px;"
-                @endif>
+            @endif>
             <div class="col-lg-12">
                 <div class="showmsg">
 
@@ -30,7 +80,7 @@
                     @if(Session::has('message'))
                         <div class="alert alert-success alert-dismissible" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
+                                    aria-hidden="true">&times;</span></button>
                             {{ Session::get('message') }}
                         </div>
                     @endif
@@ -39,7 +89,7 @@
                     @if(Session::has('messageErr'))
                         <div class="alert alert-danger alert-dismissible" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
+                                    aria-hidden="true">&times;</span></button>
                             {{ Session::get('messageErr') }}
                         </div>
                     @endif
@@ -47,7 +97,7 @@
                     @if(Session::has('warning'))
                         <div class="alert alert-warning alert-dismissible" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
+                                    aria-hidden="true">&times;</span></button>
                             {{ Session::get('warning') }}
                         </div>
                     @endif
@@ -67,28 +117,29 @@
 
                 <div class="panel-body">
 
-                    {!! Form::open(array('route' => app('urlBack').'.super.modules.upload','method'=>'POST', 'enctype' => 'multipart/form-data')) !!}
-                    <div class="col-md-11 col-sm-11 @if ($errors->has('filezipupload')) has-error @endif">
-                        <div class="fancy-file-upload fancy-file-success">
-                            <i class="fa fa-upload"></i>
-                            <input type="file" class="form-control" name="filezipupload"
-                                   onchange="jQuery(this).next('input').val(this.value);">
-                            <input type="text" class="form-control"
-                                   placeholder="{{ trans('InstallerModule::InstallerModule/InstallerModule.nofile_select')  }} "
-                                   readonly="">
-                            <span class="button"> {{ trans('InstallerModule::InstallerModule/InstallerModule.choose_file')  }}  </span>
-                        </div>
-                        <p class="help-block">{{ $errors->first('filezipupload') }}</p>
-                    </div>
+{{--                    {!! Form::open(array('route' => app('urlBack').'.super.modules.upload','method'=>'POST', 'enctype' => 'multipart/form-data')) !!}--}}
+{{--                    <div class="col-md-11 col-sm-11 @if ($errors->has('filezipupload')) has-error @endif">--}}
+{{--                        <div class="fancy-file-upload fancy-file-success">--}}
+{{--                            <i class="fa fa-upload"></i>--}}
+{{--                            <input type="file" class="form-control" name="filezipupload"--}}
+{{--                                   onchange="jQuery(this).next('input').val(this.value);">--}}
+{{--                            <input type="text" class="form-control"--}}
+{{--                                   placeholder="{{ trans('InstallerModule::InstallerModule/InstallerModule.nofile_select')  }} "--}}
+{{--                                   readonly="">--}}
+{{--                            <span--}}
+{{--                                class="button"> {{ trans('InstallerModule::InstallerModule/InstallerModule.choose_file')  }}  </span>--}}
+{{--                        </div>--}}
+{{--                        <p class="help-block">{{ $errors->first('filezipupload') }}</p>--}}
+{{--                    </div>--}}
 
-                    <div class="col-md-1 col-sm-1">
-                        <div class="pull-right">
-                            <button type="submit"
-                                    class="btn btn-primary">{{ trans('InstallerModule::InstallerModule/InstallerModule.btn_save')  }} </button>
-                        </div>
-                    </div>
+{{--                    <div class="col-md-1 col-sm-1">--}}
+{{--                        <div class="pull-right">--}}
+{{--                            <button type="submit"--}}
+{{--                                    class="btn btn-primary">{{ trans('InstallerModule::InstallerModule/InstallerModule.btn_save')  }} </button>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
-                    {!! Form::close() !!}
+{{--                    {!! Form::close() !!}--}}
 
                     <hr class="half-margins">
                     <hr class="half-margins">
@@ -130,7 +181,7 @@
                                         <li class="text-black size-18">
                                             <strong>
 
-                                            @if( StoneEngine::isInstallModule($module) )
+                                                @if( StoneEngine::isInstallModule($module) )
                                                     @foreach($modules as $onemodule)
                                                         @if( $onemodule->im_name_modules == $module)
                                                             {{ trans('sidebar/sidebar.'.$onemodule->im_name_modules_display.'')  }}
