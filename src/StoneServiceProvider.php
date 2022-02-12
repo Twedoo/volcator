@@ -129,7 +129,6 @@ class StoneServiceProvider extends ServiceProvider
         });
     }
 
-
     /**
      * Console-specific booting.
      *
