@@ -17,6 +17,26 @@ $ composer require twedoo/stone
 
 ## Usage
 
+From scratch project install default migration table of Laravel :
+``` bash
+$ php artisan migrate:install
+```
+
+From existing project:
+
+``` bash
+$ php artisan stone:migration
+```
+
+Migrate all stone tables:
+
+``` bash
+$ php artisan migrate
+```
+
+Publish stone views and translate (lang):
+
+php artisan vendor:publish --provider="Twedoo\Stone\StoneServiceProvider"
 ## Change log
 
 Please see the [changelog](changelog.md) for more information on what has changed recently.

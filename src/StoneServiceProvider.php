@@ -52,10 +52,19 @@ class StoneServiceProvider extends ServiceProvider
         $router->aliasMiddleware('role', \Twedoo\StoneGuard\Middleware\StoneGuardRole::class);
         $router->aliasMiddleware('permission', \Twedoo\StoneGuard\Middleware\StoneGuardPermission::class);
         $router->aliasMiddleware('ability', \Twedoo\StoneGuard\Middleware\StoneGuardAbility::class);
-        // Publish config files
+
+        // publish package
         $this->publishes([
             __DIR__.'/../config/config.php' => app()->basePath() . '/config/stone.php',
-        ]);
+        ], 'stone-lang');
+
+        $this->publishes([
+            __DIR__.'/../resources/views/back' => resource_path('views/back'),
+        ], 'stone-views');
+
+        $this->publishes([
+            __DIR__.'/../resources/lang' => resource_path('lang'),
+        ], 'stone-lang');
 
         // Register commands
         $this->commands('command.stone.migration');
@@ -142,9 +151,13 @@ class StoneServiceProvider extends ServiceProvider
         ], 'stone.config');
 
         // Publishing the views.
-        /*$this->publishes([
-            __DIR__.'/../resources/views' => base_path('resources/views/vendor/twedoo'),
-        ], 'stone.views');*/
+//        $this->publishes([
+//            __DIR__.'/../resources/views/back' => base_path('resources/views'),
+//        ], 'stone.views');
+//
+//       $this->publishes([
+//            __DIR__.'/../resources/lang' => resource_path('resources/lang'),
+//        ], 'stone.views');
 
         // Publishing assets.
         /*$this->publishes([
@@ -152,9 +165,7 @@ class StoneServiceProvider extends ServiceProvider
         ], 'stone.views');*/
 
         // Publishing the translation files.
-        /*$this->publishes([
-            __DIR__.'/../resources/lang' => resource_path('lang/vendor/twedoo'),
-        ], 'stone.views');*/
+
 
         // Registering package commands.
         // $this->commands([]);

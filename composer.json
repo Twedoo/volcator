@@ -57,5 +57,10 @@
                 "StoneTranslation": "Twedoo\\Stone\\Facades\\StoneTranslationFacade"
             }
         }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@php artisan vendor:publish --provider='Twedoo\\Stone\\StoneServiceProvider' --tag=public --force"
+        ]
     }
 }
