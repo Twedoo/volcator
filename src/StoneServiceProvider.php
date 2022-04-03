@@ -56,7 +56,7 @@ class StoneServiceProvider extends ServiceProvider
         // publish package
         $this->publishes([
             __DIR__.'/../config/config.php' => app()->basePath() . '/config/stone.php',
-        ], 'stone-lang');
+        ], 'stone-config');
 
         $this->publishes([
             __DIR__.'/../resources/views/back' => resource_path('views/back'),

@@ -1,69 +1,60 @@
-<div class="btn-group ml-2">
-    <button type="button"
-            class="btn btn-sm btn-default dropdown-toggle "
-            data-toggle="dropdown" aria-expanded="false">
-        <span class="caret"></span>
-        <span class="sr-only">Toggle Dropdown</span>
-    </button>
-
-    <ul class="dropdown-menu pull-right" role="menu">
-
+<span class="dropdown mr-4 d-none">
+    <a
+        href=""
+        class="dropdown-toggle"
+        data-toggle="dropdown"
+        aria-expanded="false"
+        data-offset="0,15"
+    >
+        <i class="fe fe-settings font-size-21"></i>
+    </a>
+    <span class="dropdown-menu dropdown-menu-right" role="menu" style="
+    box-shadow: 0 4px 38px 0 rgba(20, 19, 34, 0.11), 0 0 21px 0 rgba(20, 19, 34, 0.05);
+    width: 185px;
+    ">
         @if($btnParameters)
-            <li><a href="{{ route(app('urlBack').'.super.module.parametres',[$idModule, $modulesName]) }}">
-                    <i class="main-icon fa fa-cog"></i> {{ trans('InstallerModule::InstallerModule/InstallerModule.parameters')  }}
-                </a></li>
+            <a class="dropdown-item" href="{{ route(app('urlBack').'.super.module.parametres',[$idModule, $modulesName]) }}">
+                <i class="dropdown-icon fe fe-settings"></i> {{ trans('InstallerModule::InstallerModule/InstallerModule.parameters')  }}
+            </a>
         @endif
 
         @if($btnEnable)
             @if($statusModule == 1)
-                <li><a href="{{ route(app('urlBack').'.super.module.status',[$idModule, $modulesName]) }}"
+                 <a class="dropdown-item" href="{{ route(app('urlBack').'.super.module.status',[$idModule, $modulesName]) }}"
                        class="statutsModule"><i
-                                class="main-icon fa fa-minus-circle"></i> {{ trans('InstallerModule::InstallerModule/InstallerModule.disabled')  }}
-                    </a></li>
+                            class="dropdown-icon fe fe-minus-circle"></i> {{ trans('InstallerModule::InstallerModule/InstallerModule.disabled')  }}
+                </a>
             @else
-                <li><a href="{{ route(app('urlBack').'.super.module.status',[$idModule, $modulesName]) }}"
+                <a class="dropdown-item" href="{{ route(app('urlBack').'.super.module.status',[$idModule, $modulesName]) }}"
                        class="statutsModule"><i
-                                class="main-icon fa fa-eye"></i> {{ trans('InstallerModule::InstallerModule/InstallerModule.enable')  }}
-                    </a></li>
+                            class="dropdown-icon fe fe-eye"></i> {{ trans('InstallerModule::InstallerModule/InstallerModule.enable')  }}
+                </a>
             @endif
         @endif
 
         @if($btnReset)
-            <li>
-                <a href="{{ route(app('urlBack').'.super.module.reset',$modulesName) }}">
-                    {{--                <a href="{{ array('route' => array(app('urlBack').'.super.module.reset', $idModule,$modulesName,$dropTbale)) }}">--}}
-                    <i class="main-icon fa fa-exchange"></i>
-                    {{ trans('InstallerModule::InstallerModule/InstallerModule.reset')  }}
-                </a>
-            </li>
+            <a class="dropdown-item" href="{{ route(app('urlBack').'.super.module.reset',$modulesName) }}">
+                <i class="dropdown-icon fe fe-refresh-cw"></i>
+                {{ trans('InstallerModule::InstallerModule/InstallerModule.reset')  }}
+            </a>
         @endif
 
         @if($btnUninstall)
-            <li>
-                <a href="{{ route(app('urlBack').'.super.module.uninstall',$modulesName) }}">
-                    <i class="main-icon fa fa-trash"></i> {{ trans('InstallerModule::InstallerModule/InstallerModule.uninstall')  }}
-                </a>
-            </li>
+            <a class="dropdown-item" href="{{ route(app('urlBack').'.super.module.uninstall',$modulesName) }}">
+                <i class="dropdown-icon fe fe-trash-2"></i> {{ trans('InstallerModule::InstallerModule/InstallerModule.uninstall')  }}
+            </a>
         @endif
 
-        <li class="disabled">
-            <a>
-                <i class="main-icon fa fa-remove"></i> {{ trans('InstallerModule::InstallerModule/InstallerModule.remove')  }}
-            </a>
-        </li>
+        <a class="dropdown-item" class="disabled">
+            <i class="dropdown-icon fe fe-x"></i> {{ trans('InstallerModule::InstallerModule/InstallerModule.remove')  }}
+        </a>
 
-        <li class="divider"></li>
-
-        <li>
-            <a href="#" data-toggle="modal" data-target="#{{$modulesName}}"><i
-                        class="main-icon fa fa-globe"></i> {{ trans('InstallerModule::InstallerModule/InstallerModule.about') }}
-            </a>
-        </li>
-    </ul>
-
-
-</div>
-
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#{{$modulesName}}"><i
+                  class="dropdown-icon fe fe-globe"></i> {{ trans('InstallerModule::InstallerModule/InstallerModule.about') }}
+        </a>
+    </span>
+</span>
 
 <div id="{{$modulesName}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true" style="display: none;">

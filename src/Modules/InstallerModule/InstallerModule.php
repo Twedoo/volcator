@@ -2,6 +2,7 @@
 
 namespace Twedoo\Stone\InstallerModule;
 
+use Config;
 use Twedoo\Stone\InstallerModule\Models\modules;
 use DB;
 use File;
@@ -41,11 +42,11 @@ class InstallerModule extends StoneStructure
         foreach (array_merge($defaultModules, $customModules) as $key => $value) {
             $GetArrayModules[] = substr($value, strrpos($value, '/') + 1);;
         }
+//        dump($GetArrayModules);die;
         return view('InstallerModule::InstallerModule.InstallerModule')
             ->with('GetArrayModules', $GetArrayModules)
             ->with('modules', $modules);
     }
-
 
     /**
      * @param Request $request
@@ -54,22 +55,18 @@ class InstallerModule extends StoneStructure
     public function uploadzip(Request $request)
     {
         $zipper = new ZipArchive;
-
         $rules = [
             "filezipupload" => 'mimes:zip|required',
         ];
 
         $validate = Validator::make($request->all(), $rules);
-        $validate->SetAttributeNames([
-//            "filezipupload" => PackagesHoolm::HoolmTRans('file_upload', 'transmodules')
-        ]);
 
         if ($validate->fails()) {
             return back()->withInput()->withErrors($validate);
 
         } else {
             $file = $request->file('filezipupload');
-            $path = base_path() . '/app/Modules/';
+            $path = app_path('Modules/');
             $filename = time() . '.' . $file->getClientOriginalExtension();
 
             if ($file->move($path, $filename)) {
@@ -77,7 +74,7 @@ class InstallerModule extends StoneStructure
                     $zipper->extractTo($path);
                     unlink($path . $filename);
 
-                    if (App::getLocale() == 'ar' || App::getLocale() == 'ur') {
+                    if (\App::getLocale() == 'ar' || \App::getLocale() == 'ur') {
                         \Toastr::success(trans('InstallerModule::InstallerModule/InstallerModule.success_add_modules'), trans('InstallerModule::InstallerModule/InstallerModule.success'), ["positionClass" => "toast-top-left"]);
                     } else {
                         \Toastr::success(trans('InstallerModule::InstallerModule/InstallerModule.success_add_modules'), trans('InstallerModule::InstallerModule/InstallerModule.success'), ["positionClass" => "toast-top-right"]);

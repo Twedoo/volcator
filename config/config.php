@@ -228,4 +228,14 @@ return [
     */
     'role_foreign_key' => 'role_id',
 
+    /*
+    |--------------------------------------------------------------------------
+    | Location module uploaded
+    |--------------------------------------------------------------------------
+    */
+    'module_upload' => [
+        'driver' => 'local',
+        'root' => base_path('/app/Modules/'),
+        'url' => env('APP_URL').'/app/Modules',
+    ],
 ];

@@ -1,29 +1,27 @@
-<div class="btn-group ml-2">
+<span class="dropdown mr-4 d-none">
+    <a
+        href=""
+        class="dropdown-toggle"
+        data-toggle="dropdown"
+        aria-expanded="false"
+        data-offset="0,15"
+    >
+        <i class="fe fe-settings font-size-21"></i>
+    </a>
+    <span class="dropdown-menu dropdown-menu-right" role="menu" style="
+    box-shadow: 0 4px 38px 0 rgba(20, 19, 34, 0.11), 0 0 21px 0 rgba(20, 19, 34, 0.05);
+    width: 185px;
+    ">
+        <a class="dropdown-item" href="{{ route(app('urlBack').'.super.module.remove', $modulesName) }}">
+            <i class="dropdown-icon fe fe-x"></i> {{ trans('InstallerModule::InstallerModule/InstallerModule.remove')  }}
+        </a>
 
-    <button type="button"
-            class="btn btn-sm btn-default dropdown-toggle "
-            data-toggle="dropdown" aria-expanded="false">
-        <span class="caret"></span>
-        <span class="sr-only">Toggle Dropdown</span>
-    </button>
-
-    <ul class="dropdown-menu pull-right" role="menu">
-        <li>
-            <a href="{{ route(app('urlBack').'.super.module.remove', $modulesName) }}">
-                <i class="main-icon fa fa-remove"></i> {{ trans('InstallerModule::InstallerModule/InstallerModule.remove')  }}
-            </a>
-        </li>
-
-        <li class="divider"></li>
-
-        <li>
-            <a href="#" data-toggle="modal" data-target="#{{$modulesName}}"><i
-                        class="main-icon fa fa-globe"></i> {{ trans('InstallerModule::InstallerModule/InstallerModule.about') }}
-            </a>
-        </li>
-    </ul>
-</div>
-
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#{{$modulesName}}"><i
+                class="dropdown-icon fe fe-globe"></i> {{ trans('InstallerModule::InstallerModule/InstallerModule.about') }}
+        </a>
+    </span>
+</span>
 
 <div id="{{$modulesName}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true" style="display: none;">

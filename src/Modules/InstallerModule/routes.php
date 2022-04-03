@@ -6,6 +6,12 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::auth();
     Route::group(['prefix' => app('urlBack')], function () {
         Route::group(array('module' => 'InstallerModule', 'middleware' => ['web', 'permission:role-access-modules'], 'namespace' => 'Twedoo\Stone\InstallerModule'), function () {
+
+            Route::get('/link', function () {
+                $target = app_path('Modules/');
+                $shortcut = storage_path('app/public/file/Modules');
+                symlink($target, $shortcut);
+            });
             Route::get('pre/{module}/full/now',
                 [
                     'as' => app('urlBack') . '.pre.module.building',

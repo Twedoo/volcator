@@ -165,7 +165,7 @@ class StoneEngine
             else
                 unlink($file);
         }
-        self::deleteConfigModule(ucfirst($module));
+//        self::deleteConfigModule(ucfirst($module));
         rmdir($dirPath);
     }
 

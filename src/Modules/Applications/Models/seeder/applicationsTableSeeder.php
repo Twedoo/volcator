@@ -23,7 +23,7 @@ class applicationsTableSeeder extends Seeder
             [
                 'im_name_modules' => 'Applications',
                 'im_name_modules_display' => 'applications_module',
-                'im_menu_icon' => '<i class="main-icon fa fa-anchor"></i>',
+                'im_menu_icon' => 'fe fe-layers',
                 'im_permission' => 'permissions-applications-view',
                 'im_status' => '1'
             ]
