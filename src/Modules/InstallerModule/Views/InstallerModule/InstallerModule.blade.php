@@ -5,12 +5,11 @@
         <div class="cui__layout__content">
             <div class="cui__breadcrumbs">
                 <div class="cui__breadcrumbs__path">
-                    <a href="javascript: void(0);">Home</a>
+                    <a href="javascript: void(0);">Stone</a>
                     <span>
-            <span class="cui__breadcrumbs__arrow"></span>
-            <strong
-                class="cui__breadcrumbs__current">{{ trans('InstallerModule::InstallerModule/InstallerModule.module_managment')  }}</strong>
-          </span>
+                        <span class="cui__breadcrumbs__arrow"></span>
+                        <strong class="cui__breadcrumbs__current">{{ trans('InstallerModule::InstallerModule/InstallerModule.module_managment')  }}</strong>
+                    </span>
                 </div>
             </div>
             <div class="cui__utils__content">
