@@ -3,7 +3,7 @@
 namespace Twedoo\Stone\Http\Controllers;
 
 use App;
-use Twedoo\Stone\InstallerModule\Models\modules;
+use Twedoo\Stone\Organizer\Models\modules;
 use Twedoo\StoneGuard\Models\Permission;
 use Twedoo\StoneGuard\Models\Role;
 use DB;
@@ -14,6 +14,7 @@ use Session;
 use Validator;
 use Twedoo\StoneGuard\Models\User;
 
+// TODO : Pagination dynamic
 class RoleController extends Controller
 {
     /**

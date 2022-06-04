@@ -13,12 +13,12 @@
     width: 185px;
     ">
         <a class="dropdown-item" href="{{ route(app('urlBack').'.super.module.remove', $modulesName) }}">
-            <i class="dropdown-icon fe fe-x"></i> {{ trans('InstallerModule::InstallerModule/InstallerModule.remove')  }}
+            <i class="dropdown-icon fe fe-x"></i> {{ trans('Organizer::Organizer/Organizer.remove')  }}
         </a>
 
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#{{$modulesName}}"><i
-                class="dropdown-icon fe fe-globe"></i> {{ trans('InstallerModule::InstallerModule/InstallerModule.about') }}
+                class="dropdown-icon fe fe-globe"></i> {{ trans('Organizer::Organizer/Organizer.about') }}
         </a>
     </span>
 </span>
@@ -33,19 +33,19 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 <strong class="modal-title"
-                        id="myModalLabel">{{ trans('InstallerModule::InstallerModule/InstallerModule.about') }}</strong>
+                        id="myModalLabel">{{ trans('Organizer::Organizer/Organizer.about') }}</strong>
             </div>
 
             <!-- Modal Body -->
             <div class="modal-body">
-                <strong><h5>{{ trans('InstallerModule::InstallerModule/InstallerModule.name_modules') }}</h5></strong>
+                <strong><h5>{{ trans('Organizer::Organizer/Organizer.name_modules') }}</h5></strong>
                 <h6>{!! StoneEngine::getAttributes($modulesName, 'name') !!}</h6>
 
-                <strong><h5>{{ trans('InstallerModule::InstallerModule/InstallerModule.description_modules') }}</h5>
+                <strong><h5>{{ trans('Organizer::Organizer/Organizer.description_modules') }}</h5>
                 </strong>
                 <h6>{!! StoneEngine::getAttributes($modulesName, 'description') !!}</h6>
 
-                <strong><h5>{{ trans('InstallerModule::InstallerModule/InstallerModule.author_modules') }}</h5></strong>
+                <strong><h5>{{ trans('Organizer::Organizer/Organizer.author_modules') }}</h5></strong>
                 <h6>{!! StoneEngine::getAttributes($modulesName, 'author') !!}</h6>
 
             </div>
@@ -53,7 +53,7 @@
             <!-- Modal Footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-default"
-                        data-dismiss="modal">{{ trans('InstallerModule::InstallerModule/InstallerModule.close') }}</button>
+                        data-dismiss="modal">{{ trans('Organizer::Organizer/Organizer.close') }}</button>
             </div>
 
         </div>

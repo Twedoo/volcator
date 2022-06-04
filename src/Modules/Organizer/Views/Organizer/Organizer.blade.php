@@ -8,7 +8,7 @@
                     <a href="javascript: void(0);">Stone</a>
                     <span>
                         <span class="cui__breadcrumbs__arrow"></span>
-                        <strong class="cui__breadcrumbs__current">{{ trans('InstallerModule::InstallerModule/InstallerModule.module_managment')  }}</strong>
+                        <strong class="cui__breadcrumbs__current">{{ trans('Organizer::Organizer/Organizer.module_managment')  }}</strong>
                     </span>
                 </div>
             </div>
@@ -19,13 +19,13 @@
                             <div class="card-body">
                                 <div class="text">
                                     <h5 class="mb-4">
-                                        <strong>{{ trans('InstallerModule::InstallerModule/InstallerModule.upload_file_module_zip') }}</strong>
+                                        <strong>{{ trans('Organizer::Organizer/Organizer.upload_file_module_zip') }}</strong>
                                     </h5>
                                 </div>
                                 <div class="row">
 
                                     @foreach( $GetArrayModules as $key => $module)
-                                        @if ($module == "InstallerModule")
+                                        @if ($module == "Organizer")
                                             @continue
                                         @endif
                                         <div class="col-xl-2 col-lg-4">
@@ -91,7 +91,7 @@
 
                                     <div class="col-lg-12 mb-5">
                                         <h5 class="mb-4">
-                                            <strong>{{ trans('InstallerModule::InstallerModule/InstallerModule.upload_file_module_zip') }}</strong>
+                                            <strong>{{ trans('Organizer::Organizer/Organizer.upload_file_module_zip') }}</strong>
                                         </h5>
                                         <div class="mb-5 @if ($errors->has('filezipupload')) has-danger @endif">
                                             {!! Form::open(array('route' => app('urlBack').'.super.modules.upload','method'=>'POST', 'enctype' => 'multipart/form-data')) !!}
@@ -100,7 +100,7 @@
                                             <div class="col-md-1 col-sm-1 float-right mt-5">
                                                 <div class="float-right">
                                                     <button type="submit"
-                                                            class="btn btn-primary">{{ trans('InstallerModule::InstallerModule/InstallerModule.btn_save')  }} </button>
+                                                            class="btn btn-primary">{{ trans('Organizer::Organizer/Organizer.btn_save')  }} </button>
                                                 </div>
                                             </div>
                                             {!! Form::close() !!}

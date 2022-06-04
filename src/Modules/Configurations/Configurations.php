@@ -55,6 +55,7 @@ class Configurations extends StoneStructure
                     $table->string('email');
                     $table->string('maintenanceweb')->nullable();
                     $table->longtext('msgmaintenance')->nullable();
+                    $table->string('application')->nullable();
                     $table->timestamps();
                 });
             };
@@ -83,6 +84,7 @@ class Configurations extends StoneStructure
                     $table->string('ur_trans')->nullable();
                     $table->string('vi_trans')->nullable();
                     $table->string('sv_trans')->nullable();
+                    $table->string('application')->nullable();
                     $table->timestamps();
                 });
             }

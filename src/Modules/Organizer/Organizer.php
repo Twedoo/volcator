@@ -1,9 +1,9 @@
 <?php
 
-namespace Twedoo\Stone\InstallerModule;
+namespace Twedoo\Stone\Organizer;
 
 use Config;
-use Twedoo\Stone\InstallerModule\Models\modules;
+use Twedoo\Stone\Organizer\Models\modules;
 use DB;
 use File;
 use Illuminate\Http\Request;
@@ -17,7 +17,7 @@ use Session;
 use Validator;
 use ZipArchive;
 
-class InstallerModule extends StoneStructure
+class Organizer extends StoneStructure
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +26,7 @@ class InstallerModule extends StoneStructure
      */
     public function __construct()
     {
-        $this->name = 'InstallerModule';
+        $this->name = 'Organizer';
         $this->typeModule = 'back';
     }
 
@@ -43,7 +43,7 @@ class InstallerModule extends StoneStructure
             $GetArrayModules[] = substr($value, strrpos($value, '/') + 1);;
         }
 //        dump($GetArrayModules);die;
-        return view('InstallerModule::InstallerModule.InstallerModule')
+        return view('Organizer::Organizer.Organizer')
             ->with('GetArrayModules', $GetArrayModules)
             ->with('modules', $modules);
     }
@@ -75,9 +75,9 @@ class InstallerModule extends StoneStructure
                     unlink($path . $filename);
 
                     if (\App::getLocale() == 'ar' || \App::getLocale() == 'ur') {
-                        \Toastr::success(trans('InstallerModule::InstallerModule/InstallerModule.success_add_modules'), trans('InstallerModule::InstallerModule/InstallerModule.success'), ["positionClass" => "toast-top-left"]);
+                        \Toastr::success(trans('Organizer::Organizer/Organizer.success_add_modules'), trans('Organizer::Organizer/Organizer.success'), ["positionClass" => "toast-top-left"]);
                     } else {
-                        \Toastr::success(trans('InstallerModule::InstallerModule/InstallerModule.success_add_modules'), trans('InstallerModule::InstallerModule/InstallerModule.success'), ["positionClass" => "toast-top-right"]);
+                        \Toastr::success(trans('Organizer::Organizer/Organizer.success_add_modules'), trans('Organizer::Organizer/Organizer.success'), ["positionClass" => "toast-top-right"]);
                     }
                     return redirect()->route(app('urlBack') . '.super.modules.index');
                 }
@@ -121,8 +121,8 @@ class InstallerModule extends StoneStructure
     public function setBuilding($module)
     {
 
-        $InstallerModuleDB = modules::where('im_name_modules', $module)->first();
-        if ($InstallerModuleDB) {
+        $OrganizerDB = modules::where('im_name_modules', $module)->first();
+        if ($OrganizerDB) {
             return redirect()->route(app('urlBack') . '.super.modules.index');
         } else {
             return StoneEngine::setModule($module, false);
@@ -148,11 +148,11 @@ class InstallerModule extends StoneStructure
      */
     public function resetModule($module)
     {
-        $InstallerModuleDB = modules::where('im_name_modules', $module)->first();
-        if ($InstallerModuleDB) {
-            DB::table('permissions')->where('permissions.id_module', $InstallerModuleDB->im_id)->delete();
-            DB::table('modules')->where('im_id', $InstallerModuleDB->im_id)->delete();
-            DB::table('menubacks')->where('id_module', $InstallerModuleDB->im_id)->delete();
+        $OrganizerDB = modules::where('im_name_modules', $module)->first();
+        if ($OrganizerDB) {
+            DB::table('permissions')->where('permissions.id_module', $OrganizerDB->im_id)->delete();
+            DB::table('modules')->where('im_id', $OrganizerDB->im_id)->delete();
+            DB::table('menubacks')->where('id_module', $OrganizerDB->im_id)->delete();
             $table = explode(',', StoneEngine::getAttributes($module, 'dropTable'));
             foreach ($table as $value) {
                 Schema::dropIfExists(preg_replace('/[^_A-Za-z0-9\-]/', '', strtolower($value)));
@@ -180,10 +180,10 @@ class InstallerModule extends StoneStructure
             }
             StoneLanguage::displayNotificationProgress(
                 'success',
-                trans('InstallerModule::InstallerModule/InstallerModule.success_uninstallmodule'),
-                trans('InstallerModule::InstallerModule/InstallerModule.success')
+                trans('Organizer::Organizer/Organizer.success_uninstallmodule'),
+                trans('Organizer::Organizer/Organizer.success')
             );
-            Session::flash('message', trans('InstallerModule::InstallerModule/InstallerModule.success_uninstallmodule'));
+            Session::flash('message', trans('Organizer::Organizer/Organizer.success_uninstallmodule'));
         }
         return redirect()->route(app('urlBack') . '.super.modules.index');
 
@@ -197,8 +197,8 @@ class InstallerModule extends StoneStructure
             $status->update();
             StoneLanguage::displayNotificationProgress(
                 'success',
-                trans('InstallerModule::InstallerModule/InstallerModule.disablem'),
-                trans('InstallerModule::InstallerModule/InstallerModule.success')
+                trans('Organizer::Organizer/Organizer.disablem'),
+                trans('Organizer::Organizer/Organizer.success')
             );
             $status = '_d';
         } else {
@@ -206,12 +206,12 @@ class InstallerModule extends StoneStructure
             $status->update();
             StoneLanguage::displayNotificationProgress(
                 'success',
-                trans('InstallerModule::InstallerModule/InstallerModule.enablem'),
-                trans('InstallerModule::InstallerModule/InstallerModule.success')
+                trans('Organizer::Organizer/Organizer.enablem'),
+                trans('Organizer::Organizer/Organizer.success')
             );
             $status = '_e';
         }
-        Session::flash('message', trans('InstallerModule::InstallerModule/InstallerModule.status_module' . $status));
+        Session::flash('message', trans('Organizer::Organizer/Organizer.status_module' . $status));
         return redirect()->route(app('urlBack') . '.super.modules.index');
     }
 
@@ -222,10 +222,10 @@ class InstallerModule extends StoneStructure
             StoneEngine::deleteDirModule(app_path('Modules/' . $module), $module);
             StoneLanguage::displayNotificationProgress(
                 'success',
-                trans('InstallerModule::InstallerModule/InstallerModule.success_remove_modules'),
-                trans('InstallerModule::InstallerModule/InstallerModule.success')
+                trans('Organizer::Organizer/Organizer.success_remove_modules'),
+                trans('Organizer::Organizer/Organizer.success')
             );
-            Session::flash('message', trans('InstallerModule::InstallerModule/InstallerModule.success_uninstallmodule'));
+            Session::flash('message', trans('Organizer::Organizer/Organizer.success_uninstallmodule'));
             return redirect()->route(app('urlBack') . '.super.modules.index');
         }
     }

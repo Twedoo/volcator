@@ -4,7 +4,7 @@ namespace Twedoo\Stone\Core;
 
 use App;
 use Twedoo\Stone\Models\Menuback;
-use Twedoo\Stone\InstallerModule\Models\modules;
+use Twedoo\Stone\Organizer\Models\modules;
 use Config;
 use DB;
 use StoneEngine;
@@ -24,6 +24,7 @@ class StoneMenu
     {
         $getCategoriesMenu = [];
         $ModuleList = modules::where('im_status', 1)->get();
+
         foreach ($ModuleList as $key => $value) {
             $setCategory = StoneEngine::getAttributes($value['im_name_modules'], 'categoryMenu');
             if ($value->im_id <= 2)
@@ -31,7 +32,6 @@ class StoneMenu
 
             $getCategoriesMenu[$setCategory][] = $value;
         }
-
         return $getCategoriesMenu;
     }
 

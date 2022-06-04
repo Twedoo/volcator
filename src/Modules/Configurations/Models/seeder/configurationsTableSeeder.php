@@ -3,7 +3,7 @@ namespace Twedoo\Stone\Modules\Configurations\Models\seeder;
 
 use Twedoo\Stone\Models\Menuback;
 use Twedoo\Stone\Modules\Configurations\Models\confsettings;
-use Twedoo\Stone\InstallerModule\Models\modules;
+use Twedoo\Stone\Organizer\Models\modules;
 use Twedoo\StoneGuard\Models\Permission;
 use Illuminate\Database\Seeder;
 use DB;
@@ -24,9 +24,10 @@ class configurationsTableSeeder extends Seeder
             [
                 'im_name_modules' => 'Configurations',
                 'im_name_modules_display' => 'tmod_conf',
-                'im_menu_icon' => '<i class="main-icon fa fa-gears"></i>',
+                'im_menu_icon' => 'fe fe-settings',
                 'im_permission' => 'role-access-configuration',
-                'im_status' => '1'
+                'im_status' => '1',
+                'application' => 'main'
             ]
         ];
 
@@ -118,6 +119,7 @@ class configurationsTableSeeder extends Seeder
                 'email' => "",
                 'maintenanceweb' => "",
                 'msgmaintenance' => "msgmaintenance",
+                'application' => 'main'
             ]
 
 

@@ -23,9 +23,16 @@ class MultiApplications extends Controller
      */
     public function index()
     {
-        $applications = Applications::orderBy('id', 'DESC')->get();
-        return view('Applications::Applications.index', compact('applications'));
+        $user = auth()->user();
+        if(!$user->hasRole('Root')) {
+            $applications = Applications::whereHas('users', function($q) use($user) {
+                $q->where('user_id', $user->id);
+            })->orderBy('id', 'DESC')->get();
+        } else {
+            $applications = Applications::all();
+        }
 
+        return view('Applications::Applications.index', compact('applications'));
     }
 
     /**
@@ -33,7 +40,7 @@ class MultiApplications extends Controller
      */
     public function create()
     {
-        $users = User::pluck('name', 'id');
+        $users = User::where('id', '!=', auth()->user()->id)->pluck('name', 'id');
         return view('Applications::Applications.create', compact('users'));
     }
 
@@ -42,10 +49,10 @@ class MultiApplications extends Controller
      */
     public function store(Request $request)
     {
+
         $rules = [
             "name_app" => "required|unique:applications,name",
             "name_app_dis" => "required",
-            "type_app"  => "required",
             "owner_app"  => "required",
         ];
 
@@ -53,7 +60,6 @@ class MultiApplications extends Controller
         $validate->SetAttributeNames([
             "name_app" => trans('Applications::Applications/applications.name_app'),
             "name_app_dis" => trans('Applications::Applications/applications.name_app_dis'),
-            "type_app" => trans('Applications::Applications/applications.type_app'),
             "owner_app" => trans('Applications::Applications/applications.owner_app')
         ]);
 
@@ -69,9 +75,10 @@ class MultiApplications extends Controller
             $application = Applications::create([
                 'name' => request('name_app'),
                 'display_name' => request('name_app_dis'),
-                'type' => request('type_app')
             ]);
-            $application->users()->attach($request->input('owner_app'));
+            $users = $request->input('owner_app');
+            $users[] = (string) auth()->user()->id;
+            $application->users()->attach($users);
             switch (App::getLocale()) {
                 case "ar":
                     \Toastr::success(trans('Applications::Applications/applications.success_add'), trans('Applications::Applications/applications.success'), ["positionClass" => "toast-top-left"]);
@@ -87,6 +94,30 @@ class MultiApplications extends Controller
             }
         }
         return redirect()->route(app('urlBack') . '.multi.applications.index');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function edit($id)
+    {
+        $user = auth()->user()->id;
+
+//        $user = Applications::where('id', '=', $id)->first();
+        $applications = Applications::whereHas('users', function($q) use($id, $user) {
+            $q->where('application_id', $id);
+            $q->where('user_id', $user);
+        })->first();
+
+        dump($applications->users());die;
+
+        $roles = Role::where('id', '!=', 1)->pluck('display_name', 'id');
+        $userRole = $user->roles->pluck('id', 'id')->toArray();
+        return view('elements.super.users.edit', compact('user', 'roles', 'userRole'));
     }
 
     /**

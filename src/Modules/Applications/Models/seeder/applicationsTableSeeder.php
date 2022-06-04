@@ -1,10 +1,11 @@
 <?php
 namespace Twedoo\Stone\Modules\Applications\Models\seeder;
 
-use Twedoo\Stone\InstallerModule\Models\modules;
+use Twedoo\Stone\Organizer\Models\modules;
 use Illuminate\Database\Seeder;
 use Twedoo\Stone\Models\Menuback;
 use Twedoo\StoneGuard\Models\Permission;
+use Twedoo\StoneGuard\Models\Role;
 use Twedoo\StoneGuard\Models\User;
 use DB;
 
@@ -25,7 +26,8 @@ class applicationsTableSeeder extends Seeder
                 'im_name_modules_display' => 'applications_module',
                 'im_menu_icon' => 'fe fe-layers',
                 'im_permission' => 'permissions-applications-view',
-                'im_status' => '1'
+                'im_status' => '1',
+                'application' => 'main'
             ]
         ];
 
@@ -79,11 +81,37 @@ class applicationsTableSeeder extends Seeder
             ]
         ];
 
+        $roles = [
+            [
+                'name' => 'Manager-Multi-Application',
+                'display_name' => 'Manager Multi-Application',
+                'description' => 'Manager Multi-Application, permissions to create his owner Applications'
+            ]
+        ];
+
+        foreach ($roles as $key => $value) {
+            $role_application = Role::create($value);
+        }
+
+        $id_role = $role_application->id;
+
         foreach ($permission as $key => $value) {
             $setPermission = Permission::create($value);
             DB::table("permission_role")->insert([
                 'permission_id' => $setPermission->id,
-                'role_id' => auth()->user()->setCurrentIdRole()
+                'role_id' => $id_role,
+            ]);
+        }
+
+        // add role multi-application to Majestic
+        $users_majestic = User::whereHas('roles', function($q) {
+            $q->where('roles.name', 'Root');
+        })->pluck('id')->toArray();
+
+        foreach ($users_majestic as $key => $user_id) {
+            DB::table("role_user")->insert([
+                'user_id' => $user_id,
+                'role_id' => $id_role,
             ]);
         }
         // end permission cms

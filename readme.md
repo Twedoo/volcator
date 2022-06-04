@@ -19,6 +19,10 @@ $ composer require twedoo/stone
 
 From scratch project install default migration table of Laravel :
 ``` bash
+$ php artisan migrate
+```
+
+``` bash
 $ php artisan migrate:install
 ```
 
@@ -36,7 +40,22 @@ $ php artisan migrate
 
 Publish stone views and translate (lang):
 
+``` bash
 php artisan vendor:publish --provider="Twedoo\Stone\StoneServiceProvider"
+```
+
+Seeder Data:
+
+``` bash
+php artisan stone:seeder
+```
+
+Mode dev simple command one line (should launch this when the DB not contains table): 
+
+```
+php artisan migrate:install && php artisan stone:migration && php artisan migrate && php artisan stone:seeder
+```
+
 ## Change log
 
 Please see the [changelog](changelog.md) for more information on what has changed recently.

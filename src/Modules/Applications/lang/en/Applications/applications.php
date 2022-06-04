@@ -20,13 +20,15 @@ return [
     */
     'title_header' => "Multi-Applications",
     'first_name_header' => "List Multi-Applications",
-    'create_application' => "Create Applications",
+    'create_application' => "Create Application",
+    'create' => "Create",
+    'application' => "Application",
     'show' => "Show",
     'delete' => "Delete",
     'edit' => "Edit",
+    'back' => "Back",
     'create_type_application' => "Create Type Applications",
     'name_app' => "Name (Unique)",
-    'name_app_dis' => "Display name",
     'type_app' => "Type",
     'owner_app' => "Owner Application",
     'select_option' => "-- select option --",
@@ -36,8 +38,7 @@ return [
     'success_add' => 'Success add data',
     'list_application' => 'Applications list',
     'name_application' => 'Name',
+    'name_app_dis' => "Display name",
     'type_application' => 'Type',
     'success_delete_application' => 'Successfully delete Application',
-
-
 ];

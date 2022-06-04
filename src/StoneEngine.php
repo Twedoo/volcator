@@ -4,7 +4,7 @@ namespace Twedoo\Stone;
 
 use App;
 use Throwable;
-use Twedoo\Stone\InstallerModule\Models\modules;
+use Twedoo\Stone\Organizer\Models\modules;
 use Config;
 use DB;
 use Illuminate\Support\Facades\URL;
@@ -52,10 +52,10 @@ class StoneEngine
         if (!method_exists('Twedoo\\Stone\\' . $module . '\\' . $module, 'building')) {
             StoneLanguage::displayNotificationProgress(
                 'error',
-                trans('InstallerModule::InstallerModule/installmodules.error_FNbuilding'),
-                trans('InstallerModule::InstallerModule/installmodules.errors')
+                trans('Organizer::Organizer/installmodules.error_FNbuilding'),
+                trans('Organizer::Organizer/installmodules.errors')
             );
-            Session::flash('messageErr', trans('InstallerModule::InstallerModule/installmodules.error_FNbuilding') . 'in Module/' . ucfirst($module) . '/' . ucfirst($module) . '.php');
+            Session::flash('messageErr', trans('Organizer::Organizer/installmodules.error_FNbuilding') . 'in Module/' . ucfirst($module) . '/' . ucfirst($module) . '.php');
             return redirect()->route(app('urlBack') . '.super.modules.index');
         }
 
@@ -85,18 +85,18 @@ class StoneEngine
     public static function afterCheckInstall($reinstall = null)
     {
         if ($reinstall) {
-            Session::flash('message', trans('InstallerModule::InstallerModule/installmodules.success_re-activemodule'));
+            Session::flash('message', trans('Organizer::Organizer/installmodules.success_re-activemodule'));
             StoneLanguage::displayNotificationProgress(
                 'success',
-                trans('InstallerModule::InstallerModule/installmodules.success_re-activemodule'),
-                trans('InstallerModule::InstallerModule/installmodules.success')
+                trans('Organizer::Organizer/installmodules.success_re-activemodule'),
+                trans('Organizer::Organizer/installmodules.success')
             );
         } else {
-            Session::flash('message', trans('InstallerModule::InstallerModule/installmodules.success_activemodule'));
+            Session::flash('message', trans('Organizer::Organizer/installmodules.success_activemodule'));
             StoneLanguage::displayNotificationProgress(
                 'success',
-                trans('InstallerModule::InstallerModule/installmodules.success_install_modules'),
-                trans('InstallerModule::InstallerModule/installmodules.success')
+                trans('Organizer::Organizer/installmodules.success_install_modules'),
+                trans('Organizer::Organizer/installmodules.success')
             );
         }
         return redirect()->route(app('urlBack') . '.super.modules.index');
@@ -117,7 +117,7 @@ class StoneEngine
      */
     public static function displayParameters($idModule, $statusModule, $modulesName, $btnParameters, $btnEnable, $btnReset, $btnUninstall, $btnRemove)
     {
-        return view("InstallerModule::Tools.parameters",
+        return view("Organizer::Tools.parameters",
             compact(
                 'statusModule',
                 'idModule',
@@ -138,7 +138,7 @@ class StoneEngine
      */
     public static function displayRemove($modulesName)
     {
-        return view("InstallerModule::Tools.remove",
+        return view("Organizer::Tools.remove",
             compact(
                 'modulesName'
             )

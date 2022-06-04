@@ -19,7 +19,7 @@ return [
     | the module if it is in a different namespace.
     |
     */
-    'module' => 'Twedoo\Stone\InstallerModule\Models\modules',
+    'module' => 'Twedoo\Stone\Organizer\Models\modules',
 
     /*
     |--------------------------------------------------------------------------

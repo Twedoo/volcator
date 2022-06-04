@@ -1,7 +1,7 @@
 <?php
 return [
     'tmod_mod' => 'taliona',
-    'title_InstallerModule' => 'taliona',
+    'title_Organizer' => 'taliona',
     'nom_modules' => 'taliona',
     'check_module_notinstall' => '',
     'check_module_notactive' => '',

@@ -35,8 +35,8 @@ class Settings extends Controller
     {
         $setbase = confsettings::all()->first();
         $settings = confsettings_langs::where('id_ref', $setbase->id)->get();
-        $langues = Languages::all();
-        return view('Configurations::Settings.Settings', compact('setbase', 'langues', 'settings'));
+        $languages = Languages::all();
+        return view('Configurations::Settings.Settings', compact('setbase', 'languages', 'settings'));
     }
 
 

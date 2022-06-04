@@ -4,7 +4,7 @@ namespace Modules\Configurations\Controllers\Languages;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use Twedoo\Stone\InstallerModule\Models\modules;
+use Twedoo\Stone\Organizer\Models\modules;
 use App\Transglobals;
 use Artisan;
 use DB;

@@ -1,8 +1,8 @@
-<?php 
+<?php
    return [
          'name_file' => 'sidebar.php',
          'menuinstall_module' => 'Managment Modules',
-         'tmod_mod' => 'Modules installer',
+         'tmod_mod' => 'Organizer',
          'acl_mod' => 'Control access',
          'managment_acl_users' => 'Managment users',
          'managment_acl_roles' => 'Managment roles',

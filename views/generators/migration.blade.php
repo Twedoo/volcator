@@ -23,6 +23,7 @@ class StoneSetupTables extends Migration
                 $table->string('im_permission');
                 $table->string('im_status');
                 $table->string('im_order')->nullable();
+                $table->string('application')->nullable();
                 $table->timestamps();
             });
         }
@@ -32,6 +33,7 @@ class StoneSetupTables extends Migration
                 $table->increments('id');
                 $table->string('name');
                 $table->string('value');
+                $table->string('application')->nullable();
                 $table->timestamps();
             });
         }
@@ -71,7 +73,7 @@ class StoneSetupTables extends Migration
                 $table->string('genre')->nullable();
                 $table->string('date')->nullable();
                 $table->string('avatar')->nullable();
-                $table->string('statut')->nullable();
+                $table->string('status')->nullable();
                 $table->string('type')->nullable();
                 $table->rememberToken();
                 $table->timestamps();

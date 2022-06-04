@@ -1,7 +1,7 @@
 <?php
 return [
     'tmod_mod' => 'ههههههههههههه',
-    'title_InstallerModule' => 'ههههههههههههههههههههههه',
+    'title_Organizer' => 'ههههههههههههههههههههههه',
     'nom_modules' => 'ههههههههههههههههههه',
     'check_module_notinstall' => 'هههههههههههههههههههههههه',
     'check_module_notactive' => 'هههههههههههههههه',

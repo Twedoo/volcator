@@ -3,7 +3,7 @@
 namespace Twedoo\Stone\Core\Utils;
 
 use App;
-use Twedoo\Stone\InstallerModule\Models\modules;
+use Twedoo\Stone\Organizer\Models\modules;
 use Config;
 use DB;
 use StoneEngine;

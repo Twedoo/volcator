@@ -2,11 +2,11 @@
 @section('content')
     <section id="middle">
         <header id="page-header">
-            <h1> {{ trans('InstallerModule::InstallerModule/InstallerModule.title_InstallerModule')  }}  </h1>
+            <h1> {{ trans('Organizer::Organizer/Organizer.title_Organizer')  }}  </h1>
             <ol class="breadcrumb">
                 <li><a href="{{url(app('urlBack').'/')}}"><i class="glyphicon glyphicon-home" aria-hidden="true"></i></a>
                 </li>
-                <li class="active">{{ trans('InstallerModule::InstallerModule/InstallerModule.title_InstallerModule')  }}  </li>
+                <li class="active">{{ trans('Organizer::Organizer/Organizer.title_Organizer')  }}  </li>
             </ol>
         </header>
         <div class="placemsg"
@@ -34,7 +34,7 @@
             {!! Toastr::message() !!}
             <div class="panel panel-default">
                 <div class="panel-heading panel-heading-transparent">
-                    <strong>{{ trans('InstallerModule::InstallerModule/InstallerModule.module_managment')  }} </strong>
+                    <strong>{{ trans('Organizer::Organizer/Organizer.module_managment')  }} </strong>
                 </div>
                 <div class="panel-body">
 

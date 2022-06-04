@@ -55,9 +55,10 @@ class Applications extends StoneStructure
             if (!Schema::hasTable(strtolower('applications'))) {
                 Schema::create('applications', function (Blueprint $table) {
                     $table->increments('id');
-                    $table->string('name')->unique();
+                    $table->string('name');
                     $table->string('display_name')->nullable();
-                    $table->string('type')->nullable();
+                    $table->string('unique_identity')->unique();
+                    $table->string('type');
                     $table->timestamps();
                 });
             };
@@ -74,6 +75,20 @@ class Applications extends StoneStructure
                         ->onUpdate('cascade')->onDelete('cascade');
 
                     $table->primary(['application_id', 'user_id']);
+                });
+            }
+
+            if (!Schema::hasTable(strtolower('applications_module'))) {
+                // Create table for associating roles to users (Many-to-Many)
+                Schema::create('applications_module', function (Blueprint $table) {
+                    $table->integer('application_id')->unsigned();
+                    $table->integer('module_id')->unsigned();
+
+                    $table->foreign('module_id')->references('im_id')->on('modules')
+                        ->onUpdate('cascade')->onDelete('cascade');
+                    $table->foreign('application_id')->references('id')->on('applications');
+
+                    $table->primary(['application_id', 'module_id']);
                 });
             }
 

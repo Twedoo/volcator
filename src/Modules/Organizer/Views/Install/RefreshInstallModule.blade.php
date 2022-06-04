@@ -5,9 +5,9 @@
         <input type="file" class="form-control" name="filezipupload"
                onchange="jQuery(this).next('input').val(this.value);">
         <input type="text" class="form-control"
-               placeholder="{{ trans('InstallerModule::InstallerModule/InstallerModule.nofile_select')  }} "
+               placeholder="{{ trans('Organizer::Organizer/Organizer.nofile_select')  }} "
                readonly="">
-        <span class="button"> {{ trans('InstallerModule::InstallerModule/InstallerModule.choose_file')  }}  </span>
+        <span class="button"> {{ trans('Organizer::Organizer/Organizer.choose_file')  }}  </span>
     </div>
     <p class="help-block">{{ $errors->first('filezipupload') }}</p>
 </div>
@@ -15,7 +15,7 @@
 <div class="col-md-1 col-sm-1">
     <div class="pull-right">
         <button type="submit"
-                class="btn btn-primary">{{ trans('InstallerModule::InstallerModule/InstallerModule.btn_save')  }} </button>
+                class="btn btn-primary">{{ trans('Organizer::Organizer/Organizer.btn_save')  }} </button>
     </div>
 </div>
 
@@ -39,22 +39,22 @@
                 @if( StoneEngine::TestingModulesFolder($module) && StoneEngine::TestingModulesDB($module) )
                     <i class="glyphicon glyphicon-ok text-success size-25" aria-hidden="true"></i>
                     <br/>
-                    {{ trans('InstallerModule::InstallerModule/InstallerModule.check_module_fullinstall')  }}
+                    {{ trans('Organizer::Organizer/Organizer.check_module_fullinstall')  }}
                 @elseif(StoneEngine::TestingModulesFolder($module) && !StoneEngine::TestingModulesDB($module))
                     <a link="{{ route(app('urlBack').'.super.module.install',$module) }}"
-                       class="InstallerModule">
+                       class="Organizer">
                         <i class="glyphicon glyphicon-download text-info size-25"
                            aria-hidden="true"></i>
                     </a>
                     <br/>
-                    {{ trans('InstallerModule::InstallerModule/InstallerModule.check_module_notactive')  }}
+                    {{ trans('Organizer::Organizer/Organizer.check_module_notactive')  }}
                 @else
                     <a href="{{ route(app('urlBack').'.super.module.install',$module) }}">
                         <i class="glyphicon glyphicon-refresh text-warning size-25"
                            aria-hidden="true"></i>
                     </a>
                     <br/>
-                {{ trans('InstallerModule::InstallerModule/InstallerModule.check_module_notinstall')  }}
+                {{ trans('Organizer::Organizer/Organizer.check_module_notinstall')  }}
             @endif
 
             <!-- updated -->
@@ -63,7 +63,7 @@
                     <li class="text-black size-18">
                         <strong>
                             @if( StoneEngine::TestingModulesFolder($module) && StoneEngine::TestingModulesDB($module) )
-                                @foreach($InstallerModuleDB as $onemodule)
+                                @foreach($OrganizerDB as $onemodule)
                                     @if( $onemodule->im_name_modules == $module)
                                         {{ trans('sidebar/sidebar.'.$onemodule->im_name_modules_display.'')  }}
                                         {!! StoneEngine::getModulesParams($module,$onemodule->im_id, $onemodule->im_status) !!}

@@ -1,7 +1,7 @@
 <?php
 namespace Twedoo\Stone\database\seeders;
 
-use Twedoo\Stone\InstallerModule\Models\modules;
+use Twedoo\Stone\Organizer\Models\modules;
 use Illuminate\Database\Seeder;
 use Twedoo\Stone\Models\Parameters;
 use Twedoo\Stone\Models\Languages;
@@ -24,19 +24,23 @@ class StoneTableSeeder extends Seeder
         $default_parameters_app = [
             [
                 'name' => 'TW_APP_TEMPLATE_BACK',
-                'value' => 'default'
+                'value' => 'stone',
+                'application' => 'main'
             ],
             [
                 'name' => 'TW_APP_TEMPLATE_FRONT',
-                'value' => 'default'
+                'value' => 'bluestone',
+                'application' => 'main'
             ],
             [
                 'name' => 'TW_APP_PREFIX',
-                'value' => 'atw'
+                'value' => 'atw',
+                'application' => 'main'
             ],
             [
                 'name' => 'TW_APP_MODULE',
-                'value' => 'module+'
+                'value' => 'module+',
+                'application' => 'main'
             ]
         ];
 
@@ -45,18 +49,19 @@ class StoneTableSeeder extends Seeder
         }
 
         // seed Module Installer
-        $DefaultModule = [
+        $default_module = [
 
             [
-                'im_name_modules' => 'InstallModules',
+                'im_name_modules' => 'Organizer',
                 'im_name_modules_display' => 'tmod_mod',
-                'im_menu_icon' => '<i class="main-icon fa fa-cubes"></i>',
-                'im_permission' => 'role-access-modules',
-                'im_status' => '1'
+                'im_menu_icon' => 'fe fe-box',
+                'im_permission' => 'role-organizer-stones',
+                'im_status' => '1',
+                'application' => 'main'
             ]
         ];
 
-        foreach ($DefaultModule as $key => $value) {
+        foreach ($default_module as $key => $value) {
             $insert = modules::create($value);
         }
 
@@ -65,25 +70,25 @@ class StoneTableSeeder extends Seeder
         $insertOrder->im_order = $last_id;
         $insertOrder->update();
 
-        $menumodules = [
+        $menu_modules = [
             [
                 'name_menu' => "menuinstall_module",
-                'route_link' => "install/modules",
+                'route_link' => "organizer/modules",
                 'id_module' => $last_id,
-                'mb_permission' => 'role-access-modules',
+                'mb_permission' => 'role-organizer-stones',
             ]
         ];
 
-        foreach ($menumodules as $key => $value) {
+        foreach ($menu_modules as $key => $value) {
             Menuback::create($value);
         }
 
         $permission = [
             [
-                'name' => 'role-access-modules',
-                'id_module' => $last_id,
-                'display_name' => 'Module install module',
-                'description' => 'Managment install modules'
+                'name' => 'role-majestic-stone',
+                'id_module' => null,
+                'display_name' => 'Majestic manager stone',
+                'description' => 'Super administrator of all stone'
             ]
         ];
 
@@ -97,9 +102,10 @@ class StoneTableSeeder extends Seeder
             [
                 'im_name_modules' => 'ManagmentACL',
                 'im_name_modules_display' => 'acl_mod',
-                'im_menu_icon' => '<i class="main-icon fa fa-shield"></i>',
-                'im_permission' => 'role-access-controle',
-                'im_status' => '1'
+                'im_menu_icon' => 'fe fe-shield',
+                'im_permission' => 'role-access-control',
+                'im_status' => '1',
+                'application' => 'main'
             ]
         ];
 
@@ -112,7 +118,7 @@ class StoneTableSeeder extends Seeder
         $insertOrderACL->im_order = $id_last_acl;
         $insertOrderACL->update();
 
-        $menumodulesACL = [
+        $menu_modules_acl = [
             [
                 'name_menu' => "managment_acl_users",
                 'route_link' => "users",
@@ -136,13 +142,88 @@ class StoneTableSeeder extends Seeder
             ]
         ];
 
-        foreach ($menumodulesACL as $key => $value) {
+        foreach ($menu_modules_acl as $key => $value) {
             Menuback::create($value);
         }
 
-        $permission = [
+        // seeder modules access controller
+        // seeder users to table
+        $Users = [
             [
-                'name' => 'role-access-controle',
+                'code' => time(),
+                'name' => 'Administrator',
+                'email' => 'admin@mail.com',
+                'password' => '$2y$10$TcrbiAk0sonoDHCuZGnHluiNzsw7uF9cr5E.hWqGK7bP31dWVTikW',
+                'date' => '',
+                'genre' => '',
+                'avatar' => '',
+                'status' => '0',
+                'type' => 'back'
+            ]
+        ];
+
+
+        foreach ($Users as $key => $value) {
+            User::create($value);
+        }
+        // end seeder users to table
+        // seeder roles and roles permission users to table
+        $roles = [
+            [
+                'name' => 'Root',
+                'display_name' => 'Majestic',
+                'description' => 'Full permission, System Administrator'
+            ],
+            [
+                'name' => 'Access-control-users',
+                'display_name' => 'Access control users',
+                'description' => 'Access control, management users'
+            ],
+            [
+                'name' => 'Role-organizer-stones',
+                'display_name' => 'Organizer manager Stones',
+                'description' => 'Full permission Organizer, Management install Stones (modules)'
+            ]
+        ];
+
+        foreach ($roles as $key => $value) {
+            Role::create($value);
+        }
+
+        $roles_users = [
+            [
+                'user_id' => '1',
+                'role_id' => '1'
+            ],
+            [
+                'user_id' => '1',
+                'role_id' => '2'
+            ],
+            [
+                'user_id' => '1',
+                'role_id' => '3'
+            ]
+        ];
+
+        foreach ($roles_users as $key => $value) {
+            DB::table("role_user")->insert($value);
+        }
+
+        $permission_sroles = [
+            [
+                'permission_id' => '1',
+                'role_id' => '1'
+            ]
+        ];
+
+        foreach ($permission_sroles as $key => $value) {
+            DB::table("permission_role")->insert($value);
+        }
+
+        // Insert permissions access control user
+        $permission_access_control = [
+            [
+                'name' => 'role-access-control',
                 'id_module' => $id_last_acl,
                 'display_name' => 'Module Access',
                 'description' => 'Managment users, roles and permissions of cms'
@@ -164,127 +245,62 @@ class StoneTableSeeder extends Seeder
                 'id_module' => $id_last_acl,
                 'display_name' => 'Managment Permissions',
                 'description' => 'Add, edit and delete permissions of CMS'
-            ],
-            [
-                'name' => 'permissions-applications',
-                'id_module' => $id_last_acl,
-                'display_name' => 'Applications Full',
-                'description' => 'Add, edit and delete applications'
-            ],
-            [
-                'name' => 'permissions-applications-create',
-                'id_module' => $id_last_acl,
-                'display_name' => 'Applications create',
-                'description' => 'create applications'
-            ],
-            [
-                'name' => 'permissions-applications-view',
-                'id_module' => $id_last_acl,
-                'display_name' => 'Applications view',
-                'description' => 'view applications'
-            ],
-            [
-                'name' => 'permissions-applications-delete',
-                'id_module' => $id_last_acl,
-                'display_name' => 'Applications delete',
-                'description' => 'delete applications'
             ]
         ];
 
-
-        foreach ($permission as $key => $value) {
+        foreach ($permission_access_control as $key => $value) {
             Permission::create($value);
         }
 
-        // seeder modules access controller
-        // seeder users to table
-        $Users = [
-            [
-                'code' => time(),
-                'name' => 'Administrator',
-                'email' => 'admin@mail.com',
-                'password' => '$2y$10$TcrbiAk0sonoDHCuZGnHluiNzsw7uF9cr5E.hWqGK7bP31dWVTikW',
-                'date' => '',
-                'genre' => '',
-                'avatar' => '',
-                'statut' => '0',
-                'type' => 'back'
-            ]
-        ];
-
-
-        foreach ($Users as $key => $value) {
-            User::create($value);
-        }
-        // end seeder users to table
-        // seeder roles and roles permission users to table
-        $roles = [
-            [
-                'name' => 'Root',
-                'display_name' => 'Administrator',
-                'description' => 'Full permission, System Administrator'
-            ]
-        ];
-
-
-        foreach ($roles as $key => $value) {
-            Role::create($value);
-        }
-
-        $permissionsroles = [
-            [
-                'permission_id' => '1',
-                'role_id' => '1'
-            ],
+        $permissions_roles_access_control = [
             [
                 'permission_id' => '2',
-                'role_id' => '1'
+                'role_id' => '2'
             ],
             [
                 'permission_id' => '3',
-                'role_id' => '1'
+                'role_id' => '2'
             ],
             [
                 'permission_id' => '4',
-                'role_id' => '1'
+                'role_id' => '2'
             ],
             [
                 'permission_id' => '5',
-                'role_id' => '1'
-            ],
-            [
-                'permission_id' => '6',
-                'role_id' => '1'
-            ],
-            [
-                'permission_id' => '7',
-                'role_id' => '1'
-            ],
-            [
-                'permission_id' => '8',
-                'role_id' => '1'
-            ],
-            [
-                'permission_id' => '9',
-                'role_id' => '1'
+                'role_id' => '2'
             ]
-
         ];
 
-        foreach ($permissionsroles as $key => $value) {
+        foreach ($permissions_roles_access_control as $key => $value) {
             DB::table("permission_role")->insert($value);
         }
 
-        $rolesusers = [
+        // insert permissions access Organize installer
+
+        $permission_organizer = [
             [
-                'user_id' => '1',
-                'role_id' => '1'
+                'name' => 'role-organizer-stones',
+                'id_module' => $last_id,
+                'display_name' => 'Organizer manager Stones',
+                'description' => 'Full permission Organizer, Management install Stones (modules)'
             ]
         ];
 
-        foreach ($rolesusers as $key => $value) {
-            DB::table("role_user")->insert($value);
+        foreach ($permission_organizer as $key => $value) {
+            Permission::create($value);
         }
+
+        $permissions_roles_organizer = [
+            [
+                'permission_id' => '6',
+                'role_id' => '3'
+            ]
+        ];
+
+        foreach ($permissions_roles_organizer as $key => $value) {
+            DB::table("permission_role")->insert($value);
+        }
+
         // end seeder roles and roles permission users to table
         //languages globals name
 

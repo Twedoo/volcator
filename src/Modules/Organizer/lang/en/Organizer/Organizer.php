@@ -11,14 +11,14 @@ return [
 
     /*
     |---------------------------------------------------------------------------
-    | Translate module InstallerModule
+    | Translate module Organizer
     | Language "English"
     |---------------------------------------------------------------------------
     */
 
 
     'tmod_mod' => "Managment Modules",
-    'title_InstallerModule' => "Install Modules",
+    'title_Organizer' => "Install Modules",
     'nom_modules' => "Name Module",
     'check_module_notinstall' => "Not added",
     'check_module_notactive' => "Not install",

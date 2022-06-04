@@ -3,6 +3,8 @@
 namespace Twedoo\Stone\Http\Controllers;
 
 use App;
+use App\Modules\Applications\Models\Applications;
+use Twedoo\Stone\Organizer\Models\modules;
 use Twedoo\StoneGuard\Models\Role;
 use Twedoo\StoneGuard\Models\User;
 use DB;
@@ -11,6 +13,7 @@ use Illuminate\Http\Request;
 use Session;
 use Validator;
 
+// TODO : Pagination dynamic
 class UserController extends Controller
 {
 
@@ -41,10 +44,11 @@ class UserController extends Controller
     public function create()
     {
         $user = auth()->user();
-        if(!$user->hasRole('Root'))
+        if(!$user->hasRole('Root')) {
             $roles = Role::where('id', '!=', 1)->pluck('display_name', 'id');
-        else
+        }  else {
             $roles = Role::pluck('display_name', 'id');
+        }
 
         return view('elements.super.users.create', compact('roles'));
     }
@@ -91,6 +95,17 @@ class UserController extends Controller
             foreach ($request->input('roles') as $key => $value) {
                 $user->attachRole($value);
             }
+
+            $application = Applications::create([
+                'name' => 'Main',
+                'display_name' => 'Main Application',
+                'unique_identity' => uniqid(),
+                'type' => 'main',
+            ]);
+            $application_attached = Modules::where('application', 'main')->pluck('im_id')->toArray();
+            $users_attached[] = (string) $user->id;
+            $application->users()->attach($users_attached);
+            $application->modules()->attach($application_attached);
 
             if (App::getLocale() == 'ar' || App::getLocale() == 'ur') {
                 \Toastr::success(trans('access/roles_managment.toastr_success_create_users'), trans('access/roles_managment.toastr_success'), ["positionClass" => "toast-top-left"]);

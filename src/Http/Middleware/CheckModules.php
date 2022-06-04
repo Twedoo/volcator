@@ -35,16 +35,16 @@ class CheckModules
 
                 switch (App::getLocale()) {
                     case "ar":
-                        \Toastr::error(trans('InstallerModule::InstallerModule/installmodules.notfound_modules_install'), trans('InstallerModule::InstallerModule/installmodules.notfound_modules_install'), ["positionClass" => "toast-top-left"]);
+                        \Toastr::error(trans('Organizer::Organizer/installmodules.notfound_modules_install'), trans('Organizer::Organizer/installmodules.notfound_modules_install'), ["positionClass" => "toast-top-left"]);
                         break;
                     case "fa":
-                        \Toastr::error(trans('InstallerModule::InstallerModule/installmodules.notfound_modules_install'), trans('InstallerModule::InstallerModule/installmodules.notfound_modules_install'), ["positionClass" => "toast-top-left"]);
+                        \Toastr::error(trans('Organizer::Organizer/installmodules.notfound_modules_install'), trans('Organizer::Organizer/installmodules.notfound_modules_install'), ["positionClass" => "toast-top-left"]);
                         break;
                     case "ur":
-                        \Toastr::error(trans('InstallerModule::InstallerModule/installmodules.notfound_modules_install'), trans('InstallerModule::InstallerModule/installmodules.notfound_modules_install'), ["positionClass" => "toast-top-left"]);
+                        \Toastr::error(trans('Organizer::Organizer/installmodules.notfound_modules_install'), trans('Organizer::Organizer/installmodules.notfound_modules_install'), ["positionClass" => "toast-top-left"]);
                         break;
                     default:
-//                        \Toastr::error(trans('InstallerModule::InstallerModule/installmodules.notfound_modules_install'),trans('InstallerModule::InstallerModule/installmodules.notfound_modules_install'), ["positionClass" => "toast-top-left"]);
+//                        \Toastr::error(trans('Organizer::Organizer/installmodules.notfound_modules_install'),trans('Organizer::Organizer/installmodules.notfound_modules_install'), ["positionClass" => "toast-top-left"]);
                 }
 //                return redirect()->route(app('urlBack') . '.super.modules.index')->with('',  $next($request));
                 return abort(404);

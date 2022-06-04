@@ -4,12 +4,12 @@
 
         <!-- page title -->
         <header id="page-header">
-            <h1> {{ trans('InstallerModule::InstallerModule/installmodules.title_installmodules')  }}  </h1>
+            <h1> {{ trans('Organizer::Organizer/installmodules.title_installmodules')  }}  </h1>
 
             <ol class="breadcrumb">
                 <li><a href="{{url(app('urlBack').'/')}}"><i class="glyphicon glyphicon-home" aria-hidden="true"></i></a>
                 </li>
-                <li class="active">{{ trans('InstallerModule::InstallerModule/installmodules.title_installmodules')  }}  </li>
+                <li class="active">{{ trans('Organizer::Organizer/installmodules.title_installmodules')  }}  </li>
             </ol>
 
         </header>
@@ -49,7 +49,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading panel-heading-transparent">
-                    <strong>{{ trans('InstallerModule::InstallerModule/installmodules.module_managment')  }} </strong>
+                    <strong>{{ trans('Organizer::Organizer/installmodules.module_managment')  }} </strong>
                 </div>
 
                 <div class="panel-body">

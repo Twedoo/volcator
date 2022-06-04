@@ -17,7 +17,7 @@ Route::group(['middlewareGroups' => ['web']], function () {
                 return view('elements.welcome');
             });
             //begin protected module super admin routes
-            Route::group(['middleware' => ['permission:role-access-controle']], function () {
+            Route::group(['middleware' => ['permission:role-access-control']], function () {
                 //routes Users
                 Route::get('users',
                     [
