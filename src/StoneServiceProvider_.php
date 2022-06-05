@@ -8,7 +8,6 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Twedoo\Stone\Core\StoneApplication;
 use Twedoo\Stone\Core\StoneLanguage;
 use Twedoo\Stone\Core\StoneMenu;
 use Twedoo\Stone\Core\StoneStructure;
@@ -83,10 +82,8 @@ class StoneServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/prefix.php', 'prefix');
         $this->mergeConfigFrom(__DIR__.'/../config/languages.php', 'languages');
         $this->app->register(StoneRouteServiceProvider::class);
-        $this->app->register(StoneEventServiceProvider::class);
         $this->app->register(StoneTranslationServiceProvider::class);
         $this->app->register(StoneGuardServiceProvider::class);
-        $this->app->register(StoneEventServiceProvider::class);
         $this->registerStone();
         $this->registerCommands();
     }
@@ -122,9 +119,6 @@ class StoneServiceProvider extends ServiceProvider
         });
         $this->app->singleton('stoneTranslation', function () {
             return new StoneTranslation();
-        });
-        $this->app->singleton('stoneApplication', function () {
-            return new StoneApplication();
         });
     }
 

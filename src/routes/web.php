@@ -6,7 +6,6 @@ Route::get('/contact', function(){
 
 Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'LanguageController@switchLang']);
 
-
 Route::group(['middlewareGroups' => ['web']], function () {
 
     Route::group(['prefix' => app('urlBack')], function () {

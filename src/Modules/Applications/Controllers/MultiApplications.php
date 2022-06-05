@@ -3,28 +3,40 @@
 namespace Modules\Applications\Controllers;
 
 use Illuminate\Http\Request;
-use App\Modules\Applications\Models\Applications;
-use Redirect;
+use Twedoo\Stone\Modules\Applications\Models\Applications;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
 use Input;
 use StoneLanguage;
 use Route;
 use Schema;
 use Session;
+use Twedoo\Stone\Core\StoneApplication;
 use Validator;
 use DB;
 use App;
 use Twedoo\StoneGuard\Models\User;
 
+// TODO : Pagination
 class MultiApplications extends Controller
 {
+    /**
+     * @param $application
+     * @return void
+     */
+    public function switchApplication($application)
+    {
+        StoneApplication::setCurrentApplication($application);
+        return Redirect::back();
+    }
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
         $user = auth()->user();
-        if(!$user->hasRole('Root')) {
+        if (!$user->hasRole('Root')) {
             $applications = Applications::whereHas('users', function($q) use($user) {
                 $q->where('user_id', $user->id);
             })->orderBy('id', 'DESC')->get();
@@ -40,7 +52,8 @@ class MultiApplications extends Controller
      */
     public function create()
     {
-        $users = User::where('id', '!=', auth()->user()->id)->pluck('name', 'id');
+        $users = StoneApplication::getUsersOfAllSpaces();
+
         return view('Applications::Applications.create', compact('users'));
     }
 
@@ -49,7 +62,6 @@ class MultiApplications extends Controller
      */
     public function store(Request $request)
     {
-
         $rules = [
             "name_app" => "required|unique:applications,name",
             "name_app_dis" => "required",
@@ -72,13 +84,9 @@ class MultiApplications extends Controller
             return back()->withInput()->withErrors($validate);
 
         } else {
-            $application = Applications::create([
-                'name' => request('name_app'),
-                'display_name' => request('name_app_dis'),
-            ]);
-            $users = $request->input('owner_app');
-            $users[] = (string) auth()->user()->id;
-            $application->users()->attach($users);
+
+            StoneApplication::createApplication($request);
+
             switch (App::getLocale()) {
                 case "ar":
                     \Toastr::success(trans('Applications::Applications/applications.success_add'), trans('Applications::Applications/applications.success'), ["positionClass" => "toast-top-left"]);
@@ -102,12 +110,9 @@ class MultiApplications extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-
     public function edit($id)
     {
         $user = auth()->user()->id;
-
-//        $user = Applications::where('id', '=', $id)->first();
         $applications = Applications::whereHas('users', function($q) use($id, $user) {
             $q->where('application_id', $id);
             $q->where('user_id', $user);

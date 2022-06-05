@@ -54,7 +54,8 @@
                 "StoneMenu": "Twedoo\\Stone\\Facades\\StoneMenuFacade",
                 "StonePath": "Twedoo\\Stone\\Facades\\StonePathFacade",
                 "StoneFile": "Twedoo\\Stone\\Facades\\StoneFileFacade",
-                "StoneTranslation": "Twedoo\\Stone\\Facades\\StoneTranslationFacade"
+                "StoneTranslation": "Twedoo\\Stone\\Facades\\StoneTranslationFacade",
+                "StoneApplication": "Twedoo\\Stone\\Facades\\StoneApplicationFacade"
             }
         }
     },

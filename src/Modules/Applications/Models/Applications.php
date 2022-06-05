@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Applications\Models;
+namespace Twedoo\Stone\Modules\Applications\Models;
 use Illuminate\Database\Eloquent\Model;
 use Twedoo\Stone\Organizer\Models\modules;
 use Twedoo\StoneGuard\Models\User;
@@ -8,10 +8,15 @@ use Twedoo\StoneGuard\Models\User;
 class Applications extends Model
 {
     protected $fillable = [
-        'name', 'display_name', 'unique_identity', 'type',
+        'name', 'display_name', 'unique_identity', 'type', 'space_id', 'enable'
     ];
 
     protected $table = "applications";
+
+    public function space()
+    {
+        return $this->belongsTo(Spaces::class);
+    }
 
     public function users()
     {
@@ -26,5 +31,4 @@ class Applications extends Model
     {
         return $this->belongsToMany(modules::class, 'applications_module', 'application_id', 'module_id');
     }
-
 }

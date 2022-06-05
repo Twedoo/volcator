@@ -134,6 +134,63 @@ class StoneSetupTables extends Migration
             });
         }
 
+        if (!Schema::hasTable('{{ $spacesTable }}')) {
+            Schema::create('{{ $spacesTable }}', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('unique_identity')->unique();
+                $table->string('name');
+                $table->unsignedInteger('owner_id');
+                $table->tinyInteger('enable')->default('1');
+                $table->timestamps();
+                });
+            Schema::table('{{ $spacesTable }}', function (Blueprint $table) {
+                $table->foreign('owner_id')->references('id')->on('{{ $usersTable }}');
+            });
+        };
+
+        if (!Schema::hasTable('{{ $applicationsTable }}')) {
+            Schema::create('{{ $applicationsTable }}', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('name');
+                $table->string('display_name')->nullable();
+                $table->string('unique_identity')->unique();
+                $table->string('type');
+                $table->tinyInteger('enable')->default('1');
+                $table->unsignedInteger('space_id');
+                $table->timestamps();
+            });
+            Schema::table('{{ $applicationsTable }}', function (Blueprint $table) {
+                $table->foreign('space_id')->references('id')->on('{{ $spacesTable }}');
+            });
+        };
+
+        if (!Schema::hasTable('{{ $applicationsUserTable }}')) {
+            Schema::create('{{ $applicationsUserTable }}', function (Blueprint $table) {
+                $table->integer('application_id')->unsigned();
+                $table->integer('user_id')->unsigned();
+
+                $table->foreign('user_id')->references('id')->on('{{ $usersTable }}')
+                ->onUpdate('cascade')->onDelete('cascade');
+                $table->foreign('application_id')->references('id')->on('{{ $applicationsTable }}')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+                $table->primary(['application_id', 'user_id']);
+            });
+        }
+
+        if (!Schema::hasTable('{{ $applicationsModuleTable }}')) {
+            Schema::create('{{ $applicationsModuleTable }}', function (Blueprint $table) {
+                $table->integer('application_id')->unsigned();
+                $table->integer('module_id')->unsigned();
+
+                $table->foreign('module_id')->references('im_id')->on('{{ $modulesTable }}')
+                ->onUpdate('cascade')->onDelete('cascade');
+                $table->foreign('application_id')->references('id')->on('{{ $applicationsTable }}');
+
+                $table->primary(['application_id', 'module_id']);
+            });
+        }
+
         DB::commit();
     }
 
@@ -164,6 +221,18 @@ class StoneSetupTables extends Migration
         }
         if (Schema::hasTable('{{ $rolesTable }}')) {
             Schema::drop('{{ $rolesTable }}');
+        }
+        if (Schema::hasTable('{{ $applicationsModuleTable }}')) {
+            Schema::drop('{{ $applicationsModuleTable }}');
+        }
+        if (Schema::hasTable('{{ $applicationsUserTable }}')) {
+            Schema::drop('{{ $applicationsUserTable }}');
+        }
+        if (Schema::hasTable('{{ $spacesTable }}')) {
+            Schema::drop('{{ $spacesTable }}');
+        }
+        if (Schema::hasTable('{{ $applicationsTable }}')) {
+            Schema::drop('{{ $applicationsTable }}');
         }
         if (Schema::hasTable('{{ $usersTable }}')) {
             Schema::drop('{{ $usersTable }}');

@@ -3,10 +3,12 @@
 namespace Twedoo\Stone\Http\Controllers\Auth;
 
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Session;
 use Twedoo\Stone\Http\Controllers\Controller;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class LoginController extends Controller
 {
@@ -36,8 +38,6 @@ class LoginController extends Controller
      *
      * @return void
      */
-
-
     public function authenticated()
     {
         if (Auth::user()->type != null) {
@@ -51,7 +51,6 @@ class LoginController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-
     public function logout(Request $request)
     {
         if (!Auth::user()) {
@@ -63,18 +62,20 @@ class LoginController extends Controller
             $request->session()->invalidate();
             return redirect(app('urlBack') . '/login');
         } else {
+            $applocale = Session::get('applocale');
+            $application = Session::get('application');
             $this->guard()->logout();
             $request->session()->invalidate();
+            Session::put('applocale', $applocale);
+            App::setLocale($applocale);
+            Session::put('application', $application);
             return redirect('/');
         }
     }
 
-//    public function __construct()
-//    {
-//        $this->middleware('guest')->except('logout');
-//    }
-
-
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function showLoginForm()
     {
         if (Auth::user()) {

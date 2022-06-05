@@ -2,6 +2,22 @@
 //
 Route::group(['middleware' => ['web', 'auth']], function () {
     Route::auth();
+    Route::group([
+        'prefix' => app('urlBack'),
+        'module' => 'Applications',
+        'middleware' => [
+            'web',
+            'permission:permissions-applications-view'
+        ],
+        'namespace' => 'Modules\Applications\Controllers'
+    ], function () {
+        Route::get('/switch/application/{application}', [
+            'as' => app('urlBack') . '.application.switch',
+            'uses' => 'MultiApplications@switchApplication',
+            'middleware' => ['role:Manager-Multi-Application']
+        ]);
+    });
+
     Route::group(['prefix' => app('urlBack') . '/' . app('module')], function () {
         /**
          * Routes of Multi-Applications
@@ -14,6 +30,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
             ],
             'namespace' => 'Modules\Applications\Controllers'
         ], function () {
+
             Route::get('applications',
                 [
                     'as' => app('urlBack') . '.multi.applications.index',

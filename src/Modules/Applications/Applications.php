@@ -51,6 +51,18 @@ class Applications extends StoneStructure
 
         if (!StoneEngine::isInstallModule($module)) {
 
+            if (!Schema::hasTable(strtolower('spaces'))) {
+                Schema::create('spaces', function (Blueprint $table) {
+                    $table->increments('id');
+                    $table->string('unique_identity')->unique();
+                    $table->string('name');
+                    $table->unsignedInteger('owner_id');
+                    $table->timestamps();
+                });
+                Schema::table('users', function (Blueprint $table) {
+                    $table->foreign('owner_id')->references('id')->on('users');
+                });
+            };
 
             if (!Schema::hasTable(strtolower('applications'))) {
                 Schema::create('applications', function (Blueprint $table) {
@@ -59,7 +71,11 @@ class Applications extends StoneStructure
                     $table->string('display_name')->nullable();
                     $table->string('unique_identity')->unique();
                     $table->string('type');
+                    $table->unsignedInteger('space_id');
                     $table->timestamps();
+                });
+                Schema::table('applications', function (Blueprint $table) {
+                    $table->foreign('space_id')->references('id')->on('spaces');
                 });
             };
 
@@ -91,6 +107,7 @@ class Applications extends StoneStructure
                     $table->primary(['application_id', 'module_id']);
                 });
             }
+
 
             //Artisan::call('db:seed');
             Artisan::call('db:seed', [

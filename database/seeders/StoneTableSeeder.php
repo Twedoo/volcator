@@ -1,6 +1,7 @@
 <?php
 namespace Twedoo\Stone\database\seeders;
 
+use Twedoo\Stone\Modules\Applications\Models\seeder\applicationsTableSeeder;
 use Twedoo\Stone\Organizer\Models\modules;
 use Illuminate\Database\Seeder;
 use Twedoo\Stone\Models\Parameters;
@@ -391,6 +392,9 @@ class StoneTableSeeder extends Seeder
         foreach ($languages as $key => $value) {
             Languages::create($value);
         }
+
+        $seederApplication = new applicationsTableSeeder();
+        $seederApplication->run();
         //end Languages globals
     }
 }

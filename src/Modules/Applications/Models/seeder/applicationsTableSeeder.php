@@ -1,6 +1,8 @@
 <?php
 namespace Twedoo\Stone\Modules\Applications\Models\seeder;
 
+use Twedoo\Stone\Modules\Applications\Models\Applications;
+use Twedoo\Stone\Modules\Applications\Models\Spaces;
 use Twedoo\Stone\Organizer\Models\modules;
 use Illuminate\Database\Seeder;
 use Twedoo\Stone\Models\Menuback;
@@ -113,6 +115,25 @@ class applicationsTableSeeder extends Seeder
                 'user_id' => $user_id,
                 'role_id' => $id_role,
             ]);
+        }
+
+        foreach ($users_majestic as $key => $user_id) {
+            $space = Spaces::create([
+                'name' => 'Main Workspace',
+                'unique_identity' => uniqid(),
+                'owner_id' => $user_id,
+            ]);
+            $application = Applications::create([
+                'name' => 'Main',
+                'display_name' => 'Main Application',
+                'unique_identity' => uniqid(),
+                'type' => 'main',
+                'space_id' => $space->id,
+            ]);
+            $application_attached = Modules::where('application', 'main')->pluck('im_id')->toArray();
+            $users_attached[] = (string) $user_id;
+            $application->users()->attach($users_attached);
+            $application->modules()->attach($application_attached);
         }
         // end permission cms
     }
