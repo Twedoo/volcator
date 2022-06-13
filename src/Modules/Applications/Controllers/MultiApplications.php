@@ -3,7 +3,6 @@
 namespace Modules\Applications\Controllers;
 
 use Illuminate\Http\Request;
-use Twedoo\Stone\Modules\Applications\Models\Applications;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
 use Input;
@@ -12,6 +11,8 @@ use Route;
 use Schema;
 use Session;
 use Twedoo\Stone\Core\StoneApplication;
+use Twedoo\Stone\Core\StoneSpace;
+use Twedoo\Stone\Modules\Applications\Models\Applications;
 use Validator;
 use DB;
 use App;

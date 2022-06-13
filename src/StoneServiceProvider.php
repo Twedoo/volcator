@@ -11,6 +11,7 @@ use Illuminate\Support\ServiceProvider;
 use Twedoo\Stone\Core\StoneApplication;
 use Twedoo\Stone\Core\StoneLanguage;
 use Twedoo\Stone\Core\StoneMenu;
+use Twedoo\Stone\Core\StoneSpace;
 use Twedoo\Stone\Core\StoneStructure;
 use Twedoo\Stone\Core\StoneTranslation;
 use Twedoo\Stone\Core\Utils\StoneFile;
@@ -29,6 +30,7 @@ use Twedoo\Stone\Core\Utils\StoneMediaStyle;
 use Twedoo\StoneGuard\StoneGuardServiceProvider;
 use Twedoo\Stone\MigrationCommand;
 use Twedoo\Stone\SeederCommand;
+use Config;
 
 class StoneServiceProvider extends ServiceProvider
 {
@@ -67,6 +69,9 @@ class StoneServiceProvider extends ServiceProvider
             __DIR__.'/../resources/lang' => resource_path('lang'),
         ], 'stone-lang');
 
+//        $this->publishes([
+//            __DIR__.'/../config/filesystems.php' => app()->basePath() . '/config/filesystems.php',
+//        ], 'disk');
         // Register commands
         $this->commands('command.stone.migration');
         $this->commands('command.stone.seeder');
@@ -79,6 +84,7 @@ class StoneServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__.'/../config/filesystems.php', 'disks');
         $this->mergeConfigFrom(__DIR__.'/../config/stone.php', 'stone');
         $this->mergeConfigFrom(__DIR__.'/../config/prefix.php', 'prefix');
         $this->mergeConfigFrom(__DIR__.'/../config/languages.php', 'languages');
@@ -126,6 +132,9 @@ class StoneServiceProvider extends ServiceProvider
         $this->app->singleton('stoneApplication', function () {
             return new StoneApplication();
         });
+        $this->app->singleton('stoneSpace', function () {
+            return new StoneSpace();
+        });
     }
 
     /**
@@ -155,6 +164,10 @@ class StoneServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/stone.php' => config_path('stone.php'),
         ], 'stone.config');
+
+        $this->publishes([
+            __DIR__.'/../config/stone.php' => app()->basePath() . '/config/filesystems.php',
+        ], 'disks');
 
         // Publishing the views.
 //        $this->publishes([

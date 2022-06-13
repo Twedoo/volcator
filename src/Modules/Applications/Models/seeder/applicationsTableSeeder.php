@@ -55,12 +55,48 @@ class applicationsTableSeeder extends Seeder
             Menuback::create($value);
         }
 
-        // permission cms
+
+        /**
+         * Create roles and permissions manager space
+         */
+        $permissions_manager_space = [
+            [
+                'name' => 'permissions-stone-manager',
+                'display_name' => 'Manager Space',
+                'description' => 'Permission manager spaces'
+            ],
+        ];
+
+        $roles_manager_spaces = [
+            [
+                'name' => 'Manager-Space',
+                'display_name' => 'Manager Space',
+                'description' => 'Manager Manager Space, permissions to create spaces'
+            ]
+        ];
+
+        foreach ($roles_manager_spaces as $key => $value) {
+            $role_manager_space = Role::create($value);
+        }
+
+        $id_role_manager_space = $role_manager_space->id;
+
+        foreach ($permissions_manager_space as $key => $value) {
+            $setPermission = Permission::create($value);
+            DB::table("permission_role")->insert([
+                'permission_id' => $setPermission->id,
+                'role_id' => $id_role_manager_space,
+            ]);
+        }
+
+        /**
+         * Create roles and permissions Multi-Applications
+         */
         $permission = [
             [
                 'name' => 'permissions-applications-view',
                 'display_name' => 'View Multi-Applications',
-                'description' => 'Permission managment Applications for users',
+                'description' => 'Permission management Applications for users',
                 'id_module' => $idModule
             ],
             [
@@ -111,6 +147,10 @@ class applicationsTableSeeder extends Seeder
         })->pluck('id')->toArray();
 
         foreach ($users_majestic as $key => $user_id) {
+            DB::table("role_user")->insert([
+                'user_id' => $user_id,
+                'role_id' => $id_role_manager_space,
+            ]);
             DB::table("role_user")->insert([
                 'user_id' => $user_id,
                 'role_id' => $id_role,

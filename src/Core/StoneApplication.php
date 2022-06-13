@@ -47,9 +47,22 @@ class StoneApplication
     public static function getApplicationsSpaces()
     {
         $user = auth()->user();
-        return Applications::whereHas('users', function($q) use($user) {
+        $applications = Applications::whereHas('users', function($q) use($user) {
             $q->where('user_id', $user->id);
-        })->pluck('name', 'id')->toArray();
+        })->where('applications.space_id', StoneSpace::getCurrentSpaceId())->pluck('name', 'id')->toArray();
+        return $applications;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public static function getApplicationId()
+    {
+        $user = auth()->user();
+        return $application = Applications::whereHas('users', function($q) use($user) {
+            $q->where('user_id', $user->id);
+            $q->where('applications.type', "main");
+        })->first()->id;
     }
 
 
@@ -59,23 +72,27 @@ class StoneApplication
      */
     public static function CreateMainApplicationOrAssignUser($user)
     {
-        $user_auth = auth()->user();
-        if ($user_auth->hasRole('Root')) {
-            $application = Applications::create([
-                'name' => 'Main',
-                'display_name' => 'Main Application',
-                'unique_identity' => uniqid(),
-                'type' => 'main',
-            ]);
-            $application_attached = Modules::where('application', 'main')->pluck('im_id')->toArray();
-            $users_attached[] = (string) $user->id;
-            $application->users()->attach($users_attached);
-            $application->modules()->attach($application_attached);
-        } else if ($user_auth->hasRole('Manager-Multi-Application')) {
-            $application = Applications::where('id', Session::get('application'))->first();
-            $users_attached[] = (string) $user->id;
-            $application->users()->attach($users_attached);
-        }
+        $application = Applications::where('id', Session::get('application'))->first();
+        $users_attached[] = (string) $user->id;
+        $application->users()->attach($users_attached);
+//        $user_auth = auth()->user();
+//        if ($user_auth->hasRole('Root')) {
+//            $application = Applications::create([
+//                'name' => 'Main',
+//                'display_name' => 'Main Application',
+//                'unique_identity' => uniqid(),
+//                'space_id' => StoneSpace::getCurrentSpaceId(),
+//                'type' => 'main',
+//            ]);
+//            $application_attached = Modules::where('application', 'main')->pluck('im_id')->toArray();
+//            $users_attached[] = (string) $user->id;
+//            $application->users()->attach($users_attached);
+//            $application->modules()->attach($application_attached);
+//        } else if ($user_auth->hasRole('Manager-Multi-Application')) {
+//            $application = Applications::where('id', Session::get('application'))->first();
+//            $users_attached[] = (string) $user->id;
+//            $application->users()->attach($users_attached);
+//        }
     }
 
     /**
@@ -105,7 +122,8 @@ class StoneApplication
                 'name' => request('name_app'),
                 'display_name' => request('name_app_dis'),
                 'unique_identity' => uniqid(),
-                'type' => 'custom',
+                'type' => 'main',
+                'space_id' => StoneSpace::getCurrentSpaceId(),
             ]);
             $users = $request->input('owner_app');
             $users[] = (string) auth()->user()->id;

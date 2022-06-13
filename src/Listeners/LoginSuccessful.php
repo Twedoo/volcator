@@ -2,11 +2,14 @@
 
 namespace Twedoo\Stone\Listeners;
 
+use Twedoo\Stone\Core\StoneApplication;
+use Twedoo\Stone\Core\StoneSpace;
 use Twedoo\Stone\Modules\Applications\Models\Applications;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Session;
+use Twedoo\Stone\Modules\Applications\Models\Spaces;
 
 class LoginSuccessful
 {
@@ -28,14 +31,12 @@ class LoginSuccessful
      */
     public function handle(Login $event)
     {
-        if (!Session::has('application') || Session::get('application') == null) {
-            $user = auth()->user();
-            $application = Applications::whereHas('users', function($q) use($user) {
-                $q->where('user_id', $user->id);
-                $q->where('applications.type', "main");
-            })->first()->id;
+        if (!Session::has('space') || Session::get('space') == null) {
+            Session::put('space', StoneSpace::getSpaceId());
+        }
 
-            Session::put('application', $application);
+        if (!Session::has('application') || Session::get('application') == null) {
+            Session::put('application', StoneApplication::getApplicationId());
         }
     }
 }

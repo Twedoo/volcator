@@ -140,7 +140,9 @@ class StoneSetupTables extends Migration
                 $table->string('unique_identity')->unique();
                 $table->string('name');
                 $table->unsignedInteger('owner_id');
+                $table->text('type')->nullable();
                 $table->tinyInteger('enable')->default('1');
+                $table->text('image')->nullable();
                 $table->timestamps();
                 });
             Schema::table('{{ $spacesTable }}', function (Blueprint $table) {
@@ -157,6 +159,7 @@ class StoneSetupTables extends Migration
                 $table->string('type');
                 $table->tinyInteger('enable')->default('1');
                 $table->unsignedInteger('space_id');
+                $table->text('image')->nullable();
                 $table->timestamps();
             });
             Schema::table('{{ $applicationsTable }}', function (Blueprint $table) {

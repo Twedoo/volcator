@@ -57,6 +57,7 @@ class Applications extends StoneStructure
                     $table->string('unique_identity')->unique();
                     $table->string('name');
                     $table->unsignedInteger('owner_id');
+                    $table->text('image')->nullable();
                     $table->timestamps();
                 });
                 Schema::table('users', function (Blueprint $table) {
@@ -72,6 +73,7 @@ class Applications extends StoneStructure
                     $table->string('unique_identity')->unique();
                     $table->string('type');
                     $table->unsignedInteger('space_id');
+                    $table->text('image')->nullable();
                     $table->timestamps();
                 });
                 Schema::table('applications', function (Blueprint $table) {

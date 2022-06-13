@@ -18,7 +18,38 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         ]);
     });
 
+    Route::group([
+        'prefix' => app('urlBack'),
+        'module' => 'Applications',
+        'middleware' => [
+            'web',
+            'permission:permissions-stone-manager'
+        ],
+        'namespace' => 'Modules\Applications\Controllers'
+    ], function () {
+        Route::get('/switch/space/{space}', [
+            'as' => app('urlBack') . '.space.switch',
+            'uses' => 'Spaces@switchSpace',
+            'middleware' => ['role:Manager-Space']
+        ]);
+    });
+
     Route::group(['prefix' => app('urlBack') . '/' . app('module')], function () {
+        Route::group([
+            'module' => 'Applications',
+            'middleware' => [
+                'web',
+                'permission:permissions-stone-manager'
+            ],
+            'namespace' => 'Modules\Applications\Controllers'
+        ], function () {
+            Route::post('spaces/manager/{id?}',
+                [
+                    'as' => app('urlBack') . '.store.manager',
+                    'uses' => 'Spaces@store',
+                    'middleware' => ['permission:permissions-stone-manager']
+                ]);
+        });
         /**
          * Routes of Multi-Applications
          */

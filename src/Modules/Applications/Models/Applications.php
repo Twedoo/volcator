@@ -8,7 +8,7 @@ use Twedoo\StoneGuard\Models\User;
 class Applications extends Model
 {
     protected $fillable = [
-        'name', 'display_name', 'unique_identity', 'type', 'space_id', 'enable'
+        'name', 'display_name', 'unique_identity', 'type', 'space_id', 'enable', 'image'
     ];
 
     protected $table = "applications";
