@@ -17,6 +17,7 @@ use Validator;
 use DB;
 use App;
 use Twedoo\StoneGuard\Models\User;
+use Config;
 
 // TODO : Pagination
 class MultiApplications extends Controller
@@ -36,15 +37,7 @@ class MultiApplications extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
-        if (!$user->hasRole('Root')) {
-            $applications = Applications::whereHas('users', function($q) use($user) {
-                $q->where('user_id', $user->id);
-            })->orderBy('id', 'DESC')->get();
-        } else {
-            $applications = Applications::all();
-        }
-
+        $applications = StoneApplication::getApplicationBySpace();
         return view('Applications::Applications.index', compact('applications'));
     }
 
@@ -53,8 +46,7 @@ class MultiApplications extends Controller
      */
     public function create()
     {
-        $users = StoneApplication::getUsersOfAllSpaces();
-
+        $users = StoneApplication::getUsersCurrentSpace();
         return view('Applications::Applications.create', compact('users'));
     }
 

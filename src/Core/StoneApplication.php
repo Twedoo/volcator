@@ -11,6 +11,7 @@ use File;
 use StoneFile;
 use Session;
 use Twedoo\Stone\Organizer\Models\modules;
+use Twedoo\StoneGuard\Models\Role;
 use Twedoo\StoneGuard\Models\User;
 
 class StoneApplication
@@ -38,7 +39,11 @@ class StoneApplication
      */
     public static function getCurrentApplication()
     {
-        return Applications::where('id', StoneApplication::getCurrentApplicationId())->first();
+        $application = Applications::where([
+            ['space_id', '=', StoneSpace::getCurrentSpaceId()]]
+        )->first();
+        Session::put('application', $application->id);
+         return $application;
     }
 
     /**
@@ -98,16 +103,34 @@ class StoneApplication
     /**
      * @return mixed
      */
-    public static function getUsersOfAllSpaces()
+    public static function getUsersCurrentSpace()
     {
         $user = auth()->user();
         $applications = Applications::whereHas('users', function($q) use($user) {
             $q->where('user_id', $user->id);
         })->pluck('id')->toArray();
+        $users_applications = DB::table('applications_user')->whereIn('application_id', $applications)->distinct()->pluck('user_id')->toArray();
+        return User::join('role_user', 'role_user.user_id', '=', 'users.id')
+            ->whereIn('users.id', $users_applications)
+            ->whereNotIn('role_user.user_id', (new StoneApplication)->getRoleIdRoot()->pluck('id')->toArray())
+            ->distinct()->pluck('name', 'id')->toArray();
+    }
 
-        $users_applications = DB::table('applications_user')->whereIn('application_id', $applications)->where('user_id', '!=', auth()->user()->id)->distinct()->pluck('user_id')->toArray();
+    /**
+     * @param null $currentSpace
+     * @return mixed
+     */
+    public function getApplicationBySpace($currentSpace = null) {
+        if (!$currentSpace) {
+            $currentSpace = StoneSpace::getCurrentSpaceId();
+        }
+        $user = auth()->user();
+        $applications = Applications::whereHas('users', function($q) use($user, $currentSpace) {
+            $q->where('user_id', $user->id);
+            $q->where('space_id', $currentSpace);
+        })->orderBy('id', 'DESC')->get();
 
-        return User::whereIn('id', $users_applications)->pluck('name', 'id');
+        return $applications;
     }
 
     /**
@@ -129,5 +152,9 @@ class StoneApplication
             $users[] = (string) auth()->user()->id;
             $application->users()->attach($users);
         }
+    }
+
+    public function getRoleIdRoot() {
+        return Role::where('name', 'Root')->get();
     }
 }

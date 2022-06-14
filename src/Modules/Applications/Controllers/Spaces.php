@@ -28,8 +28,8 @@ class Spaces extends Controller
      */
     public function switchSpace($space)
     {
-        StoneApplication::setCurrentApplication(StoneApplication::getCurrentApplication()->id);
         StoneSpace::setCurrentSpace($space);
+        StoneApplication::setCurrentApplication(StoneApplication::getCurrentApplication()->id);
         return Redirect::back();
     }
 
