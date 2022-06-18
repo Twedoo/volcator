@@ -58,7 +58,7 @@ class StoneServiceProvider extends ServiceProvider
 
         // publish package
         $this->publishes([
-            __DIR__.'/../config/config.php' => app()->basePath() . '/config/stone.php',
+            __DIR__.'/../config/stone.php' => app()->basePath() . '/config/stone.php',
         ], 'stone-config');
 
         $this->publishes([
@@ -69,10 +69,6 @@ class StoneServiceProvider extends ServiceProvider
             __DIR__.'/../resources/lang' => resource_path('lang'),
         ], 'stone-lang');
 
-//        $this->publishes([
-//            __DIR__.'/../config/filesystems.php' => app()->basePath() . '/config/filesystems.php',
-//        ], 'disk');
-        // Register commands
         $this->commands('command.stone.migration');
         $this->commands('command.stone.seeder');
     }
@@ -168,25 +164,5 @@ class StoneServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/stone.php' => app()->basePath() . '/config/filesystems.php',
         ], 'disks');
-
-        // Publishing the views.
-//        $this->publishes([
-//            __DIR__.'/../resources/views/back' => base_path('resources/views'),
-//        ], 'stone.views');
-//
-//       $this->publishes([
-//            __DIR__.'/../resources/lang' => resource_path('resources/lang'),
-//        ], 'stone.views');
-
-        // Publishing assets.
-        /*$this->publishes([
-            __DIR__.'/../resources/assets' => public_path('vendor/twedoo'),
-        ], 'stone.views');*/
-
-        // Publishing the translation files.
-
-
-        // Registering package commands.
-        // $this->commands([]);
     }
 }

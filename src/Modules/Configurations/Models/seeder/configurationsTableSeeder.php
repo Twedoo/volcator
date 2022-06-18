@@ -3,7 +3,7 @@ namespace Twedoo\Stone\Modules\Configurations\Models\seeder;
 
 use Twedoo\Stone\Models\Menuback;
 use Twedoo\Stone\Modules\Configurations\Models\confsettings;
-use Twedoo\Stone\Organizer\Models\modules;
+use Twedoo\Stone\Organizer\Models\Stones;
 use Twedoo\StoneGuard\Models\Permission;
 use Illuminate\Database\Seeder;
 use DB;
@@ -47,19 +47,19 @@ class configurationsTableSeeder extends Seeder
             [
                 'name_menu' => "menugenerale_settings",
                 'route_link' => "settings",
-                'id_module' => $idlast,
+                'id_stone' => $idlast,
                 'mb_permission' => 'role-access-settings',
             ],
             [
                 'name_menu' => "menugenerale_language",
                 'route_link' => "languages",
-                'id_module' => $idlast,
+                'id_stone' => $idlast,
                 'mb_permission' => 'role-access-languages',
             ],
             [
                 'name_menu' => "menugenerale_templates",
                 'route_link' => "templates",
-                'id_module' => $idlast,
+                'id_stone' => $idlast,
                 'mb_permission' => 'role-access-templates',
             ]
         ];
@@ -75,25 +75,25 @@ class configurationsTableSeeder extends Seeder
                 'name' => 'role-access-languages',
                 'display_name' => 'Access Langugaes ',
                 'description' => 'Permission managment languages',
-                'id_module' => $idlast
+                'id_stone' => $idlast
             ],
             [
                 'name' => 'role-access-templates',
                 'display_name' => 'Access Templates ',
                 'description' => 'Permission managment templates',
-                'id_module' => $idlast
+                'id_stone' => $idlast
             ],
             [
                 'name' => 'role-access-settings',
                 'display_name' => 'Access Settings ',
                 'description' => 'Permission managment settings',
-                'id_module' => $idlast
+                'id_stone' => $idlast
             ],
             [
                 'name' => 'role-access-configuration',
                 'display_name' => 'Module configuration',
                 'description' => 'Managment settings, languages and templates of CMS',
-                'id_module' => $idlast
+                'id_stone' => $idlast
             ]
         ];
 

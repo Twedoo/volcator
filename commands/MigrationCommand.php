@@ -48,11 +48,11 @@ class MigrationCommand extends Command
 
         $spacesTable                = Config::get('stone.spaces_table');
         $applicationsTable          = Config::get('stone.applications_table');
-        $applicationsModuleTable    = Config::get('stone.applications_module_table');
+        $applicationsStoneTable    = Config::get('stone.applications_stone_table');
         $applicationsUserTable      = Config::get('stone.applications_user_table');
-        $modulesTable               = Config::get('stone.modules_table');
+        $stonesTable               = Config::get('stone.stones_table');
         $parametersTable            = Config::get('stone.parameters_table');
-        $menubackTable              = Config::get('stone.menubacks_table');
+        $menuBackTable              = Config::get('stone.menuBacks_table');
         $languagesTable             = Config::get('stone.languages_table');
         $rolesTable                 = Config::get('stone.roles_table');
         $roleUserTable              = Config::get('stone.role_user_table');
@@ -60,9 +60,9 @@ class MigrationCommand extends Command
         $permissionRoleTable        = Config::get('stone.permission_role_table');
 
         $this->line('');
-        $this->info( "Tables: $spacesTable, $applicationsTable, $applicationsModuleTable, $applicationsUserTable, $rolesTable, $roleUserTable, $permissionsTable, $permissionRoleTable, $modulesTable, $parametersTable, $menubackTable, $languagesTable");
+        $this->info( "Tables: $spacesTable, $applicationsTable, $applicationsStoneTable, $applicationsUserTable, $rolesTable, $roleUserTable, $permissionsTable, $permissionRoleTable, $stonesTable, $parametersTable, $menuBackTable, $languagesTable");
 
-        $message = "A migration that creates '$spacesTable', '$applicationsTable', '$applicationsModuleTable', '$applicationsUserTable', '$rolesTable', '$roleUserTable', '$permissionsTable', '$permissionRoleTable', '$modulesTable', '$parametersTable', '$menubackTable', '$languagesTable'".
+        $message = "A migration that creates '$spacesTable', '$applicationsTable', '$applicationsStoneTable', '$applicationsUserTable', '$rolesTable', '$roleUserTable', '$permissionsTable', '$permissionRoleTable', '$stonesTable', '$parametersTable', '$menuBackTable', '$languagesTable'".
             " tables will be created in database/migrations directory";
 
         $this->comment($message);
@@ -73,7 +73,7 @@ class MigrationCommand extends Command
             $this->line('');
 
             $this->info("Creating migration...");
-            if ($this->createMigration($spacesTable, $applicationsTable, $applicationsModuleTable, $applicationsUserTable, $rolesTable, $roleUserTable, $permissionsTable, $permissionRoleTable, $modulesTable, $parametersTable, $menubackTable, $languagesTable)) {
+            if ($this->createMigration($spacesTable, $applicationsTable, $applicationsStoneTable, $applicationsUserTable, $rolesTable, $roleUserTable, $permissionsTable, $permissionRoleTable, $stonesTable, $parametersTable, $menuBackTable, $languagesTable)) {
 
                 $this->info("Migration successfully created!");
             } else {
@@ -97,7 +97,7 @@ class MigrationCommand extends Command
      *
      * @return bool
      */
-    protected function createMigration($spacesTable, $applicationsTable, $applicationsModuleTable, $applicationsUserTable, $rolesTable, $roleUserTable, $permissionsTable, $permissionRoleTable, $modulesTable, $parametersTable, $menubackTable, $languagesTable)
+    protected function createMigration($spacesTable, $applicationsTable, $applicationsStoneTable, $applicationsUserTable, $rolesTable, $roleUserTable, $permissionsTable, $permissionRoleTable, $stonesTable, $parametersTable, $menuBackTable, $languagesTable)
     {
         $migrationFile = base_path("/database/migrations")."/".date('Y_m_d_His')."_stone_setup_tables.php";
 
@@ -106,7 +106,7 @@ class MigrationCommand extends Command
         $usersTable = $userModel->getTable();
         $userKeyName = $userModel->getKeyName();
 
-        $data = compact('spacesTable', 'applicationsTable', 'applicationsModuleTable', 'applicationsUserTable', 'rolesTable', 'roleUserTable', 'permissionsTable', 'permissionRoleTable', 'parametersTable', 'modulesTable', 'menubackTable', 'languagesTable', 'usersTable', 'userKeyName');
+        $data = compact('spacesTable', 'applicationsTable', 'applicationsStoneTable', 'applicationsUserTable', 'rolesTable', 'roleUserTable', 'permissionsTable', 'permissionRoleTable', 'parametersTable', 'stonesTable', 'menuBackTable', 'languagesTable', 'usersTable', 'userKeyName');
 
         $output = $this->laravel->view->make('stone::generators.migration')->with($data)->render();
 

@@ -10,7 +10,7 @@ use DB;
 use File;
 use StoneFile;
 use Session;
-use Twedoo\Stone\Organizer\Models\modules;
+use Twedoo\Stone\Organizer\Models\Stones;
 use Twedoo\StoneGuard\Models\Role;
 use Twedoo\StoneGuard\Models\User;
 
@@ -154,7 +154,33 @@ class StoneApplication
         }
     }
 
+    /**
+     * @return mixed
+     */
     public function getRoleIdRoot() {
         return Role::where('name', 'Root')->get();
+    }
+
+    /**
+     * @param $application
+     * @return void
+     */
+    public static function getRolesCurrentApplication($application)
+    {
+
+//        $applications = Applications::whereHas('users', function($q) use($user) {
+//            $q->where('user_id', $user->id);
+//        })->pluck('id')->toArray();
+
+        $application_module = DB::table('applications_module')->where('application_id', $application)->distinct()->pluck('module_id')->toArray();
+        $nameModules = modules::whereIn('im_id', $application_module)->distinct()->pluck('im_permission')->toArray();
+        dump($nameModules);
+        return Role::join('permission_role', 'permission_role.permission_id', '=', 'permission_role.role_id')
+                ->select('*')
+//                ->join('permissions', 'permissions.id', '=', 'permission_role.permission_id')
+//                ->whereIn('permissions.name', $nameModules)
+                 ->pluck('name', 'id')->toArray()
+            ;
+
     }
 }

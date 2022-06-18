@@ -38,7 +38,7 @@ class Applications extends StoneStructure
         $this->btnReset = true;
         $this->btnUninstall = true;
         $this->btnRemove = true;
-        $this->categoryMenu = 'standar_menu';
+        $this->categoryMenu = 'standard_menu';
         $this->dropTable = "applications_user, applications";
     }
 

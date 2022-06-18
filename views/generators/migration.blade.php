@@ -14,15 +14,16 @@ class StoneSetupTables extends Migration
     {
         DB::beginTransaction();
 
-        if (!Schema::hasTable('{{ $modulesTable }}')) {
-            Schema::create('{{ $modulesTable }}', function (Blueprint $table) {
-                $table->increments('im_id');
-                $table->string('im_name_modules');
-                $table->string('im_name_modules_display');
-                $table->string('im_menu_icon');
-                $table->string('im_permission');
-                $table->string('im_status');
-                $table->string('im_order')->nullable();
+        if (!Schema::hasTable('{{ $stonesTable }}')) {
+            Schema::create('{{ $stonesTable }}', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('name');
+                $table->string('display_name');
+                $table->text('permission_name')->nullable();
+                $table->string('menu_type')->nullable();
+                $table->string('menu_icon')->nullable();
+                $table->string('order')->nullable();
+                $table->string('enable');
                 $table->string('application')->nullable();
                 $table->timestamps();
             });
@@ -38,13 +39,13 @@ class StoneSetupTables extends Migration
             });
         }
 
-        if (!Schema::hasTable('{{ $menubackTable }}')) {
-            Schema::create('{{ $menubackTable }}', function (Blueprint $table) {
+        if (!Schema::hasTable('{{ $menuBackTable }}')) {
+            Schema::create('{{ $menuBackTable }}', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('name_menu');
                 $table->string('route_link');
                 $table->string('menu_icon')->nullable();
-                $table->string('id_module')->nullable();
+                $table->string('id_stone')->nullable();
                 $table->string('mb_permission')->nullable();
                 $table->integer('parent_id')->nullable();
                 $table->integer('lft')->nullable();
@@ -112,7 +113,7 @@ class StoneSetupTables extends Migration
             Schema::create('{{ $permissionsTable }}', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('name')->unique();
-                $table->string('id_module')->nullable();
+                $table->string('id_stone')->nullable();
                 $table->string('display_name')->nullable();
                 $table->string('description')->nullable();
                 $table->timestamps();
@@ -181,16 +182,16 @@ class StoneSetupTables extends Migration
             });
         }
 
-        if (!Schema::hasTable('{{ $applicationsModuleTable }}')) {
-            Schema::create('{{ $applicationsModuleTable }}', function (Blueprint $table) {
+        if (!Schema::hasTable('{{ $applicationsStoneTable }}')) {
+            Schema::create('{{ $applicationsStoneTable }}', function (Blueprint $table) {
                 $table->integer('application_id')->unsigned();
-                $table->integer('module_id')->unsigned();
+                $table->integer('stone_id')->unsigned();
 
-                $table->foreign('module_id')->references('im_id')->on('{{ $modulesTable }}')
+                $table->foreign('stone_id')->references('id')->on('{{ $stonesTable }}')
                 ->onUpdate('cascade')->onDelete('cascade');
                 $table->foreign('application_id')->references('id')->on('{{ $applicationsTable }}');
 
-                $table->primary(['application_id', 'module_id']);
+                $table->primary(['application_id', 'stone_id']);
             });
         }
 
@@ -207,8 +208,8 @@ class StoneSetupTables extends Migration
         if (Schema::hasTable('{{ $parametersTable }}')) {
             Schema::drop('{{ $parametersTable }}');
         }
-        if (Schema::hasTable('{{ $menubackTable }}')) {
-            Schema::drop('{{ $menubackTable }}');
+        if (Schema::hasTable('{{ $menuBackTable }}')) {
+            Schema::drop('{{ $menuBackTable }}');
         }
         if (Schema::hasTable('{{ $languagesTable }}')) {
             Schema::drop('{{ $languagesTable }}');
@@ -225,8 +226,8 @@ class StoneSetupTables extends Migration
         if (Schema::hasTable('{{ $rolesTable }}')) {
             Schema::drop('{{ $rolesTable }}');
         }
-        if (Schema::hasTable('{{ $applicationsModuleTable }}')) {
-            Schema::drop('{{ $applicationsModuleTable }}');
+        if (Schema::hasTable('{{ $applicationsStoneTable }}')) {
+            Schema::drop('{{ $applicationsStoneTable }}');
         }
         if (Schema::hasTable('{{ $applicationsUserTable }}')) {
             Schema::drop('{{ $applicationsUserTable }}');

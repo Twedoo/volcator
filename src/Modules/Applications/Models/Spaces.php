@@ -3,13 +3,17 @@
 namespace Twedoo\Stone\Modules\Applications\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Twedoo\Stone\Organizer\Models\modules;
+use Twedoo\Stone\Organizer\Models\Stones;
 use Twedoo\StoneGuard\Models\User;
 
 class Spaces extends Model
 {
     protected $fillable = [
         'unique_identity', 'name', 'owner_id' , 'type', 'enable', 'image', 'image'
+    ];
+
+    protected $casts = [
+        'permission_name' => 'array'
     ];
 
     protected $table = "spaces";

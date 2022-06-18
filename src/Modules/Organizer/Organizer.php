@@ -3,7 +3,7 @@
 namespace Twedoo\Stone\Organizer;
 
 use Config;
-use Twedoo\Stone\Organizer\Models\modules;
+use Twedoo\Stone\Organizer\Models\Stones;
 use DB;
 use File;
 use Illuminate\Http\Request;
@@ -35,14 +35,14 @@ class Organizer extends StoneStructure
      */
     public function index()
     {
-        $modules = modules::all();
+        $modules = Stones::all();
         $customModules = glob(base_path() . '/app/Modules/*', GLOB_ONLYDIR);
         $defaultModules = glob(__DIR__ . '/../../Modules/*', GLOB_ONLYDIR);
 
         foreach (array_merge($defaultModules, $customModules) as $key => $value) {
             $GetArrayModules[] = substr($value, strrpos($value, '/') + 1);;
         }
-//        dump($GetArrayModules);die;
+
         return view('Organizer::Organizer.Organizer')
             ->with('GetArrayModules', $GetArrayModules)
             ->with('modules', $modules);
@@ -150,9 +150,9 @@ class Organizer extends StoneStructure
     {
         $OrganizerDB = modules::where('im_name_modules', $module)->first();
         if ($OrganizerDB) {
-            DB::table('permissions')->where('permissions.id_module', $OrganizerDB->im_id)->delete();
+            DB::table('permissions')->where('permissions.id_stone', $OrganizerDB->im_id)->delete();
             DB::table('modules')->where('im_id', $OrganizerDB->im_id)->delete();
-            DB::table('menubacks')->where('id_module', $OrganizerDB->im_id)->delete();
+            DB::table('menubacks')->where('id_stone', $OrganizerDB->im_id)->delete();
             $table = explode(',', StoneEngine::getAttributes($module, 'dropTable'));
             foreach ($table as $value) {
                 Schema::dropIfExists(preg_replace('/[^_A-Za-z0-9\-]/', '', strtolower($value)));
@@ -171,9 +171,9 @@ class Organizer extends StoneStructure
     {
         $getModule = modules::where('im_name_modules', $module)->first();
         if ($getModule) {
-            DB::table('permissions')->where('permissions.id_module', $getModule->im_id)->delete();
+            DB::table('permissions')->where('permissions.id_stone', $getModule->im_id)->delete();
             DB::table('modules')->where('im_id', $getModule->im_id)->delete();
-            DB::table('menubacks')->where('id_module', $getModule->im_id)->delete();
+            DB::table('menubacks')->where('id_stone', $getModule->im_id)->delete();
             $table = explode(',', StoneEngine::getAttributes($module, 'dropTable'));
             foreach ($table as $value) {
                 Schema::dropIfExists(preg_replace('/[^_A-Za-z0-9\-]/', '', strtolower($value)));

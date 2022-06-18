@@ -2,7 +2,7 @@
 
 namespace Twedoo\Stone\Modules\Applications\Models;
 use Illuminate\Database\Eloquent\Model;
-use Twedoo\Stone\Organizer\Models\modules;
+use Twedoo\Stone\Organizer\Models\Stones;
 use Twedoo\StoneGuard\Models\User;
 
 class Applications extends Model
@@ -27,8 +27,8 @@ class Applications extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function modules()
+    public function stones()
     {
-        return $this->belongsToMany(modules::class, 'applications_module', 'application_id', 'module_id');
+        return $this->belongsToMany(Stones::class, 'applications_stone', 'application_id', 'stone_id');
     }
 }

@@ -7,7 +7,7 @@ namespace Twedoo\Stone\Core;
 use Twedoo\Stone\Modules\Applications\Models\Applications;
 use Twedoo\Stone\Modules\Applications\Models\Spaces;
 use Session;
-use Twedoo\Stone\Organizer\Models\modules;
+use Twedoo\Stone\Organizer\Models\Stones;
 
 class StoneSpace
 {

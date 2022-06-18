@@ -24,7 +24,7 @@ class PermissionController extends Controller
 
     public function index(Request $request)
     {
-        $data = Permission::orderBy('id', 'DESC')->where('id_module', '!=', '')->get();
+        $data = Permission::orderBy('id', 'DESC')->where('id_stone', '!=', '')->get();
         return view('elements.super.permissions.index')->with('data', $data->all());
     }
 

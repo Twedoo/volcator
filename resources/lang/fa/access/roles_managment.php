@@ -1,6 +1,6 @@
 <?php
 return [
-    'acl_mod' => 'dddddddddddd',
+    'access_controls_stone' => 'dddddddddddd',
     'managment_acl_users' => 'dddddddddddddddddddd',
     'managment_acl_roles' => '',
     'managment_acl_permissions' => 'dddddddddddddddddddddddddd',

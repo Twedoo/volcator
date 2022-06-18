@@ -1,6 +1,6 @@
 <?php
 return [
-    'tmod_mod' => 'taliona',
+    'organizer_stone' => 'taliona',
     'title_Organizer' => 'taliona',
     'nom_modules' => 'taliona',
     'check_module_notinstall' => '',

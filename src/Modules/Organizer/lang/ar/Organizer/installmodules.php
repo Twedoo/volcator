@@ -1,6 +1,6 @@
 <?php
 return [
-    'tmod_mod' => 'ههههههههههههه',
+    'organizer_stone' => 'ههههههههههههه',
     'title_Organizer' => 'ههههههههههههههههههههههه',
     'nom_modules' => 'ههههههههههههههههههه',
     'check_module_notinstall' => 'هههههههههههههههههههههههه',

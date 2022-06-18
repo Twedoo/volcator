@@ -19,7 +19,7 @@ return [
     */
 
 
-    'tmod_mod' => "إدارة المحاور",
+    'organizer_stone' => "إدارة المحاور",
     'title_Organizer' => "Install Modules",
     'nom_modules' => "Name Module",
     'check_module_notinstall' => "Module exist but not install",

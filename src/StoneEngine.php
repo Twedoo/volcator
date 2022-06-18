@@ -4,7 +4,7 @@ namespace Twedoo\Stone;
 
 use App;
 use Throwable;
-use Twedoo\Stone\Organizer\Models\modules;
+use Twedoo\Stone\Organizer\Models\Stones;
 use Config;
 use DB;
 use Illuminate\Support\Facades\URL;
@@ -16,12 +16,12 @@ class StoneEngine
 {
     public static function getModuleListDB()
     {
-        return modules::all();
+        return Stones::all();
     }
 
     public static function getStatusModule($data)
     {
-        $status = modules::where('im_name_modules', $data)->first();
+        $status = Stones::where('name', $data)->first();
 
         if (!$status)
             return false;
@@ -33,12 +33,12 @@ class StoneEngine
     }
 
     /**
-     * Check if Module really install in table modules.
+     * Check if Module really install in table Stones.
      */
 
     public static function isInstallModule($data)
     {
-        if (modules::where('im_name_modules', $data)->first())
+        if (Stones::where('name', $data)->first())
             return true;
 
         return false;
@@ -248,21 +248,21 @@ class StoneEngine
         $resultat = [];
         if ($attribute) {
             foreach (self::getModuleEnable() as $module) {
-                if (method_exists('Twedoo\\Stone\\' . $module['im_name_modules'] . '\\' . $module['im_name_modules'], '__construct')
+                if (method_exists('Twedoo\\Stone\\' . $module['name'] . '\\' . $module['name'], '__construct')
                 ) {
-                    $callClass = 'Twedoo\\Stone\\' . $module['im_name_modules'] . '\\' . $module['im_name_modules'];
+                    $callClass = 'Twedoo\\Stone\\' . $module['name'] . '\\' . $module['name'];
                     $class = new $callClass();
-                    $resultat[$module['im_name_modules']] = $class->{$attribute};
+                    $resultat[$module['name']] = $class->{$attribute};
                 }
 
             }
         } else {
             foreach (self::getModuleEnable() as $module) {
-                if (method_exists('Twedoo\\Stone\\' . $module['im_name_modules'] . '\\' . $module['im_name_modules'], '__construct')
+                if (method_exists('Twedoo\\Stone\\' . $module['name'] . '\\' . $module['name'], '__construct')
                 ) {
-                    $callClass = 'Twedoo\\Stone\\' . $module['im_name_modules'] . '\\' . $module['im_name_modules'];
+                    $callClass = 'Twedoo\\Stone\\' . $module['im_name_modules'] . '\\' . $module['name'];
                     $class = new $callClass();
-                    $resultat[$module['im_name_modules']] = get_object_vars($class);
+                    $resultat[$module['name']] = get_object_vars($class);
                 }
             }
         }
@@ -271,7 +271,7 @@ class StoneEngine
 
     public static function getModuleEnable()
     {
-        return modules::where('im_status', 1)->get();
+        return Stones::where('im_status', 1)->get();
     }
 
     public static function getRouteModule()

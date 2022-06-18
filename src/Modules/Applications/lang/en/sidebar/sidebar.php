@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'standar_menu' => 'Standard menu',
-    'applications_module' => 'Multi-Applications',
-    'managment_apps' => 'Managment Apps',
+    'standard_menu' => 'Standard menu',
+    'multi_applications_menu' => 'Multi-Applications',
+    'applications_stone' => 'Multi-Applications',
 ];

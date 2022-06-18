@@ -19,7 +19,7 @@ return [
     */
 
 
-    'tmod_mod' => "Managment Modules",
+    'organizer_stone' => "Managment Modules",
     'title_installmodules' => "Install Modules",
     'nom_modules' => "Name Module",
     'check_module_notinstall' => "Module exist but not install",

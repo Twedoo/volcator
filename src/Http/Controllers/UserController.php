@@ -5,7 +5,7 @@ namespace Twedoo\Stone\Http\Controllers;
 use App;
 use Twedoo\Stone\Modules\Applications\Models\Applications;
 use Twedoo\Stone\Core\StoneApplication;
-use Twedoo\Stone\Organizer\Models\modules;
+use Twedoo\Stone\Organizer\Models\Stones;
 use Twedoo\StoneGuard\Models\Role;
 use Twedoo\StoneGuard\Models\User;
 use DB;

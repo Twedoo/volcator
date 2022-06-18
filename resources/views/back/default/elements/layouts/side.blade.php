@@ -21,10 +21,10 @@
                     </a>
                     <ul><!-- submenus -->
                         @foreach( StoneMenu::getSubMenuModule('getSubMenuModule') as $SubMenu)
-                            @if( $ModuleSideBar->im_id == $SubMenu->id_module)
+                            @if( $ModuleSideBar->im_id == $SubMenu->id_stone)
                                 @permission($SubMenu->mb_permission)
                                 <li>
-                                    @if($SubMenu->id_module >= 3)
+                                    @if($SubMenu->id_stone >= 3)
                                         <a href="{{ url(app('urlBack').'/'.app('module').'/'.$SubMenu->route_link) }}">
                                             {{ trans('sidebar/sidebar.'.$SubMenu->name_menu.'')  }}
                                         </a>

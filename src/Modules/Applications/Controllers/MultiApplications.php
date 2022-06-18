@@ -37,6 +37,7 @@ class MultiApplications extends Controller
      */
     public function index()
     {
+//        dump(StoneApplication::getRolesCurrentApplication(StoneApplication::getApplicationId()));die;
         $applications = StoneApplication::getApplicationBySpace();
         return view('Applications::Applications.index', compact('applications'));
     }

@@ -1,6 +1,6 @@
 <?php
 return [
-    'acl_mod' => 'Access Controle',
+    'access_controls_stone' => 'Access Controle',
     'managment_acl_users' => 'Users Management',
     'managment_acl_roles' => 'Roles Management',
     'managment_acl_permissions' => 'Permissions Managment',

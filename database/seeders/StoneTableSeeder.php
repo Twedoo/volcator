@@ -2,7 +2,7 @@
 namespace Twedoo\Stone\database\seeders;
 
 use Twedoo\Stone\Modules\Applications\Models\seeder\applicationsTableSeeder;
-use Twedoo\Stone\Organizer\Models\modules;
+use Twedoo\Stone\Organizer\Models\Stones;
 use Illuminate\Database\Seeder;
 use Twedoo\Stone\Models\Parameters;
 use Twedoo\Stone\Models\Languages;
@@ -11,9 +11,12 @@ use Twedoo\StoneGuard\Models\Permission;
 use Twedoo\StoneGuard\Models\Role;
 use App\Models\User;
 use DB;
+use Config;
 
 class StoneTableSeeder extends Seeder
 {
+
+
     /**
      * Run the database seeds.
      *
@@ -21,7 +24,30 @@ class StoneTableSeeder extends Seeder
      */
     public function run()
     {
-        // Insert parameters global
+        /*
+         * Permissions name constants
+         */
+        $MAJESTIC                              = Config::get('stone.MAJESTIC');
+        $PERMISSION_MAJESTIC_STONE             = Config::get('stone.PERMISSION_MAJESTIC_STONE');
+        $PERMISSION_MANAGER_ORGANIZER_FULL     = Config::get('stone.PERMISSION_MANAGER_ORGANIZER_FULL');
+        $PERMISSION_USER_ACCESS_CONTROL        = Config::get('stone.PERMISSION_USER_ACCESS_CONTROL');
+        $PERMISSION_ROLE_ACCESS_CONTROL        = Config::get('stone.PERMISSION_ROLE_ACCESS_CONTROL');
+        $PERMISSION_PERMISSION_ACCESS_CONTROL  = Config::get('stone.PERMISSION_PERMISSION_ACCESS_CONTROL');
+        $PERMISSION_SPACE_FULL                 = Config::get('stone.PERMISSION_SPACE_FULL');
+        $PERMISSION_SPACE_VIEW                 = Config::get('stone.PERMISSION_SPACE_VIEW');
+
+        /**
+         * Roles name constants
+         */
+        $ROLE_MANAGER_SPACE                    = Config::get('stone.ROLE_MANAGER_SPACE');
+        $ROLE_USER_SPACE                       = Config::get('stone.ROLE_USER_SPACE');
+        $ROLE_MANAGER_ORGANIZER_FULL           = Config::get('stone.ROLE_MANAGER_ORGANIZER_FULL');
+        $ROLE_ACCESS_CONTROL_FULL              = Config::get('stone.ROLE_ACCESS_CONTROL_FULL');
+
+        /**
+         * Begin Comment
+         * Add parameters Stone
+         */
         $default_parameters_app = [
             [
                 'name' => 'TW_APP_TEMPLATE_BACK',
@@ -48,108 +74,16 @@ class StoneTableSeeder extends Seeder
         foreach ($default_parameters_app as $key => $value) {
             Parameters::create($value);
         }
+        /**
+         * End Comment
+         * Add parameters Stone
+         */
 
-        // seed Module Installer
-        $default_module = [
-
-            [
-                'im_name_modules' => 'Organizer',
-                'im_name_modules_display' => 'tmod_mod',
-                'im_menu_icon' => 'fe fe-box',
-                'im_permission' => 'role-organizer-stones',
-                'im_status' => '1',
-                'application' => 'main'
-            ]
-        ];
-
-        foreach ($default_module as $key => $value) {
-            $insert = modules::create($value);
-        }
-
-        $last_id = $insert->im_id;
-        $insertOrder = modules::where('im_id', '=', $last_id)->first();
-        $insertOrder->im_order = $last_id;
-        $insertOrder->update();
-
-        $menu_modules = [
-            [
-                'name_menu' => "menuinstall_module",
-                'route_link' => "organizer/modules",
-                'id_module' => $last_id,
-                'mb_permission' => 'role-organizer-stones',
-            ]
-        ];
-
-        foreach ($menu_modules as $key => $value) {
-            Menuback::create($value);
-        }
-
-        $permission = [
-            [
-                'name' => 'role-majestic-stone',
-                'id_module' => null,
-                'display_name' => 'Majestic manager stone',
-                'description' => 'Super administrator of all stone'
-            ]
-        ];
-
-        foreach ($permission as $key => $value) {
-            Permission::create($value);
-        }
-
-        // seed Module Installer
-        // seeder modules access controller
-        $default_module_acl = [
-            [
-                'im_name_modules' => 'ManagmentACL',
-                'im_name_modules_display' => 'acl_mod',
-                'im_menu_icon' => 'fe fe-shield',
-                'im_permission' => 'role-access-control',
-                'im_status' => '1',
-                'application' => 'main'
-            ]
-        ];
-
-        foreach ($default_module_acl as $key => $value) {
-            $insertACL = modules::create($value);
-        }
-
-        $id_last_acl = $insertACL->im_id;
-        $insertOrderACL = modules::where('im_id', '=', $id_last_acl)->first();
-        $insertOrderACL->im_order = $id_last_acl;
-        $insertOrderACL->update();
-
-        $menu_modules_acl = [
-            [
-                'name_menu' => "managment_acl_users",
-                'route_link' => "users",
-                'id_module' => $id_last_acl,
-                'mb_permission' => 'users-access',
-
-            ],
-            [
-                'name_menu' => "managment_acl_roles",
-                'route_link' => "roles",
-                'id_module' => $id_last_acl,
-                'mb_permission' => 'roles-access',
-
-            ],
-            [
-                'name_menu' => "managment_acl_permissions",
-                'route_link' => "permissions",
-                'id_module' => $id_last_acl,
-                'mb_permission' => 'permissions-access',
-
-            ]
-        ];
-
-        foreach ($menu_modules_acl as $key => $value) {
-            Menuback::create($value);
-        }
-
-        // seeder modules access controller
-        // seeder users to table
-        $Users = [
+        /**
+         * Begin Comment
+         * Add Administrator
+         */
+        $users = [
             [
                 'code' => time(),
                 'name' => 'Administrator',
@@ -158,153 +92,313 @@ class StoneTableSeeder extends Seeder
                 'date' => '',
                 'genre' => '',
                 'avatar' => '',
-                'status' => '0',
+                'status' => '1',
                 'type' => 'back'
             ]
         ];
 
-
-        foreach ($Users as $key => $value) {
-            User::create($value);
+        foreach ($users as $key => $value) {
+            $add_users = User::create($value);
         }
-        // end seeder users to table
-        // seeder roles and roles permission users to table
-        $roles = [
+        /**
+         * End Comment
+         * Add Administrator
+         */
+
+        /**
+         * Begin Comment
+         * Add Permission and role majestic
+         */
+        $add_permission_majestic = Permission::create([
+            'name' => $PERMISSION_MAJESTIC_STONE ,
+            'id_stone' => "FULL",
+            'display_name' => 'Majestic manager stone',
+            'description' => 'Super administrator of all stone'
+        ]);
+
+        $add_roles_majestic = Role::create([
+            'name' => $MAJESTIC,
+            'display_name' => 'Majestic',
+            'description' => 'Full permission, System Administrator'
+        ]);
+
+        DB::table("permission_role")->insert([
+            'permission_id' => $add_permission_majestic->id,
+            'role_id' => $add_roles_majestic->id,
+        ]);
+        DB::table("role_user")->insert([
+            'user_id' => $add_users->id,
+            'role_id' => $add_roles_majestic->id,
+        ]);
+        /**
+         * End Comment
+         * Add Permission and role majestic
+         */
+
+        /**
+         * Begin Comment
+         * Add Module Organizer
+         */
+        $module_organizer = [
             [
-                'name' => 'Root',
-                'display_name' => 'Majestic',
-                'description' => 'Full permission, System Administrator'
-            ],
-            [
-                'name' => 'Access-control-users',
-                'display_name' => 'Access control users',
-                'description' => 'Access control, management users'
-            ],
-            [
-                'name' => 'Role-organizer-stones',
-                'display_name' => 'Organizer manager Stones',
-                'description' => 'Full permission Organizer, Management install Stones (modules)'
+                'name' => 'Organizer',
+                'display_name' => 'organizer_stone',
+                'permission_name' => json_encode([$PERMISSION_MANAGER_ORGANIZER_FULL]),
+                'menu_type' => null,
+                'menu_icon' => 'fe fe-box',
+                'enable' => '1',
+                'application' => 'main'
             ]
         ];
 
-        foreach ($roles as $key => $value) {
-            Role::create($value);
+        foreach ($module_organizer as $key => $value) {
+            $add_organizer = Stones::create($value);
         }
+
+        $last_id = $add_organizer->id;
+        $insertOrder = Stones::where('id', '=', $last_id)->first();
+        $insertOrder->order = $last_id;
+        $insertOrder->update();
+
+        $menu_module_organizer = [
+            [
+                'name_menu' => "organizer_menu",
+                'route_link' => "organizer/modules",
+                'id_stone' => $last_id,
+                'mb_permission' => $PERMISSION_MANAGER_ORGANIZER_FULL,
+            ]
+        ];
+
+        foreach ($menu_module_organizer as $key => $value) {
+            Menuback::create($value);
+        }
+        /**
+         * End Comment
+         * Add Module Organizer
+         */
+
+        /**
+         * Begin Comment
+         * Add Module Access Controls
+         */
+        $module_access_control = [
+            [
+                'name' => 'Access-Controls',
+                'display_name' => 'access_controls_stone',
+                'permission_name' => json_encode([$PERMISSION_USER_ACCESS_CONTROL, $PERMISSION_ROLE_ACCESS_CONTROL, $PERMISSION_PERMISSION_ACCESS_CONTROL]),
+                'menu_type' => 'core',
+                'menu_icon' => 'fe fe-shield',
+                'enable' => '1',
+                'application' => 'main'
+            ]
+        ];
+
+        foreach ($module_access_control as $key => $value) {
+            $add_module_access_control = Stones::create($value);
+        }
+
+        $id_last_module_access_control = $add_module_access_control->id;
+        $order_module_access_control = Stones::where('id', '=', $id_last_module_access_control)->first();
+        $order_module_access_control->order = $id_last_module_access_control;
+        $order_module_access_control->update();
+
+        $menu_modules_acl = [
+            [
+                'name_menu' => "access_controls_users",
+                'route_link' => "users",
+                'id_stone' => $id_last_module_access_control,
+                'mb_permission' => $PERMISSION_USER_ACCESS_CONTROL,
+
+            ],
+            [
+                'name_menu' => "access_controls_roles",
+                'route_link' => "roles",
+                'id_stone' => $id_last_module_access_control,
+                'mb_permission' => $PERMISSION_ROLE_ACCESS_CONTROL,
+
+            ],
+            [
+                'name_menu' => "access_controls_permissions",
+                'route_link' => "permissions",
+                'id_stone' => $id_last_module_access_control,
+                'mb_permission' => $PERMISSION_PERMISSION_ACCESS_CONTROL,
+
+            ]
+        ];
+
+        foreach ($menu_modules_acl as $key => $value) {
+            Menuback::create($value);
+        }
+        /**
+         * End Comment
+         * Add Module Access Controls
+         */
+
+
+        /**
+         * Begin Comment
+         * Add Permissions and Roles Manager Space & User Space
+         */
+        $add_permissions_manager_space = Permission::create([
+            'name' => $PERMISSION_SPACE_FULL,
+            'display_name' => 'Manager Space',
+            'description' => 'Permission manager spaces'
+        ]);
+
+        $add_permissions_user_space = Permission::create([
+            'name' => $PERMISSION_SPACE_VIEW,
+            'display_name' => 'User Space',
+            'description' => 'Permission user spaces'
+        ]);
+
+        $add_roles_manager_space = Role::create([
+            'name' => $ROLE_MANAGER_SPACE,
+            'display_name' => 'Manager Space',
+            'description' => 'Manager Space, permissions to create spaces'
+        ]);
+
+        $add_roles_user_space = Role::create([
+            'name' => $ROLE_USER_SPACE,
+            'display_name' => 'User Space',
+            'description' => 'User Space, permissions to create spaces'
+        ]);
+
+
+        $permissions_roles_manager_and_user_space = [
+            [
+                'permission_id' => $add_permissions_manager_space->id,
+                'role_id' => $add_roles_manager_space->id
+            ],
+            [
+                'permission_id' => $add_permissions_user_space->id,
+                'role_id' => $add_roles_user_space->id
+            ]
+        ];
+
+        foreach ($permissions_roles_manager_and_user_space as $key => $value) {
+            DB::table("permission_role")->insert($value);
+        }
+
+        $roles_users_manager_and_user_space = [
+            [
+                'user_id' => $add_users->id,
+                'role_id' => $add_roles_manager_space->id
+            ],
+            [
+                'user_id' => $add_users->id,
+                'role_id' => $add_roles_user_space->id
+            ]
+        ];
+
+        foreach ($roles_users_manager_and_user_space as $key => $value) {
+            DB::table("role_user")->insert($value);
+        }
+        /**
+         * End Comment
+         * Add Permissions and Roles Manager Space & User Space
+         */
+
+        /**
+         * Begin Comment
+         * Add Permissions and Roles Organizer
+         */
+        $add_permission_manager_organizer = Permission::create([
+            'name' => $PERMISSION_MANAGER_ORGANIZER_FULL,
+            'id_stone' => $add_organizer->id,
+            'display_name' => 'Permission organizer stones',
+            'description' => 'Permission organizer stones'
+        ]);
+
+        $add_role_organizer = Role::create([
+            'name' => $ROLE_MANAGER_ORGANIZER_FULL,
+            'display_name' => 'Role Organizer manager Stones',
+            'description' => 'Full permission Organizer, Management install Stones (modules)'
+        ]);
+
+        DB::table("permission_role")->insert([
+            'permission_id' => $add_permission_manager_organizer->id,
+            'role_id' => $add_role_organizer->id
+        ]);
+
+        $role_access_controls = Role::create([
+            'name' => $ROLE_ACCESS_CONTROL_FULL,
+            'display_name' => 'Role access control',
+            'description' => 'Role access control'
+        ]);
 
         $roles_users = [
             [
-                'user_id' => '1',
-                'role_id' => '1'
+                'user_id' => $add_users->id,
+                'role_id' => $add_role_organizer->id
             ],
             [
-                'user_id' => '1',
-                'role_id' => '2'
-            ],
-            [
-                'user_id' => '1',
-                'role_id' => '3'
+                'user_id' => $add_users->id,
+                'role_id' => $role_access_controls->id
             ]
         ];
 
         foreach ($roles_users as $key => $value) {
             DB::table("role_user")->insert($value);
         }
+        /**
+         * End Comment
+         * Add Permissions and Roles Organizer
+         */
 
-        $permission_sroles = [
-            [
-                'permission_id' => '1',
-                'role_id' => '1'
-            ]
-        ];
+        /**
+         * Begin Comment
+         * Add Permissions and Roles Access Controls
+         */
+        $permission_user_access_controls = Permission::create([
+            'name' => $PERMISSION_USER_ACCESS_CONTROL,
+            'id_stone' => $id_last_module_access_control,
+            'display_name' => 'Module Access',
+            'description' => 'Management users, roles and permissions of stones'
+        ]);
 
-        foreach ($permission_sroles as $key => $value) {
-            DB::table("permission_role")->insert($value);
-        }
+         $permission_role_access_controls = Permission::create([
+             'name' => $PERMISSION_ROLE_ACCESS_CONTROL,
+             'id_stone' => $id_last_module_access_control,
+             'display_name' => 'Management Roles',
+             'description' => 'Role management add, edit and delete roles of CMS'
+         ]);
 
-        // Insert permissions access control user
-        $permission_access_control = [
-            [
-                'name' => 'role-access-control',
-                'id_module' => $id_last_acl,
-                'display_name' => 'Module Access',
-                'description' => 'Managment users, roles and permissions of cms'
-            ],
-            [
-                'name' => 'users-access',
-                'id_module' => $id_last_acl,
-                'display_name' => 'Managment Users',
-                'description' => 'Add, edit and delete users of CMS'
-            ],
-            [
-                'name' => 'roles-access',
-                'id_module' => $id_last_acl,
-                'display_name' => 'Managment Roles',
-                'description' => 'Add, edit and delete roles of CMS'
-            ],
-            [
-                'name' => 'permissions-access',
-                'id_module' => $id_last_acl,
-                'display_name' => 'Managment Permissions',
-                'description' => 'Add, edit and delete permissions of CMS'
-            ]
-        ];
 
-        foreach ($permission_access_control as $key => $value) {
-            Permission::create($value);
-        }
+         $permission_permission_access_controls = Permission::create([
+             'name' => $PERMISSION_PERMISSION_ACCESS_CONTROL,
+             'id_stone' => $id_last_module_access_control,
+             'display_name' => 'Management Permissions',
+             'description' => 'Permission management add, edit and delete permissions'
+         ]);
+
 
         $permissions_roles_access_control = [
             [
-                'permission_id' => '2',
-                'role_id' => '2'
+                'permission_id' => $permission_user_access_controls->id,
+                'role_id' => $role_access_controls->id
             ],
             [
-                'permission_id' => '3',
-                'role_id' => '2'
+                'permission_id' => $permission_role_access_controls->id,
+                'role_id' => $role_access_controls->id
             ],
             [
-                'permission_id' => '4',
-                'role_id' => '2'
-            ],
-            [
-                'permission_id' => '5',
-                'role_id' => '2'
+                'permission_id' => $permission_permission_access_controls->id,
+                'role_id' => $role_access_controls->id
             ]
         ];
 
         foreach ($permissions_roles_access_control as $key => $value) {
             DB::table("permission_role")->insert($value);
         }
+        /**
+         * End Comment
+         * Add Permissions and Roles Access Controls
+         */
 
-        // insert permissions access Organize installer
-
-        $permission_organizer = [
-            [
-                'name' => 'role-organizer-stones',
-                'id_module' => $last_id,
-                'display_name' => 'Organizer manager Stones',
-                'description' => 'Full permission Organizer, Management install Stones (modules)'
-            ]
-        ];
-
-        foreach ($permission_organizer as $key => $value) {
-            Permission::create($value);
-        }
-
-        $permissions_roles_organizer = [
-            [
-                'permission_id' => '6',
-                'role_id' => '3'
-            ]
-        ];
-
-        foreach ($permissions_roles_organizer as $key => $value) {
-            DB::table("permission_role")->insert($value);
-        }
-
-        // end seeder roles and roles permission users to table
-        //languages globals name
-
+        /**
+         * Begin Comment
+         * Add Translate Languages
+         */
         $languages = [
 
             [
@@ -392,9 +486,20 @@ class StoneTableSeeder extends Seeder
         foreach ($languages as $key => $value) {
             Languages::create($value);
         }
+        /**
+         * End Comment
+         * Add Translate Languages
+         */
 
+        /**
+         * Begin Comment
+         * Load Seeder Create Space and Application
+         */
         $seederApplication = new applicationsTableSeeder();
         $seederApplication->run();
-        //end Languages globals
+        /**
+         * End Comment
+         * Load Seeder Create Space and Application
+         */
     }
 }
