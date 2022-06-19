@@ -314,6 +314,22 @@
         </div>
         <div class="dropdown mr-4 d-none d-sm-block">
             <a href="" class="dropdown-toggle text-nowrap" data-toggle="dropdown" data-offset="5,15">
+                <span class="dropdown-toggle-text"> {{ trans('Applications::Applications/Applications.Applications') }}
+                    <span> <strong>{{ StoneApplication::getCurrentApplication()->name}} </strong></span>
+                </span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" role="menu">
+                @foreach (StoneApplication::getApplicationsSpaces() as $id => $application)
+                    @if ($id != StoneApplication::getCurrentApplicationId())
+                        <a class="dropdown-item " href="{{ route(app('urlBack').'.application.switch', $id) }}">
+                            <span class="font-size-12 mr-1"> </span> {{ $application }}
+                        </a>
+                    @endif
+                @endforeach
+            </div>
+        </div>
+        <div class="dropdown mr-4 d-none d-sm-block">
+            <a href="" class="dropdown-toggle text-nowrap" data-toggle="dropdown" data-offset="5,15">
                 <span class="dropdown-toggle-text">Language : <span class="text-uppercase">{{App::getLocale()}}</span></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" role="menu">

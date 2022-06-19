@@ -43,6 +43,14 @@ class Applications extends StoneStructure
     }
 
     /**
+     * Void
+     */
+    public function bootStone() : void
+    {
+        //
+    }
+
+    /**
      * @param $model
      * @return mixed
      */

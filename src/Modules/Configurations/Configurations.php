@@ -5,6 +5,7 @@ namespace Twedoo\Stone\Configurations;
 use App\Modules\InstallModules\Models\toconfigurations;
 use Artisan;
 use getPath;
+use Modules\Configurations\Component\Schema\SchemaCreate;
 use StoneStructure;
 use StoneEngine;
 use StoneTranslation;
@@ -36,66 +37,11 @@ class Configurations extends StoneStructure
     }
 
     /**
-     * @param $model
-     * @return mixed
+     * Void
      */
-    public function building($module)
+    public function bootStone() : void
     {
-
-        if (!StoneEngine::isInstallModule($module)) {
-
-            if (!Schema::hasTable(strtolower('confsettings'))) {
-                Schema::create('confsettings', function ($table) {
-                    $table->increments('id');
-                    $table->string('sitename');
-                    $table->string('keyword');
-                    $table->longtext('descriptionweb');
-                    $table->string('logo')->nullable();
-                    $table->string('languages');
-                    $table->string('email');
-                    $table->string('maintenanceweb')->nullable();
-                    $table->longtext('msgmaintenance')->nullable();
-                    $table->string('application')->nullable();
-                    $table->timestamps();
-                });
-            };
-
-            if (!Schema::hasTable(strtolower('confsettings_langs'))) {
-                Schema::create('confsettings_langs', function ($table) {
-                    $table->increments('id');
-                    $table->string('title_trans');
-                    $table->string('id_ref');
-                    $table->string('en_trans')->nullable();
-                    $table->string('ar_trans')->nullable();
-                    $table->string('de_trans')->nullable();
-                    $table->string('fr_trans')->nullable();
-                    $table->string('it_trans')->nullable();
-                    $table->string('es_trans')->nullable();
-                    $table->string('ru_trans')->nullable();
-                    $table->string('cn_trans')->nullable();
-                    $table->string('ja_trans')->nullable();
-                    $table->string('pt_trans')->nullable();
-                    $table->string('tr_trans')->nullable();
-                    $table->string('in_trans')->nullable();
-                    $table->string('id_trans')->nullable();
-                    $table->string('bn_trans')->nullable();
-                    $table->string('fa_trans')->nullable();
-                    $table->string('uk_trans')->nullable();
-                    $table->string('ur_trans')->nullable();
-                    $table->string('vi_trans')->nullable();
-                    $table->string('sv_trans')->nullable();
-                    $table->string('application')->nullable();
-                    $table->timestamps();
-                });
-            }
-
-            //Artisan::call('db:seed');
-            Artisan::call('db:seed', [
-                '--class' => 'Twedoo\\Stone\\Modules\\'.$module.'\\Models\\seeder\\configurationsTableSeeder'
-            ]);
-        }
-
-        StoneTranslation::setTranslateModules($this->name, $this->menuTranslate);
+        //
     }
 
     public function js()

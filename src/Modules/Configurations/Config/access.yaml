@@ -1,0 +1,22 @@
+stone:
+  roles:
+      - name: 'role-access-configuration'
+        display_name: 'Module configuration'
+        description: 'Managment settings, languages and templates of CMS'
+        permissions:
+
+          - name: 'role-access-languages'
+            display_name: 'Access Langugaes'
+            description: 'Permission managment languages'
+
+          - name: 'role-access-templates'
+            display_name: 'Access Templates'
+            description: 'Permission managment templates'
+
+          - name: 'role-access-settings'
+            display_name: 'Access Settings'
+            description: 'Permission managment settings'
+
+          - name: 'role-access-configuration'
+            display_name: 'Module configuration'
+            description: 'Managment settings, languages and templates of CMS'

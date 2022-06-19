@@ -35,7 +35,8 @@ class applicationsTableSeeder extends Seeder
             'menu_type' => 'hidden-organizer',
             'menu_icon' => 'fe fe-layers',
             'enable' => '1',
-            'application' => 'main'
+            'application' => 'main',
+            'publish' => 'public'
         ]);
 
         $id_application_module = $add_application_module->id;

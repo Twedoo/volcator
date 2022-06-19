@@ -1,0 +1,14 @@
+stone:
+  menu:
+    - name_menu: 'menugenerale_settings'
+      route_link: 'settings'
+      mb_permission: 'role-access-settings'
+
+    - name_menu: 'menugenerale_language'
+      route_link: 'languages'
+      mb_permission: 'role-access-languages'
+
+    - name_menu: 'menugenerale_templates'
+      route_link: 'templates'
+      mb_permission: 'role-access-templates'
+

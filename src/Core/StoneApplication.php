@@ -80,24 +80,6 @@ class StoneApplication
         $application = Applications::where('id', Session::get('application'))->first();
         $users_attached[] = (string) $user->id;
         $application->users()->attach($users_attached);
-//        $user_auth = auth()->user();
-//        if ($user_auth->hasRole('Root')) {
-//            $application = Applications::create([
-//                'name' => 'Main',
-//                'display_name' => 'Main Application',
-//                'unique_identity' => uniqid(),
-//                'space_id' => StoneSpace::getCurrentSpaceId(),
-//                'type' => 'main',
-//            ]);
-//            $application_attached = Modules::where('application', 'main')->pluck('im_id')->toArray();
-//            $users_attached[] = (string) $user->id;
-//            $application->users()->attach($users_attached);
-//            $application->modules()->attach($application_attached);
-//        } else if ($user_auth->hasRole('Manager-Multi-Application')) {
-//            $application = Applications::where('id', Session::get('application'))->first();
-//            $users_attached[] = (string) $user->id;
-//            $application->users()->attach($users_attached);
-//        }
     }
 
     /**

@@ -1,92 +1,91 @@
 @extends('elements.layouts.app')
-
-
-
 @section('content')
-
-
-
-
     <section id="middle">
-
-        <header id="page-header">
-            <h1>{{ trans('access/roles_managment.permission_title_edit') }}</h1>
-
-            <div class="pull-right">
-
-                <a class="btn btn-primary" href="{{ route(app('urlBack').'.super.permissions.index') }}"><i
-                            class="glyphicon glyphicon-arrow-left"
-                            aria-hidden="true"></i> {{ trans('access/roles_managment.permission_back_edit') }}</a>
-
+        <div class="cui__layout__content">
+            <div class="cui__breadcrumbs">
+                <div class="cui__breadcrumbs__path">
+                    <a href="javascript: void(0);">Stone</a>
+                    <span>
+                        <span class="cui__breadcrumbs__arrow"></span>
+                        <strong>{{ trans('access/roles_managment.permission_managment_index') }}</strong>
+                    </span>
+                    <span>
+                        <span class="cui__breadcrumbs__arrow"></span>
+                        <strong
+                            class="cui__breadcrumbs__current">{{ trans('access/roles_managment.permission_edit_edit') }}</strong>
+                    </span>
+                </div>
             </div>
-
-
-            <ol class="breadcrumb">
-                <li><a href="{{url(app('urlBack').'/')}}">{{ trans('access/roles_managment.site_name') }}</a></li>
-                <li class="active"><a
-                            href="{{ route(app('urlBack').'.super.permissions.index') }}">{{ trans('access/roles_managment.permission_managment_edit') }}</a>
-                </li>
-                <li class="active">{{ trans('access/roles_managment.permission_edit_edit') }}</li>
-            </ol>
-
-
-        </header>
-
-        <div id="content" class="padding-20">
-
-            <div class="panel panel-default">
-                <div class="panel-heading panel-heading-transparent">
-                    <strong>{{ trans('access/roles_managment.permission_edit_edit') }}</strong>
+            <div class="cui__utils__content">
+                <div class="kit__utils__heading">
+                    <h5>
+                        <span class="mr-3">{{ trans('access/roles_managment.permission_title_edit') }}</span>
+                        <a class="btn btn-sm btn-light" href="{{ route(app('urlBack').'.super.permissions.index') }}">
+                            <i class="fa fa-arrow-left"></i> {{trans('access/roles_managment.permission_back_edit')}}</a>
+                    </h5>
+                </div>
+                {{-- Content here --}}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-6 mb-5">
+                                        <h5 class="mb-4">
+                                            <strong>{{ trans('access/roles_managment.edit_users_edit') }}</strong>
+                                        </h5>
+                                        {!! Form::model($permission, ['method' => 'PATCH','route' => [app('urlBack').'.super.permissions.update', $permission->id]]) !!}
+                                        <div class="form-group @if ($errors->has('name')) has-danger @endif">
+                                            <label class="form-label">{{ trans('access/roles_managment.permission_name_edit') }}</label>
+                                            {!! Form::text('name', null, array('placeholder' => trans('access/roles_managment.permission_name_edit'),'class' => 'form-control')) !!}
+                                            @if ($errors->has('name'))
+                                                <div class="form-control-error-list" data-error-list="">
+                                                    <ul>
+                                                        <li>
+                                                            {{ $errors->first('name') }}
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="form-group @if ($errors->has('display_name')) has-danger @endif">
+                                            <label class="form-label">{{ trans('access/roles_managment.permission_display_name_edit') }}</label>
+                                            {!! Form::text('display_name', null, array('placeholder' => trans('access/roles_managment.permission_display_name_edit'),'class' => 'form-control')) !!}
+                                            @if ($errors->has('display_name'))
+                                                <div class="form-control-error-list" data-error-list="">
+                                                    <ul>
+                                                        <li>
+                                                            {{ $errors->first('display_name') }}
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="form-group @if ($errors->has('description')) has-danger @endif">
+                                            <label class="form-label">{{ trans('access/roles_managment.permission_description_edit') }}</label>
+                                            {!! Form::textarea('description', null, array('placeholder' => trans('access/roles_managment.permission_description_edit'),'class' => 'form-control','style'=>'height:100px')) !!}
+                                            @if ($errors->has('description'))
+                                                <div class="form-control-error-list" data-error-list="">
+                                                    <ul>
+                                                        <li>
+                                                            {{ $errors->first('description') }}
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="form-actions">
+                                            <button type="submit" class="btn btn-dark mr-2 px-5 pull-right">{{ trans('access/roles_managment.permission_update_edit') }}</button>
+                                        </div>
+                                        {!! Form::close() !!}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="panel-body">
-
-                    {!! Form::model($permission, ['method' => 'PATCH','route' => [app('urlBack').'.super.permissions.update', $permission->id]]) !!}
-                    <fieldset>
-                        <!-- required [php action request] -->
-
-                        <div class="row">
-                            <div class="form-group">
-                                <div class="col-md-12 col-sm-12">
-                                    <label>{{ trans('access/roles_managment.permission_name_edit') }}</label>
-                                    {!! Form::text('name', null, array('placeholder' => trans('access/roles_managment.permission_name_edit'),'class' => 'form-control')) !!}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group">
-                                <div class="col-md-12 col-sm-12">
-                                    <label>{{ trans('access/roles_managment.permission_display_name_edit') }}</label>
-                                    {!! Form::text('display_name', null, array('placeholder' => trans('access/roles_managment.permission_display_name_edit'),'class' => 'form-control')) !!}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group">
-                                <div class="col-md-12 col-sm-12">
-                                    <label>{{ trans('access/roles_managment.permission_description_edit') }}</label>
-                                    {!! Form::textarea('description', null, array('placeholder' => trans('access/roles_managment.permission_description_edit'),'class' => 'form-control','style'=>'height:100px')) !!}
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="pull-right">
-                            <button type="submit"
-                                    class="btn btn-primary">{{ trans('access/roles_managment.permission_update_edit') }}</button>
-                        </div>
-
-
-                    </fieldset>
-                    {!! Form::close() !!}
-                </div>
-
             </div>
-
         </div>
-
     </section>
-
 @endsection

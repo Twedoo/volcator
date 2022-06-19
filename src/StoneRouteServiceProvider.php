@@ -28,7 +28,8 @@ class StoneRouteServiceProvider extends ServiceProvider
             ]);
 
             if ($PrefixTester == config('prefix.urlBack')) {
-                $path = realpath(base_path('resources/views/back/' . config()["params"]["TW_APP_TEMPLATE_BACK"]));
+//                $path = realpath(base_path('resources/views/back/' . config()["params"]["TW_APP_TEMPLATE_BACK"]));
+                $path = realpath(__DIR__.'/../resources/views/back/' . config()["params"]["TW_APP_TEMPLATE_BACK"]);
             } else {
                 $path = realpath(base_path('resources/views/front/' . config()["params"]["TW_APP_TEMPLATE_FRONT"]));
             }

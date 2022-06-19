@@ -25,6 +25,7 @@ class StoneSetupTables extends Migration
                 $table->string('order')->nullable();
                 $table->string('enable');
                 $table->string('application')->nullable();
+                $table->string('publish')->nullable();
                 $table->timestamps();
             });
         }

@@ -9,7 +9,6 @@ use Illuminate\Database\Seeder;
 use DB;
 
 class configurationsTableSeeder extends Seeder
-
 {
 
     /**
@@ -20,16 +19,15 @@ class configurationsTableSeeder extends Seeder
 
     public function run()
     {
-
-            $insert = Stones::create([
-                'name' => 'Configurations',
-                'display_name' => 'tmod_conf',
-                'permission_name' => json_encode(['role-access-configuration']),
-                'menu_type' => null,
-                'menu_icon' => 'fe fe-settings',
-                'enable' => '1',
-                'application' => 'custom'
-            ]);
+        $insert = Stones::create([
+            'name' => 'Configurations',
+            'display_name' => 'tmod_conf',
+            'permission_name' => json_encode(['role-access-configuration']),
+            'menu_type' => null,
+            'menu_icon' => 'fe fe-settings',
+            'enable' => '1',
+            'application' => 'custom'
+        ]);
 
         $idlast = $insert->id;
 

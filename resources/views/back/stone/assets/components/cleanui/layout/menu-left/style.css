@@ -1,4 +1,96 @@
 /* MENU LEFT */
+
+/* Menu Space*/
+
+.left__menu__stone__space {
+    color: #aeaee0;
+    background: #141322;
+    width: 80px;
+    margin-bottom: 20px;
+}
+
+.container__menu__space {
+    position: fixed;
+}
+
+.title__top__space {
+    font-size: 16px;
+    margin-top: 15px
+}
+
+.create__space {
+    margin-top: 20px;
+    text-align: center
+}
+
+.icon__create__space {
+    font-size: 50px;
+}
+
+.stone__spaces__element {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+    display: flex;
+    height: 60px;
+}
+
+.stone__spaces__list {
+    width: 100%;
+}
+
+.active__stone__space {
+    flex: 1;
+    margin-top: 12px;
+}
+
+.is_active__icon__stone__space {
+    margin-left: 3px;
+    height: 35px;
+    width: 5px;
+    background: #aeaee0;
+    border-radius: 3px
+}
+
+.block__stone__space {
+    text-align: center;
+    flex: 0 0 96%;
+    margin-top: 5px;
+    padding-right: 18px;
+    margin-left: 5px;
+}
+
+.round__stone__space {
+    background: #aeaee0;
+    color: #141322;
+    min-width: 40px;
+    min-height: 50px;
+    border-radius: 50%;
+}
+
+.name__in__round__stone__space {
+    font-size: 18px;
+    padding-top: 12px
+}
+
+.stone-visibility-hidden {
+    visibility: hidden
+}
+
+.stone-visibility-visible {
+    visibility: visible;
+}
+
+.cui__menuLeft__trigger__stone__space {
+    cursor: pointer;
+    position: fixed;
+    z-index: 3;
+    bottom: 0;
+    width: 256px;
+    height: 48px;
+    background: #141322;
+}
+
 .cui__menuLeft {
     background: #fff;
     color: #595c97;
@@ -16,12 +108,40 @@
     /* GRAY & DARK THEME */
 }
 
+.cui__menuLeft__workaspace {
+    background: #fff;
+    color: #595c97;
+    transition: none;
+    display: block;
+    min-height: 100%;
+    flex: 0 0 0px;
+    max-width: 65px;
+    min-width: 65px;
+    width: 65px;
+    position: relative;
+    z-index: 100;
+    /* MENU LEFT TOGGLED / MOBILE */
+    /* SETTINGS */
+    /* GRAY & DARK THEME */
+}
+
 .cui__menuLeft__outer {
     background: #fff;
     position: fixed;
     height: 100%;
     width: inherit;
     max-width: inherit;
+}
+
+.cui__menuLeft__outer__workspace {
+    background: #fff;
+    position: fixed;
+    height: 100%;
+    max-width: 65px;
+    min-width: 65px;
+    width: 65px;
+    left: 0;
+
 }
 
 .cui__menuLeft__logo {
@@ -35,7 +155,7 @@
 
 .cui__menuLeft__logo_img {
     width: 75px;
-    height: 75px;
+    height: 55px;
 }
 
 .cui__logo_w70_h70 {
@@ -58,7 +178,7 @@
 .cui__menuLeft__logo__name {
     font-size: 1.33rem;
     font-weight: 700;
-    color: #595c97;
+    color: #8888b0;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -470,7 +590,7 @@
 }
 
 .cui__menuLeft--dark .cui__menuLeft__logo__name {
-    color: #fff;
+    color: #7575a3;
 }
 
 .cui__menuLeft--dark .cui__menuLeft__logo__descr {
@@ -506,7 +626,7 @@
 }
 
 .cui__menuLeft--dark .cui__menuLeft__item__link:after, .cui__menuLeft--dark .cui__menuLeft__item__link:before {
-    background: #aa0000;
+    background: #7575a3 !important;
 }
 
 .cui__menuLeft--dark .cui__menuLeft__submenu--toggled {

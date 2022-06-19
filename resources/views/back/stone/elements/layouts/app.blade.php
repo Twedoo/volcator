@@ -23,8 +23,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/vendors/summernote/dist/summernote.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/vendors/owl.carousel/dist/assets/owl.carousel.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/vendors/ionrangeslider/css/ion.rangeSlider.css') }}">
-    <link rel="stylesheet" type="text/css"
-          href="https://cdn.datatables.net/v/bs4/dt-1.10.18/fc-3.2.5/r-2.2.2/datatables.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/vendors/datatables/r-2.2.2/datatables.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/vendors/c3/c3.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/vendors/chartist/dist/chartist.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/vendors/nprogress/nprogress.css') }}">
@@ -58,8 +57,7 @@
     <script src="{{ asset(app('back').'/assets/vendors/owl.carousel/dist/owl.carousel.min.js') }}"></script>
     <script src="{{ asset(app('back').'/assets/vendors/ionrangeslider/js/ion.rangeSlider.min.js') }}"></script>
     <script src="{{ asset(app('back').'/assets/vendors/nestable/jquery.nestable.js') }}"></script>
-    <script type="text/javascript"
-            src="https://cdn.datatables.net/v/bs4/dt-1.10.18/fc-3.2.5/r-2.2.2/datatables.min.js') }}"></script>
+    <script src="{{ asset(app('back').'/assets/vendors/datatables/r-2.2.2/datatables.min.js') }}"></script>
     <script src="{{ asset(app('back').'/assets/vendors/editable-table/mindmup-editabletable.js') }}"></script>
     <script src="{{ asset(app('back').'/assets/vendors/d3/d3.min.js') }}"></script>
     <script src="{{ asset(app('back').'/assets/vendors/c3/c3.min.js') }}"></script>
@@ -75,10 +73,11 @@
     <script src="{{ asset(app('back').'/assets/vendors/d3-time-format/dist/d3-time-format.js') }}"></script>
     <script src="{{ asset(app('back').'/assets/vendors/techan/dist/techan.min.js') }}"></script>
     <script src="{{ asset(app('back').'/assets/vendors/jqvmap/dist/jquery.vmap.js') }}"></script>
-    <script src="{{ asset(app('back').'/assets/vendors/jqvmap/dist/maps/jquery.vmap.usa.js" charset="utf-8') }}"></script>
+    <script src="{{ asset(app('back').'/assets/vendors/jqvmap/dist/maps/jquery.vmap.usa.js') }}"></script>
 
     <!-- CLEAN UI PRO HTML ADMIN TEMPLATE MODULES-->
     <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/components/kit/vendors/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/components/kit/vendors/custom.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/components/kit/core/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/components/cleanui/styles/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/components/kit/widgets/style.css') }}">
@@ -102,7 +101,6 @@
     <script src="{{ asset(app('back').'/assets/components/cleanui/layout/sidebar/index.js') }}"></script>
     <script src="{{ asset(app('back').'/assets/components/cleanui/layout/support-chat/index.js') }}"></script>
     <script src="{{ asset(app('back').'/assets/components/cleanui/layout/topbar/index.js') }}"></script>
-
     @if(App::getLocale() == 'ar' || App::getLocale() == 'he' || App::getLocale() == 'ru' || App::getLocale() == 'fa' )
         <link id="rtl_ltr_b1"
               href="{{asset(app('back').'/assets/plugins/bootstrap/RTL/bootstrap-rtl.min.css')}}"
@@ -141,7 +139,7 @@
     </script>
 </head>
 
-<body class="cui__layout--cardsShadow">
+<body class="cui__layout--cardsShadow cui__menuLeft--dark cui__menuTop--dark">
 <div class="initial__loading"></div>
 <div class="cui__layout cui__layout--hasSider">
     <div class="kit__chat">
@@ -434,23 +432,118 @@
     </a>
 
     @if (!Auth::guest())
-        {{-- SideBar Started --}}
-            @include('elements.layouts.side')
-        {{-- SideBar Ended --}}
+        @include('elements.layouts.side')
     @endif
     <div class="cui__layout">
-
         @if (!Auth::guest())
-            {{-- NavBAr Started--}}
             @include('elements.layouts.navbar')
-            {{-- NavBAr Ended--}}
         @endif
-
-        {{-- Centent Started--}}
-            @yield('content')
-        {{-- Centent Ended--}}
+        @yield('content')
+            <div id="createSpace" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createSpace"
+                 aria-hidden="true"  >
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <strong class="modal-title pull-left" id="createSpace"> {{ trans('Applications::Space/space.create_space') }} </strong>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="create_space_form" enctype="multipart/form-data">
+                                <meta name="csrf-token" content="{{ csrf_token() }}">
+                                <div class="form-group name-space">
+                                    <label class="form-label label-name-space"> {{ trans('Applications::Space/space.name') }} </label>
+                                    <input class="form-control name-space" name="name_space_stone" type="text" id="name_space_stone"
+                                           placeholder="{{ trans('Applications::Space/space.name_space') }}" />
+                                    <span class="text-name-space form-control-error-text"></span>
+                                </div>
+                                <div class="form-group image-space extension-space">
+                                    <label class="form-label label-image-space label-extension-space"> {{ trans('Applications::Space/space.image') }} </label>
+                                    <input type="file" name="image_space_stone" class="dropify-picture-space dropify-event image-space extension-space" id="input-file-events image_space_stone"
+                                           data-allowed-formats="portrait square landscape" data-max-file-size="10M" />
+                                    <span class="text-image-space text-extension-space form-control-error-text"></span>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary"> {{ trans('Organizer::Organizer/Organizer.btn_save') }} </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
+
 </div>
 </body>
+{!! StoneMediaStyle::addJQUERY() !!}
+
+<script>
+    $(document).ready(function(){
+        $('.dropify-picture-space').dropify();
+    });
+</script>
+
+<script>
+
+    function clearError() {
+        $('.name-space').removeClass('has-danger');
+        $('.image-space').removeClass('has-danger');
+        $('.extension-space').removeClass('has-danger');
+
+        $('.text-image-space').html('');
+        $('.text-extension-space').html('');
+        $('.text-name-space').html('');
+
+        $('.label-image-space').removeClass('form-control-error-text');
+        $('.label-extension-space').removeClass('form-control-error-text');
+        $('.label-name-space').removeClass('form-control-error-text');
+    }
+
+    $('#createSpace').on('hidden.bs.modal', function (e) {
+        clearError();
+        $('.name-space').val('');
+        $('button.dropify-clear').trigger('click');
+    })
+
+    const spaceStoneFormSubmit = async (e) => {
+        e.preventDefault();
+        clearError();
+        let formData = new FormData();
+
+        let url = '{{ route(app('urlBack') . '.store.manager') }}';
+        formData.append('name', e.target.elements.name_space_stone.value);
+        formData.append('image', e.target.elements.image_space_stone.files[0]);
+        formData.append('_token', "{{ csrf_token() }}");
+
+        try {
+            const apiUrl = url;
+            const options = {
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                method: 'POST',
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+                body: formData,
+                dataType: 'json',
+            };
+            const response = await fetch(apiUrl, options);
+            let result = await response.json();
+            if (Object.keys(result).length > 0) {
+                jQuery.each(result, function(index, value) {
+                    $('.'+index).addClass('has-danger')
+                    $('.text-'+index).html(value.error)
+                    $('.label-'+index).addClass('form-control-error-text')
+                });
+            } else {
+                $('#createSpace').modal('hide');
+                window.location.reload();
+            }
+        } catch (error) {
+            //
+        }
+    }
+    document.querySelector('#create_space_form').addEventListener("submit", spaceStoneFormSubmit, false);
+</script>
 
 </html>

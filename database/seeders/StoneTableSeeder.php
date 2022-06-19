@@ -147,7 +147,8 @@ class StoneTableSeeder extends Seeder
             'menu_type' => null,
             'menu_icon' => 'fe fe-box',
             'enable' => '1',
-            'application' => 'main'
+            'application' => 'main',
+            'publish' => 'public'
         ]);
         $last_id = $add_organizer->id;
         $insertOrder = Stones::where('id', '=', $last_id)->first();
@@ -161,7 +162,8 @@ class StoneTableSeeder extends Seeder
             'menu_type' => 'hidden',
             'menu_icon' => null,
             'enable' => '1',
-            'application' => 'main'
+            'application' => 'main',
+            'publish' => 'public'
         ]);
 
         $last_id_stone = $add_stone->id;
@@ -199,7 +201,8 @@ class StoneTableSeeder extends Seeder
                 'menu_type' => 'core',
                 'menu_icon' => 'fe fe-shield',
                 'enable' => '1',
-                'application' => 'main'
+                'application' => 'main',
+                'publish' => 'public'
             ]
         ];
 

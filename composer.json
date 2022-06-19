@@ -16,6 +16,7 @@
         "illuminate/console": "~8.0",
         "illuminate/support": "~8.0",
         "illuminate/cache": "~8.0",
+        "symfony/yaml": "^5.4",
         "twedoo/stoneGuard": "dev-main"
     },
     "require-dev": {

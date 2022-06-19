@@ -95,29 +95,8 @@ class Organizer extends StoneStructure
 
     public function preBuilding($module)
     {
-//        StoneEngine::isTrueModule($module);
-//        $line = '';
-//        $DirectoryModules = base_path() . ('/config/module.php');
-//        $file = fopen($DirectoryModules, "r+") or exit("Unable to open file!");
-//        $newmodules = "       '" . $module . "'" . ',' . "\n"; // I added new line after new user
-//        $insertPos = 0;  // variable for saving //Users position
-//        while (!feof($file)) {
-//            $line = fgets($file);
-//            if (strpos($line, "return['Modules'=>[") !== false) {
-//                $insertPos = ftell($file);    // ftell will tell the position where the pointer moved, here is the new line after //Users.
-//                $newline = $newmodules;
-//            } else {
-//                $newline .= $line;   // append existing data with new data of user
-//            }
-//        }
-//        fseek($file, $insertPos);   // move pointer to the file position where we saved above
-//        fwrite($file, $newline);
-//        fclose($file);
-//
-
         $this->setBuilding($module);
         return redirect()->route(app('urlBack') . '.super.modules.index');
-
     }
 
     /**
@@ -154,17 +133,10 @@ class Organizer extends StoneStructure
      */
     public function resetModule($module)
     {
-        $OrganizerDB = Stones::where('name', $module)->first();
-        if ($OrganizerDB) {
-            DB::table('permissions')->where('permissions.id_stone', $OrganizerDB->id)->delete();
-            DB::table('stones')->where('id', $OrganizerDB->id)->delete();
-            DB::table('menubacks')->where('id_stone', $OrganizerDB->id)->delete();
-            $table = explode(',', StoneEngine::getAttributes($module, 'dropTable'));
-            foreach ($table as $value) {
-                Schema::dropIfExists(preg_replace('/[^_A-Za-z0-9\-]/', '', strtolower($value)));
-            }
-            return StoneEngine::setModule($module, true);
+        if (StoneEngine::uninstallStone($module)) {
+            StoneEngine::setModule($module, true);
         }
+        return redirect()->route(app('urlBack') . '.super.modules.index');
     }
 
     /**
@@ -175,15 +147,7 @@ class Organizer extends StoneStructure
      */
     public function uninstallModule($module)
     {
-        $getModule = Stones::where('name', $module)->first();
-        if ($getModule) {
-            DB::table('permissions')->where('permissions.id_stone', $getModule->id)->delete();
-            DB::table('stones')->where('id', $getModule->id)->delete();
-            DB::table('menubacks')->where('id_stone', $getModule->id)->delete();
-            $table = explode(',', StoneEngine::getAttributes($module, 'dropTable'));
-            foreach ($table as $value) {
-                Schema::dropIfExists(preg_replace('/[^_A-Za-z0-9\-]/', '', strtolower($value)));
-            }
+        if (StoneEngine::uninstallStone($module)) {
             StoneLanguage::displayNotificationProgress(
                 'success',
                 trans('Organizer::Organizer/Organizer.success_uninstallmodule'),
@@ -192,7 +156,6 @@ class Organizer extends StoneStructure
             Session::flash('message', trans('Organizer::Organizer/Organizer.success_uninstallmodule'));
         }
         return redirect()->route(app('urlBack') . '.super.modules.index');
-
     }
 
     public function statusModule($id, $module)

@@ -5,4 +5,5 @@ return [
     'menugenerale_settings' => 'Settings',
     'menugenerale_language' => 'Languages',
     'menugenerale_templates' => 'Templates',
+    'configuration_menu' => 'Configuration Menu'
 ];
