@@ -42,8 +42,8 @@ class StoneApplication
         $application = Applications::where([
             ['space_id', '=', StoneSpace::getCurrentSpaceId()]]
         )->first();
-        Session::put('application', $application->id);
-         return $application;
+
+        return $application;
     }
 
     /**

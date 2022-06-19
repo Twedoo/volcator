@@ -31,7 +31,12 @@ class StoneMenu
     public static function getMenuModule()
     {
         $getCategoriesMenu = [];
-        $ModuleList = Stones::where('enable', 1)->get();
+        $ModuleList = Stones::where('stones.enable', 1)
+            ->join('applications_stone', 'applications_stone.stone_id', '=', 'stones.id')
+            ->join('applications', 'applications.id', '=', 'applications_stone.application_id')
+            ->where('applications_stone.application_id', StoneApplication::getCurrentApplicationId())
+            ->where('applications.space_id', StoneSpace::getCurrentSpaceId())
+            ->get(['stones.*']);
 
         foreach ($ModuleList as $key => $value) {
             if ($value->menu_type == "hidden") {
