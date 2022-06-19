@@ -192,9 +192,9 @@ class RoleController extends Controller
             if ($role->save()) {
                 DB::table("permission_role")->where("permission_role.role_id", $id)->delete();
                 foreach ($request->input('permission') as $key => $value) {
-                    if (in_array($value, $this->getPermissionsPerUser())) {
+//                    if (in_array($value, $this->getPermissionsPerUser())) {
                         $role->attachPermission($value);
-                    }
+//                    }
                 }
 
                 if (App::getLocale() == 'ar' || App::getLocale() == 'ur') {
@@ -248,7 +248,6 @@ class RoleController extends Controller
     {
         $getFilterRole = [];
         foreach ($module as $value) {
-//            dump($value->getPermissions()->where('id_stone', $value->id)->get());die;
             foreach ($value->getPermissions()->where('id_stone', $value->id)->get() as $getModulePermission) {
                 foreach ($getPermissions as $key => $roles) {
                     foreach ($roles->roles as $rolePermission) {
@@ -261,6 +260,7 @@ class RoleController extends Controller
                 }
             }
         }
+//        dump($getFilterRole);die;
         return $getFilterRole;
     }
 }

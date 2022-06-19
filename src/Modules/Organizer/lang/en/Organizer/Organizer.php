@@ -16,7 +16,7 @@ return [
     |---------------------------------------------------------------------------
     */
 
-
+    'Organizer' => 'Organizer',
     'organizer_stone' => "Managment Modules",
     'title_Organizer' => "Install Modules",
     'nom_modules' => "Name Module",

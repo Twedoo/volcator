@@ -64,12 +64,12 @@
                                                            href="javascript: void(0);">
                                                             @if( StoneEngine::isInstallModule($module) )
                                                                 @foreach($modules as $onemodule)
-                                                                    @if( $onemodule->im_name_modules == $module)
+                                                                    @if( $onemodule->name == $module)
                                                                         <div class="float-left">
-                                                                            {{ trans('sidebar/sidebar.'.$onemodule->im_name_modules_display.'')  }}
+                                                                            {{ trans('sidebar/sidebar.'.$onemodule->display_name.'')  }}
                                                                         </div>
                                                                         <div class="float-right">
-                                                                            {!! StoneEngine::getModulesParams($module, $onemodule->im_id, $onemodule->im_status) !!}
+                                                                            {!! StoneEngine::getModulesParams($module, $onemodule->id, $onemodule->enable) !!}
                                                                         </div>
                                                                     @endif
                                                                 @endforeach

@@ -3,11 +3,18 @@
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 
-
 Route::group(['middleware' => ['web', 'auth']], function () {
     Route::auth();
+
     Route::group(['prefix' => app('urlBack')], function () {
-        Route::group(array('module' => 'Organizer', 'middleware' => ['web', 'permission:'.Config::get('stone.PERMISSION_MANAGER_ORGANIZER_FULL')], 'namespace' => 'Twedoo\Stone\Organizer'), function () {
+        Route::group([
+                'module' => 'Organizer',
+                'middleware' => [
+                    'web',
+                    'permission:'.Config::get('stone.PERMISSION_MANAGER_ORGANIZER_FULL')
+                ],
+                'namespace' => 'Twedoo\Stone\Organizer'
+            ], function () {
 
             Route::get('/link', function () {
                 $target = app_path('Modules/');

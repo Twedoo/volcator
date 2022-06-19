@@ -22,11 +22,10 @@ class StoneEngine
     public static function getStatusModule($data)
     {
         $status = Stones::where('name', $data)->first();
-
         if (!$status)
             return false;
 
-        if ($status->im_status == 0)
+        if ($status->enable == 0)
             return false;
         else
             return true;
@@ -260,7 +259,7 @@ class StoneEngine
             foreach (self::getModuleEnable() as $module) {
                 if (method_exists('Twedoo\\Stone\\' . $module['name'] . '\\' . $module['name'], '__construct')
                 ) {
-                    $callClass = 'Twedoo\\Stone\\' . $module['im_name_modules'] . '\\' . $module['name'];
+                    $callClass = 'Twedoo\\Stone\\' . $module['name'] . '\\' . $module['name'];
                     $class = new $callClass();
                     $resultat[$module['name']] = get_object_vars($class);
                 }
@@ -271,7 +270,7 @@ class StoneEngine
 
     public static function getModuleEnable()
     {
-        return Stones::where('im_status', 1)->get();
+        return Stones::where('enable', 1)->get();
     }
 
     public static function getRouteModule()

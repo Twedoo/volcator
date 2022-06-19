@@ -112,7 +112,7 @@ class StoneTableSeeder extends Seeder
         $add_permission_majestic = Permission::create([
             'name' => $PERMISSION_MAJESTIC_STONE ,
             'id_stone' => "FULL",
-            'display_name' => 'Majestic manager stone',
+            'display_name' => 'Permission Majestic Manager Stone',
             'description' => 'Super administrator of all stone'
         ]);
 
@@ -139,26 +139,36 @@ class StoneTableSeeder extends Seeder
          * Begin Comment
          * Add Module Organizer
          */
-        $module_organizer = [
-            [
-                'name' => 'Organizer',
-                'display_name' => 'organizer_stone',
-                'permission_name' => json_encode([$PERMISSION_MANAGER_ORGANIZER_FULL]),
-                'menu_type' => null,
-                'menu_icon' => 'fe fe-box',
-                'enable' => '1',
-                'application' => 'main'
-            ]
-        ];
 
-        foreach ($module_organizer as $key => $value) {
-            $add_organizer = Stones::create($value);
-        }
-
+        $add_organizer = Stones::create([
+            'name' => 'Organizer',
+            'display_name' => 'organizer_stone',
+            'permission_name' => json_encode([$PERMISSION_MANAGER_ORGANIZER_FULL]),
+            'menu_type' => null,
+            'menu_icon' => 'fe fe-box',
+            'enable' => '1',
+            'application' => 'main'
+        ]);
         $last_id = $add_organizer->id;
         $insertOrder = Stones::where('id', '=', $last_id)->first();
         $insertOrder->order = $last_id;
         $insertOrder->update();
+
+        $add_stone = Stones::create([
+            'name' => 'Stones',
+            'display_name' => 'stone',
+            'permission_name' => json_encode([$PERMISSION_SPACE_FULL, $PERMISSION_SPACE_VIEW]),
+            'menu_type' => 'hidden',
+            'menu_icon' => null,
+            'enable' => '1',
+            'application' => 'main'
+        ]);
+
+        $last_id_stone = $add_stone->id;
+        $insert_order_stone = Stones::where('id', '=', $last_id_stone)->first();
+        $insert_order_stone->order = $last_id_stone;
+        $insert_order_stone->update();
+
 
         $menu_module_organizer = [
             [
@@ -241,25 +251,27 @@ class StoneTableSeeder extends Seeder
          */
         $add_permissions_manager_space = Permission::create([
             'name' => $PERMISSION_SPACE_FULL,
-            'display_name' => 'Manager Space',
-            'description' => 'Permission manager spaces'
+            'id_stone' => $add_stone->id,
+            'display_name' => 'Permission Manager Space',
+            'description' => 'Permission manager spaces  (Create, Edit, Delete spaces)'
         ]);
 
         $add_permissions_user_space = Permission::create([
             'name' => $PERMISSION_SPACE_VIEW,
-            'display_name' => 'User Space',
-            'description' => 'Permission user spaces'
+            'id_stone' => $add_stone->id,
+            'display_name' => 'Permission User Space',
+            'description' => 'Permission user spaces (Switch between spaces)'
         ]);
 
         $add_roles_manager_space = Role::create([
             'name' => $ROLE_MANAGER_SPACE,
-            'display_name' => 'Manager Space',
+            'display_name' => 'Role Manager Space',
             'description' => 'Manager Space, permissions to create spaces'
         ]);
 
         $add_roles_user_space = Role::create([
             'name' => $ROLE_USER_SPACE,
-            'display_name' => 'User Space',
+            'display_name' => 'Role User Space',
             'description' => 'User Space, permissions to create spaces'
         ]);
 
@@ -305,14 +317,14 @@ class StoneTableSeeder extends Seeder
         $add_permission_manager_organizer = Permission::create([
             'name' => $PERMISSION_MANAGER_ORGANIZER_FULL,
             'id_stone' => $add_organizer->id,
-            'display_name' => 'Permission organizer stones',
-            'description' => 'Permission organizer stones'
+            'display_name' => 'Permission Organizer Stones',
+            'description' => 'Permission organizer stones, Management stones install, uninstall, delete...'
         ]);
 
         $add_role_organizer = Role::create([
             'name' => $ROLE_MANAGER_ORGANIZER_FULL,
-            'display_name' => 'Role Organizer manager Stones',
-            'description' => 'Full permission Organizer, Management install Stones (modules)'
+            'display_name' => 'Role Organizer Stones',
+            'description' => 'Role Organizer, Management stones install, uninstall, delete...'
         ]);
 
         DB::table("permission_role")->insert([
@@ -352,23 +364,23 @@ class StoneTableSeeder extends Seeder
         $permission_user_access_controls = Permission::create([
             'name' => $PERMISSION_USER_ACCESS_CONTROL,
             'id_stone' => $id_last_module_access_control,
-            'display_name' => 'Module Access',
-            'description' => 'Management users, roles and permissions of stones'
+            'display_name' => 'Permission Users Access Control',
+            'description' => 'Permission users access control, management users create, edit, delete...'
         ]);
 
          $permission_role_access_controls = Permission::create([
              'name' => $PERMISSION_ROLE_ACCESS_CONTROL,
              'id_stone' => $id_last_module_access_control,
-             'display_name' => 'Management Roles',
-             'description' => 'Role management add, edit and delete roles of CMS'
+             'display_name' => 'Permission Roles Access Control',
+             'description' => 'Permission roles access control, management roles create, edit, delete...'
          ]);
 
 
          $permission_permission_access_controls = Permission::create([
              'name' => $PERMISSION_PERMISSION_ACCESS_CONTROL,
              'id_stone' => $id_last_module_access_control,
-             'display_name' => 'Management Permissions',
-             'description' => 'Permission management add, edit and delete permissions'
+             'display_name' => 'Permission Permissions Access Control',
+             'description' => 'Permission permissions access control, management permissions create, edit, delete...'
          ]);
 
 

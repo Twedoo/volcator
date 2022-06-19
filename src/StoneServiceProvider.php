@@ -52,6 +52,7 @@ class StoneServiceProvider extends ServiceProvider
     public function boot() {
         $router = $this->app->make(Router::class);
         $router->pushMiddlewareToGroup('web', Language::class);
+        $router->pushMiddlewareToGroup('web', CheckModules::class);
         $router->aliasMiddleware('role', \Twedoo\StoneGuard\Middleware\StoneGuardRole::class);
         $router->aliasMiddleware('permission', \Twedoo\StoneGuard\Middleware\StoneGuardPermission::class);
         $router->aliasMiddleware('ability', \Twedoo\StoneGuard\Middleware\StoneGuardAbility::class);

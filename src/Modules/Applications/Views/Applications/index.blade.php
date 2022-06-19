@@ -7,26 +7,23 @@
                     <a href="javascript: void(0);">Stone</a>
                     <span>
                         <span class="cui__breadcrumbs__arrow"></span>
-                        <strong>{{ trans('Applications::Applications/applications.title_header') }}</strong>
+                        <strong>{{ trans('Applications::Applications/Applications.title_header') }}</strong>
                     </span>
                 </div>
             </div>
             <div class="cui__utils__content">
                 <div class="kit__utils__heading">
-{{--                    <a href="{{ route(app('urlBack').'.multi.applications.create') }}" class="btn btn-social btn-success">--}}
-{{--                        <i class="fa fa-edit"></i> {{ trans('Applications::Applications/applications.create_application') }}--}}
-{{--                    </a>--}}
                     <h5>
-                        <span class="mr-3">{{ trans('Applications::Applications/applications.application') }}</span>
+                        <span class="mr-3">{{ trans('Applications::Applications/Applications.application') }}</span>
                         <a href="{{ route(app('urlBack').'.multi.applications.create') }}" class="btn btn-sm btn-light">
-                            <i class="fa fa-edit"></i> {{ trans('Applications::Applications/applications.create_application') }}
+                            <i class="fa fa-edit"></i> {{ trans('Applications::Applications/Applications.create_application') }}
                         </a>
                     </h5>
                 </div>
                 <div class="card">
                     <div class="card-body">
                         <h5 class="mb-4">
-                            <strong>{{ trans('Applications::Applications/applications.list_application') }}</strong>
+                            <strong>{{ trans('Applications::Applications/Applications.list_application') }}</strong>
                         </h5>
                         <div class="row">
                             <div class="col-lg-12">
@@ -34,16 +31,16 @@
                                     <table class="table table-hover nowrap" id="datatableApplicationList">
                                         <thead>
                                         <tr>
-                                            <th>{{ trans('Applications::Applications/applications.name_application') }}</th>
-                                            <th>{{ trans('Applications::Applications/applications.name_app_dis') }}</th>
-                                            @permission('permissions-applications-view')
-                                                <th>{{ trans('Applications::Applications/applications.show') }}</th>
+                                            <th>{{ trans('Applications::Applications/Applications.name_application') }}</th>
+                                            <th>{{ trans('Applications::Applications/Applications.name_app_dis') }}</th>
+                                            @permission(Config::get('stone.PERMISSION_APPLICATION_FULL'))
+                                                <th>{{ trans('Applications::Applications/Applications.show') }}</th>
                                             @endpermission
-                                            @permission('permissions-applications-create ')
-                                                <th>{{ trans('Applications::Applications/applications.edit') }}</th>
+                                            @permission(Config::get('stone.PERMISSION_APPLICATION_FULL'))
+                                                <th>{{ trans('Applications::Applications/Applications.edit') }}</th>
                                             @endpermission
-                                            @permission('permissions-applications-delete ')
-                                                <th>{{ trans('Applications::Applications/applications.delete') }}</th>
+                                            @permission(Config::get('stone.PERMISSION_APPLICATION_FULL'))
+                                                <th>{{ trans('Applications::Applications/Applications.delete') }}</th>
                                             @endpermission
                                         </tr>
                                         </thead>
@@ -52,24 +49,25 @@
                                             <tr>
                                                 <td>{{ $application->name }}</td>
                                                 <td class="center">{{ $application->display_name }}</td>
-                                                @permission('permissions-applications-view')
+                                                @permission(Config::get('stone.PERMISSION_APPLICATION_FULL'))
                                                 <td>
-                                                    <a href="#">
+                                                    <a href="{{ route(app('urlBack') . '.multi.applications.show', $application->id) }}">
                                                         <i class="fa fa-eye btn btn-darken-1" aria-hidden="true"></i>
                                                     </a>
                                                 </td>
                                                 @endpermission
-                                                @permission('permissions-applications-create')
+                                                @permission(Config::get('stone.PERMISSION_APPLICATION_FULL'))
                                                 <td>
                                                     <a href="{{ route(app('urlBack').'.multi.applications.edit', $application->id) }}">
                                                         <i class="fa fa-edit btn btn-darken-1" aria-hidden="true"></i>
                                                     </a>
                                                 </td>
                                                 @endpermission
-                                                @permission('permissions-applications-delete')
+                                                @permission(Config::get('stone.PERMISSION_APPLICATION_FULL'))
                                                 <td>
-                                                    <a href="{{ route(app('urlBack').'.multi.applications.delete', $application->id) }}">
-                                                        <i class="fa fa-trash btn btn-darken-1" aria-hidden="true"></i>
+                                                    <a href="{{ route(app('urlBack').'.multi.applications.delete', $application->id) }}"
+                                                       @if ($application->type == 'main') class="disabled stone-disable-click " @endif>
+                                                        <i class="fa fa-trash btn btn-darken-1 @if ($application->type == 'main') disabled stone-disable-click @endif" aria-hidden="true" ></i>
                                                     </a>
                                                 </td>
                                                 @endpermission
@@ -78,16 +76,16 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>{{ trans('Applications::Applications/applications.name_application') }}</th>
-                                                <th>{{ trans('Applications::Applications/applications.name_app_dis') }}</th>
-                                                @permission('permissions-applications-view')
-                                                <th>{{ trans('Applications::Applications/applications.show') }}</th>
+                                                <th>{{ trans('Applications::Applications/Applications.name_application') }}</th>
+                                                <th>{{ trans('Applications::Applications/Applications.name_app_dis') }}</th>
+                                                @permission(Config::get('stone.PERMISSION_APPLICATION_FULL'))
+                                                <th>{{ trans('Applications::Applications/Applications.show') }}</th>
                                                 @endpermission
-                                                @permission('permissions-applications-create ')
-                                                <th>{{ trans('Applications::Applications/applications.edit') }}</th>
+                                                @permission(Config::get('stone.PERMISSION_APPLICATION_FULL'))
+                                                <th>{{ trans('Applications::Applications/Applications.edit') }}</th>
                                                 @endpermission
-                                                @permission('permissions-applications-delete ')
-                                                <th>{{ trans('Applications::Applications/applications.delete') }}</th>
+                                                @permission(Config::get('stone.PERMISSION_APPLICATION_FULL'))
+                                                <th>{{ trans('Applications::Applications/Applications.delete') }}</th>
                                                 @endpermission
                                             </tr>
                                         </tfoot>

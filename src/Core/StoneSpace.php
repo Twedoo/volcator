@@ -70,10 +70,10 @@ class StoneSpace
             'space_id' => $space->id,
             'type' => 'main',
         ]);
-        $application_attached = Modules::where('application', 'main')->pluck('im_id')->toArray();
+        $application_attached = Stones::where('application', 'main')->pluck('id')->toArray();
         $users_attached[] = (string) $user_auth->id;
         $application->users()->attach($users_attached);
-        $application->modules()->attach($application_attached);
+        $application->stones()->attach($application_attached);
     }
     /**
      * @return \Illuminate\Database\Eloquent\Collection|static[]

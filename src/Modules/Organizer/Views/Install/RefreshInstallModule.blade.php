@@ -66,7 +66,7 @@
                                 @foreach($OrganizerDB as $onemodule)
                                     @if( $onemodule->im_name_modules == $module)
                                         {{ trans('sidebar/sidebar.'.$onemodule->im_name_modules_display.'')  }}
-                                        {!! StoneEngine::getModulesParams($module,$onemodule->im_id, $onemodule->im_status) !!}
+                                        {!! StoneEngine::getModulesParams($module,$onemodule->im_id, $onemodule->enable) !!}
                                     @endif
                                 @endforeach
                             @else

@@ -18,9 +18,12 @@ return [
     | Language "English"
     |---------------------------------------------------------------------------
     */
+    'Applications' => 'Applications',
     'title_header' => "Multi-Applications",
     'first_name_header' => "List Multi-Applications",
     'create_application' => "Create Application",
+    'edit_application' => "Edit Application",
+    'show_application' => "Show Application",
     'create' => "Create",
     'application' => "Application",
     'show' => "Show",
@@ -28,6 +31,8 @@ return [
     'edit' => "Edit",
     'back' => "Back",
     'create_type_application' => "Create Type Applications",
+    'name' => "Name",
+    'display_name' => "Display name",
     'name_app' => "Name (Unique)",
     'type_app' => "Type",
     'owner_app' => "Owner Application",
@@ -41,4 +46,6 @@ return [
     'name_app_dis' => "Display name",
     'type_application' => 'Type',
     'success_delete_application' => 'Successfully delete Application',
+    //
+
 ];

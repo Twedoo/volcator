@@ -25,14 +25,13 @@ class CheckModules
     public function handle($request, Closure $next)
     {
         $getPath = $request->path();
-
         if (strpos($getPath, Config('prefix.urlBack')) !== false && strpos($getPath, Config('prefix.module')) !== false) {
 
             $nameModelClass = explode(Config('prefix.urlBack') . '/', $getPath);// explode for get the name of controller and folder module
             $flight = Menuback::where('route_link', strtolower(explode('/', $nameModelClass[1])[1]))
                 ->orwhere('route_link', ucfirst(explode('/', $nameModelClass[1])[1]))->first();
-            if (!$flight) {
 
+            if (!$flight) {
                 switch (App::getLocale()) {
                     case "ar":
                         \Toastr::error(trans('Organizer::Organizer/installmodules.notfound_modules_install'), trans('Organizer::Organizer/installmodules.notfound_modules_install'), ["positionClass" => "toast-top-left"]);

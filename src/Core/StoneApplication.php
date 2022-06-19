@@ -137,20 +137,57 @@ class StoneApplication
      * @param $request
      * @return mixed
      */
-    public static function createApplication($request)
+    public static function createApplication($request) : void
     {
         $user_auth = auth()->user();
-        if ($user_auth->hasRole('Manager-Multi-Application')) {
+        if ($user_auth->hasRole(Config::get('stone.ROLE_APPLICATION_FULL'))) {
             $application = Applications::create([
-                'name' => request('name_app'),
-                'display_name' => request('name_app_dis'),
+                'name' => request('name'),
+                'display_name' => request('display_name'),
                 'unique_identity' => uniqid(),
-                'type' => 'main',
+                'type' => 'custom',
                 'space_id' => StoneSpace::getCurrentSpaceId(),
             ]);
-            $users = $request->input('owner_app');
+            $users = $request->input('users');
+            $application_attached = Stones::where('application', 'main')->pluck('id')->toArray();
             $users[] = (string) auth()->user()->id;
             $application->users()->attach($users);
+            $application->stones()->attach($application_attached);
+        }
+    }
+
+    /**
+     * @param $request
+     * @return mixed
+     */
+    public static function updateApplication($request, $id) : void
+    {
+        $user_auth = auth()->user();
+        if ($user_auth->hasRole(Config::get('stone.ROLE_APPLICATION_FULL'))) {
+            $application = Applications::find($id);
+            DB::table('applications_user')->where('application_id', $id)->delete();
+            $application->update([
+                'name' => request('name'),
+                'display_name' => request('display_name'),
+            ]);
+
+            $users = $request->input('users');
+            $users[] = (string) auth()->user()->id;
+            $application->users()->attach($users);
+        }
+    }
+
+    /**
+     * @param $request
+     * @return mixed
+     */
+    public static function deleteApplication($id) : void
+    {
+        $user_auth = auth()->user();
+        if ($user_auth->hasRole(Config::get('stone.ROLE_APPLICATION_FULL'))) {
+            DB::table('applications_user')->where('application_id', $id)->delete();
+            DB::table('applications_stone')->where('application_id', $id)->delete();
+            Applications::where('id', $id)->delete();;
         }
     }
 
@@ -158,7 +195,24 @@ class StoneApplication
      * @return mixed
      */
     public function getRoleIdRoot() {
-        return Role::where('name', 'Root')->get();
+        return Role::where('name', Config::get('stone.MAJESTIC'))->get();
+    }
+
+    /**
+     * @param $application
+     * @return void
+     */
+    public static function getUserCurrentApplication($application)
+    {
+        $applications =Applications::whereHas('users', function($q) use($application) {
+            $q->where('application_id', $application);
+        })->pluck('id')->toArray();
+        $users_applications = DB::table('applications_user')->whereIn('application_id', $applications)->distinct()->pluck('user_id')->toArray();
+        return User::where('id', '!=', $user_auth = auth()->user()->id)
+            ->join('role_user', 'role_user.user_id', '=', 'users.id')
+            ->whereIn('users.id', $users_applications)
+            ->whereNotIn('role_user.user_id', (new StoneApplication)->getRoleIdRoot()->pluck('id')->toArray())
+            ->distinct()->pluck('name', 'id')->toArray();
     }
 
     /**

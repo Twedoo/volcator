@@ -17,6 +17,7 @@ use Session;
 use Validator;
 use ZipArchive;
 
+// TODO: pagination
 class Organizer extends StoneStructure
 {
     /**
@@ -35,12 +36,17 @@ class Organizer extends StoneStructure
      */
     public function index()
     {
-        $modules = Stones::all();
+        $modules = Stones::where('menu_type', '!=', 'hidden-organizer')->orwhere('menu_type', null)->get();
+        $modules_stone_hidden_organizer = Stones::whereIn('application', ['main'])->get()->pluck('name')->toArray();
+
         $customModules = glob(base_path() . '/app/Modules/*', GLOB_ONLYDIR);
         $defaultModules = glob(__DIR__ . '/../../Modules/*', GLOB_ONLYDIR);
 
         foreach (array_merge($defaultModules, $customModules) as $key => $value) {
-            $GetArrayModules[] = substr($value, strrpos($value, '/') + 1);;
+            $stone_name = substr($value, strrpos($value, '/') + 1);
+            if (!in_array($stone_name, $modules_stone_hidden_organizer)) {
+                $GetArrayModules[] = $stone_name;
+            }
         }
 
         return view('Organizer::Organizer.Organizer')
@@ -121,7 +127,7 @@ class Organizer extends StoneStructure
     public function setBuilding($module)
     {
 
-        $OrganizerDB = modules::where('im_name_modules', $module)->first();
+        $OrganizerDB = Stones::where('name', $module)->first();
         if ($OrganizerDB) {
             return redirect()->route(app('urlBack') . '.super.modules.index');
         } else {
@@ -148,11 +154,11 @@ class Organizer extends StoneStructure
      */
     public function resetModule($module)
     {
-        $OrganizerDB = modules::where('im_name_modules', $module)->first();
+        $OrganizerDB = Stones::where('name', $module)->first();
         if ($OrganizerDB) {
-            DB::table('permissions')->where('permissions.id_stone', $OrganizerDB->im_id)->delete();
-            DB::table('modules')->where('im_id', $OrganizerDB->im_id)->delete();
-            DB::table('menubacks')->where('id_stone', $OrganizerDB->im_id)->delete();
+            DB::table('permissions')->where('permissions.id_stone', $OrganizerDB->id)->delete();
+            DB::table('stones')->where('id', $OrganizerDB->id)->delete();
+            DB::table('menubacks')->where('id_stone', $OrganizerDB->id)->delete();
             $table = explode(',', StoneEngine::getAttributes($module, 'dropTable'));
             foreach ($table as $value) {
                 Schema::dropIfExists(preg_replace('/[^_A-Za-z0-9\-]/', '', strtolower($value)));
@@ -169,11 +175,11 @@ class Organizer extends StoneStructure
      */
     public function uninstallModule($module)
     {
-        $getModule = modules::where('im_name_modules', $module)->first();
+        $getModule = Stones::where('name', $module)->first();
         if ($getModule) {
-            DB::table('permissions')->where('permissions.id_stone', $getModule->im_id)->delete();
-            DB::table('modules')->where('im_id', $getModule->im_id)->delete();
-            DB::table('menubacks')->where('id_stone', $getModule->im_id)->delete();
+            DB::table('permissions')->where('permissions.id_stone', $getModule->id)->delete();
+            DB::table('stones')->where('id', $getModule->id)->delete();
+            DB::table('menubacks')->where('id_stone', $getModule->id)->delete();
             $table = explode(',', StoneEngine::getAttributes($module, 'dropTable'));
             foreach ($table as $value) {
                 Schema::dropIfExists(preg_replace('/[^_A-Za-z0-9\-]/', '', strtolower($value)));
@@ -191,9 +197,9 @@ class Organizer extends StoneStructure
 
     public function statusModule($id, $module)
     {
-        $status = modules::find($id);
-        if ($status->im_status == 1) {
-            $status->im_status = 0;
+        $status = Stones::find($id);
+        if ($status->enable == 1) {
+            $status->enable = 0;
             $status->update();
             StoneLanguage::displayNotificationProgress(
                 'success',
@@ -202,7 +208,7 @@ class Organizer extends StoneStructure
             );
             $status = '_d';
         } else {
-            $status->im_status = 1;
+            $status->enable = 1;
             $status->update();
             StoneLanguage::displayNotificationProgress(
                 'success',

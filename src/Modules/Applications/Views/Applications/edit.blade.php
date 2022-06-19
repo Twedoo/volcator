@@ -1,111 +1,101 @@
 @extends('elements.layouts.app')
-
-
-
 @section('content')
-
     <section id="middle">
-
-
-        <header id="page-header">
-            <h1>{{ trans('access/roles_managment.edit_users_title') }}</h1>
-
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route(app('urlBack').'.super.users.index') }}"><i
-                            class="glyphicon glyphicon-arrow-left"
-                            aria-hidden="true"></i> {{ trans('access/roles_managment.edit_users_back') }}</a>
-            </div>
-
-            <ol class="breadcrumb">
-                <li><a href="{{url(app('urlBack').'/')}}"> {{ trans('access/roles_managment.edit_users_site') }}</a></li>
-                <li class="active"><a
-                            href="{{ route(app('urlBack').'.super.permissions.index') }}">{{ trans('access/roles_managment.edit_users_managment') }}</a>
-                </li>
-                <li class="active">{{ trans('access/roles_managment.edit_users_edit') }}</li>
-            </ol>
-        </header>
-
-        <div id="content" class="padding-20">
-            {!! Toastr::message() !!}
-
-
-            <div class="panel panel-default">
-                <div class="panel-heading panel-heading-transparent">
-                    <strong>{{ trans('access/roles_managment.edit_users_edit') }}</strong>
+        <div class="cui__layout__content">
+            <div class="cui__breadcrumbs">
+                <div class="cui__breadcrumbs__path">
+                    <a href="javascript: void(0);">Stone</a>
+                    <span>
+                        <span class="cui__breadcrumbs__arrow"></span>
+                        <strong>{{ trans('Applications::Applications/Applications.title_header') }}</strong>
+                    </span>
+                    <span>
+                        <span class="cui__breadcrumbs__arrow"></span>
+                        <strong
+                            class="cui__breadcrumbs__current">{{ trans('Applications::Applications/Applications.edit_application') }}</strong>
+                    </span>
                 </div>
-
-                <div class="panel-body">
-
-                    {!! Form::model($user, ['method' => 'PATCH','route' => [app('urlBack').'.super.users.update', $user->id]]) !!}
-                    <fieldset>
-                        <!-- required [php action request] -->
-
-                        <div class="row">
-                            <div class="form-group @if ($errors->has('name')) has-error @endif">
-                                <div class="col-md-12 col-sm-12">
-                                    <label>{{ trans('access/roles_managment.edit_users_name') }}</label>
-                                    {!! Form::text('name', null, array('placeholder' => trans('access/roles_managment.edit_users_name'),'class' => 'form-control', 'value' =>old('name') )) !!}
-                                    <p class="help-block">{{ $errors->first('name') }}</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group @if ($errors->has('email')) has-error @endif">
-                                <div class="col-md-12 col-sm-12">
-                                    <label>{{ trans('access/roles_managment.edit_users_email') }}</label>
-                                    {!! Form::text('email', null, array('placeholder' => trans('access/roles_managment.edit_users_email'),'class' => 'form-control', 'value' =>old('email') )) !!}
-                                    <p class="help-block">{{ $errors->first('email') }}</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group @if ($errors->has('password')) has-error @endif">
-                                <div class="col-md-12 col-sm-12">
-                                    <label>{{ trans('access/roles_managment.edit_users_password') }}</label>
-                                    {!! Form::password('password', array('placeholder' => trans('access/roles_managment.edit_users_password'),'class' => 'form-control', 'value' =>old('password'))) !!}
-                                    <p class="help-block">{{ $errors->first('password') }}</p>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="row">
-                            <div class="form-group @if ($errors->has('confirm-password')) has-error @endif">
-                                <div class="col-md-12 col-sm-12">
-                                    <label>{{ trans('access/roles_managment.edit_users_password_confirm') }}</label>
-                                    {!! Form::password('confirm-password', array('placeholder' => trans('access/roles_managment.edit_users_password_confirm'),'class' => 'form-control', 'value' =>old('confirm-password'))) !!}
-                                    <p class="help-block">{{ $errors->first('confirm-password') }}</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group @if ($errors->has('roles')) has-error @endif">
-                                <div class="col-md-12 col-sm-12">
-                                    <label>{{ trans('access/roles_managment.edit_users_role') }}</label>
-                                    {!! Form::select('roles[]', $roles, array('class' => 'form-control','multiple')) !!}
-                                    <p class="help-block">{{ $errors->first('roles') }}</p>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="pull-right">
-                            <button type="submit"
-                                    class="btn btn-primary">{{ trans('access/roles_managment.edit_users_update') }}</button>
-                        </div>
-
-
-                    </fieldset>
-                    {!! Form::close() !!}
-                </div>
-
             </div>
+            <div class="cui__utils__content">
+                <div class="kit__utils__heading">
+                    <h5>
+                        <span class="mr-3">{{ trans('Applications::Applications/Applications.edit_application') }}</span>
+                        <a class="btn btn-sm btn-light" href="{{ route(app('urlBack').'.multi.applications.index') }}">
+                            <i class="fa fa-arrow-left"></i> {{ trans('Applications::Applications/Applications.back') }}
+                        </a>
+                    </h5>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-6 mb-5">
+                                        {!! Form::model($application, ['method' => 'PATCH','route' => [app('urlBack').'.multi.applications.edit', $application->id]]) !!}
 
+                                        <div class="form-group @if ($errors->has('name')) has-error @endif">
+                                            <label class="form-label">{{ trans('Applications::Applications/Applications.name_app') }}</label>
+                                            {!! Form::text('name', null, array('placeholder' => trans('Applications::Applications/Applications.name_app'),'class' => 'form-control', 'value' =>old('name') )) !!}
+                                            @if ($errors->has('name'))
+                                                <div class="form-control-error-list" data-error-list="">
+                                                    <ul>
+                                                        <li>
+                                                            {{ $errors->first('name') }}
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="form-group @if ($errors->has('name_app_dis')) has-error @endif">
+                                            <label class="form-label">{{ trans('Applications::Applications/Applications.name_app_dis') }}</label>
+                                            {!! Form::text('display_name', null, array('placeholder' => trans('Applications::Applications/Applications.name_app_dis'),'class' => 'form-control', 'value' =>old('display_name') )) !!}
+                                            @if ($errors->has('display_name'))
+                                                <div class="form-control-error-list" data-error-list="">
+                                                    <ul>
+                                                        <li>
+                                                            {{ $errors->first('display_name') }}
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="form-group @if ($errors->has('users')) has-error @endif">
+                                            <label class="form-label">{{ trans('Applications::Applications/Applications.owner_app') }}</label>
+                                            {!! Form::select('users[]', $users, null, ['class' => 'select2', 'multiple' => 'multiple', 'placeholder' => trans('Applications::Applications/Applications.select_option')]) !!}
+                                            @if ($errors->has('users'))
+                                                <div class="form-control-error-list" data-error-list="">
+                                                    <ul>
+                                                        <li>
+                                                            {{ $errors->first('users') }}
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="form-actions">
+                                            <button type="submit" class="btn btn-dark mr-2 px-5 pull-right">{{ trans('Applications::Applications/Applications.create') }}</button>
+                                        </div>
+                                        {!! Form::close() !!}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
     </section>
-
+    <script>
+        ;(function($) {
+            'use strict'
+            $(function() {
+                $('.select2').select2()
+                $('.select2-tags').select2({
+                    tags: true,
+                    tokenSeparators: [',', ' '],
+                })
+                $('.select2').select2()
+            })
+        })(jQuery)
+    </script>
 @endsection

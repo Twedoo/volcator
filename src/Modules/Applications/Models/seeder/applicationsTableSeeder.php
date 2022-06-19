@@ -22,24 +22,11 @@ class applicationsTableSeeder extends Seeder
 
     public function run()
     {
-        $PERMISSION_SPACE_FULL                 = Config::get('stone.PERMISSION_SPACE_FULL');
-        $PERMISSION_SPACE_VIEW                 = Config::get('stone.PERMISSION_SPACE_VIEW');
-
         $PERMISSION_APPLICATION_FULL           = Config::get('stone.PERMISSION_APPLICATION_FULL');
         $PERMISSION_APPLICATION_VIEW           = Config::get('stone.PERMISSION_APPLICATION_VIEW');
 
         $ROLE_APPLICATION_FULL                 = Config::get('stone.ROLE_APPLICATION_FULL');
         $ROLE_APPLICATION_VIEW                 = Config::get('stone.ROLE_APPLICATION_VIEW');
-
-        Stones::create([
-            'name' => 'Stones',
-            'display_name' => 'stone',
-            'permission_name' => json_encode([$PERMISSION_SPACE_FULL, $PERMISSION_SPACE_VIEW]),
-            'menu_type' => 'hidden',
-            'menu_icon' => null,
-            'enable' => '1',
-            'application' => 'main'
-        ]);
 
         $add_application_module = Stones::create([
             'name' => 'Applications',
@@ -69,15 +56,15 @@ class applicationsTableSeeder extends Seeder
          */
         $add_permission_application_view = Permission::create([
             'name' => $PERMISSION_APPLICATION_VIEW,
-            'display_name' => 'View Applications',
-            'description' => 'Permission let user switch between his application',
+            'display_name' => 'Permission User Multi-Application',
+            'description' => 'Permission user multi-applications, switch between his applications',
             'id_stone' => $id_application_module
         ]);
 
         $add_permission_application_full = Permission::create([
             'name' => $PERMISSION_APPLICATION_FULL,
-            'display_name' => 'Create and Delete Multi-Applications',
-            'description' => 'Users can manipulate Multi-Applications',
+            'display_name' => 'Permission Manager Multi-Application',
+            'description' => 'Permission Manager multi-applications, management multi-applications create, edit, delete...',
             'id_stone' => $id_application_module
         ]);
         /**
@@ -91,14 +78,14 @@ class applicationsTableSeeder extends Seeder
          */
         $add_role_application_full = Role::create([
             'name' => $ROLE_APPLICATION_FULL,
-            'display_name' => 'Manager Multi-Application',
-            'description' => 'Manager Multi-Application, permissions to create his owner Applications'
+            'display_name' => 'Role Manager Multi-Application',
+            'description' => 'Role manager multi-applications, management multi-Applications create, edit, delete...',
         ]);
 
         $add_role_application_view = Role::create([
             'name' => $ROLE_APPLICATION_VIEW,
-            'display_name' => 'View Applications',
-            'description' => 'View Applications, user switch between his applications'
+            'display_name' => 'Role User Multi-Application',
+            'description' => 'Role user multi-applications, switch between his applications'
         ]);
         /**
          * End Comment

@@ -20,26 +20,22 @@ class configurationsTableSeeder extends Seeder
 
     public function run()
     {
-        $installmodulesok = [
-            [
-                'im_name_modules' => 'Configurations',
-                'im_name_modules_display' => 'tmod_conf',
-                'im_menu_icon' => 'fe fe-settings',
-                'im_permission' => 'role-access-configuration',
-                'im_status' => '1',
-                'application' => 'main'
-            ]
-        ];
 
-        foreach ($installmodulesok as $key => $value) {
-            $insert = modules::create($value);
-        }
+            $insert = Stones::create([
+                'name' => 'Configurations',
+                'display_name' => 'tmod_conf',
+                'permission_name' => json_encode(['role-access-configuration']),
+                'menu_type' => null,
+                'menu_icon' => 'fe fe-settings',
+                'enable' => '1',
+                'application' => 'custom'
+            ]);
 
-        $idlast = $insert->im_id;
+        $idlast = $insert->id;
 
-        $insertOrder = modules::where('im_id', '=', $idlast)->first();
+        $insertOrder = Stones::where('id', '=', $idlast)->first();
 
-        $insertOrder->im_order = $idlast;
+        $insertOrder->order = $idlast;
 
         $insertOrder->update();
 
