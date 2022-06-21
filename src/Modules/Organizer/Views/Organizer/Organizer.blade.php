@@ -23,7 +23,6 @@
                                     </h5>
                                 </div>
                                 <div class="row">
-
                                     @foreach( $GetArrayModules as $key => $module)
                                         @if ($module == "Organizer")
                                             @continue
@@ -47,14 +46,10 @@
                                                     </div>
                                                     <div
                                                         class="font-size-18 font-weight-bold text-dark mb-2 text-center">
-                                                        @if( StoneEngine::isInstallModule($module) )
-                                                            @if(StoneEngine::getStatusModule($module))
-                                                                <i class="fe fe-check-circle text-success font-weight-bolder font-size-32"></i>
-                                                            @else
-                                                                <i class="fe fe-eye-off text-danger font-weight-bolder font-size-32"></i>
-                                                            @endif
+                                                        @if (StoneEngine::isActiveStoneInCurrentApplication($module))
+                                                            <i class="fe @if(StoneEngine::getStatusModule($module)) fe-check-circle text-success @else fe fe-eye-off text-danger @endif font-weight-bolder font-size-32"></i>
                                                         @else
-                                                            <a href="{{ route(app('urlBack').'.pre.module.building',$module) }}">
+                                                            <a href="{{ route(app('urlBack').'.pre.module.building', [$module, StoneApplication::isStoneInstalledAsMain($module)]) }}">
                                                                 <i class="fe fe-download text-info font-weight-bolder font-size-32"></i>
                                                             </a>
                                                         @endif
@@ -62,11 +57,11 @@
                                                     <div>
                                                         <a class="kit__g16__productFavourite text-gray-10 flex"
                                                            href="javascript: void(0);">
-                                                            @if( StoneEngine::isInstallModule($module) )
+                                                            @if (StoneEngine::isActiveStoneInCurrentApplication($module))
                                                                 @foreach($modules as $onemodule)
                                                                     @if( $onemodule->name == $module)
                                                                         <div class="float-left">
-                                                                            {{ trans('sidebar/sidebar.'.$onemodule->display_name.'')  }}
+                                                                            {{ trans('sidebar/sidebar.'.$onemodule->display_name.'') }}
                                                                         </div>
                                                                         <div class="float-right">
                                                                             {!! StoneEngine::getModulesParams($module, $onemodule->id, $onemodule->enable) !!}

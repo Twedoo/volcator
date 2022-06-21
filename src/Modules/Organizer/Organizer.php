@@ -3,6 +3,7 @@
 namespace Twedoo\Stone\Organizer;
 
 use Config;
+use Twedoo\Stone\Core\StoneApplication;
 use Twedoo\Stone\Organizer\Models\Stones;
 use DB;
 use File;
@@ -93,9 +94,27 @@ class Organizer extends StoneStructure
 
     }
 
-    public function preBuilding($module)
+    /**
+     * @param $module
+     * @param null $isInstallAsMain
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function preBuilding($module, $isInstallAsMain = null)
     {
-        $this->setBuilding($module);
+        if ($isInstallAsMain) {
+            $this->setActive($module);
+        } else {
+            $this->setBuilding($module);
+        }
+        return redirect()->route(app('urlBack') . '.super.modules.index');
+    }
+
+    /**
+     * @param $stone
+     */
+    public function setActive($stone)
+    {
+        StoneApplication::activeStoneInCurrentApplication($stone);
         return redirect()->route(app('urlBack') . '.super.modules.index');
     }
 
@@ -186,7 +205,7 @@ class Organizer extends StoneStructure
 
     public function removeModule($module)
     {
-        $isExist = StoneEngine::isInstallModule($module);
+        $isExist = StoneEngine::isActiveStoneInCurrentApplication($module);
         if (!$isExist) {
             StoneEngine::deleteDirModule(app_path('Modules/' . $module), $module);
             StoneLanguage::displayNotificationProgress(

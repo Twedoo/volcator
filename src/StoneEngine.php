@@ -6,6 +6,7 @@ use App;
 use Symfony\Component\Yaml\Yaml;
 use Throwable;
 use Twedoo\Stone\Core\StoneApplication;
+use Twedoo\Stone\Core\StoneSpace;
 use Twedoo\Stone\Models\Menuback;
 use Twedoo\Stone\Organizer\Models\Stones;
 use Config;
@@ -37,15 +38,23 @@ class StoneEngine
     }
 
     /**
-     * Check if Module really install in table Stones.
+     * Check if Stone module really install in table Stones.
+     * @param $stone
+     * @return bool
      */
-
-    public static function isInstallModule($data)
+    public static function isInstallStoneAsMain($stone)
     {
-        if (Stones::where('name', $data)->first())
-            return true;
+        return StoneApplication::isStoneInstalledAsMain($stone);
+    }
 
-        return false;
+    /**
+     * Check if Stone module active in current application.
+     * @param $stone
+     * @return bool
+     */
+    public static function isActiveStoneInCurrentApplication($stone)
+    {
+        return StoneApplication::isStoneInCurrentApplication($stone);
     }
 
     /**

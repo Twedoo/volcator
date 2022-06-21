@@ -57,7 +57,7 @@ class Applications extends StoneStructure
     public function building($module)
     {
 
-        if (!StoneEngine::isInstallModule($module)) {
+        if (!StoneEngine::isActiveStoneInCurrentApplication($module)) {
 
             if (!Schema::hasTable(strtolower('spaces'))) {
                 Schema::create('spaces', function (Blueprint $table) {
