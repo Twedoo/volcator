@@ -1,12 +1,16 @@
 <?php
 namespace Twedoo\Stone\Modules\Applications\Models\seeder;
 
-use Twedoo\Stone\InstallerModule\Models\modules;
+use Twedoo\Stone\Modules\Applications\Models\Applications;
+use Twedoo\Stone\Modules\Applications\Models\Spaces;
+use Twedoo\Stone\Organizer\Models\Stones;
 use Illuminate\Database\Seeder;
 use Twedoo\Stone\Models\Menuback;
 use Twedoo\StoneGuard\Models\Permission;
+use Twedoo\StoneGuard\Models\Role;
 use Twedoo\StoneGuard\Models\User;
 use DB;
+use Config;
 
 class applicationsTableSeeder extends Seeder
 {
@@ -18,75 +22,146 @@ class applicationsTableSeeder extends Seeder
 
     public function run()
     {
-        $user = new User();
-        $setModule = [
-            [
-                'im_name_modules' => 'Applications',
-                'im_name_modules_display' => 'applications_module',
-                'im_menu_icon' => '<i class="main-icon fa fa-anchor"></i>',
-                'im_permission' => 'permissions-applications-view',
-                'im_status' => '1'
-            ]
-        ];
+        $PERMISSION_APPLICATION_FULL           = Config::get('stone.PERMISSION_APPLICATION_FULL');
+        $PERMISSION_APPLICATION_VIEW           = Config::get('stone.PERMISSION_APPLICATION_VIEW');
 
-        foreach ($setModule as $key => $value) {
-            $insert = modules::create($value);
-        }
+        $ROLE_APPLICATION_FULL                 = Config::get('stone.ROLE_APPLICATION_FULL');
+        $ROLE_APPLICATION_VIEW                 = Config::get('stone.ROLE_APPLICATION_VIEW');
 
-        $idModule = $insert->im_id;
-        $setrder = modules::where('im_id', '=', $idModule)->first();
-        $setrder->im_order = $idModule;
-        $setrder->update();
+        $add_application_module = Stones::create([
+            'name' => 'Applications',
+            'display_name' => 'applications_stone',
+            'permission_name' => json_encode([$PERMISSION_APPLICATION_FULL]),
+            'menu_type' => 'hidden-organizer',
+            'menu_icon' => 'fe fe-layers',
+            'enable' => '1',
+            'application' => 'main',
+            'publish' => 'public'
+        ]);
 
-        $setMenus = [
-            [
-                'name_menu' => "managment_apps",
-                'route_link' => "applications",
-                'id_module' => $idModule,
-                'mb_permission' => 'permissions-applications-view',
-            ]
-        ];
+        $id_application_module = $add_application_module->id;
+        $add_order = Stones::where('id', '=', $id_application_module)->first();
+        $add_order->order = $id_application_module;
+        $add_order->update();
 
-        foreach ($setMenus as $key => $value) {
-            Menuback::create($value);
-        }
+        Menuback::create([
+            'name_menu' => "multi_applications_menu",
+            'route_link' => "applications",
+            'id_stone' => $id_application_module,
+            'mb_permission' => $PERMISSION_APPLICATION_FULL,
+        ]);
 
-        // permission cms
-        $permission = [
-            [
-                'name' => 'permissions-applications-view',
-                'display_name' => 'View Multi-Applications',
-                'description' => 'Permission managment Applications for users',
-                'id_module' => $idModule
-            ],
-            [
-                'name' => 'permissions-applications-create',
-                'display_name' => 'Create Multi-Applications',
-                'description' => 'Permission Create Applications',
-                'id_module' => $idModule
-            ],
-            [
-                'name' => 'permissions-applications-delete',
-                'display_name' => 'Delete Multi-Applications',
-                'description' => 'Permission Delete Applications',
-                'id_module' => $idModule
-            ],
-            [
-                'name' => 'permissions-applications-type',
-                'display_name' => 'Create Type Multi-Applications',
-                'description' => 'Permission Create Type Applications',
-                'id_module' => $idModule
-            ]
-        ];
+        /**
+         * Begin Comment
+         * Add Permissions Multi-Applications
+         */
+        $add_permission_application_view = Permission::create([
+            'name' => $PERMISSION_APPLICATION_VIEW,
+            'display_name' => 'Permission User Multi-Application',
+            'description' => 'Permission user multi-applications, switch between his applications',
+            'id_stone' => $id_application_module
+        ]);
 
-        foreach ($permission as $key => $value) {
-            $setPermission = Permission::create($value);
-            DB::table("permission_role")->insert([
-                'permission_id' => $setPermission->id,
-                'role_id' => auth()->user()->setCurrentIdRole()
+        $add_permission_application_full = Permission::create([
+            'name' => $PERMISSION_APPLICATION_FULL,
+            'display_name' => 'Permission Manager Multi-Application',
+            'description' => 'Permission Manager multi-applications, management multi-applications create, edit, delete...',
+            'id_stone' => $id_application_module
+        ]);
+        /**
+         * End Comment
+         * Add Permissions Multi-Applications
+         */
+
+        /**
+         * Begin Comment
+         * Add Roles Multi-Applications
+         */
+        $add_role_application_full = Role::create([
+            'name' => $ROLE_APPLICATION_FULL,
+            'display_name' => 'Role Manager Multi-Application',
+            'description' => 'Role manager multi-applications, management multi-Applications create, edit, delete...',
+        ]);
+
+        $add_role_application_view = Role::create([
+            'name' => $ROLE_APPLICATION_VIEW,
+            'display_name' => 'Role User Multi-Application',
+            'description' => 'Role user multi-applications, switch between his applications'
+        ]);
+        /**
+         * End Comment
+         * Add Roles Multi-Applications
+         */
+
+        /**
+         * Begin Comment
+         * Add Permissions To Roles Multi-Applications
+         */
+        DB::table("permission_role")->insert([
+            'permission_id' => $add_permission_application_view->id,
+            'role_id' => $add_role_application_view->id,
+        ]);
+
+        DB::table("permission_role")->insert([
+            'permission_id' => $add_permission_application_full->id,
+            'role_id' => $add_role_application_full->id,
+        ]);
+        /**
+         * End Comment
+         * Add Permissions To Roles Multi-Applications
+         */
+
+        /**
+         * Begin Comment
+         * Add Roles To Users Multi-Applications
+         */
+        $users_majestic = User::whereHas('roles', function($q) {
+            $q->where('roles.name', Config::get('stone.MAJESTIC'));
+        })->pluck('id')->toArray();
+
+        foreach ($users_majestic as $key => $user_id) {
+            DB::table("role_user")->insert([
+                'user_id' => $user_id,
+                'role_id' => $add_role_application_full->id,
+            ]);
+            DB::table("role_user")->insert([
+                'user_id' => $user_id,
+                'role_id' => $add_role_application_view->id,
             ]);
         }
-        // end permission cms
-    }
+        /**
+         * End Comment
+         * Add Roles To Users Multi-Applications
+         */
 
+        /**
+         * Begin Comment
+         * Create Spaces and Applications TO Users MAJESTIC
+         */
+        foreach ($users_majestic as $key => $user_id) {
+            $space = Spaces::create([
+                'unique_identity' => uniqid(),
+                'name' => 'Main Workspace',
+                'owner_id' => $user_id,
+                'type' => 'main',
+                'enable' => 1,
+                'image' => null,
+            ]);
+            $application = Applications::create([
+                'name' => 'Main',
+                'display_name' => 'Main Application',
+                'unique_identity' => uniqid(),
+                'type' => 'main',
+                'space_id' => $space->id,
+            ]);
+            $application_attached = Stones::where('application', 'main')->pluck('id')->toArray();
+            $users_attached[] = (string) $user_id;
+            $application->users()->attach($users_attached);
+            $application->stones()->attach($application_attached);
+        }
+        /**
+         * End Comment
+         * Create Spaces and Applications TO Users MAJESTIC
+         */
+    }
 }

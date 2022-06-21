@@ -3,6 +3,9 @@
 namespace Twedoo\Stone\Http\Controllers;
 
 use App;
+use Twedoo\Stone\Modules\Applications\Models\Applications;
+use Twedoo\Stone\Core\StoneApplication;
+use Twedoo\Stone\Organizer\Models\Stones;
 use Twedoo\StoneGuard\Models\Role;
 use Twedoo\StoneGuard\Models\User;
 use DB;
@@ -11,6 +14,7 @@ use Illuminate\Http\Request;
 use Session;
 use Validator;
 
+// TODO : Pagination dynamic
 class UserController extends Controller
 {
 
@@ -41,10 +45,11 @@ class UserController extends Controller
     public function create()
     {
         $user = auth()->user();
-        if(!$user->hasRole('Root'))
+        if(!$user->hasRole('Root')) {
             $roles = Role::where('id', '!=', 1)->pluck('display_name', 'id');
-        else
+        }  else {
             $roles = Role::pluck('display_name', 'id');
+        }
 
         return view('elements.super.users.create', compact('roles'));
     }
@@ -91,6 +96,8 @@ class UserController extends Controller
             foreach ($request->input('roles') as $key => $value) {
                 $user->attachRole($value);
             }
+
+            StoneApplication::CreateMainApplicationOrAssignUser($user);
 
             if (App::getLocale() == 'ar' || App::getLocale() == 'ur') {
                 \Toastr::success(trans('access/roles_managment.toastr_success_create_users'), trans('access/roles_managment.toastr_success'), ["positionClass" => "toast-top-left"]);

@@ -3,42 +3,46 @@
 namespace Twedoo\Stone;
 
 use App;
+use Symfony\Component\Yaml\Yaml;
 use Throwable;
-use Twedoo\Stone\InstallerModule\Models\modules;
+use Twedoo\Stone\Core\StoneApplication;
+use Twedoo\Stone\Models\Menuback;
+use Twedoo\Stone\Organizer\Models\Stones;
 use Config;
 use DB;
 use Illuminate\Support\Facades\URL;
 use StoneLanguage;
 use Schema;
 use Session;
+use Twedoo\StoneGuard\Models\Permission;
+use Twedoo\StoneGuard\Models\Role;
 
 class StoneEngine
 {
     public static function getModuleListDB()
     {
-        return modules::all();
+        return Stones::all();
     }
 
     public static function getStatusModule($data)
     {
-        $status = modules::where('im_name_modules', $data)->first();
-
+        $status = Stones::where('name', $data)->first();
         if (!$status)
             return false;
 
-        if ($status->im_status == 0)
+        if ($status->enable == 0)
             return false;
         else
             return true;
     }
 
     /**
-     * Check if Module really install in table modules.
+     * Check if Module really install in table Stones.
      */
 
     public static function isInstallModule($data)
     {
-        if (modules::where('im_name_modules', $data)->first())
+        if (Stones::where('name', $data)->first())
             return true;
 
         return false;
@@ -52,10 +56,10 @@ class StoneEngine
         if (!method_exists('Twedoo\\Stone\\' . $module . '\\' . $module, 'building')) {
             StoneLanguage::displayNotificationProgress(
                 'error',
-                trans('InstallerModule::InstallerModule/installmodules.error_FNbuilding'),
-                trans('InstallerModule::InstallerModule/installmodules.errors')
+                trans('Organizer::Organizer/installmodules.error_FNbuilding'),
+                trans('Organizer::Organizer/installmodules.errors')
             );
-            Session::flash('messageErr', trans('InstallerModule::InstallerModule/installmodules.error_FNbuilding') . 'in Module/' . ucfirst($module) . '/' . ucfirst($module) . '.php');
+            Session::flash('messageErr', trans('Organizer::Organizer/installmodules.error_FNbuilding') . 'in Module/' . ucfirst($module) . '/' . ucfirst($module) . '.php');
             return redirect()->route(app('urlBack') . '.super.modules.index');
         }
 
@@ -70,11 +74,55 @@ class StoneEngine
      * @return mixed
      * pass value true for re-install or false for fisrt install
      */
-    public static function setmodule($module, $reinstall)
+    public static function setModule($module, $reinstall)
     {
-//        dump(self::namespaceResolve($module) . $module . '\\' . $module . '@building');die;
-        \App::call(self::namespaceResolve($module) . $module . '\\' . $module . '@building', compact('module'));
+
+        $pathConfig = StoneEngine::pathConfigStoneResolve(self::namespaceResolve($module), $module);
+
+        if (self::namespaceResolve($module) == 'Twedoo\\Stone\\') {
+            \App::call('Modules\\'. $module .'\\'. 'Config' .'\\'. 'Schema'.'\\'. 'SchemaCreate@runSchemas');
+        } else {
+            \App::call('App\\Modules\\'. $module .'\\'. 'Config' .'\\'. 'Schema'.'\\'. 'SchemaCreate@runSchemas');
+        }
+
+        $stone_data = StoneEngine::loadStoneConfigYaml($pathConfig, 'stone');
+        $createStone = StoneEngine::createStone($stone_data);
+
+        $menu_data = StoneEngine::loadStoneConfigYaml($pathConfig, 'menu');
+        StoneEngine::createMenu($menu_data, $createStone);
+
+        $access_data = StoneEngine::loadStoneConfigYaml($pathConfig, 'access');
+        StoneEngine::createAccess($access_data, $createStone);
+
         return self::afterCheckInstall($reinstall);
+    }
+
+    /**
+     * @param $module
+     * @return bool
+     */
+    public static function uninstallStone($module)
+    {
+        $stone = Stones::where('name', $module)->first();
+        $result = false;
+        if($stone) {
+            $permissions = DB::table('permissions')->where('permissions.id_stone', $stone->id)->pluck('id')->toArray();
+            $roles = DB::table('permission_role')->whereIn('permission_id', $permissions)->pluck('role_id')->toArray();
+            DB::table('role_user')->whereIn('role_id', $roles)->delete();
+            DB::table('applications_stone')->where('stone_id', $stone->id)->delete();
+            DB::table('permission_role')->whereIn('permission_id', $permissions)->delete();
+            DB::table('permissions')->where('permissions.id_stone', $stone->id)->delete();
+            DB::table('roles')->whereIn('id', $roles)->delete();
+            DB::table('stones')->where('id', $stone->id)->delete();
+            DB::table('menubacks')->where('id_stone', $stone->id)->delete();
+            $table = explode(',', StoneEngine::getAttributes($module, 'dropTable'));
+            foreach ($table as $value) {
+                Schema::dropIfExists(preg_replace('/[^_A-Za-z0-9\-]/', '', strtolower($value)));
+            }
+            $result = true;
+        }
+
+        return $result;
     }
 
     /**
@@ -85,18 +133,18 @@ class StoneEngine
     public static function afterCheckInstall($reinstall = null)
     {
         if ($reinstall) {
-            Session::flash('message', trans('InstallerModule::InstallerModule/installmodules.success_re-activemodule'));
+            Session::flash('message', trans('Organizer::Organizer/installmodules.success_re-activemodule'));
             StoneLanguage::displayNotificationProgress(
                 'success',
-                trans('InstallerModule::InstallerModule/installmodules.success_re-activemodule'),
-                trans('InstallerModule::InstallerModule/installmodules.success')
+                trans('Organizer::Organizer/installmodules.success_re-activemodule'),
+                trans('Organizer::Organizer/installmodules.success')
             );
         } else {
-            Session::flash('message', trans('InstallerModule::InstallerModule/installmodules.success_activemodule'));
+            Session::flash('message', trans('Organizer::Organizer/installmodules.success_activemodule'));
             StoneLanguage::displayNotificationProgress(
                 'success',
-                trans('InstallerModule::InstallerModule/installmodules.success_install_modules'),
-                trans('InstallerModule::InstallerModule/installmodules.success')
+                trans('Organizer::Organizer/installmodules.success_install_modules'),
+                trans('Organizer::Organizer/installmodules.success')
             );
         }
         return redirect()->route(app('urlBack') . '.super.modules.index');
@@ -117,7 +165,7 @@ class StoneEngine
      */
     public static function displayParameters($idModule, $statusModule, $modulesName, $btnParameters, $btnEnable, $btnReset, $btnUninstall, $btnRemove)
     {
-        return view("InstallerModule::Tools.parameters",
+        return view("Organizer::Tools.parameters",
             compact(
                 'statusModule',
                 'idModule',
@@ -138,7 +186,7 @@ class StoneEngine
      */
     public static function displayRemove($modulesName)
     {
-        return view("InstallerModule::Tools.remove",
+        return view("Organizer::Tools.remove",
             compact(
                 'modulesName'
             )
@@ -165,7 +213,7 @@ class StoneEngine
             else
                 unlink($file);
         }
-        self::deleteConfigModule(ucfirst($module));
+//        self::deleteConfigModule(ucfirst($module));
         rmdir($dirPath);
     }
 
@@ -179,9 +227,7 @@ class StoneEngine
     public static function getModulesParams($module, $idModule, $statusModule)
     {
         if (method_exists('Twedoo\\Stone\\' . $module . '\\' . $module, 'getParameters')) {
-            //        dump('Modules\\' . $module . '\\' . $module);die;
             return \App::call('Twedoo\\Stone\\' . $module . '\\' . $module . '@getParameters', compact('idModule', 'statusModule'));
-
         }
     }
 
@@ -208,7 +254,7 @@ class StoneEngine
     public static function getAttributes($module = null, $attribute = null)
     {
         if ($module) {
-            if (method_exists('Twedoo\\Stone\\' . $module . '\\' . $module, 'building')) {
+            if (method_exists('Twedoo\\Stone\\' . $module . '\\' . $module, 'bootStone')) {
                 $callClass = 'Twedoo\\Stone\\' . $module . '\\' . $module;
                 $class = new $callClass();
                 return $class->{$attribute};
@@ -248,21 +294,21 @@ class StoneEngine
         $resultat = [];
         if ($attribute) {
             foreach (self::getModuleEnable() as $module) {
-                if (method_exists('Twedoo\\Stone\\' . $module['im_name_modules'] . '\\' . $module['im_name_modules'], '__construct')
+                if (method_exists('Twedoo\\Stone\\' . $module['name'] . '\\' . $module['name'], '__construct')
                 ) {
-                    $callClass = 'Twedoo\\Stone\\' . $module['im_name_modules'] . '\\' . $module['im_name_modules'];
+                    $callClass = 'Twedoo\\Stone\\' . $module['name'] . '\\' . $module['name'];
                     $class = new $callClass();
-                    $resultat[$module['im_name_modules']] = $class->{$attribute};
+                    $resultat[$module['name']] = $class->{$attribute};
                 }
 
             }
         } else {
             foreach (self::getModuleEnable() as $module) {
-                if (method_exists('Twedoo\\Stone\\' . $module['im_name_modules'] . '\\' . $module['im_name_modules'], '__construct')
+                if (method_exists('Twedoo\\Stone\\' . $module['name'] . '\\' . $module['name'], '__construct')
                 ) {
-                    $callClass = 'Twedoo\\Stone\\' . $module['im_name_modules'] . '\\' . $module['im_name_modules'];
+                    $callClass = 'Twedoo\\Stone\\' . $module['name'] . '\\' . $module['name'];
                     $class = new $callClass();
-                    $resultat[$module['im_name_modules']] = get_object_vars($class);
+                    $resultat[$module['name']] = get_object_vars($class);
                 }
             }
         }
@@ -271,7 +317,7 @@ class StoneEngine
 
     public static function getModuleEnable()
     {
-        return modules::where('im_status', 1)->get();
+        return Stones::where('enable', 1)->get();
     }
 
     public static function getRouteModule()
@@ -304,6 +350,10 @@ class StoneEngine
         ];
     }
 
+    /**
+     * @param $module
+     * @return false|string
+     */
     public static function namespaceResolve($module) {
         $defaultModules = StoneEngine::getDirectoryModuleByPath(false)['defaultModules'];
         $customModules = StoneEngine::getDirectoryModuleByPath(false)['customModules'];
@@ -321,4 +371,93 @@ class StoneEngine
             return 'Modules\\';
         }
     }
+
+    /**
+     * @param $namespaceResolve
+     * @param $stone
+     * @return string
+     */
+    public static function pathConfigStoneResolve($namespaceResolve, $stone) {
+        if ($namespaceResolve == 'Twedoo\\Stone\\') {
+            $path = __DIR__.'/Modules/'.$stone;
+        } else {
+            $path = app_path().'/Modules/'.$stone;
+        }
+        return $path;
+    }
+
+    /**
+     * @param $pathConfig
+     * @param $fileNameYaml
+     * @return string
+     */
+    public static function loadStoneConfigYaml($pathConfig, $fileNameYaml)
+    {
+        $pathConfig = $pathConfig.'/Config/'.$fileNameYaml.'.yaml';
+        return Yaml::parse(file_get_contents($pathConfig));
+    }
+
+    /**
+     * @param array $stoneData
+     * @return string
+     */
+    public static function createStone($stoneData = []) {
+        $stoneData = current($stoneData);
+        $stoneData['permission_name'] = json_encode($stoneData['permission_name']);
+        $add_stone = Stones::create($stoneData);
+        $last_id_stone = $add_stone->id;
+        $update_order = Stones::where('id', '=', $last_id_stone)->first();
+        $update_order->order = $last_id_stone;
+        $update_order->update();
+        $currentApplication = StoneApplication::getCurrentApplicationId();
+        DB::table("applications_stone")->insert([
+            'application_id' => $currentApplication,
+            'stone_id' => $last_id_stone
+        ]);
+        return $last_id_stone;
+    }
+
+    /**
+     * @param array $stoneData
+     * @return string
+     */
+    public static function createMenu($menuData, $id_stone) : void
+    {
+        $menuData = current($menuData);
+        foreach (current($menuData) as $menu) {
+            $menu['id_stone'] = $id_stone;
+            Menuback::create($menu);
+        }
+    }
+
+    /**
+     * @param array $accessData
+     * @param $id_stone
+     * @return void
+     */
+    public static function createAccess($accessData, $id_stone) : void
+    {
+        $user_auth = auth()->user();
+        $accessData = current($accessData);
+        foreach (current($accessData) as $roles) {
+            $temporary = $roles['permissions'];
+            unset($roles['permissions']);
+            $add_role = Role::create($roles);
+            $roles['permissions'] = $temporary;
+            foreach ($roles['permissions'] as $key => $permission) {
+                $permission['id_stone'] = $id_stone;
+                $roles['permissions'][$key] = $permission;
+                $add_permission = Permission::create($permission);
+                DB::table("permission_role")->insert([
+                    'permission_id' => $add_permission->id,
+                    'role_id' => $add_role->id
+                ]);
+            }
+            DB::table("role_user")->insert([
+                'user_id' => $user_auth->id,
+                'role_id' => $add_role->id
+            ]);
+        }
+    }
+
 }

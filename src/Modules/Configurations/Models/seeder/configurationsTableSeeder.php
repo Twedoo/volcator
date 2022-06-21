@@ -3,13 +3,12 @@ namespace Twedoo\Stone\Modules\Configurations\Models\seeder;
 
 use Twedoo\Stone\Models\Menuback;
 use Twedoo\Stone\Modules\Configurations\Models\confsettings;
-use Twedoo\Stone\InstallerModule\Models\modules;
+use Twedoo\Stone\Organizer\Models\Stones;
 use Twedoo\StoneGuard\Models\Permission;
 use Illuminate\Database\Seeder;
 use DB;
 
 class configurationsTableSeeder extends Seeder
-
 {
 
     /**
@@ -20,25 +19,21 @@ class configurationsTableSeeder extends Seeder
 
     public function run()
     {
-        $installmodulesok = [
-            [
-                'im_name_modules' => 'Configurations',
-                'im_name_modules_display' => 'tmod_conf',
-                'im_menu_icon' => '<i class="main-icon fa fa-gears"></i>',
-                'im_permission' => 'role-access-configuration',
-                'im_status' => '1'
-            ]
-        ];
+        $insert = Stones::create([
+            'name' => 'Configurations',
+            'display_name' => 'tmod_conf',
+            'permission_name' => json_encode(['role-access-configuration']),
+            'menu_type' => null,
+            'menu_icon' => 'fe fe-settings',
+            'enable' => '1',
+            'application' => 'custom'
+        ]);
 
-        foreach ($installmodulesok as $key => $value) {
-            $insert = modules::create($value);
-        }
+        $idlast = $insert->id;
 
-        $idlast = $insert->im_id;
+        $insertOrder = Stones::where('id', '=', $idlast)->first();
 
-        $insertOrder = modules::where('im_id', '=', $idlast)->first();
-
-        $insertOrder->im_order = $idlast;
+        $insertOrder->order = $idlast;
 
         $insertOrder->update();
 
@@ -46,19 +41,19 @@ class configurationsTableSeeder extends Seeder
             [
                 'name_menu' => "menugenerale_settings",
                 'route_link' => "settings",
-                'id_module' => $idlast,
+                'id_stone' => $idlast,
                 'mb_permission' => 'role-access-settings',
             ],
             [
                 'name_menu' => "menugenerale_language",
                 'route_link' => "languages",
-                'id_module' => $idlast,
+                'id_stone' => $idlast,
                 'mb_permission' => 'role-access-languages',
             ],
             [
                 'name_menu' => "menugenerale_templates",
                 'route_link' => "templates",
-                'id_module' => $idlast,
+                'id_stone' => $idlast,
                 'mb_permission' => 'role-access-templates',
             ]
         ];
@@ -74,25 +69,25 @@ class configurationsTableSeeder extends Seeder
                 'name' => 'role-access-languages',
                 'display_name' => 'Access Langugaes ',
                 'description' => 'Permission managment languages',
-                'id_module' => $idlast
+                'id_stone' => $idlast
             ],
             [
                 'name' => 'role-access-templates',
                 'display_name' => 'Access Templates ',
                 'description' => 'Permission managment templates',
-                'id_module' => $idlast
+                'id_stone' => $idlast
             ],
             [
                 'name' => 'role-access-settings',
                 'display_name' => 'Access Settings ',
                 'description' => 'Permission managment settings',
-                'id_module' => $idlast
+                'id_stone' => $idlast
             ],
             [
                 'name' => 'role-access-configuration',
                 'display_name' => 'Module configuration',
                 'description' => 'Managment settings, languages and templates of CMS',
-                'id_module' => $idlast
+                'id_stone' => $idlast
             ]
         ];
 
@@ -118,6 +113,7 @@ class configurationsTableSeeder extends Seeder
                 'email' => "",
                 'maintenanceweb' => "",
                 'msgmaintenance' => "msgmaintenance",
+                'application' => 'main'
             ]
 
 

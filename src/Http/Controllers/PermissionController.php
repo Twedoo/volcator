@@ -11,6 +11,7 @@ use Schema;
 use Session;
 use Validation;
 
+// TODO : Pagination dynamic & get all permissions and disable action permissions of module installed
 class PermissionController extends Controller
 {
 
@@ -23,45 +24,7 @@ class PermissionController extends Controller
 
     public function index(Request $request)
     {
-
-        // echo app('theme')[0].' /  ';
-        // $request = Request();
-        // return  'okk';
-        // return app('houssem');
-
-
-        //$schema = DB::getDoctrineSchemaManager();
-
-        //  return  DB::connection()->getDoctrineColumn('permissions','id')->getType()->getName();
-
-
-        //  Schema::create('usersss', function($table) {
-        //       $table->integer("paied");
-        //       $table->string("title");
-        //       $table->text("description");
-        //       $table->timestamps();
-        //   });
-        //
-        //   if(Artisan::call('migrate --refresh'))
-        //   {
-        //     return 'okk';
-        //   }
-        //   else {
-        //     return 'error';
-        //   }
-        //
-
-
-        // $columns = \DB::connection()->getSchemaBuilder()->getColumnListing("permissions");
-        //
-        // foreach ($columns as $key => $value) {
-        //   echo '  '.$value.' ';
-        // }
-        // return $columns;
-
-
-        $data = Permission::orderBy('id', 'DESC')->where('id_module', '!=', '')->get();
-
+        $data = Permission::orderBy('id', 'DESC')->where('id_stone', '!=', '')->get();
         return view('elements.super.permissions.index')->with('data', $data->all());
     }
 
@@ -82,7 +45,7 @@ class PermissionController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
 
     public function store(Request $request)
@@ -93,10 +56,9 @@ class PermissionController extends Controller
             'description' => 'required'
         ]);
 
-        $input = $request->all();
+        Permission::create($request->all());
         return redirect()->route(app('urlBack') . '.super.permissions.index')
             ->with('success', 'User created successfully');
-
     }
 
 
@@ -166,5 +128,4 @@ class PermissionController extends Controller
         return redirect()->route(app('urlBack') . '.super.permissions.index')
             ->with('success', 'User deleted successfully');
     }
-
 }

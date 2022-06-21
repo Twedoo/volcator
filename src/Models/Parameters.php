@@ -8,7 +8,7 @@ class Parameters extends Model
 {
     //
     protected $fillable = [
-        'name', 'value'
+        'name', 'value', 'application'
     ];
 
     protected $table = "parameters";

@@ -16,6 +16,7 @@
         "illuminate/console": "~8.0",
         "illuminate/support": "~8.0",
         "illuminate/cache": "~8.0",
+        "symfony/yaml": "^5.4",
         "twedoo/stoneGuard": "dev-main"
     },
     "require-dev": {
@@ -54,8 +55,15 @@
                 "StoneMenu": "Twedoo\\Stone\\Facades\\StoneMenuFacade",
                 "StonePath": "Twedoo\\Stone\\Facades\\StonePathFacade",
                 "StoneFile": "Twedoo\\Stone\\Facades\\StoneFileFacade",
-                "StoneTranslation": "Twedoo\\Stone\\Facades\\StoneTranslationFacade"
+                "StoneTranslation": "Twedoo\\Stone\\Facades\\StoneTranslationFacade",
+                "StoneApplication": "Twedoo\\Stone\\Facades\\StoneApplicationFacade",
+                "StoneSpace": "Twedoo\\Stone\\Facades\\StoneSpaceFacade"
             }
         }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@php artisan vendor:publish --provider='Twedoo\\Stone\\StoneServiceProvider' --tag=public --force"
+        ]
     }
 }

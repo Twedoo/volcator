@@ -3,7 +3,7 @@
 namespace Twedoo\Stone\Http\Controllers;
 
 use App;
-use Twedoo\Stone\InstallerModule\Models\modules;
+use Twedoo\Stone\Organizer\Models\Stones;
 use Twedoo\StoneGuard\Models\Permission;
 use Twedoo\StoneGuard\Models\Role;
 use DB;
@@ -14,6 +14,7 @@ use Session;
 use Validator;
 use Twedoo\StoneGuard\Models\User;
 
+// TODO : Pagination dynamic
 class RoleController extends Controller
 {
     /**
@@ -45,7 +46,7 @@ class RoleController extends Controller
     public function create()
     {
         $user = auth()->user();
-        $module = modules::All();
+        $module = Stones::All();
         $getPermissions = $user->with('roles.permissions')->where("users.id", $user->id)->get();
         $getFilterRole = $this->getPermissionsPerUserAll($module, $getPermissions);
         return view('elements.super.roles.create', compact('getFilterRole'));
@@ -140,8 +141,8 @@ class RoleController extends Controller
             return back();
 
         $role = Role::find($id);
-        $module = modules::All();
-        $permission = Permission::orderBy('id', 'DESC')->where('id_module', '')->get();
+        $module = Stones::All();
+        $permission = Permission::orderBy('id', 'DESC')->where('id_stone', '')->get();
         $rolePermissions = DB::table("permission_role")->where("permission_role.role_id", $id)
             ->pluck('permission_role.permission_id', 'permission_role.permission_id')->toarray();
 
@@ -191,9 +192,9 @@ class RoleController extends Controller
             if ($role->save()) {
                 DB::table("permission_role")->where("permission_role.role_id", $id)->delete();
                 foreach ($request->input('permission') as $key => $value) {
-                    if (in_array($value, $this->getPermissionsPerUser())) {
+//                    if (in_array($value, $this->getPermissionsPerUser())) {
                         $role->attachPermission($value);
-                    }
+//                    }
                 }
 
                 if (App::getLocale() == 'ar' || App::getLocale() == 'ur') {
@@ -247,18 +248,19 @@ class RoleController extends Controller
     {
         $getFilterRole = [];
         foreach ($module as $value) {
-            foreach ($value->getPermissions()->where('id_module', $value->im_id)->get() as $getModulePermission) {
+            foreach ($value->getPermissions()->where('id_stone', $value->id)->get() as $getModulePermission) {
                 foreach ($getPermissions as $key => $roles) {
                     foreach ($roles->roles as $rolePermission) {
                         foreach ($rolePermission->permissions as $permission) {
                             if ($getModulePermission->id == $permission->id) {
-                                $getFilterRole[$value->im_name_modules_display][$permission->id] = $permission->display_name;
+                                $getFilterRole[$value->name][$permission->id] = $permission->display_name;
                             }
                         }
                     }
                 }
             }
         }
+//        dump($getFilterRole);die;
         return $getFilterRole;
     }
 }

@@ -3,7 +3,7 @@
 namespace Twedoo\Stone\Core\Utils;
 
 use App;
-use Twedoo\Stone\InstallerModule\Models\modules;
+use Twedoo\Stone\Organizer\Models\Stones;
 use Config;
 use DB;
 use StoneEngine;
@@ -17,12 +17,13 @@ class StoneMediaStyle
      */
     public static function addJQUERY()
     {
-        $getModule = modules::where('im_status', 1)->get();
+        $getModule = Stones::where('enable', 1)->get();
+//        dump($getModule);die;
         foreach ($getModule as $key => $module) {
-            if (!in_array($module->im_name_modules, StoneEngine::getModuleList()))
+            if (!in_array($module->name, StoneEngine::getModuleList()))
                 continue;
-            if (method_exists('Modules\\' . $module->im_name_modules . '\\' . $module->im_name_modules, 'js')) {
-                $function = \App::call('Modules\\' . $module->im_name_modules . '\\' . $module->im_name_modules . '@js');
+            if (method_exists('Modules\\' . $module->name . '\\' . $module->name, 'js')) {
+                $function = \App::call('Modules\\' . $module->name . '\\' . $module->name . '@js');
                 if (!is_null($function)) {
                     ksort($function);
                     foreach ($function as $key => $js) {
@@ -38,13 +39,13 @@ class StoneMediaStyle
      */
     public static function addSTYLE()
     {
-        $getModule = modules::where('im_status', 1)->get();
+        $getModule = Stones::where('enable', 1)->get();
 
         foreach ($getModule as $key => $module) {
-            if (!in_array($module->im_name_modules, StoneEngine::getModuleList()))
+            if (!in_array($module->name, StoneEngine::getModuleList()))
                 continue;
-            if (method_exists('Modules\\' . $module->im_name_modules . '\\' . $module->im_name_modules, 'css')) {
-                $function = \App::call('Modules\\' . $module->im_name_modules . '\\' . $module->im_name_modules . '@css');
+            if (method_exists('Modules\\' . $module->name . '\\' . $module->name, 'css')) {
+                $function = \App::call('Modules\\' . $module->name . '\\' . $module->name . '@css');
                 if (!is_null($function)) {
                     ksort($function);
                     foreach ($function as $key => $css) {

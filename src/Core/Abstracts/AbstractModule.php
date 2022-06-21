@@ -16,6 +16,7 @@ abstract class AbstractModule
     public $nameDisplay;
     public $description;
     public $author;
+    public $marketplace = true;
     public $categoryMenu    = 'all_menu';
     public $menuTranslate;
     public $typeModule;

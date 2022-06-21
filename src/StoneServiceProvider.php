@@ -8,8 +8,10 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Twedoo\Stone\Core\StoneApplication;
 use Twedoo\Stone\Core\StoneLanguage;
 use Twedoo\Stone\Core\StoneMenu;
+use Twedoo\Stone\Core\StoneSpace;
 use Twedoo\Stone\Core\StoneStructure;
 use Twedoo\Stone\Core\StoneTranslation;
 use Twedoo\Stone\Core\Utils\StoneFile;
@@ -28,6 +30,7 @@ use Twedoo\Stone\Core\Utils\StoneMediaStyle;
 use Twedoo\StoneGuard\StoneGuardServiceProvider;
 use Twedoo\Stone\MigrationCommand;
 use Twedoo\Stone\SeederCommand;
+use Config;
 
 class StoneServiceProvider extends ServiceProvider
 {
@@ -49,15 +52,24 @@ class StoneServiceProvider extends ServiceProvider
     public function boot() {
         $router = $this->app->make(Router::class);
         $router->pushMiddlewareToGroup('web', Language::class);
+        $router->pushMiddlewareToGroup('web', CheckModules::class);
         $router->aliasMiddleware('role', \Twedoo\StoneGuard\Middleware\StoneGuardRole::class);
         $router->aliasMiddleware('permission', \Twedoo\StoneGuard\Middleware\StoneGuardPermission::class);
         $router->aliasMiddleware('ability', \Twedoo\StoneGuard\Middleware\StoneGuardAbility::class);
-        // Publish config files
-        $this->publishes([
-            __DIR__.'/../config/config.php' => app()->basePath() . '/config/stone.php',
-        ]);
 
-        // Register commands
+        // publish package
+        $this->publishes([
+            __DIR__.'/../config/stone.php' => app()->basePath() . '/config/stone.php',
+        ], 'stone-config');
+
+        $this->publishes([
+            __DIR__.'/../resources/views/back' => resource_path('views/back'),
+        ], 'stone-views');
+
+        $this->publishes([
+            __DIR__.'/../resources/lang' => resource_path('lang'),
+        ], 'stone-lang');
+
         $this->commands('command.stone.migration');
         $this->commands('command.stone.seeder');
     }
@@ -69,12 +81,15 @@ class StoneServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__.'/../config/filesystems.php', 'disks');
         $this->mergeConfigFrom(__DIR__.'/../config/stone.php', 'stone');
         $this->mergeConfigFrom(__DIR__.'/../config/prefix.php', 'prefix');
         $this->mergeConfigFrom(__DIR__.'/../config/languages.php', 'languages');
         $this->app->register(StoneRouteServiceProvider::class);
+        $this->app->register(StoneEventServiceProvider::class);
         $this->app->register(StoneTranslationServiceProvider::class);
         $this->app->register(StoneGuardServiceProvider::class);
+        $this->app->register(StoneEventServiceProvider::class);
         $this->registerStone();
         $this->registerCommands();
     }
@@ -111,6 +126,12 @@ class StoneServiceProvider extends ServiceProvider
         $this->app->singleton('stoneTranslation', function () {
             return new StoneTranslation();
         });
+        $this->app->singleton('stoneApplication', function () {
+            return new StoneApplication();
+        });
+        $this->app->singleton('stoneSpace', function () {
+            return new StoneSpace();
+        });
     }
 
     /**
@@ -141,22 +162,8 @@ class StoneServiceProvider extends ServiceProvider
             __DIR__.'/../config/stone.php' => config_path('stone.php'),
         ], 'stone.config');
 
-        // Publishing the views.
-        /*$this->publishes([
-            __DIR__.'/../resources/views' => base_path('resources/views/vendor/twedoo'),
-        ], 'stone.views');*/
-
-        // Publishing assets.
-        /*$this->publishes([
-            __DIR__.'/../resources/assets' => public_path('vendor/twedoo'),
-        ], 'stone.views');*/
-
-        // Publishing the translation files.
-        /*$this->publishes([
-            __DIR__.'/../resources/lang' => resource_path('lang/vendor/twedoo'),
-        ], 'stone.views');*/
-
-        // Registering package commands.
-        // $this->commands([]);
+        $this->publishes([
+            __DIR__.'/../config/stone.php' => app()->basePath() . '/config/filesystems.php',
+        ], 'disks');
     }
 }

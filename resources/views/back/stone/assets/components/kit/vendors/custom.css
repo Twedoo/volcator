@@ -1,0 +1,42 @@
+.border-permission
+{
+    border: 1px solid #fff;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 10px;
+}
+.permission-margin {
+    margin: 20px;
+}
+.all-permission
+{
+    background: #DDDDDD;
+    padding: 10px;
+    border-radius: 7px;
+    margin: 10px;
+}
+.list-permissions
+{
+    margin-bottom: 8px;
+}
+.name-permission
+{
+    font-weight: bold;
+    padding: 5px 0 10px 0;
+    margin-bottom: 15px;
+}
+
+.hidden-stone
+{
+    display: none;
+}
+
+.form-control-error-text
+{
+    color: #f5222e;
+}
+
+.stone-disable-click {
+    pointer-events: none;
+    cursor: not-allowed;
+}

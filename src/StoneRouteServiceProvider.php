@@ -28,7 +28,8 @@ class StoneRouteServiceProvider extends ServiceProvider
             ]);
 
             if ($PrefixTester == config('prefix.urlBack')) {
-                $path = realpath(base_path('resources/views/back/' . config()["params"]["TW_APP_TEMPLATE_BACK"]));
+//                $path = realpath(base_path('resources/views/back/' . config()["params"]["TW_APP_TEMPLATE_BACK"]));
+                $path = realpath(__DIR__.'/../resources/views/back/' . config()["params"]["TW_APP_TEMPLATE_BACK"]);
             } else {
                 $path = realpath(base_path('resources/views/front/' . config()["params"]["TW_APP_TEMPLATE_FRONT"]));
             }
@@ -58,6 +59,7 @@ class StoneRouteServiceProvider extends ServiceProvider
         }
 
         $stoneModules = array_diff(scandir(__DIR__.'/Modules', 1), array('..', '.'));
+
         foreach ($stoneModules as $module) {
             if (file_exists(__DIR__ . '/Modules/' . $module . '/routes.php')) {
                 $this->loadRoutesFrom( __DIR__ . '/Modules/' . $module . '/routes.php');
@@ -66,6 +68,7 @@ class StoneRouteServiceProvider extends ServiceProvider
                 $this->loadViewsFrom(__DIR__ . '/Modules/' . $module . '/Views', $module);
             }
         }
+
 //        Twedoo\Stone\Http\Controllers
 //        $this->app['router']->namespace('Twedoo\\Stone\\Http\\Controllers')
 //            ->middleware(['web'])

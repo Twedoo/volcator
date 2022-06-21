@@ -1,6 +1,6 @@
 <?php
 return [
-    'title_settings' => 'Settings dddd',
+    'title_settings' => 'Settings',
     'transglobals' => 'Translate Global',
     'transsides' => 'Translate Side Menu',
     'selctoption_lan' => '-- select option --',

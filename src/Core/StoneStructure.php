@@ -25,18 +25,25 @@ use Schema;
 class StoneStructure extends AbstractModule
 {
 
-
     public function __construct()
     {
         Session()->forget('message');
         Session()->forget('messageErr');
     }
 
+    /**
+     * @param $key
+     * @param $value
+     */
     public function __set($key, $value)
     {
         $this->injectStyle($key, $value);// TODO: Implement __set() method.
     }
 
+    /**
+     * @param $key
+     * @param $value
+     */
     public function injectStyle($key, $value)
     {
         if($value)
