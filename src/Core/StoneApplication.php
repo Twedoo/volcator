@@ -70,7 +70,6 @@ class StoneApplication
         })->first()->id;
     }
 
-
     /**
      * @param $user
      * @return void
@@ -114,6 +113,57 @@ class StoneApplication
 
         return $applications;
     }
+
+    /**
+     * @param $stone
+     * @return mixed
+     */
+    public function isStoneInstalledAsMain($stone)
+    {
+        $as_installed = false;
+        $stone = Stones::where('stones.name', $stone)->first();
+        if ($stone) {
+            $as_installed = true;
+        }
+        return $as_installed;
+    }
+
+    /**
+     * @param $stone
+     * @return mixed
+     */
+    public function isStoneInCurrentApplication($stone)
+    {
+        $is_in_current_application = false;
+        $stone = Stones::where('stones.name', $stone)
+            ->join('applications_stone', 'applications_stone.stone_id', '=', 'stones.id')
+            ->join('applications', 'applications.id', '=', 'applications_stone.application_id')
+            ->where('applications_stone.application_id', StoneApplication::getCurrentApplicationId())
+            ->where('applications.space_id', StoneSpace::getCurrentSpaceId())
+            ->get(['stones.*'])->first();
+        if ($stone) {
+            $is_in_current_application = true;
+        }
+        return $is_in_current_application;
+    }
+
+    /**
+     * @param $stone
+     * @return mixed
+     */
+    public function activeStoneInCurrentApplication($stone)
+    {
+        $is_in_current_application = false;
+        $stone = Stones::where('stones.name', $stone)->first();
+        if ($stone) {
+            DB::table('applications_stone')->insert([
+                'application_id' => StoneApplication::getCurrentApplicationId(),
+                'stone_id' => $stone->id,
+            ]);
+        }
+        return $is_in_current_application;
+    }
+
 
     /**
      * @param $request
