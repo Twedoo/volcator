@@ -8,9 +8,9 @@ This is where your description should go. Take a look at [contributing.md](contr
 
 ## Version 
 
-this stone version in main-dev is not ready for use yet !
-We are working hard and smart to get it to the production stage ^^ !
-We have dealine **August 28, 2002**
+this stone version in main-dev is not ready for use yet !<br />
+We are working hard and smart to get it to the production stage ^^ !<br />
+We have dealine **August 28, 2022**<br />
 
 ## Installation
 
