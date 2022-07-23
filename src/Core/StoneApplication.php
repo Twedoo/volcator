@@ -11,6 +11,7 @@ use File;
 use StoneFile;
 use Session;
 use Twedoo\Stone\Organizer\Models\Stones;
+use Twedoo\Stone\StoneEngine;
 use Twedoo\StoneGuard\Models\Role;
 use Twedoo\StoneGuard\Models\User;
 
@@ -94,7 +95,7 @@ class StoneApplication
         return User::join('role_user', 'role_user.user_id', '=', 'users.id')
             ->whereIn('users.id', $users_applications)
             ->whereNotIn('role_user.user_id', (new StoneApplication)->getRoleIdRoot()->pluck('id')->toArray())
-            ->distinct()->pluck('name', 'id')->toArray();
+            ->distinct()->pluck('users.name', 'users.id')->toArray();
     }
 
     /**
@@ -154,12 +155,33 @@ class StoneApplication
     public function activeStoneInCurrentApplication($stone)
     {
         $is_in_current_application = false;
+        $currentApplication  = StoneApplication::getCurrentApplicationId();
+
         $stone = Stones::where('stones.name', $stone)->first();
         if ($stone) {
             DB::table('applications_stone')->insert([
                 'application_id' => StoneApplication::getCurrentApplicationId(),
                 'stone_id' => $stone->id,
             ]);
+            $pathConfig = StoneEngine::pathConfigStoneResolve(StoneEngine::namespaceResolve($stone->name), $stone->name);
+
+            $access_data = StoneEngine::loadStoneConfigYaml($pathConfig, 'access');
+            $user_auth = auth()->user();
+            $accessData = current((array)$access_data);
+            foreach (current($accessData) as $roles) {
+                $role_assigned = Role::where('name', $roles['name'])->get()->first()->id;
+                $is_role_assigned = DB::table("role_user")
+                    ->where('user_id', $user_auth->id)
+                    ->where('application_id', $currentApplication)
+                    ->where('role_id', $role_assigned)->get();
+                if (!$is_role_assigned) {
+                    DB::table("role_user")->insert([
+                        'user_id' => $user_auth->id,
+                        'role_id' => $role_assigned,
+                        'application_id' => $currentApplication
+                    ]);
+                }
+            }
         }
         return $is_in_current_application;
     }
@@ -182,9 +204,17 @@ class StoneApplication
             ]);
             $users = $request->input('users');
             $application_attached = Stones::where('application', 'main')->pluck('id')->toArray();
+            $roles = Role::where('type', 'main')->pluck('id')->toArray();
             $users[] = (string) auth()->user()->id;
             $application->users()->attach($users);
             $application->stones()->attach($application_attached);
+            foreach ($roles as $role) {
+                DB::table("role_user")->insert([
+                    'user_id' => $user_auth->id,
+                    'role_id' => $role,
+                    'application_id' => $application->id
+                ]);
+            }
         }
     }
 
@@ -219,6 +249,7 @@ class StoneApplication
         if ($user_auth->hasRole(Config::get('stone.ROLE_APPLICATION_FULL'))) {
             DB::table('applications_user')->where('application_id', $id)->delete();
             DB::table('applications_stone')->where('application_id', $id)->delete();
+            DB::table('role_user')->where('application_id', $id)->delete();
             Applications::where('id', $id)->delete();;
         }
     }
@@ -236,15 +267,15 @@ class StoneApplication
      */
     public static function getUserCurrentApplication($application)
     {
-        $applications =Applications::whereHas('users', function($q) use($application) {
+        $applications = Applications::whereHas('users', function($q) use($application) {
             $q->where('application_id', $application);
         })->pluck('id')->toArray();
         $users_applications = DB::table('applications_user')->whereIn('application_id', $applications)->distinct()->pluck('user_id')->toArray();
-        return User::where('id', '!=', $user_auth = auth()->user()->id)
+        return User::where('users.id', '!=', $user_auth = auth()->user()->id)
             ->join('role_user', 'role_user.user_id', '=', 'users.id')
             ->whereIn('users.id', $users_applications)
             ->whereNotIn('role_user.user_id', (new StoneApplication)->getRoleIdRoot()->pluck('id')->toArray())
-            ->distinct()->pluck('name', 'id')->toArray();
+            ->distinct()->pluck('users.name', 'users.id')->toArray();
     }
 
     /**

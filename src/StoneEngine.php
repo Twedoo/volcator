@@ -115,18 +115,31 @@ class StoneEngine
         $stone = Stones::where('name', $module)->first();
         $result = false;
         if($stone) {
-            $permissions = DB::table('permissions')->where('permissions.id_stone', $stone->id)->pluck('id')->toArray();
-            $roles = DB::table('permission_role')->whereIn('permission_id', $permissions)->pluck('role_id')->toArray();
-            DB::table('role_user')->whereIn('role_id', $roles)->delete();
-            DB::table('applications_stone')->where('stone_id', $stone->id)->delete();
-            DB::table('permission_role')->whereIn('permission_id', $permissions)->delete();
-            DB::table('permissions')->where('permissions.id_stone', $stone->id)->delete();
-            DB::table('roles')->whereIn('id', $roles)->delete();
-            DB::table('stones')->where('id', $stone->id)->delete();
-            DB::table('menubacks')->where('id_stone', $stone->id)->delete();
-            $table = explode(',', StoneEngine::getAttributes($module, 'dropTable'));
-            foreach ($table as $value) {
-                Schema::dropIfExists(preg_replace('/[^_A-Za-z0-9\-]/', '', strtolower($value)));
+            if ($stone->publish == 'public') {
+                $currentApplication  = StoneApplication::getCurrentApplicationId();
+                $usersApplication = array_keys(StoneApplication::getUserCurrentApplication($currentApplication));
+                $permissions = DB::table('permissions')->where('permissions.id_stone', $stone->id)->pluck('id')->toArray();
+                $roles = DB::table('permission_role')
+                    ->whereIn('permission_id', $permissions)->distinct()->pluck('role_id')
+                    ->toArray();
+                foreach ($roles as $role) {
+                    DB::table('role_user')->whereIn('user_id', $usersApplication)->where('role_id', $role)->where('application_id', $currentApplication)->delete();
+                }
+                DB::table('applications_stone')->where('stone_id', $stone->id)->where('application_id', $currentApplication)->delete();
+            } else {
+                $permissions = DB::table('permissions')->where('permissions.id_stone', $stone->id)->pluck('id')->toArray();
+                $roles = DB::table('permission_role')->whereIn('permission_id', $permissions)->pluck('role_id')->toArray();
+                DB::table('role_user')->whereIn('role_id', $roles)->delete();
+                DB::table('applications_stone')->where('stone_id', $stone->id)->delete();
+                DB::table('permission_role')->whereIn('permission_id', $permissions)->delete();
+                DB::table('permissions')->where('permissions.id_stone', $stone->id)->delete();
+                DB::table('roles')->whereIn('id', $roles)->delete();
+                DB::table('stones')->where('id', $stone->id)->delete();
+                DB::table('menubacks')->where('id_stone', $stone->id)->delete();
+                $table = explode(',', StoneEngine::getAttributes($module, 'dropTable'));
+                foreach ($table as $value) {
+                    Schema::dropIfExists(preg_replace('/[^_A-Za-z0-9\-]/', '', strtolower($value)));
+                }
             }
             $result = true;
         }
@@ -448,6 +461,8 @@ class StoneEngine
     {
         $user_auth = auth()->user();
         $accessData = current($accessData);
+        $currentApplication  = StoneApplication::getCurrentApplicationId();
+
         foreach (current($accessData) as $roles) {
             $temporary = $roles['permissions'];
             unset($roles['permissions']);
@@ -462,10 +477,18 @@ class StoneEngine
                     'role_id' => $add_role->id
                 ]);
             }
-            DB::table("role_user")->insert([
-                'user_id' => $user_auth->id,
-                'role_id' => $add_role->id
-            ]);
+            $role_assigned = Role::where('name', $roles['name'])->get()->first()->id;
+            $is_role_assigned = DB::table("role_user")
+                ->where('user_id', $user_auth->id)
+                ->where('application_id', $currentApplication)
+                ->where('role_id', $role_assigned)->get();
+            if (!$is_role_assigned) {
+                DB::table("role_user")->insert([
+                    'user_id' => $user_auth->id,
+                    'role_id' => $add_role->id,
+                    'application_id' => $currentApplication
+                ]);
+            }
         }
     }
 

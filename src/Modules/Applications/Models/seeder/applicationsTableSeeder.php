@@ -81,12 +81,14 @@ class applicationsTableSeeder extends Seeder
             'name' => $ROLE_APPLICATION_FULL,
             'display_name' => 'Role Manager Multi-Application',
             'description' => 'Role manager multi-applications, management multi-Applications create, edit, delete...',
+            'type' => 'main'
         ]);
 
         $add_role_application_view = Role::create([
             'name' => $ROLE_APPLICATION_VIEW,
             'display_name' => 'Role User Multi-Application',
-            'description' => 'Role user multi-applications, switch between his applications'
+            'description' => 'Role user multi-applications, switch between his applications',
+            'type' => 'main'
         ]);
         /**
          * End Comment
@@ -159,6 +161,9 @@ class applicationsTableSeeder extends Seeder
             $application->users()->attach($users_attached);
             $application->stones()->attach($application_attached);
         }
+
+        DB::table('role_user')->update(['application_id' => $application->id]);
+
         /**
          * End Comment
          * Create Spaces and Applications TO Users MAJESTIC

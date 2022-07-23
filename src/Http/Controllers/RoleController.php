@@ -33,7 +33,6 @@ class RoleController extends Controller
             $roles = Role::orderBy('id', 'DESC')->where('id', '!=', 1)->whereNotIn('id', $myRole)->get();
         }
 
-
         return view('elements.super.roles.index', compact('roles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -137,10 +136,10 @@ class RoleController extends Controller
     public function edit($id)
     {
         $user = auth()->user();
-        if (!$user->hasRole('Root') && $id == 1)
-            return back();
-
         $role = Role::find($id);
+        if ($role->name == Config::get('stone.MAJESTIC') ||  $role->type == 'main') {
+            return back();
+        }
         $module = Stones::All();
         $permission = Permission::orderBy('id', 'DESC')->where('id_stone', '')->get();
         $rolePermissions = DB::table("permission_role")->where("permission_role.role_id", $id)

@@ -119,7 +119,8 @@ class StoneTableSeeder extends Seeder
         $add_roles_majestic = Role::create([
             'name' => $MAJESTIC,
             'display_name' => 'Majestic',
-            'description' => 'Full permission, System Administrator'
+            'description' => 'Full permission, System Administrator',
+            'type' => 'main'
         ]);
 
         DB::table("permission_role")->insert([
@@ -269,13 +270,15 @@ class StoneTableSeeder extends Seeder
         $add_roles_manager_space = Role::create([
             'name' => $ROLE_MANAGER_SPACE,
             'display_name' => 'Role Manager Space',
-            'description' => 'Manager Space, permissions to create spaces'
+            'description' => 'Manager Space, permissions to create spaces',
+            'type' => 'main'
         ]);
 
         $add_roles_user_space = Role::create([
             'name' => $ROLE_USER_SPACE,
             'display_name' => 'Role User Space',
-            'description' => 'User Space, permissions to create spaces'
+            'description' => 'User Space, permissions to create spaces',
+            'type' => 'main'
         ]);
 
 
@@ -327,7 +330,8 @@ class StoneTableSeeder extends Seeder
         $add_role_organizer = Role::create([
             'name' => $ROLE_MANAGER_ORGANIZER_FULL,
             'display_name' => 'Role Organizer Stones',
-            'description' => 'Role Organizer, Management stones install, uninstall, delete...'
+            'description' => 'Role Organizer, Management stones install, uninstall, delete...',
+            'type' => 'main'
         ]);
 
         DB::table("permission_role")->insert([
@@ -338,7 +342,8 @@ class StoneTableSeeder extends Seeder
         $role_access_controls = Role::create([
             'name' => $ROLE_ACCESS_CONTROL_FULL,
             'display_name' => 'Role access control',
-            'description' => 'Role access control'
+            'description' => 'Role access control',
+            'type' => 'main'
         ]);
 
         $roles_users = [

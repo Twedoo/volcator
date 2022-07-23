@@ -62,7 +62,7 @@
                                                 @permission(Config::get('stone.PERMISSION_ROLE_ACCESS_CONTROL'))
                                                 <td>
                                                     <a href="{{ route(app('urlBack').'.super.roles.edit',$role->id) }}">
-                                                        <i class="fa fa-edit btn btn-darken-1" aria-hidden="true"></i> </a>
+                                                        <i class="fa fa-edit btn btn-darken-1  @if($role->type == "main") disabled @endif" aria-hidden="true"></i> </a>
                                                 </td>
                                                 @endpermission
 
@@ -70,7 +70,7 @@
                                                 <td>
                                                     <a @if($role->id != 1) href="{{ route(app('urlBack').'.super.roles.destroy', $role->id) }}"
                                                        @else  disabled @endif>
-                                                        <i class="fa fa-trash btn btn-darken-1 @if($role->id == 1) disabled @endif"
+                                                        <i class="fa fa-trash btn btn-darken-1 @if($role->type == "main") disabled @endif"
                                                            aria-hidden="true"></i> </a>
                                                 </td>
                                                 @endpermission

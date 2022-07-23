@@ -89,7 +89,7 @@ class StoneSetupTables extends Migration
                 $table->string('name')->unique();
                 $table->string('display_name')->nullable();
                 $table->string('description')->nullable();
-                $table->string('id_creator')->nullable();
+                $table->string('type')->nullable();
                 $table->timestamps();
             });
         }
@@ -97,15 +97,15 @@ class StoneSetupTables extends Migration
         // Create table for associating roles to users (Many-to-Many)
         if (!Schema::hasTable('{{ $roleUserTable }}')) {
             Schema::create('{{ $roleUserTable }}', function (Blueprint $table) {
+                $table->increments('id');
                 $table->integer('user_id')->unsigned();
                 $table->integer('role_id')->unsigned();
+                $table->integer('application_id')->nullable();
 
                 $table->foreign('user_id')->references('{{ $userKeyName }}')->on('{{ $usersTable }}')
                 ->onUpdate('cascade')->onDelete('cascade');
                 $table->foreign('role_id')->references('id')->on('{{ $rolesTable }}')
                 ->onUpdate('cascade')->onDelete('cascade');
-
-                $table->primary(['user_id', 'role_id']);
             });
         }
 
@@ -145,6 +145,7 @@ class StoneSetupTables extends Migration
                 $table->text('type')->nullable();
                 $table->tinyInteger('enable')->default('1');
                 $table->text('image')->nullable();
+                $table->text('created_by')->nullable();
                 $table->timestamps();
                 });
             Schema::table('{{ $spacesTable }}', function (Blueprint $table) {
@@ -162,6 +163,7 @@ class StoneSetupTables extends Migration
                 $table->tinyInteger('enable')->default('1');
                 $table->unsignedInteger('space_id');
                 $table->text('image')->nullable();
+                $table->text('created_by')->nullable();
                 $table->timestamps();
             });
             Schema::table('{{ $applicationsTable }}', function (Blueprint $table) {
