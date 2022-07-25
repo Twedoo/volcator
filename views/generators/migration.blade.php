@@ -73,10 +73,10 @@ class StoneSetupTables extends Migration
                 $table->string('email')->unique();
                 $table->string('password');
                 $table->string('genre')->nullable();
-                $table->string('date')->nullable();
                 $table->string('avatar')->nullable();
-                $table->string('status')->nullable();
+                $table->boolean('status')->default(1);
                 $table->string('type')->nullable();
+                $table->boolean('depend')->default(0);
                 $table->rememberToken();
                 $table->timestamps();
             });
@@ -175,7 +175,7 @@ class StoneSetupTables extends Migration
             Schema::create('{{ $applicationsUserTable }}', function (Blueprint $table) {
                 $table->integer('application_id')->unsigned();
                 $table->integer('user_id')->unsigned();
-
+                $table->integer('space_id')->nullable();
                 $table->foreign('user_id')->references('id')->on('{{ $usersTable }}')
                 ->onUpdate('cascade')->onDelete('cascade');
                 $table->foreign('application_id')->references('id')->on('{{ $applicationsTable }}')
@@ -189,6 +189,7 @@ class StoneSetupTables extends Migration
             Schema::create('{{ $applicationsStoneTable }}', function (Blueprint $table) {
                 $table->integer('application_id')->unsigned();
                 $table->integer('stone_id')->unsigned();
+                $table->integer('space_id')->nullable();
 
                 $table->foreign('stone_id')->references('id')->on('{{ $stonesTable }}')
                 ->onUpdate('cascade')->onDelete('cascade');

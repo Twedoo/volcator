@@ -74,7 +74,7 @@
                                                     @permission(Config::get('stone.PERMISSION_USER_ACCESS_CONTROL'))
                                                         <td>
                                                             <a @if($user->id != 1) href="{{ route(app('urlBack').'.super.users.destroy', $user->id) }}"
-                                                               @else  disabled @endif>
+                                                               @else  disabled @endif data-toggle="modal" data-target="#deleteUserSpace">
                                                                 <i class="fa fa-trash btn btn-darken-1 @if($user->id == 1) disabled stone-disable-click @endif"
                                                                    aria-hidden="true"></i> </a>
                                                         </td>
@@ -116,4 +116,38 @@
             </div>
         </div>
     </section>
+    <div id="deleteUserSpace" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteUserSpace"
+         aria-hidden="true"  >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <strong class="modal-title pull-left" id="createSpace"> {{ trans('Access-Controls::Access-Controls/Access-Controls.remove_user') }} </strong>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="create_space_form" enctype="multipart/form-data">
+                        <meta name="csrf-token" content="{{ csrf_token() }}">
+                        <div class="form-group name-space">
+                            <label class="form-label label-name-space"> {{ trans('Access-Controls::Access-Controls/Access-Controls.remove_current_application') }} </label>
+                            {{ Form::checkbox('permission[]', false, false, array('class' => 'name')) }}
+                        </div>
+                        <div class="form-group name-space">
+                            <label class="form-label label-name-space"> {{ trans('Access-Controls::Access-Controls/Access-Controls.remove_current_space') }} </label>
+                            {{ Form::checkbox('permission[]', false, false, array('class' => 'name')) }}
+                        </div>
+                        <div class="form-group name-space">
+                            <label class="form-label label-name-space"> {{ trans('Access-Controls::Access-Controls/Access-Controls.remove_current_all_space') }} </label>
+                            {{ Form::checkbox('permission[]', false, false, array('class' => 'name')) }}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger"> {{ trans('Access-Controls::Access-Controls/Access-Controls.btn_remove') }} </button>
+                            <button type="button" class="btn btn-success" data-dismiss="modal">{{ trans('Access-Controls::Access-Controls/Access-Controls.btn_cancel') }}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

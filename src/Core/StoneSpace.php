@@ -40,7 +40,6 @@ class StoneSpace
         $spaceId = null;
         $user = auth()->user();
         $space = Spaces::where('owner_id', $user->id)->first();
-
         if ($space) {
             $spaceId = $space->id;
         } else {
@@ -49,6 +48,7 @@ class StoneSpace
                 $q->where('applications.type', "main");
             })->first()->space_id;
         }
+
         return $spaceId;
     }
 
@@ -78,8 +78,8 @@ class StoneSpace
         $application_attached = Stones::where('application', 'main')->pluck('id')->toArray();
         $roles = Role::where('type', 'main')->pluck('id')->toArray();
         $users_attached[] = (string) $user_auth->id;
-        $application->users()->attach($users_attached);
-        $application->stones()->attach($application_attached);
+        $application->users()->attach($users_attached, ['space_id' => $space->id]);
+        $application->stones()->attach($application_attached, ['space_id' => $space->id]);
         foreach ($roles as $role) {
             DB::table("role_user")->insert([
                 'user_id' => $user_auth->id,
@@ -95,12 +95,55 @@ class StoneSpace
     public static function getSpaces()
     {
         $user = auth()->user();
-        $spaceId = Applications::whereHas('users', function($q) use($user) {
+        $spaceId = Applications::whereHas('users', function($q) use ($user) {
             $q->where('user_id', $user->id);
             $q->where('applications.enable', 1);
         })->distinct()->pluck('space_id')->toArray();
 
         return Spaces::whereIn('id', $spaceId)->pluck('name', 'id')->toArray();
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public static function getAllSpacesByCurrentUser()
+    {
+        $user = auth()->user();
+        return Spaces::where('owner_id', $user->id)->pluck('id')->toArray();
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public static function getUsersBySpaces($current_space = false)
+    {
+        $user = auth()->user();
+        if ($current_space) {
+            $spaces = (array)StoneSpace::getCurrentSpaceId();
+        } else {
+            $spaces = StoneSpace::getAllSpacesByCurrentUser();
+        }
+        DB::statement("SET SQL_MODE=''");
+        return User::join('applications_user', 'applications_user.user_id', 'users.id')->where('users.id', '!=', $user->id)->whereIn('applications_user.space_id', $spaces)->groupBy('users.id')->get(['users.*']);
+    }
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public static function destroyUserBySpacesStrict($id)
+    {
+        if (StoneSpace::isUserInSpaces($id)) {
+            $user = auth()->user();
+            $existing_applications = StoneApplication::getIDsApplicationsUserBySpaces($id);
+            StoneApplication::moveOrAssignApplicationsToCurrentUser($existing_applications, $user, $id, true);
+            StoneSpace::deleteUserRolesByApplications($id, $existing_applications);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -109,24 +152,63 @@ class StoneSpace
      */
     public static function destroyUserSpace($id)
     {
-        $user = auth()->user();
-        $existing_applications = Db::table('applications_user')->where('user_id', $id)->pluck('application_id')->toArray();
-        foreach ($existing_applications as $application_id) {
-            if (Db::table('applications_user')->where('user_id', $user->id)->where('application_id', $application_id)->get() == null) {
-                Db::table('applications_user')->where('application_id', $application_id)->update([
-                    'user_id' => $user->id
-                ]);
-            }
+        if (StoneSpace::isUserInCurrentSpace($id)) {
+            $user = auth()->user();
+            $existing_applications = StoneApplication::getIDsApplicationsUserBySpaces($id, true);
+            StoneApplication::moveOrAssignApplicationsToCurrentUser($existing_applications, $user, $id, true);
+            StoneSpace::deleteUserRolesByApplications($id, $existing_applications);
+            return true;
+        }else {
+            return false;
         }
+    }
 
-        Spaces::where('owner_id', $id)->update(['owner_id' => $user->id]);
-        Db::table('role_user')->where('user_id', $id)->update([
+    /**
+     * @param $id
+     * @return bool
+     */
+    public static function destroyUserByApplication($id)
+    {
+        if (StoneSpace::isUserInCurrentSpace($id)) {
+            $user = auth()->user();
+            $existing_applications = StoneApplication::getCurrentApplicationUserBySpace($id, true);
+            StoneApplication::moveOrAssignApplicationsToCurrentUser($existing_applications, $user, $id, true);
+            StoneSpace::deleteUserRolesByApplications($id, $existing_applications);
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    /**
+     * @param $user
+     * @return mixed
+     */
+    public static function isUserInSpaces($user)
+    {
+        return Db::table('applications_user')->where('user_id', $user)->whereIn('space_id', StoneSpace::getAllSpacesByCurrentUser())->get()->isNotEmpty();
+    }
+
+    /**
+     * @param $user
+     * @return mixed
+     */
+    public static function isUserInCurrentSpace($user)
+    {
+        return Db::table('applications_user')->where('user_id', $user)->whereIn('space_id', StoneSpace::getCurrentSpaceId())->get()->isNotEmpty();
+    }
+
+    /**
+     * @param $user
+     * @param $existing_applications
+     * @return mixed
+     */
+    public static function deleteUserRolesByApplications($user, $existing_applications) : void
+    {
+        $existing_roles = Db::table('role_user')->where('user_id', $user)->pluck('role_id')->toArray();
+        Db::table('role_user')->where('user_id', $user)->whereIn('role_id', $existing_roles)->whereIn('application_id', $existing_applications)->update([
             'user_id' => $user->id
         ]);
-        Db::table('role_user')->where('user_id', $id)->delete();
-        if (User::where('id', '=', $id)->where('id', '!=', '1')->delete()) {
-            return true;
-        }
     }
 
     /**

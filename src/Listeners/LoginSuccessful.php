@@ -10,6 +10,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Session;
 use Twedoo\Stone\Modules\Applications\Models\Spaces;
+use Illuminate\Support\Facades\Cache;
+use Auth;
 
 class LoginSuccessful
 {
@@ -31,11 +33,18 @@ class LoginSuccessful
      */
     public function handle(Login $event)
     {
-        if (!Session::has('space') || Session::get('space') == null) {
+        $current_user = Auth::user()->id;
+//        dd(Cache::get('space-'.$current_user));
+        if (Cache::has('space-'.$current_user)) {
+//            dd('cache');
+            Session::put('space', Cache::get('space-'.$current_user));
+        } else {
             Session::put('space', StoneSpace::getSpaceId());
         }
 
-        if (!Session::has('application') || Session::get('application') == null) {
+        if (Cache::has('application-'.$current_user)) {
+            Session::put('application', Cache::get('application-'.$current_user));
+        } else {
             Session::put('application', StoneApplication::getApplicationId());
         }
     }

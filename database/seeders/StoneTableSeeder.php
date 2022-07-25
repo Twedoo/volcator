@@ -89,7 +89,6 @@ class StoneTableSeeder extends Seeder
                 'name' => 'Administrator',
                 'email' => 'admin@mail.com',
                 'password' => '$2y$10$TcrbiAk0sonoDHCuZGnHluiNzsw7uF9cr5E.hWqGK7bP31dWVTikW',
-                'date' => '',
                 'genre' => '',
                 'avatar' => '',
                 'status' => '1',

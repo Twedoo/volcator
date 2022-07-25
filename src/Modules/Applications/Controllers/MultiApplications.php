@@ -37,7 +37,8 @@ class MultiApplications extends Controller
      */
     public function index()
     {
-        $applications = StoneApplication::getApplicationBySpace();
+        $user = auth()->user();
+        $applications = StoneApplication::getApplicationsUserBySpaces($user->id, true, true);
         return view('Applications::Applications.index', compact('applications'));
     }
 

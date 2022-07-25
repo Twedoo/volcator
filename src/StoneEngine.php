@@ -117,7 +117,7 @@ class StoneEngine
         if($stone) {
             if ($stone->publish == 'public') {
                 $currentApplication  = StoneApplication::getCurrentApplicationId();
-                $usersApplication = array_keys(StoneApplication::getUserCurrentApplication($currentApplication));
+                $usersApplication = array_keys(StoneApplication::getUserCurrentApplicationStrict($currentApplication));
                 $permissions = DB::table('permissions')->where('permissions.id_stone', $stone->id)->pluck('id')->toArray();
                 $roles = DB::table('permission_role')
                     ->whereIn('permission_id', $permissions)->distinct()->pluck('role_id')
@@ -482,7 +482,7 @@ class StoneEngine
                 ->where('user_id', $user_auth->id)
                 ->where('application_id', $currentApplication)
                 ->where('role_id', $role_assigned)->get();
-            if (!$is_role_assigned) {
+            if ($is_role_assigned->isEmpty()) {
                 DB::table("role_user")->insert([
                     'user_id' => $user_auth->id,
                     'role_id' => $add_role->id,

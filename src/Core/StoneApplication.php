@@ -41,7 +41,7 @@ class StoneApplication
     public static function getCurrentApplication()
     {
         $application = Applications::where([
-            ['space_id', '=', StoneSpace::getCurrentSpaceId()]]
+                ['space_id', '=', StoneSpace::getCurrentSpaceId()]]
         )->first();
 
         return $application;
@@ -53,7 +53,7 @@ class StoneApplication
     public static function getApplicationsSpaces()
     {
         $user = auth()->user();
-        $applications = Applications::whereHas('users', function($q) use($user) {
+        $applications = Applications::whereHas('users', function ($q) use ($user) {
             $q->where('user_id', $user->id);
         })->where('applications.space_id', StoneSpace::getCurrentSpaceId())->pluck('name', 'id')->toArray();
         return $applications;
@@ -65,9 +65,9 @@ class StoneApplication
     public static function getApplicationId()
     {
         $user = auth()->user();
-        return $application = Applications::whereHas('users', function($q) use($user) {
+        return Applications::whereHas('users', function ($q) use ($user) {
             $q->where('user_id', $user->id);
-            $q->where('applications.type', "main");
+            $q->where('space_id', StoneSpace::getCurrentSpaceId());
         })->first()->id;
     }
 
@@ -78,8 +78,8 @@ class StoneApplication
     public static function CreateMainApplicationOrAssignUser($user)
     {
         $application = Applications::where('id', Session::get('application'))->first();
-        $users_attached[] = (string) $user->id;
-        $application->users()->attach($users_attached);
+        $users_attached[] = (string)$user->id;
+        $application->users()->attach($users_attached, ['space_id' => StoneSpace::getCurrentSpaceId()]);
     }
 
     /**
@@ -88,7 +88,7 @@ class StoneApplication
     public static function getUsersCurrentSpace()
     {
         $user = auth()->user();
-        $applications = Applications::whereHas('users', function($q) use($user) {
+        $applications = Applications::whereHas('users', function ($q) use ($user) {
             $q->where('user_id', $user->id);
         })->pluck('id')->toArray();
         $users_applications = DB::table('applications_user')->whereIn('application_id', $applications)->distinct()->pluck('user_id')->toArray();
@@ -98,21 +98,78 @@ class StoneApplication
             ->distinct()->pluck('users.name', 'users.id')->toArray();
     }
 
+
     /**
-     * @param null $currentSpace
      * @return mixed
      */
-    public function getApplicationBySpace($currentSpace = null) {
-        if (!$currentSpace) {
-            $currentSpace = StoneSpace::getCurrentSpaceId();
-        }
+    public function getApplicationsCurrentUser()
+    {
+        /**
+         * get all application of current user
+         */
         $user = auth()->user();
-        $applications = Applications::whereHas('users', function($q) use($user, $currentSpace) {
+        $applications = Applications::whereHas('users', function ($q) use ($user) {
             $q->where('user_id', $user->id);
-            $q->where('space_id', $currentSpace);
-        })->orderBy('id', 'DESC')->get();
+        })->distinct()->pluck('id')->toArray();
 
         return $applications;
+    }
+
+    /**
+     * @param $user
+     * @param bool $current_space
+     * @param $object
+     * @return mixed
+     */
+    public function getIDsApplicationsUserBySpaces($user, $current_space =  false)
+    {
+        /**
+         * get all applications of user in spaces
+         */
+        if ($current_space) {
+            $spaces = (array)StoneSpace::getCurrentSpaceId();
+        } else {
+            $spaces = StoneSpace::getAllSpacesByCurrentUser();
+        }
+        return Db::table('applications_user')->where('user_id', $user)->whereIn('space_id', $spaces)->distinct()->pluck('application_id')->toArray();
+    }
+
+    /**
+     * @param $user
+     * @param bool $current_space
+     * @param $object
+     * @return mixed
+     */
+    public function getApplicationsUserBySpaces($user, $current_space =  false)
+    {
+        /**
+         * get all applications of user in spaces
+         */
+        if ($current_space) {
+            $spaces = (array)StoneSpace::getCurrentSpaceId();
+        } else {
+            $spaces = StoneSpace::getAllSpacesByCurrentUser();
+        }
+        $applications = Db::table('applications_user')->where('user_id', $user)->whereIn('space_id', $spaces)->distinct()->pluck('application_id')->toArray();
+        return Applications::whereIn('id', $applications)->orderBy('id', 'DESC')->get();
+    }
+
+    /**
+     * @param $user
+     * @param bool $current_space
+     * @return mixed
+     */
+    public function getCurrentApplicationUserBySpace($user, $current_space =  false)
+    {
+        /**
+         * get all applications of user in spaces
+         */
+        if ($current_space) {
+            $spaces = (array)StoneSpace::getCurrentSpaceId();
+        } else {
+            $spaces = StoneSpace::getAllSpacesByCurrentUser();
+        }
+        return Db::table('applications_user')->where('user_id', $user)->where('application_id', StoneApplication::getCurrentApplicationId())->whereIn('space_id', $spaces)->distinct()->pluck('application_id')->toArray();
     }
 
     /**
@@ -155,7 +212,7 @@ class StoneApplication
     public function activeStoneInCurrentApplication($stone)
     {
         $is_in_current_application = false;
-        $currentApplication  = StoneApplication::getCurrentApplicationId();
+        $currentApplication = StoneApplication::getCurrentApplicationId();
 
         $stone = Stones::where('stones.name', $stone)->first();
         if ($stone) {
@@ -174,7 +231,7 @@ class StoneApplication
                     ->where('user_id', $user_auth->id)
                     ->where('application_id', $currentApplication)
                     ->where('role_id', $role_assigned)->get();
-                if (!$is_role_assigned) {
+                if ($is_role_assigned->isEmpty()) {
                     DB::table("role_user")->insert([
                         'user_id' => $user_auth->id,
                         'role_id' => $role_assigned,
@@ -191,7 +248,7 @@ class StoneApplication
      * @param $request
      * @return mixed
      */
-    public static function createApplication($request) : void
+    public static function createApplication($request): void
     {
         $user_auth = auth()->user();
         if ($user_auth->hasRole(Config::get('stone.ROLE_APPLICATION_FULL'))) {
@@ -204,16 +261,21 @@ class StoneApplication
             ]);
             $users = $request->input('users');
             $application_attached = Stones::where('application', 'main')->pluck('id')->toArray();
-            $roles = Role::where('type', 'main')->pluck('id')->toArray();
-            $users[] = (string) auth()->user()->id;
-            $application->users()->attach($users);
-            $application->stones()->attach($application_attached);
+            $roles = Role::where('type', 'main')->whereNotIn('id', (new StoneApplication)->getRoleIdRoot()->pluck('id')->toArray())->pluck('id')->toArray();
+            if (!in_array(auth()->user()->id, $users)) {
+                $users[] = (string)auth()->user()->id;
+            }
+            $application->users()->attach($users, ['space_id' => StoneSpace::getCurrentSpaceId()]);
+            $application->stones()->attach($application_attached, ['space_id' => StoneSpace::getCurrentSpaceId()]);
             foreach ($roles as $role) {
-                DB::table("role_user")->insert([
-                    'user_id' => $user_auth->id,
-                    'role_id' => $role,
-                    'application_id' => $application->id
-                ]);
+                $roleName = Role::where('type', 'main')->where('id', $role)->first();
+                if ($user_auth->hasRole($roleName->name)) {
+                    DB::table("role_user")->insert([
+                        'user_id' => $user_auth->id,
+                        'role_id' => $role,
+                        'application_id' => $application->id
+                    ]);
+                }
             }
         }
     }
@@ -222,7 +284,7 @@ class StoneApplication
      * @param $request
      * @return mixed
      */
-    public static function updateApplication($request, $id) : void
+    public static function updateApplication($request, $id): void
     {
         $user_auth = auth()->user();
         if ($user_auth->hasRole(Config::get('stone.ROLE_APPLICATION_FULL'))) {
@@ -234,8 +296,8 @@ class StoneApplication
             ]);
 
             $users = $request->input('users');
-            $users[] = (string) auth()->user()->id;
-            $application->users()->attach($users);
+            $users[] = (string)auth()->user()->id;
+            $application->users()->attach($users, ['space_id' => StoneSpace::getCurrentSpaceId()]);
         }
     }
 
@@ -243,7 +305,7 @@ class StoneApplication
      * @param $request
      * @return mixed
      */
-    public static function deleteApplication($id) : void
+    public static function deleteApplication($id): void
     {
         $user_auth = auth()->user();
         if ($user_auth->hasRole(Config::get('stone.ROLE_APPLICATION_FULL'))) {
@@ -257,7 +319,8 @@ class StoneApplication
     /**
      * @return mixed
      */
-    public function getRoleIdRoot() {
+    public function getRoleIdRoot()
+    {
         return Role::where('name', Config::get('stone.MAJESTIC'))->get();
     }
 
@@ -267,7 +330,7 @@ class StoneApplication
      */
     public static function getUserCurrentApplication($application)
     {
-        $applications = Applications::whereHas('users', function($q) use($application) {
+        $applications = Applications::whereHas('users', function ($q) use ($application) {
             $q->where('application_id', $application);
         })->pluck('id')->toArray();
         $users_applications = DB::table('applications_user')->whereIn('application_id', $applications)->distinct()->pluck('user_id')->toArray();
@@ -276,6 +339,55 @@ class StoneApplication
             ->whereIn('users.id', $users_applications)
             ->whereNotIn('role_user.user_id', (new StoneApplication)->getRoleIdRoot()->pluck('id')->toArray())
             ->distinct()->pluck('users.name', 'users.id')->toArray();
+    }
+
+    /**
+     * @param $application
+     * @return void
+     */
+    public static function getUserCurrentApplicationStrict($application)
+    {
+        $applications = Applications::whereHas('users', function ($q) use ($application) {
+            $q->where('application_id', $application);
+        })->pluck('id')->toArray();
+        $users_applications = DB::table('applications_user')->whereIn('application_id', $applications)->distinct()->pluck('user_id')->toArray();
+        return User::join('role_user', 'role_user.user_id', '=', 'users.id')
+            ->whereIn('users.id', $users_applications)
+            ->distinct()->pluck('users.name', 'users.id')->toArray();
+    }
+
+    /**
+     * @param $current_user
+     * @param $user
+     * @param bool $isMove
+     */
+    public static function moveOrAssignApplicationsToCurrentUser($existing_applications, $current_user, $user, $isMove = false) : void
+    {
+        /**
+         * when isMove true than delete user from there applications, False if you want to add current user to there applications if not assigned yet
+         */
+        if ($existing_applications) {
+            foreach ($existing_applications as $application_id) {
+                if (Db::table('applications_user')->where('user_id', $current_user->id)->where('application_id', $application_id)->get()->isEmpty()) {
+                    Db::table('applications_user')->insert([
+                        'user_id' => $current_user->id,
+                        'application_id' => $application_id
+                    ]);
+                }
+                if ($isMove) {
+                    Db::table('applications_user')->where('application_id', $application_id)->where('user_id', $user)->delete();
+                }
+            }
+        }
+    }
+
+    /**
+     * @param $user
+     * @return mixed
+     */
+    public static function isUserInCurrentApplication($user)
+    {
+        return Db::table('applications_user')->where('user_id', $user)->whereIn('application_id', StoneApplication::getCurrentApplicationId())->get()->isNotEmpty();
     }
 
     /**
@@ -293,11 +405,10 @@ class StoneApplication
         $nameModules = modules::whereIn('im_id', $application_module)->distinct()->pluck('im_permission')->toArray();
         dump($nameModules);
         return Role::join('permission_role', 'permission_role.permission_id', '=', 'permission_role.role_id')
-                ->select('*')
+            ->select('*')
 //                ->join('permissions', 'permissions.id', '=', 'permission_role.permission_id')
 //                ->whereIn('permissions.name', $nameModules)
-                 ->pluck('name', 'id')->toArray()
-            ;
+            ->pluck('name', 'id')->toArray();
 
     }
 }

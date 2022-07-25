@@ -28,12 +28,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $user = auth()->user();
-        if($user->id == 1)
-            $data = User::orderBy('id', 'DESC')->get();
-        else
-            $data = User::orderBy('id', 'DESC')->where('id', '!=', 1)->get();
-
+        $data = StoneSpace::getUsersBySpaces();
         return view('elements.super.users.index', compact('data'));
     }
 

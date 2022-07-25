@@ -158,8 +158,8 @@ class applicationsTableSeeder extends Seeder
             ]);
             $application_attached = Stones::where('application', 'main')->pluck('id')->toArray();
             $users_attached[] = (string) $user_id;
-            $application->users()->attach($users_attached);
-            $application->stones()->attach($application_attached);
+            $application->users()->attach($users_attached, ['space_id' => $space->id]);
+            $application->stones()->attach($application_attached, ['space_id' => $space->id]);
         }
 
         DB::table('role_user')->update(['application_id' => $application->id]);
