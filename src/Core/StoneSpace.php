@@ -117,16 +117,11 @@ class StoneSpace
     /**
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
-    public static function getUsersBySpaces($current_space = false)
+    public static function getUsersByCurrentApplicationCurrentSpace()
     {
         $user = auth()->user();
-        if ($current_space) {
-            $spaces = (array)StoneSpace::getCurrentSpaceId();
-        } else {
-            $spaces = StoneSpace::getAllSpacesByCurrentUser();
-        }
         DB::statement("SET SQL_MODE=''");
-        return User::join('applications_user', 'applications_user.user_id', 'users.id')->where('users.id', '!=', $user->id)->whereIn('applications_user.space_id', $spaces)->groupBy('users.id')->get(['users.*']);
+        return User::join('applications_user', 'applications_user.user_id', 'users.id')->where('users.id', '!=', $user->id)->where('applications_user.application_id', StoneApplication::getCurrentApplicationId())->groupBy('users.id')->get(['users.*']);
     }
 
     /**
@@ -195,7 +190,7 @@ class StoneSpace
      */
     public static function isUserInCurrentSpace($user)
     {
-        return Db::table('applications_user')->where('user_id', $user)->whereIn('space_id', StoneSpace::getCurrentSpaceId())->get()->isNotEmpty();
+        return Db::table('applications_user')->where('user_id', $user)->whereIn('space_id', (array)StoneSpace::getCurrentSpaceId())->get()->isNotEmpty();
     }
 
     /**
@@ -207,7 +202,7 @@ class StoneSpace
     {
         $existing_roles = Db::table('role_user')->where('user_id', $user)->pluck('role_id')->toArray();
         Db::table('role_user')->where('user_id', $user)->whereIn('role_id', $existing_roles)->whereIn('application_id', $existing_applications)->update([
-            'user_id' => $user->id
+            'user_id' => $user
         ]);
     }
 

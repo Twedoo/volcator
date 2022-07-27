@@ -28,7 +28,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $data = StoneSpace::getUsersBySpaces();
+        $data = StoneSpace::getUsersByCurrentApplicationCurrentSpace();
         return view('elements.super.users.index', compact('data'));
     }
 
@@ -214,12 +214,30 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @param null $level
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy($id, $level = null)
     {
-        if (StoneSpace::destroyUserSpace($id)) {
+        $user = auth()->user();
+        $is_destroy = false;
+        if (!$level) {
+            return redirect()->route(app('urlBack') . '.super.users.index');
+        }
+
+        if ($level == 2) {
+            $is_destroy = StoneSpace::destroyUserByApplication($id);
+        }
+
+       if ($level == 3 && $user->hasRole(Config::get('stone.ROLE_USER_SPACE'))) {
+           $is_destroy = StoneSpace::destroyUserSpace($id);
+       }
+
+        if ($level == 4 && $user->hasRole(Config::get('stone.ROLE_MANAGER_SPACE'))) {
+            $is_destroy = StoneSpace::destroyUserBySpacesStrict($id);
+        }
+        if ($is_destroy) {
             if (App::getLocale() == 'ar' || App::getLocale() == 'ur') {
                 \Toastr::success(trans('access/roles_managment.toastr_success_delete_users'), trans('access/roles_managment.toastr_success'), ["positionClass" => "toast-top-left"]);
             } else {

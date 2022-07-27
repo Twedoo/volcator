@@ -77,7 +77,6 @@
 
     <!-- CLEAN UI PRO HTML ADMIN TEMPLATE MODULES-->
     <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/components/kit/vendors/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/components/kit/vendors/custom.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/components/kit/core/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/components/cleanui/styles/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/components/kit/widgets/style.css') }}">
@@ -94,6 +93,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/components/cleanui/layout/support-chat/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/components/cleanui/layout/topbar/style.css') }}">
 
+    <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/components/kit/vendors/custom.css') }}">
 
     <script src="{{ asset(app('back').'/assets/components/kit/core/index.js') }}"></script>
     <script src="{{ asset(app('back').'/assets/components/cleanui/layout/menu-left/index.js') }}"></script>
