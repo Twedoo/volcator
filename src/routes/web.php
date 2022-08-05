@@ -1,10 +1,8 @@
 <?php
-// MyVendor\contactform\src\routes\web.php
+
 use Illuminate\Support\Facades\Config;
 
-Route::get('/contact', function(){
-    return 'Hello from the contact form package';
-});
+Route::get('/', 'HomeController@index');
 
 Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'LanguageController@switchLang']);
 
