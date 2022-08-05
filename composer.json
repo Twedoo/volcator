@@ -62,7 +62,7 @@
         }
     },
     "scripts": {
-        "post-install-cmd": [
+        "pre-install-cmd": [
             "mkdir app/Modules"
         ],
         "post-autoload-dump": [
