@@ -2,10 +2,15 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
-[![Build Status][ico-travis]][link-travis]
-[![StyleCI][ico-styleci]][link-styleci]
+[![Build Status][ico-travis]][link-travis] 
 
 This is where your description should go. Take a look at [contributing.md](contributing.md) to see a to do list.
+
+## Version 
+
+This stone version in main-dev is not ready for use yet !<br />
+We are working hard and smart to get it to the production stage ^^ !<br />
+We have dealine **August 28, 2022**<br />
 
 ## Installation
 
