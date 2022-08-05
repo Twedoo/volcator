@@ -10,14 +10,14 @@
         }
     ],
     "homepage": "https://github.com/twedoo/stone",
-    "keywords": ["Laravel", "Stone"],
+    "keywords": ["Laravel", "Stone", "CMS", "multi application", "multi spaces"],
     "require": {
         "php": "^7.2|^8.0",
         "illuminate/console": "~8.0",
         "illuminate/support": "~8.0",
         "illuminate/cache": "~8.0",
         "symfony/yaml": "^5.4",
-        "twedoo/stoneGuard": "dev-main"
+        "twedoo/stoneguard": "1.0.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^8",
