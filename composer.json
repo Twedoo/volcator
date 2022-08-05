@@ -62,8 +62,8 @@
         }
     },
     "scripts": {
-        "pre-install-cmd": [
-            "mkdir app/Modules"
+        "pre-update-cmd": [
+            "@mkdir app/Modules"
         ],
         "post-autoload-dump": [
             "@php artisan vendor:publish --provider='Twedoo\\Stone\\StoneServiceProvider' --tag=public --force"
