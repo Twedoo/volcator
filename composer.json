@@ -10,7 +10,7 @@
         }
     ],
     "homepage": "https://github.com/twedoo/stone",
-    "keywords": ["Laravel", "Stone", "CMS", "multi application", "multi spaces"],
+    "keywords": ["Laravel", "Stone", "CMS", "Multi-Application", "Multi-Spaces"],
     "require": {
         "php": "^7.2|^8.0",
         "illuminate/console": "~8.0",
