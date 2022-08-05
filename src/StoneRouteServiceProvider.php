@@ -30,13 +30,13 @@ class StoneRouteServiceProvider extends ServiceProvider
             if ($PrefixTester == config('prefix.urlBack')) {
                 $path = realpath(__DIR__ . '/../resources/views/back/' . config()["params"]["TW_APP_TEMPLATE_BACK"]);
             } else {
-                $path = realpath(base_path('resources/views/front/' . config()["params"]["TW_APP_TEMPLATE_FRONT"]));
+                $path = realpath(__DIR__ . '/../resources/views/front/' . config()["params"]["TW_APP_TEMPLATE_FRONT"]);
             }
             view()->addLocation($path);
 
             $singletonConfig = [
-                'back' => 'resources/views/back/' . config()["params"]["TW_APP_TEMPLATE_BACK"],
-                'front' => 'resources/views/front/' . config()["params"]["TW_APP_TEMPLATE_FRONT"],
+                'back' => '../resources/views/back/' . config()["params"]["TW_APP_TEMPLATE_BACK"],
+                'front' => '../resources/views/front/' . config()["params"]["TW_APP_TEMPLATE_FRONT"],
                 'urlBack' => config('prefix.urlBack'),
                 'module' => config('prefix.module'),
             ];
