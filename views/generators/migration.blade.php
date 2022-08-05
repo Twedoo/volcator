@@ -198,8 +198,6 @@ class StoneSetupTables extends Migration
                 $table->primary(['application_id', 'stone_id']);
             });
         }
-
-        DB::commit();
     }
 
     /**
