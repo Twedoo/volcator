@@ -55,10 +55,16 @@ Seeder Data:
 php artisan stone:seeder
 ```
 
-Mode dev simple command one line (should launch this when the DB not contains table): 
+Mode Dev or Prod simple command one line (should launch this when the DB not contains tables): 
 
 ```
 php artisan migrate:install && php artisan stone:migration && php artisan migrate && php artisan stone:seeder
+```
+
+Only mode Dev simple command one line to purge all Stone tables and regenerate them automatically: 
+
+```
+php artisan stone:migration -p true && php artisan migrate:install && php artisan stone:migration  && php artisan migrate && php artisan stone:seeder
 ```
 
 ## Change log

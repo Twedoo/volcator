@@ -3,6 +3,7 @@
 namespace Twedoo\Stone\Http\Controllers;
 
 use App;
+use Twedoo\Stone\Core\StoneSpace;
 use Twedoo\Stone\Modules\Applications\Models\Applications;
 use Twedoo\Stone\Core\StoneApplication;
 use Twedoo\Stone\Organizer\Models\Stones;
@@ -13,6 +14,7 @@ use Hash;
 use Illuminate\Http\Request;
 use Session;
 use Validator;
+use Config;
 
 // TODO : Pagination dynamic
 class UserController extends Controller
@@ -26,12 +28,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $user = auth()->user();
-        if($user->id == 1)
-            $data = User::orderBy('id', 'DESC')->get();
-        else
-            $data = User::orderBy('id', 'DESC')->where('id', '!=', 1)->get();
-
+        $data = StoneSpace::getUsersByCurrentApplicationCurrentSpace();
         return view('elements.super.users.index', compact('data'));
     }
 
@@ -45,7 +42,7 @@ class UserController extends Controller
     public function create()
     {
         $user = auth()->user();
-        if(!$user->hasRole('Root')) {
+        if(!$user->hasRole(Config::get('stone.MAJESTIC'))) {
             $roles = Role::where('id', '!=', 1)->pluck('display_name', 'id');
         }  else {
             $roles = Role::pluck('display_name', 'id');
@@ -120,7 +117,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = auth()->user();
-        if(!$user->hasRole('Root') && $id == 1)
+        if(!$user->hasRole(Config::get('stone.MAJESTIC')) && $id == 1)
             return back();
 
         $user = User::find($id);
@@ -139,15 +136,16 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = auth()->user();
-        if(!$user->hasRole('Root') && $id == 1)
+        if(!$user->hasRole(Config::get('stone.MAJESTIC')) && $id == 1)
             return back();
 
         $user = User::where('id', '=', $id)->first();
         $roles = Role::where('id', '!=', 1)->pluck('display_name', 'id');
-        $userRole = $user->roles->pluck('id', 'id')->toArray();
+        $userRole = DB::table('role_user')->where('application_id', StoneApplication::getCurrentApplicationId())
+            ->where('user_id', $id)->distinct()->pluck('role_id')->toArray();
+//        dd($userRole, StoneApplication::getCurrentApplicationId() );
         return view('elements.super.users.edit', compact('user', 'roles', 'userRole'));
     }
-
 
     /**
      * Update the specified resource in storage.
@@ -192,15 +190,14 @@ class UserController extends Controller
                 $input = array_except($input, array('password'));
             }
 
-
             $user = User::find($id);
             $user->update($input);
 
             if (User::where('id', '=', $id)->where('id', '!=', '1')->first()) {
-                DB::table('role_user')->where('user_id', $id)->delete();
+                DB::table('role_user')->where('user_id', $id)->where('application_id', StoneApplication::getCurrentApplicationId())->delete();
 
                 foreach ($request->input('roles') as $key => $value) {
-                    $user->attachRole($value);
+                    $user->attachRole($value, ['application_id', StoneApplication::getCurrentApplicationId()]);
                 }
             }
 
@@ -212,32 +209,41 @@ class UserController extends Controller
             return redirect()->route(app('urlBack') . '.super.users.index');
 
         }
-
-
     }
-
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @param null $level
+     * @return \Illuminate\Http\RedirectResponse
      */
-
-    public function destroy($id)
-
+    public function destroy($id, $level = null)
     {
+        $user = auth()->user();
+        $is_destroy = false;
+        if (!$level) {
+            return redirect()->route(app('urlBack') . '.super.users.index');
+        }
 
-        if (User::where('id', '=', $id)->where('id', '!=', '1')->delete()) {
+        if ($level == 2) {
+            $is_destroy = StoneSpace::destroyUserByApplication($id);
+        }
+
+       if ($level == 3 && $user->hasRole(Config::get('stone.ROLE_USER_SPACE'))) {
+           $is_destroy = StoneSpace::destroyUserSpace($id);
+       }
+
+        if ($level == 4 && $user->hasRole(Config::get('stone.ROLE_MANAGER_SPACE'))) {
+            $is_destroy = StoneSpace::destroyUserBySpacesStrict($id);
+        }
+        if ($is_destroy) {
             if (App::getLocale() == 'ar' || App::getLocale() == 'ur') {
                 \Toastr::success(trans('access/roles_managment.toastr_success_delete_users'), trans('access/roles_managment.toastr_success'), ["positionClass" => "toast-top-left"]);
             } else {
                 \Toastr::success(trans('access/roles_managment.toastr_success_delete_users'), trans('access/roles_managment.toastr_success'), ["positionClass" => "toast-top-right"]);
             }
         }
-
         return redirect()->route(app('urlBack') . '.super.users.index');
-
     }
-
 }

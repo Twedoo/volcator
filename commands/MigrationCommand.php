@@ -10,6 +10,8 @@
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
+use Session;
+use Artisan;
 
 class MigrationCommand extends Command
 {
@@ -18,7 +20,7 @@ class MigrationCommand extends Command
      *
      * @var string
      */
-    protected $name = 'stone:migration';
+    protected $signature = 'stone:migration {--p|--purge-database=false : delete all tables and launch new migration}';
 
     /**
      * The console command description.
@@ -40,17 +42,17 @@ class MigrationCommand extends Command
     /**
      * Execute the console command for Laravel 5.5+.
      *
-     * @return void
+     * @return false
      */
     public function handle()
     {
         $this->laravel->view->addNamespace('stone', substr(__DIR__, 0, -8).'views');
-
+        $purge = $this->options()['purge-database'];
         $spacesTable                = Config::get('stone.spaces_table');
         $applicationsTable          = Config::get('stone.applications_table');
-        $applicationsStoneTable    = Config::get('stone.applications_stone_table');
+        $applicationsStoneTable     = Config::get('stone.applications_stone_table');
         $applicationsUserTable      = Config::get('stone.applications_user_table');
-        $stonesTable               = Config::get('stone.stones_table');
+        $stonesTable                = Config::get('stone.stones_table');
         $parametersTable            = Config::get('stone.parameters_table');
         $menuBackTable              = Config::get('stone.menuBacks_table');
         $languagesTable             = Config::get('stone.languages_table');
@@ -71,7 +73,19 @@ class MigrationCommand extends Command
         if ($this->confirm("Proceed with the migration creation? [Yes|no]", "Yes")) {
 
             $this->line('');
-
+            if ($purge) {
+                Artisan::call('db:wipe', ['--force' => true]);
+                $dir = base_path("/database/migrations")."/";
+                $files = scandir(base_path("/database/migrations")."/");
+                if(is_array($files)){
+                    foreach($files as $file){
+                        if(is_file($dir.$file) && strpos($file,"_stone_setup_tables")!==false){
+                            unlink($dir.$file);
+                        }
+                    }
+                }
+                $this->info("Stone successfully purge all tables!");
+            }
             $this->info("Creating migration...");
             if ($this->createMigration($spacesTable, $applicationsTable, $applicationsStoneTable, $applicationsUserTable, $rolesTable, $roleUserTable, $permissionsTable, $permissionRoleTable, $stonesTable, $parametersTable, $menuBackTable, $languagesTable)) {
 
@@ -88,6 +102,7 @@ class MigrationCommand extends Command
         }
         $this->callSilent('vendor:publish', ['--provider' => 'Twedoo\Stone\StoneServiceProvider']);
         $this->info('Twedoo\Stone was installed successfully.');
+        Session::flush();
     }
 
     /**

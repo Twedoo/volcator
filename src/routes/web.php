@@ -56,7 +56,7 @@ Route::group(['middlewareGroups' => ['web']], function () {
                         'uses' => 'UserController@update',
                         'middleware' => ['permission:'.Config::get('stone.PERMISSION_USER_ACCESS_CONTROL')]
                     ]);
-                Route::get('users/{id}/delete',
+                Route::get('users/{id}/delete/{level?}',
                     [
                         'as' => app('urlBack') . '.super.users.destroy',
                         'uses' => 'UserController@destroy',

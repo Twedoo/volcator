@@ -8,7 +8,7 @@ use Twedoo\StoneGuard\Models\User;
 class Applications extends Model
 {
     protected $fillable = [
-        'name', 'display_name', 'unique_identity', 'type', 'space_id', 'enable', 'image'
+        'name', 'display_name', 'unique_identity', 'type', 'space_id', 'enable', 'image', 'created_by'
     ];
 
     protected $table = "applications";
@@ -21,7 +21,7 @@ class Applications extends Model
     public function users()
     {
         return $this->belongsToMany(User::class, 'applications_user',
-            'application_id', 'user_id');
+            'application_id', 'user_id')->withPivot('space_id');
     }
 
     /**
@@ -29,6 +29,6 @@ class Applications extends Model
      */
     public function stones()
     {
-        return $this->belongsToMany(Stones::class, 'applications_stone', 'application_id', 'stone_id');
+        return $this->belongsToMany(Stones::class, 'applications_stone', 'application_id', 'stone_id')->withPivot('space_id');
     }
 }

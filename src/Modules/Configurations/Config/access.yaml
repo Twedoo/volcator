@@ -1,8 +1,9 @@
 stone:
   roles:
-      - name: 'role-access-configuration'
+      - name: 'Role-Access-Configuration'
         display_name: 'Module configuration'
         description: 'Managment settings, languages and templates of CMS'
+        type: 'main'
         permissions:
 
           - name: 'role-access-languages'

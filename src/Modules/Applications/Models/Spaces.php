@@ -9,7 +9,7 @@ use Twedoo\StoneGuard\Models\User;
 class Spaces extends Model
 {
     protected $fillable = [
-        'unique_identity', 'name', 'owner_id' , 'type', 'enable', 'image', 'image'
+        'unique_identity', 'name', 'owner_id', 'type', 'enable', 'image', 'created_by'
     ];
 
     protected $casts = [

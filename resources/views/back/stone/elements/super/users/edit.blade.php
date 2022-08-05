@@ -88,7 +88,7 @@
                                             </div>
                                             <div class="form-group @if ($errors->has('roles')) has-error @endif">
                                                 <label>{{ trans('access/roles_managment.edit_users_role') }}</label>
-                                                {!! Form::select('roles[]', $roles, null, ['class' => 'select2', 'multiple' => 'multiple']) !!}
+                                                {!! Form::select('roles[]', $roles, $userRole, ['class' => 'select2', 'multiple' => 'multiple']) !!}
                                                 @if ($errors->has('roles'))
                                                     <div class="form-control-error-list" data-error-list="">
                                                         <ul>

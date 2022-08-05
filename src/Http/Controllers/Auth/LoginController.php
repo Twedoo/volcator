@@ -9,6 +9,7 @@ use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cache;
 
 class LoginController extends Controller
 {
@@ -43,7 +44,7 @@ class LoginController extends Controller
         if (Auth::user()->type != null) {
             return redirect(app('urlBack'));
         }
-        return redirect('/');
+        return redirect(app('urlBack'));
     }
 
 
@@ -58,18 +59,29 @@ class LoginController extends Controller
         }
 
         if (Auth::user()->type != null) {
-            $this->guard()->logout();
-            $request->session()->invalidate();
-            return redirect(app('urlBack') . '/login');
-        } else {
+            $current_user = Auth::user()->id;
             $applocale = Session::get('applocale');
             $application = Session::get('application');
+            $space = Session::get('space');
             $this->guard()->logout();
             $request->session()->invalidate();
             Session::put('applocale', $applocale);
             App::setLocale($applocale);
-            Session::put('application', $application);
-            return redirect('/');
+            Cache::put('application-'.$current_user, $application, 10080);
+            Cache::put('space-'.$current_user, $space, 10080);
+            return redirect(app('urlBack') . '/login');
+        } else {
+            $current_user = Auth::user()->id;
+            $applocale = Session::get('applocale');
+            $application = Session::get('application');
+            $space = Session::get('space');
+            $this->guard()->logout();
+            $request->session()->invalidate();
+            Session::put('applocale', $applocale);
+            App::setLocale($applocale);
+            Cache::put('application-'.$current_user, $application, 10080);
+            Cache::put('space-'.$current_user, $space, 10080);
+            return redirect(app('urlBack') . '/login');
         }
     }
 
@@ -87,7 +99,5 @@ class LoginController extends Controller
         } else {
             return view('elements.super.auth.login');
         }
-
     }
-
 }
