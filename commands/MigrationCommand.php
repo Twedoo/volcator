@@ -79,7 +79,7 @@ class MigrationCommand extends Command
             $this->info("Creating migration...");
             if ($this->createMigration($spacesTable, $applicationsTable, $applicationsStoneTable, $applicationsUserTable, $rolesTable, $roleUserTable, $permissionsTable, $permissionRoleTable, $stonesTable, $parametersTable, $menuBackTable, $languagesTable)) {
                 $this->info("Migration successfully created!");
-                $this->clearMigration("_create_users_table"); 
+                $this->clearMigration("_create_users_table");
             } else {
                 $this->error(
                     "Couldn't create migration.\n Check the write permissions" .
