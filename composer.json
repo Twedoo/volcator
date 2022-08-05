@@ -14,12 +14,11 @@
     "require": {
         "php": "^7.2|^8.0",
         "symfony/yaml": "^5.4",
+        " laravel/ui": "^3.4.*",
         "twedoo/stoneguard": "1.0.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8|^9",
-        "mockery/mockery": "1.5.0",
-        "illuminate/database": "~8.0"
+        "phpunit/phpunit": "^8|^9"
     },
     "autoload": {
         "classmap": [
@@ -30,7 +29,8 @@
         ],
         "psr-4": {
             "Twedoo\\Stone\\": "src/",
-            "Modules\\": "src/Modules"
+            "Modules\\": "src/Modules",
+            "App\\Modules\\": "../../../app/Modules"
         }
     },
     "autoload-dev": {
@@ -59,10 +59,10 @@
         }
     },
     "scripts": {
-        "pre-update-cmd": [
-            "@mkdir app/Modules"
+        "pre-autoload-dump": [
+            "@php mkdir app/Modules"
         ],
-        "post-autoload-dump": [
+        "post-autoload-dum": [
             "@php artisan vendor:publish --provider='Twedoo\\Stone\\StoneServiceProvider' --tag=public --force"
         ]
     }
