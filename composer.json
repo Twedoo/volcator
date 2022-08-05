@@ -26,7 +26,7 @@
     },
     "autoload": {
         "classmap": [
-            "../../app/Modules",
+            "../../../app/Modules",
             "src/Modules",
             "commands",
             "database/seeders"
