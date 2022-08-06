@@ -11,7 +11,7 @@
                     <span>
                         <span class="cui__breadcrumbs__arrow"></span>
                         <strong
-                            class="cui__breadcrumbs__current">{{ trans('access/roles_managment.index_users_title') }}</strong>
+                            class="cui__breadcrumbs__current">{{ trans('Access-Controls::Access-Controls/Access-Controls.index_users_title') }}</strong>
                     </span>
                 </div>
             </div>
@@ -19,10 +19,10 @@
             <div class="cui__utils__content">
                 <div class="kit__utils__heading">
                     <h5>
-                        <span class="mr-3">{{ trans('access/roles_managment.index_users_managment') }}</span>
+                        <span class="mr-3">{{ trans('Access-Controls::Access-Controls/Access-Controls.index_users_management') }}</span>
                         @permission(Config::get('stone.PERMISSION_USER_ACCESS_CONTROL'))
                         <a href="{{ route(app('urlBack').'.super.users.create') }}" class="btn btn-sm btn-light">
-                            <i class="fa fa-edit"></i> {{ trans('access/roles_managment.index_users_create') }}
+                            <i class="fa fa-edit"></i> {{ trans('Access-Controls::Access-Controls/Access-Controls.index_users_invite') }}
                         </a>
                         @endpermission
                     </h5>
@@ -30,7 +30,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="mb-4">
-                            <strong>{{ trans('access/roles_managment.managment_acl_users_list') }}</strong>
+                            <strong>{{ trans('Access-Controls::Access-Controls/Access-Controls.management_acl_users_list') }}</strong>
                         </h5>
                         <div class="row">
                             <div class="col-lg-12">
@@ -38,14 +38,14 @@
                                     <table class="table table-hover nowrap" id="datatableUsersList">
                                         <thead>
                                         <tr>
-                                            <th>{{ trans('access/roles_managment.index_users_name') }}</th>
-                                            <th>{{ trans('access/roles_managment.index_users_email') }}</th>
-                                            <th>{{ trans('access/roles_managment.index_users_show') }}</th>
+                                            <th>{{ trans('Access-Controls::Access-Controls/Access-Controls.index_users_name') }}</th>
+                                            <th>{{ trans('Access-Controls::Access-Controls/Access-Controls.index_users_email') }}</th>
+                                            <th>{{ trans('Access-Controls::Access-Controls/Access-Controls.index_users_show') }}</th>
                                             @permission(Config::get('stone.PERMISSION_USER_ACCESS_CONTROL'))
-                                            <th>{{ trans('access/roles_managment.index_users_edit') }}</th>
+                                            <th>{{ trans('Access-Controls::Access-Controls/Access-Controls.index_users_edit') }}</th>
                                             @endpermission
                                             @permission(Config::get('stone.PERMISSION_USER_ACCESS_CONTROL'))
-                                            <th>{{ trans('access/roles_managment.index_users_delete') }}</th>
+                                            <th>{{ trans('Access-Controls::Access-Controls/Access-Controls.index_users_delete') }}</th>
                                             @endpermission
                                         </tr>
                                         </thead>
@@ -88,14 +88,14 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
-                                            <th>{{ trans('access/roles_managment.index_users_name') }}</th>
-                                            <th>{{ trans('access/roles_managment.index_users_email') }}</th>
-                                            <th>{{ trans('access/roles_managment.index_users_show') }}</th>
+                                            <th>{{ trans('Access-Controls::Access-Controls/Access-Controls.index_users_name') }}</th>
+                                            <th>{{ trans('Access-Controls::Access-Controls/Access-Controls.index_users_email') }}</th>
+                                            <th>{{ trans('Access-Controls::Access-Controls/Access-Controls.index_users_show') }}</th>
                                             @permission(Config::get('stone.PERMISSION_USER_ACCESS_CONTROL'))
-                                            <th>{{ trans('access/roles_managment.index_users_edit') }}</th>
+                                            <th>{{ trans('Access-Controls::Access-Controls/Access-Controls.index_users_edit') }}</th>
                                             @endpermission
                                             @permission(Config::get('stone.PERMISSION_USER_ACCESS_CONTROL'))
-                                            <th>{{ trans('access/roles_managment.index_users_delete') }}</th>
+                                            <th>{{ trans('Access-Controls::Access-Controls/Access-Controls.index_users_delete') }}</th>
                                             @endpermission
                                         </tr>
                                         </tfoot>
