@@ -3,6 +3,7 @@
 namespace Twedoo\Stone;
 
 use App;
+use SebastianBergmann\ObjectEnumerator\Fixtures\ExceptionThrower;
 use Symfony\Component\Yaml\Yaml;
 use Throwable;
 use Twedoo\Stone\Core\StoneApplication;
@@ -17,6 +18,7 @@ use Schema;
 use Session;
 use Twedoo\StoneGuard\Models\Permission;
 use Twedoo\StoneGuard\Models\Role;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class StoneEngine
 {
@@ -81,17 +83,21 @@ class StoneEngine
      * @param $uninstall
      * @param bool $status
      * @return mixed
-     * pass value true for re-install or false for fisrt install
+     * pass value true for re-install or false for first install
      */
     public static function setModule($module, $reinstall)
     {
-
         $pathConfig = StoneEngine::pathConfigStoneResolve(self::namespaceResolve($module), $module);
+        $namespace = self::namespaceResolve($module);
 
-        if (self::namespaceResolve($module) == 'Twedoo\\Stone\\') {
-            \App::call('Modules\\'. $module .'\\'. 'Config' .'\\'. 'Schema'.'\\'. 'SchemaCreate@runSchemas');
+        if ($namespace && $namespace !== 1) {
+            \App::call($namespace . $module . '\\' . 'Config' . '\\' . 'Schema' . '\\' . 'SchemaCreate@runSchemas');
         } else {
-            \App::call('App\\Modules\\'. $module .'\\'. 'Config' .'\\'. 'Schema'.'\\'. 'SchemaCreate@runSchemas');
+            if ($namespace === 1) {
+                throw new BadRequestHttpException($module . " : duplicated name module, already exist !");
+            } else {
+                throw new BadRequestHttpException(" Not found Module folder '".$module."' in App\Modules directory !");
+            }
         }
 
         $stone_data = StoneEngine::loadStoneConfigYaml($pathConfig, 'stone');
@@ -114,9 +120,9 @@ class StoneEngine
     {
         $stone = Stones::where('name', $module)->first();
         $result = false;
-        if($stone) {
+        if ($stone) {
             if ($stone->publish == 'public') {
-                $currentApplication  = StoneApplication::getCurrentApplicationId();
+                $currentApplication = StoneApplication::getCurrentApplicationId();
                 $usersApplication = array_keys(StoneApplication::getUserCurrentApplicationStrict($currentApplication));
                 $permissions = DB::table('permissions')->where('permissions.id_stone', $stone->id)->pluck('id')->toArray();
                 $roles = DB::table('permission_role')
@@ -353,9 +359,12 @@ class StoneEngine
         return $routeModule;
     }
 
-    public static function getDirectoryModuleByPath($isByPathOrName = true) {
+    public static function getDirectoryModuleByPath($isByPathOrName = true)
+    {
         $defaultModules = glob(__DIR__ . '/Modules/*', GLOB_ONLYDIR);
         $customModules = glob(base_path() . '/app/Modules/*', GLOB_ONLYDIR);
+        $customModulesInit = null;
+
         if (!$isByPathOrName) {
             foreach ($defaultModules as $module) {
                 $defaultModulesInit[] = substr($module, strrpos($module, '/') + 1);;
@@ -376,22 +385,21 @@ class StoneEngine
      * @param $module
      * @return false|string
      */
-    public static function namespaceResolve($module) {
+    public static function namespaceResolve($module)
+    {
+        $result = false;
         $defaultModules = StoneEngine::getDirectoryModuleByPath(false)['defaultModules'];
         $customModules = StoneEngine::getDirectoryModuleByPath(false)['customModules'];
-
-        try {
-            in_array($module, $defaultModules) != in_array($module, $customModules);
-        } catch (Throwable $e) {
-            report($e);
-            return false;
+        if (count((array)$defaultModules) && count((array)$customModules) && in_array($module, (array)$defaultModules) == in_array($module, (array)$customModules)) {
+            return 1;
         }
-
-        if (in_array($module, $defaultModules)) {
-            return 'Twedoo\\Stone\\';
-        } else {
-            return 'Modules\\';
+        if (in_array($module, (array)$defaultModules)) {
+            $result = 'Modules\\';
         }
+        if (in_array($module, (array)$customModules)) {
+            $result = 'App\\Modules\\';
+        }
+        return $result;
     }
 
     /**
@@ -399,11 +407,12 @@ class StoneEngine
      * @param $stone
      * @return string
      */
-    public static function pathConfigStoneResolve($namespaceResolve, $stone) {
+    public static function pathConfigStoneResolve($namespaceResolve, $stone)
+    {
         if ($namespaceResolve == 'Twedoo\\Stone\\') {
-            $path = __DIR__.'/Modules/'.$stone;
+            $path = __DIR__ . '/Modules/' . $stone;
         } else {
-            $path = app_path().'/Modules/'.$stone;
+            $path = app_path() . '/Modules/' . $stone;
         }
         return $path;
     }
@@ -415,7 +424,7 @@ class StoneEngine
      */
     public static function loadStoneConfigYaml($pathConfig, $fileNameYaml)
     {
-        $pathConfig = $pathConfig.'/Config/'.$fileNameYaml.'.yaml';
+        $pathConfig = $pathConfig . '/Config/' . $fileNameYaml . '.yaml';
         return Yaml::parse(file_get_contents($pathConfig));
     }
 
@@ -423,7 +432,8 @@ class StoneEngine
      * @param array $stoneData
      * @return string
      */
-    public static function createStone($stoneData = []) {
+    public static function createStone($stoneData = [])
+    {
         $stoneData = current($stoneData);
         $stoneData['permission_name'] = json_encode($stoneData['permission_name']);
         $add_stone = Stones::create($stoneData);
@@ -443,7 +453,7 @@ class StoneEngine
      * @param array $stoneData
      * @return string
      */
-    public static function createMenu($menuData, $id_stone) : void
+    public static function createMenu($menuData, $id_stone): void
     {
         $menuData = current($menuData);
         foreach (current($menuData) as $menu) {
@@ -457,11 +467,11 @@ class StoneEngine
      * @param $id_stone
      * @return void
      */
-    public static function createAccess($accessData, $id_stone) : void
+    public static function createAccess($accessData, $id_stone): void
     {
         $user_auth = auth()->user();
         $accessData = current($accessData);
-        $currentApplication  = StoneApplication::getCurrentApplicationId();
+        $currentApplication = StoneApplication::getCurrentApplicationId();
 
         foreach (current($accessData) as $roles) {
             $temporary = $roles['permissions'];
