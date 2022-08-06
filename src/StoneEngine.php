@@ -88,6 +88,7 @@ class StoneEngine
     public static function setModule($module, $reinstall)
     {
         $pathConfig = StoneEngine::pathConfigStoneResolve(self::namespaceResolve($module), $module);
+
         $namespace = self::namespaceResolve($module);
 
         if ($namespace && $namespace !== 1) {
@@ -363,9 +364,10 @@ class StoneEngine
     {
         $defaultModules = glob(__DIR__ . '/Modules/*', GLOB_ONLYDIR);
         $customModules = glob(base_path() . '/app/Modules/*', GLOB_ONLYDIR);
-        $customModulesInit = null;
 
         if (!$isByPathOrName) {
+            $customModulesInit = null;
+            $defaultModulesInit = null;
             foreach ($defaultModules as $module) {
                 $defaultModulesInit[] = substr($module, strrpos($module, '/') + 1);;
             }
@@ -399,6 +401,7 @@ class StoneEngine
         if (in_array($module, (array)$customModules)) {
             $result = 'App\\Modules\\';
         }
+
         return $result;
     }
 
@@ -409,7 +412,7 @@ class StoneEngine
      */
     public static function pathConfigStoneResolve($namespaceResolve, $stone)
     {
-        if ($namespaceResolve == 'Twedoo\\Stone\\') {
+        if ($namespaceResolve) {
             $path = __DIR__ . '/Modules/' . $stone;
         } else {
             $path = app_path() . '/Modules/' . $stone;
