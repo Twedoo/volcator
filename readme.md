@@ -8,7 +8,7 @@ This is where your description should go. Take a look at [contributing.md](contr
 
 ## Version 
 
-This stone version in main-dev is not ready for use yet !<br />
+This stone version in 3.x is not ready for use yet !<br />
 We are working hard and smart to get it to the production stage ^^ !<br />
 We have dealine **August 28, 2022**<br />
 
@@ -20,18 +20,44 @@ Via Composer
 $ composer require twedoo/stone
 ```
 
+Publish stone views and translate (lang):
+
+``` bash
+php artisan vendor:publish --provider="Twedoo\Stone\StoneServiceProvider"
+```
+
 ## Usage
 
-From scratch project install default migration table of Laravel :
+From Laravel scratch project install default migration table of Laravel and Stone (**Should add DB connection in .env and launch commands**):
+
+
+
 ``` bash
-$ php artisan migrate
+$ php artisan stone:migration
 ```
+
 
 ``` bash
 $ php artisan migrate:install
 ```
 
-From existing project:
+``` bash
+$ php artisan migrate
+```
+ 
+
+``` bash
+php artisan stone:seeder
+```
+
+In another way use command one line:
+
+```
+php artisan stone:migration && php artisan migrate:install && php artisan migrate && php artisan stone:seeder
+```
+
+
+## From existing project:
 
 ``` bash
 $ php artisan stone:migration
@@ -43,28 +69,30 @@ Migrate all stone tables:
 $ php artisan migrate
 ```
 
-Publish stone views and translate (lang):
+## Change model User App\Models\User to :
 
-``` bash
-php artisan vendor:publish --provider="Twedoo\Stone\StoneServiceProvider"
+````
+namespace App\Models;
+
+use Twedoo\StoneGuard\Models\User as StoneUser;
+
+class User extends StoneUser
+{
+    /**
+     *
+     */
+}
+
+````
+
+It's done :D refresh your application !
+
+## For developers (Mode Dev)
+
+Only mode Dev use command one line to purge all Stone tables and regenerate them automatically: 
+
 ```
-
-Seeder Data:
-
-``` bash
-php artisan stone:seeder
-```
-
-Mode Dev or Prod simple command one line (should launch this when the DB not contains tables): 
-
-```
-php artisan migrate:install && php artisan stone:migration && php artisan migrate && php artisan stone:seeder
-```
-
-Only mode Dev simple command one line to purge all Stone tables and regenerate them automatically: 
-
-```
-php artisan stone:migration -p true && php artisan migrate:install && php artisan stone:migration  && php artisan migrate && php artisan stone:seeder
+php artisan stone:migration -p true && php artisan stone:migration  && php artisan migrate:install && php artisan migrate && php artisan stone:seeder
 ```
 
 ## Change log

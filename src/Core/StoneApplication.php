@@ -102,7 +102,7 @@ class StoneApplication
     /**
      * @return mixed
      */
-    public function getApplicationsCurrentUser()
+    public static function getApplicationsCurrentUser()
     {
         /**
          * get all application of current user
@@ -121,7 +121,7 @@ class StoneApplication
      * @param $object
      * @return mixed
      */
-    public function getIDsApplicationsUserBySpaces($user, $current_space =  false)
+    public static function getIDsApplicationsUserBySpaces($user, $current_space =  false)
     {
         /**
          * get all applications of user in spaces
@@ -140,7 +140,7 @@ class StoneApplication
      * @param $object
      * @return mixed
      */
-    public function getApplicationsUserBySpaces($user, $current_space =  false)
+    public static function getApplicationsUserBySpaces($user, $current_space =  false)
     {
         /**
          * get all applications of user in spaces
@@ -159,7 +159,7 @@ class StoneApplication
      * @param bool $current_space
      * @return mixed
      */
-    public function getCurrentApplicationUserBySpace($user, $current_space =  false)
+    public static function getCurrentApplicationUserBySpace($user, $current_space =  false)
     {
         /**
          * get all applications of user in spaces
@@ -176,7 +176,7 @@ class StoneApplication
      * @param $stone
      * @return mixed
      */
-    public function isStoneInstalledAsMain($stone)
+    public static function isStoneInstalledAsMain($stone)
     {
         $as_installed = false;
         $stone = Stones::where('stones.name', $stone)->first();
@@ -190,7 +190,7 @@ class StoneApplication
      * @param $stone
      * @return mixed
      */
-    public function isStoneInCurrentApplication($stone)
+    public static function isStoneInCurrentApplication($stone)
     {
         $is_in_current_application = false;
         $stone = Stones::where('stones.name', $stone)
@@ -209,7 +209,7 @@ class StoneApplication
      * @param $stone
      * @return mixed
      */
-    public function activeStoneInCurrentApplication($stone)
+    public static function activeStoneInCurrentApplication($stone)
     {
         $is_in_current_application = false;
         $currentApplication = StoneApplication::getCurrentApplicationId();
@@ -319,7 +319,7 @@ class StoneApplication
     /**
      * @return mixed
      */
-    public function getRoleIdRoot()
+    public static function getRoleIdRoot()
     {
         return Role::where('name', Config::get('stone.MAJESTIC'))->get();
     }
