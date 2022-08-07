@@ -42,7 +42,8 @@ class StoneMenu
             if ($value->menu_type == "hidden") {
                 continue;
             }
-            $setCategory = StoneEngine::getAttributes($value['name'], 'categoryMenu');
+
+            $setCategory = StoneEngine::getAttributes($value['name'], 'categoryMenu', $value->application);
             if ($value->application == "main")
                 $setCategory = 'standard_menu';
 
