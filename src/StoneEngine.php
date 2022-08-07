@@ -88,7 +88,6 @@ class StoneEngine
     public static function setModule($module, $reinstall)
     {
         $pathConfig = StoneEngine::pathConfigStoneResolve(self::namespaceResolve($module), $module);
-
         $namespace = self::namespaceResolve($module);
 
         if ($namespace && $namespace !== 1) {
@@ -102,7 +101,7 @@ class StoneEngine
         }
 
         $stone_data = StoneEngine::loadStoneConfigYaml($pathConfig, 'stone');
-        $createStone = StoneEngine::createStone($stone_data);
+        $createStone = StoneEngine::createStone($stone_data, substr($namespace, 0, -1));
 
         $menu_data = StoneEngine::loadStoneConfigYaml($pathConfig, 'menu');
         StoneEngine::createMenu($menu_data, $createStone);
@@ -255,8 +254,9 @@ class StoneEngine
      */
     public static function getModulesParams($module, $idModule, $statusModule)
     {
-        if (method_exists('Twedoo\\Stone\\' . $module . '\\' . $module, 'getParameters')) {
-            return \App::call('Twedoo\\Stone\\' . $module . '\\' . $module . '@getParameters', compact('idModule', 'statusModule'));
+        $namespace = self::stoneResolveNamespaceByDb($module);
+        if (method_exists($namespace . $module . '\\' . $module, 'getParameters')) {
+            return \App::call($namespace . $module . '\\' . $module . '@getParameters', compact('idModule', 'statusModule'));
         }
     }
 
@@ -267,9 +267,9 @@ class StoneEngine
      */
     public static function pageParameters($module, $id)
     {
-
-        if (method_exists('Twedoo\\Stone\\' . $module . '\\' . $module, 'parameters'))
-            return \App::call('Twedoo\\Stone\\' . $module . '\\' . $module . '@parameters', compact('id', 'module'));
+        $namespace = self::stoneResolveNamespaceByDb($module);
+        if (method_exists($namespace . $module . '\\' . $module, 'parameters'))
+            return \App::call($namespace . $module . '\\' . $module . '@parameters', compact('id', 'module'));
         else
             return false;
     }
@@ -278,13 +278,18 @@ class StoneEngine
      * Get value of attributes of every or specific by name module.
      * @param null $module
      * @param null $attribute
+     * @param bool $main
      * @return object
      */
-    public static function getAttributes($module = null, $attribute = null)
+    public static function getAttributes($module = null, $attribute = null, $main = false)
     {
         if ($module) {
-            if (method_exists('Twedoo\\Stone\\' . $module . '\\' . $module, 'bootStone')) {
-                $callClass = 'Twedoo\\Stone\\' . $module . '\\' . $module;
+            $namespace = 'Twedoo\\Stone\\';
+            if ($main == 'custom') {
+                $namespace = 'App\\Modules\\';
+            }
+            if (method_exists( $namespace . $module . '\\' . $module, 'bootStone')) {
+                $callClass = $namespace . $module . '\\' . $module;
                 $class = new $callClass();
                 return $class->{$attribute};
             }
@@ -412,12 +417,28 @@ class StoneEngine
      */
     public static function pathConfigStoneResolve($namespaceResolve, $stone)
     {
-        if ($namespaceResolve) {
-            $path = __DIR__ . '/Modules/' . $stone;
-        } else {
+        if (substr($namespaceResolve, 0, -1) === "App\Modules") {
             $path = app_path() . '/Modules/' . $stone;
+        } else {
+            $path = __DIR__ . '/Modules/' . $stone;
         }
         return $path;
+    }
+
+    /**
+     * @param $module
+     * @param array $options
+     * @return string
+     */
+    public static function stoneResolveNamespaceByDb($module, $options = [])
+    {
+        $stone = Stones::where('name', $module)->get()->first()->application;
+        if ($stone == "custom") {
+            $namespace = "App\\Modules\\";
+        } else {
+            $namespace = "Twedoo\\Stone\\";
+        }
+        return $namespace;
     }
 
     /**
@@ -433,12 +454,16 @@ class StoneEngine
 
     /**
      * @param array $stoneData
+     * @param null $namespace
      * @return string
      */
-    public static function createStone($stoneData = [])
+    public static function createStone($stoneData = [], $namespace = null)
     {
         $stoneData = current($stoneData);
         $stoneData['permission_name'] = json_encode($stoneData['permission_name']);
+        if ($namespace == "App\Modules") {
+            $stoneData['application'] = 'custom';
+        }
         $add_stone = Stones::create($stoneData);
         $last_id_stone = $add_stone->id;
         $update_order = Stones::where('id', '=', $last_id_stone)->first();

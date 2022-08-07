@@ -35,8 +35,7 @@
         ],
         "psr-4": {
             "Twedoo\\Stone\\": "src/",
-            "Modules\\": "src/Modules",
-            "App\\Modules\\": "../../../app/Modules"
+            "Modules\\": "src/Modules"
         }
     },
     "autoload-dev": {

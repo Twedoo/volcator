@@ -61,7 +61,7 @@
                                                                 @foreach($modules as $onemodule)
                                                                     @if( $onemodule->name == $module)
                                                                         <div class="float-left">
-                                                                            {{ trans('sidebar/sidebar.'.$onemodule->display_name.'') }}
+                                                                            {{ trans($onemodule->name.'::sidebar/sidebar.'.$onemodule->display_name.'') }}
                                                                         </div>
                                                                         <div class="float-right">
                                                                             {!! StoneEngine::getModulesParams($module, $onemodule->id, $onemodule->enable) !!}
@@ -69,7 +69,6 @@
                                                                     @endif
                                                                 @endforeach
                                                             @else
-                                                                {{ $module }}
                                                                 <div class="float-left">
                                                                     {{ $module }}
                                                                 </div>

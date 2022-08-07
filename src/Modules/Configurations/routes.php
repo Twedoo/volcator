@@ -6,9 +6,6 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
     Route::group(['prefix' => app('urlBack') . '/' . app('module')], function () {
 
-
-//protected Languages
-
         Route::group(array('module' => 'Configurations', 'middleware' => ['web', 'permission:role-access-languages'], 'namespace' => 'Modules\Configurations\Controllers\Languages'), function () {
             //routes languages
             Route::get('languages',

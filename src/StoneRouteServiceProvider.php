@@ -46,13 +46,13 @@ class StoneRouteServiceProvider extends ServiceProvider
                     return $value;
                 });
             }
-            $appModules = array_diff(scandir(base_path() . '/app/Modules', 1), array('..', '.'));
+            $appModules = array_diff(scandir(app_path() . '/Modules', 1), array('..', '.'));
             foreach ($appModules as $module) {
-                if (file_exists(base_path() . '/app/Modules/' . $module . '/routes.php')) {
-                    include base_path() . '/app/Modules/' . $module . '/routes.php';
+                if (file_exists(app_path() . '/Modules/' . $module . '/routes.php')) {
+                    include app_path() . '/Modules/' . $module . '/routes.php';
                 }
-                if (is_dir(base_path() . '/app/' . $module . '/Views')) {
-                    $this->loadViewsFrom(base_path() . '/app/' . $module . '/Views', $module);
+                if (is_dir(app_path() . '/Modules/' . $module . '/Views')) {
+                    $this->loadViewsFrom(app_path() . '/Modules/' . $module . '/Views', $module);
                 }
             }
 
