@@ -92,7 +92,13 @@ class MigrationCommand extends Command
         }
         $this->callSilent('vendor:publish', ['--provider' => 'Twedoo\Stone\StoneServiceProvider']);
         $this->info('Twedoo\Stone was installed successfully.');
-        Session::flush();
+        \Session::flush();
+        $files = glob(storage_path().'/framework/sessions/*');
+        foreach($files as $file){
+          if(is_file($file)) {
+            unlink($file);
+          }
+        }
     }
 
     /**
