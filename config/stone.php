@@ -10,6 +10,7 @@
 
 return [
 
+    'name' => 'Twe Stone',
     /*
     |--------------------------------------------------------------------------
     | Stone Space Model
@@ -341,4 +342,16 @@ return [
     // Roles Application
     "ROLE_APPLICATION_FULL"                 => 'Role-Application-Full',
     "ROLE_APPLICATION_VIEW"                 => 'Role-Application-View',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Alias Roles name constants
+    |--------------------------------------------------------------------------
+    */
+    'markdown' => [
+        'theme' => 'default',
+        'paths' => [
+            'elements/email/mail',
+        ]
+    ],
 ];

@@ -32,7 +32,7 @@ class applicationsTableSeeder extends Seeder
             'name' => 'Applications',
             'display_name' => 'applications_stone',
             'permission_name' => json_encode([$PERMISSION_APPLICATION_FULL]),
-            'menu_type' => 'hidden-organizer',
+            'menu_type' => 'core',
             'menu_icon' => 'fe fe-layers',
             'enable' => '1',
             'application' => 'main',

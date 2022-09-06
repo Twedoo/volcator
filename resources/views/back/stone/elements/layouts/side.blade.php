@@ -88,11 +88,7 @@
                         @if(StoneMenu::hasPermissionsMenu(json_decode($ModuleSideBar->permission_name)))
                         <li class="cui__menuLeft__item cui__menuLeft__submenu">
                           <span class="cui__menuLeft__item__link">
-                              @if ($ModuleSideBar->menu_type != 'core')
-                                  <span class="cui__menuLeft__item__title">{{ trans($ModuleSideBar->name.'::sidebar/sidebar.'.$ModuleSideBar->display_name)  }}</span>
-                              @else
-                                  <span class="cui__menuLeft__item__title"> {{ trans('sidebar/sidebar.'.$ModuleSideBar->display_name.'')  }}</span>
-                              @endif
+                            <span class="cui__menuLeft__item__title"> {{ trans($ModuleSideBar->name.'::sidebar/sidebar.'.$ModuleSideBar->display_name.'')  }}</span>
                             <i class="cui__menuLeft__item__icon {!! $ModuleSideBar->menu_icon !!}"></i>
                           </span>
                             <ul class="cui__menuLeft__navigation">
@@ -102,11 +98,7 @@
                                             <li class="cui__menuLeft__item">
                                                 <a class="cui__menuLeft__item__link"
                                                    href="{{ url(app('urlBack').'/'.$SubMenu->route_link) }}">
-                                                    @if ($ModuleSideBar->menu_type != 'core')
-                                                        <span class="cui__menuLeft__item__title">{{ trans($ModuleSideBar->name.'::sidebar/sidebar.'.$SubMenu->name_menu)  }}</span>
-                                                    @else
-                                                        <span class="cui__menuLeft__item__title">{{ trans('sidebar/sidebar.'.$SubMenu->name_menu)  }}</span>
-                                                    @endif
+                                                    <span class="cui__menuLeft__item__title">{{ trans($ModuleSideBar->name.'::sidebar/sidebar.'.$SubMenu->name_menu)  }}</span>
                                                 </a>
                                             </li>
                                         @endpermission

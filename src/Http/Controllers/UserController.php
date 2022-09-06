@@ -3,9 +3,11 @@
 namespace Twedoo\Stone\Http\Controllers;
 
 use App;
+use Illuminate\Support\Facades\Notification;
 use Twedoo\Stone\Core\StoneSpace;
 use Twedoo\Stone\Modules\Applications\Models\Applications;
 use Twedoo\Stone\Core\StoneApplication;
+use Twedoo\Stone\Modules\Applications\Models\Spaces;
 use Twedoo\Stone\Organizer\Models\Stones;
 use Twedoo\StoneGuard\Models\Role;
 use Twedoo\StoneGuard\Models\User;
@@ -25,20 +27,17 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
         $data = StoneSpace::getUsersByCurrentApplicationCurrentSpace();
         return view('elements.super.users.index', compact('data'));
     }
 
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function create()
     {
         $user = auth()->user();
@@ -51,14 +50,12 @@ class UserController extends Controller
         return view('elements.super.users.create', compact('roles'));
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-
     public function store(Request $request)
     {
         $rules = [
@@ -106,14 +103,12 @@ class UserController extends Controller
 
     }
 
-
     /**
      * Display the specified resource.
      *
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-
     public function show($id)
     {
         $user = auth()->user();
@@ -125,14 +120,12 @@ class UserController extends Controller
 
     }
 
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-
     public function edit($id)
     {
         $user = auth()->user();
@@ -154,7 +147,6 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-
     public function update(Request $request, $id)
     {
         $user = auth()->user();
@@ -245,5 +237,21 @@ class UserController extends Controller
             }
         }
         return redirect()->route(app('urlBack') . '.super.users.index');
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function liveSearch(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $users = [];
+        if($request->has('q')){
+            $search = $request->q;
+            $users = User::select("email", "id")
+                ->where('email', 'LIKE', "%$search%")
+                ->get();
+        }
+        return response()->json($users);
     }
 }

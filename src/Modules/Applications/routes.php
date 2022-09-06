@@ -1,7 +1,7 @@
 <?php
-//
+
 use Illuminate\Support\Facades\Config;
-//use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['web', 'auth']], function () {
     Route::auth();

@@ -110,6 +110,28 @@ class Organizer extends StoneStructure
     }
 
     /**
+     * @param $module
+     * @param bool $console
+     * @return void
+     */
+    public function preBuildingConsole($module, $console = true) :void
+    {
+        $isInstalled = Stones::where('name', $module)->first();
+        if (!$isInstalled) {
+            $this->setBuilding($module, $console);
+        }
+    }
+
+    /**
+     * @param $module
+     * @return mixed
+     */
+    public function isMainInstalled($module)
+    {
+        return Stones::where('name', $module)->whereIn('application', ['main'])->first();
+    }
+
+    /**
      * @param $stone
      */
     public function setActive($stone)
@@ -122,14 +144,14 @@ class Organizer extends StoneStructure
      * @param $module
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function setBuilding($module)
+    public function setBuilding($module, $console = false)
     {
 
         $OrganizerDB = Stones::where('name', $module)->first();
         if ($OrganizerDB) {
             return redirect()->route(app('urlBack') . '.super.modules.index');
         } else {
-            return StoneEngine::setModule($module, false);
+            return StoneEngine::setModule($module, false, $console);
         }
     }
 
@@ -152,8 +174,10 @@ class Organizer extends StoneStructure
      */
     public function resetModule($module)
     {
-        if (StoneEngine::uninstallStone($module)) {
-            StoneEngine::setModule($module, true);
+        if ($this->isMainInstalled($module) == null) {
+            if (StoneEngine::uninstallStone($module)) {
+                StoneEngine::setModule($module, true);
+            }
         }
         return redirect()->route(app('urlBack') . '.super.modules.index');
     }
@@ -166,55 +190,65 @@ class Organizer extends StoneStructure
      */
     public function uninstallModule($module)
     {
-        if (StoneEngine::uninstallStone($module)) {
-            StoneLanguage::displayNotificationProgress(
-                'success',
-                trans('Organizer::Organizer/Organizer.success_uninstallmodule'),
-                trans('Organizer::Organizer/Organizer.success')
-            );
-            Session::flash('message', trans('Organizer::Organizer/Organizer.success_uninstallmodule'));
+        if ($this->isMainInstalled($module) == null) {
+            if (StoneEngine::uninstallStone($module)) {
+                StoneLanguage::displayNotificationProgress(
+                    'success',
+                    trans('Organizer::Organizer/Organizer.success_uninstallmodule'),
+                    trans('Organizer::Organizer/Organizer.success')
+                );
+                Session::flash('message', trans('Organizer::Organizer/Organizer.success_uninstallmodule'));
+            }
         }
+
         return redirect()->route(app('urlBack') . '.super.modules.index');
     }
 
     public function statusModule($id, $module)
     {
-        $status = Stones::find($id);
-        if ($status->enable == 1) {
-            $status->enable = 0;
-            $status->update();
-            StoneLanguage::displayNotificationProgress(
-                'success',
-                trans('Organizer::Organizer/Organizer.disablem'),
-                trans('Organizer::Organizer/Organizer.success')
-            );
-            $status = '_d';
-        } else {
-            $status->enable = 1;
-            $status->update();
-            StoneLanguage::displayNotificationProgress(
-                'success',
-                trans('Organizer::Organizer/Organizer.enablem'),
-                trans('Organizer::Organizer/Organizer.success')
-            );
-            $status = '_e';
+        $isMainInstalled = Stones::where('id', $id)->whereIn('application', ['main'])->first();
+        if ($isMainInstalled == null) {
+            $status = Stones::find($id);
+            if ($status->enable == 1) {
+                $status->enable = 0;
+                $status->update();
+                StoneLanguage::displayNotificationProgress(
+                    'success',
+                    trans('Organizer::Organizer/Organizer.disablem'),
+                    trans('Organizer::Organizer/Organizer.success')
+                );
+                $status = '_d';
+            } else {
+                $status->enable = 1;
+                $status->update();
+                StoneLanguage::displayNotificationProgress(
+                    'success',
+                    trans('Organizer::Organizer/Organizer.enablem'),
+                    trans('Organizer::Organizer/Organizer.success')
+                );
+                $status = '_e';
+            }
+            Session::flash('message', trans('Organizer::Organizer/Organizer.status_module' . $status));
         }
-        Session::flash('message', trans('Organizer::Organizer/Organizer.status_module' . $status));
+
         return redirect()->route(app('urlBack') . '.super.modules.index');
     }
 
     public function removeModule($module)
     {
-        $isExist = StoneEngine::isActiveStoneInCurrentApplication($module);
-        if (!$isExist) {
-            StoneEngine::deleteDirModule(app_path('Modules/' . $module), $module);
-            StoneLanguage::displayNotificationProgress(
-                'success',
-                trans('Organizer::Organizer/Organizer.success_remove_modules'),
-                trans('Organizer::Organizer/Organizer.success')
-            );
-            Session::flash('message', trans('Organizer::Organizer/Organizer.success_uninstallmodule'));
-            return redirect()->route(app('urlBack') . '.super.modules.index');
+        if ($this->isMainInstalled($module) == null) {
+            $isExist = StoneEngine::isActiveStoneInCurrentApplication($module);
+            if (!$isExist) {
+                StoneEngine::deleteDirModule(app_path('Modules/' . $module), $module);
+                StoneLanguage::displayNotificationProgress(
+                    'success',
+                    trans('Organizer::Organizer/Organizer.success_remove_modules'),
+                    trans('Organizer::Organizer/Organizer.success')
+                );
+                Session::flash('message', trans('Organizer::Organizer/Organizer.success_uninstallmodule'));
+                return redirect()->route(app('urlBack') . '.super.modules.index');
+            }
         }
+        return redirect()->route(app('urlBack') . '.super.modules.index');
     }
 }

@@ -220,4 +220,13 @@ class StoneSpace
         }
         return $nameSpace;
     }
+
+    /**
+     * @param $space
+     * @return false|\Illuminate\Database\Eloquent\Collection|string|StoneSpace[]
+     */
+    public static function getNameSpaceById($id)
+    {
+        return Spaces::where('id', $id)->first()->name;
+    }
 }

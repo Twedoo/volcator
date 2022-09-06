@@ -2,7 +2,8 @@ stone:
   name: 'Configurations'
   display_name: 'tmod_conf'
   permission_name: ['role-access-settings', 'role-access-languages', 'role-access-templates']
-  menu_type: ''
+  menu_type: 'core'
+  application: 'main'
   menu_icon: 'fe fe-settings'
   enable: 1,
   publish: 'public'

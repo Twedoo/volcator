@@ -88,8 +88,8 @@ return [
     'edit_users_role' => 'Roles',
     'edit_users_update' => 'Update',
     'index_users_title' => 'Users',
-    'index_users_create' => 'Create New Users',
-    'index_users_invite' => 'Invite New Users',
+    'index_users_create' => 'Create New User',
+    'index_users_invite' => 'Invite User',
     'index_users_management' => 'Users Management',
     'index_users_name' => 'Name',
     'index_users_email' => 'Email',
@@ -123,4 +123,11 @@ return [
     'errors_permissions' => 'Access denied or not found !',
     'message_error_permissions' => 'Access denied, don\'t have permission or this page not found !!',
 
+    # popup invite user
+    'invite_user' => 'Invite user',
+    'invite' => 'Invite',
+    'invite_user_live_search' => 'Invite a user by email',
+    'invite_user_live_search_placeholder' => 'Filter users or write an email to invite',
+    'invite_user_error_email' => 'Invalid email address.',
+    'invite_full_space' => 'Invite users to full space',
 ];

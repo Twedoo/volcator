@@ -49,24 +49,29 @@ class StoneRouteServiceProvider extends ServiceProvider
             $appModules = array_diff(scandir(app_path() . '/Modules', 1), array('..', '.'));
             foreach ($appModules as $module) {
                 if (file_exists(app_path() . '/Modules/' . $module . '/routes.php')) {
-                    include app_path() . '/Modules/' . $module . '/routes.php';
+//                    include app_path() . '/Modules/' . $module . '/routes.php';
+                    Route::middleware('web')->group(app_path() . '/Modules/' . $module . '/routes.php');
+                    $this->loadRoutesFrom(app_path() . '/Modules/' . $module . '/routes.php');
                 }
                 if (is_dir(app_path() . '/Modules/' . $module . '/Views')) {
                     $this->loadViewsFrom(app_path() . '/Modules/' . $module . '/Views', $module);
                 }
             }
 
+
             $stoneModules = array_diff(scandir(__DIR__ . '/Modules', 1), array('..', '.'));
 
             foreach ($stoneModules as $module) {
                 if (file_exists(__DIR__ . '/Modules/' . $module . '/routes.php')) {
+                    Route::middleware('web')->group(__DIR__ . '/Modules/' . $module . '/routes.php');
                     $this->loadRoutesFrom(__DIR__ . '/Modules/' . $module . '/routes.php');
                 }
                 if (is_dir(__DIR__ . '/Modules/' . $module . '/Views')) {
                     $this->loadViewsFrom(__DIR__ . '/Modules/' . $module . '/Views', $module);
                 }
             }
-
+            Route::getRoutes()->refreshNameLookups();
+            Route::getRoutes()->refreshActionLookups();
             $this->configureRateLimiting();
 
             $this->routes(function () {
