@@ -8,7 +8,12 @@ Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'LanguageController@
 Route::group(['middlewareGroups' => ['web']], function () {
     Route::group(['prefix' => app('urlBack')], function () {
         Auth::routes();
-        Route::get('logout', 'Auth\LoginController@logout');
+        Route::get('logout/{redirectTo?}',
+            [
+                'as' => app('urlBack') . '.super.users.logout',
+                'uses' => 'Auth\LoginController@logout'
+            ])->where('redirectTo', '(.*)');
+
         Route::group(['middleware' => ['auth']], function () {
             Route::get('/', function () {
                 return view('elements.welcome');

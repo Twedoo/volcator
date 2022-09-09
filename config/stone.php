@@ -10,7 +10,7 @@
 
 return [
 
-    'name' => 'Twe Stone',
+    'APP_NAME' => 'Stone Space',
     /*
     |--------------------------------------------------------------------------
     | Stone Space Model

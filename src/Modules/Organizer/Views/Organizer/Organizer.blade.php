@@ -40,7 +40,7 @@
                                                         @else
                                                             <img class="kit__g16__productPhoto img-fluid"
                                                                  style="height:150px; width:210px"
-                                                                 src="{{ asset(app('back').'/assets/images/logos/stone-logo.svg') }}"
+                                                                 src="{{ asset(app('back').'/assets/images/logos/stone-logo.png') }}"
                                                                  alt="Module"/>
                                                         @endif
                                                     </div>

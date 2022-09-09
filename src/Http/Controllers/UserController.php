@@ -67,11 +67,11 @@ class UserController extends Controller
 
         $validate = Validator::make($request->all(), $rules);
         $validate->SetAttributeNames([
-            "name" => trans('access/roles_managment.create_users_name'),
-            "email" => trans('access/roles_managment.create_users_email'),
-            "password" => trans('access/roles_managment.create_users_password'),
-            "confirm-password" => trans('access/roles_managment.create_users_password_confirm'),
-            "roles" => trans('access/roles_managment.create_users_roles')
+            "name" => trans('Access-Controls::Access-Controls/Access-Controls.create_users_name'),
+            "email" => trans('Access-Controls::Access-Controls/Access-Controls.create_users_email'),
+            "password" => trans('Access-Controls::Access-Controls/Access-Controls.create_users_password'),
+            "confirm-password" => trans('Access-Controls::Access-Controls/Access-Controls.create_users_password_confirm'),
+            "roles" => trans('Access-Controls::Access-Controls/Access-Controls.create_users_roles')
         ]);
 
         if ($validate->fails()) {

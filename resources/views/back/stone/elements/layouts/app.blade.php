@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>
-        Clean UI Pro Html Admin Template
+        @if (isset(app('APP_NAME'))
+            app('APP_NAME')
+        @else
+            Config::get('stone.app_name')
+        @endif
     </title>
     <link rel="icon" type="image/png" href="{{ asset(app('back').'/assets/components/kit/core/img/favicon.png') }}" />
     <link href="https://fonts.googleapis.com/css?family=Mukta:400,700,800&display=swap" rel="stylesheet">

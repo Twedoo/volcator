@@ -3,7 +3,7 @@
 }
 
 .cui__auth__boxContainer {
-    padding: 3.33rem 2rem;
+    padding: 2rem;
 }
 
 .cui__auth__authContainer {
@@ -32,7 +32,7 @@
 }
 
 .cui__auth__text__above__form__login {
-    color: #25c4f2;
+    color: #7575A3;
 }
 
 .cui__auth__topbar {
@@ -54,7 +54,7 @@
 }
 
 .text__color__stone-blue {
-    color: #25c4f2;
+    color: #7E7EA9;
 }
 
 .cui__auth__logoContainer {
@@ -76,7 +76,7 @@
 .cui__auth__logoContainer__name {
     font-size: 1.33rem;
     font-weight: 700;
-    color: #25C4F2;
+    color: #7575A3;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;

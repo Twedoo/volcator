@@ -122,7 +122,12 @@ return [
     'permission_delete_index' => 'Delete',
     'errors_permissions' => 'Access denied or not found !',
     'message_error_permissions' => 'Access denied, don\'t have permission or this page not found !!',
-
+    # Register and Login
+    'create_account' => 'Create account',
+    'login' => 'Log In',
+    'forget_password' => 'Forget password ?',
+    'dont_have_account' => 'Don\'t have an account ?',
+    'have_account' => 'Have an account ?',
     # popup invite user
     'invite_user' => 'Invite user',
     'invite' => 'Invite',

@@ -50,6 +50,11 @@ class StoneTableSeeder extends Seeder
          */
         $default_parameters_app = [
             [
+                'name' => 'TW_APP_NAME',
+                'value' => 'Stone Space',
+                'application' => 'main'
+            ],
+            [
                 'name' => 'TW_APP_TEMPLATE_BACK',
                 'value' => 'stone',
                 'application' => 'main'
@@ -61,6 +66,16 @@ class StoneTableSeeder extends Seeder
             ],
             [
                 'name' => 'TW_APP_PREFIX',
+                'value' => 'atw',
+                'application' => 'main'
+            ],
+            [
+                'name' => 'TW_APP_FRONT_PREFIX',
+                'value' => '',
+                'application' => 'main'
+            ],
+            [
+                'name' => 'TW_APP_BACK_PREFIX',
                 'value' => 'atw',
                 'application' => 'main'
             ],

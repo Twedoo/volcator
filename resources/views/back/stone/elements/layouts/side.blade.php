@@ -40,9 +40,8 @@
     <div class="cui__menuLeft__outer">
         <div class="cui__menuLeft__logo__container">
             <div class="cui__menuLeft__logo">
-                <img src="{{ asset(app('back').'/assets/images/logos/stone-logo.svg') }}"
-                     class="mr-2 cui__menuLeft__logo_img" alt="Twedoo"/>
-                <div class="cui__menuLeft__logo__name">STONE'S</div>
+                <img src="{{ asset(app('back').'/assets/images/logos/stone-logo.png') }}"
+                     class="mr-2 cui__menuLeft__logo_img" alt="{{ app('APP_NAME') }}"/> 
             </div>
         </div>
         <div class="cui__menuLeft__scroll kit__customScroll">

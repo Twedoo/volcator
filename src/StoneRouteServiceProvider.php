@@ -20,14 +20,16 @@ class StoneRouteServiceProvider extends ServiceProvider
     public function boot()
     {
         if (!$this->app->runningInConsole()) {
-            $PrefixTester = Request()->segment(1);
+            $segment_one = Request()->segment(1);
+            $segment_two = Request()->segment(2);
+            $segment_three = Request()->segment(3);
+
             config([
                 'params' => Parameters::where('name', 'like', '%TW_APP_%')->get()->keyBy('name')->transform(function ($setting) {
                     return $setting->value;
                 })->toArray()
             ]);
-
-            if ($PrefixTester == config('prefix.urlBack')) {
+             if ($segment_one == config()["params"]["TW_APP_BACK_PREFIX"] || 'invite/'.config()["params"]["TW_APP_BACK_PREFIX"] == $segment_one.'/'.$segment_two) {
                 $path = realpath(__DIR__ . '/../resources/views/back/' . config()["params"]["TW_APP_TEMPLATE_BACK"]);
             } else {
                 $path = realpath(__DIR__ . '/../resources/views/front/' . config()["params"]["TW_APP_TEMPLATE_FRONT"]);
@@ -35,10 +37,12 @@ class StoneRouteServiceProvider extends ServiceProvider
             view()->addLocation($path);
 
             $singletonConfig = [
+                'APP_NAME' => config()["params"]["TW_APP_NAME"],
                 'back' => '../resources/views/back/' . config()["params"]["TW_APP_TEMPLATE_BACK"],
                 'front' => '../resources/views/front/' . config()["params"]["TW_APP_TEMPLATE_FRONT"],
-                'urlBack' => config('prefix.urlBack'),
-                'module' => config('prefix.module'),
+                'urlBack' => config()["params"]["TW_APP_BACK_PREFIX"],
+                'urlFront' => config()["params"]["TW_APP_FRONT_PREFIX"],
+                'module' => config()["params"]["TW_APP_MODULE"],
             ];
 
             foreach ($singletonConfig as $key => $value) {
@@ -49,7 +53,6 @@ class StoneRouteServiceProvider extends ServiceProvider
             $appModules = array_diff(scandir(app_path() . '/Modules', 1), array('..', '.'));
             foreach ($appModules as $module) {
                 if (file_exists(app_path() . '/Modules/' . $module . '/routes.php')) {
-//                    include app_path() . '/Modules/' . $module . '/routes.php';
                     Route::middleware('web')->group(app_path() . '/Modules/' . $module . '/routes.php');
                     $this->loadRoutesFrom(app_path() . '/Modules/' . $module . '/routes.php');
                 }
@@ -57,7 +60,6 @@ class StoneRouteServiceProvider extends ServiceProvider
                     $this->loadViewsFrom(app_path() . '/Modules/' . $module . '/Views', $module);
                 }
             }
-
 
             $stoneModules = array_diff(scandir(__DIR__ . '/Modules', 1), array('..', '.'));
 
