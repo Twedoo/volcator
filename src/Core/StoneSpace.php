@@ -14,6 +14,10 @@ use Twedoo\StoneGuard\Models\User;
 
 class StoneSpace
 {
+    const MAIN_SPACE_NAME = 'Main Stone Space';
+    const INVITE_FULL_SPACE = 'FULL-SPACE';
+    const INVITE_CURRENT_APPLICATION = 'CURRENT-APPLICATION';
+
     /**
      * @param $space
      * @return \Illuminate\Database\Eloquent\Collection|static[]
@@ -53,19 +57,30 @@ class StoneSpace
     }
 
     /**
-     * @param $space
+     * @param $name
+     * @param $image
+     * @param null $register
+     * @param null $user
      * @return false|\Illuminate\Database\Eloquent\Collection|string|StoneSpace[]
      */
-    public static function createSpace($name, $image)
+    public static function createSpace($name, $image, $register = null, $user = null)
     {
-        $user_auth = auth()->user();
+        /**
+         * by default create space and application for new user
+         * if $register and $user true that means should create space and application for this new user and return object Space & Application
+         * or create them for current user.
+         */
+        if (!$register) {
+            $user = auth()->user();
+        }
+
         $space = Spaces::create([
             'unique_identity' => uniqid(),
             'name' => $name,
-            'owner_id' => $user_auth->id,
+            'owner_id' => $user->id,
             'type' => 'standard',
             'image' => $image,
-            'created_by' => $user_auth->name,
+            'created_by' => $user->name,
         ]);
         $application = Applications::create([
             'name' => 'Main',
@@ -73,16 +88,16 @@ class StoneSpace
             'unique_identity' => uniqid(),
             'space_id' => $space->id,
             'type' => 'main',
-            'created_by' => $user_auth->name,
+            'created_by' => $user->name,
         ]);
         $application_attached = Stones::where('application', 'main')->pluck('id')->toArray();
         $roles = Role::where('type', 'main')->pluck('id')->toArray();
-        $users_attached[] = (string) $user_auth->id;
+        $users_attached[] = (string) $user->id;
         $application->users()->attach($users_attached, ['space_id' => $space->id]);
         $application->stones()->attach($application_attached, ['space_id' => $space->id]);
         foreach ($roles as $role) {
             DB::table("role_user")->insert([
-                'user_id' => $user_auth->id,
+                'user_id' => $user->id,
                 'role_id' => $role,
                 'application_id' => $application->id
             ]);

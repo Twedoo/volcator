@@ -1,6 +1,7 @@
 <?php
 namespace Twedoo\Stone\Modules\Applications\Models\seeder;
 
+use Twedoo\Stone\Core\StoneSpace;
 use Twedoo\Stone\Modules\Applications\Models\Applications;
 use Twedoo\Stone\Modules\Applications\Models\Spaces;
 use Twedoo\Stone\Organizer\Models\Stones;
@@ -143,7 +144,7 @@ class applicationsTableSeeder extends Seeder
         foreach ($users_majestic as $key => $user_id) {
             $space = Spaces::create([
                 'unique_identity' => uniqid(),
-                'name' => 'Main Workspace',
+                'name' => StoneSpace::MAIN_SPACE_NAME,
                 'owner_id' => $user_id,
                 'type' => 'main',
                 'enable' => 1,

@@ -51,9 +51,9 @@ class StoneInvitation
                 'object' => $mailObject['object'],
                 'internal' => $internal,
                 'accepted' => null,
-                'type' => $type ? 'FULL-SPACE' : 'CURRENT-APPLICATION',
+                'type' => $type ? StoneSpace::INVITE_FULL_SPACE :  StoneSpace::INVITE_CURRENT_APPLICATION,
                 'space_id' => $space_id,
-                'application_id' => $type ? 'FULL-SPACE' : $application_id,
+                'application_id' => $type ? StoneSpace::INVITE_FULL_SPACE : $application_id,
                 'identification' => $identification,
                 'owner_id' => Auth::user()->id,
                 'collection' => $space_id.$application_id.'|'.$identification

@@ -18,6 +18,26 @@ use Twedoo\StoneGuard\Models\User;
 class StoneApplication
 {
     /**
+     * Roles name constants
+     */
+    public static function defaultRoles()
+    {
+        $ROLE_MANAGER_SPACE                    = Config::get('stone.ROLE_MANAGER_SPACE');
+        $ROLE_USER_SPACE                       = Config::get('stone.ROLE_USER_SPACE');
+        $ROLE_MANAGER_ORGANIZER_FULL           = Config::get('stone.ROLE_MANAGER_ORGANIZER_FULL');
+        $ROLE_ACCESS_CONTROL_FULL              = Config::get('stone.ROLE_ACCESS_CONTROL_FULL');
+        $ROLE_CONFIGURATION_FULL               = Config::get('stone.ROLE_CONFIGURATION_FULL');
+
+        return [
+            $ROLE_MANAGER_SPACE,
+            $ROLE_USER_SPACE,
+            $ROLE_MANAGER_ORGANIZER_FULL,
+            $ROLE_ACCESS_CONTROL_FULL,
+            $ROLE_CONFIGURATION_FULL,
+        ];
+    }
+
+    /**
      * @param $application
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
@@ -81,6 +101,39 @@ class StoneApplication
         $users_attached[] = (string)$user->id;
         $application->users()->attach($users_attached, ['space_id' => StoneSpace::getCurrentSpaceId()]);
     }
+
+    /**
+     * @param $space_id
+     * @param $user
+     * @return void
+     */
+    public static function assignUserToAllApplicationsBySpace($space_id, $user)
+    {
+        $applications = Applications::where('space_id', $space_id)->pluck('id')->toArray();
+        foreach ($applications as $application) {
+            DB::table("applications_user")->insert([
+                'application_id' => $application,
+                'user_id' => $user->id,
+                'space_id' => $space_id
+            ]);
+        }
+    }
+
+    /**
+     * @param $space_id
+     * @param $application_id
+     * @param $user
+     * @return void
+     */
+    public static function assignUserToApplicationBySpace($space_id, $application_id, $user)
+    {
+        DB::table("applications_user")->insert([
+            'application_id' => $application_id,
+            'user_id' => $user->id,
+            'space_id' => $space_id
+        ]);
+    }
+
 
     /**
      * @return mixed
@@ -315,6 +368,16 @@ class StoneApplication
             Applications::where('id', $id)->delete();;
         }
     }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public static function deleteUserRoleByCurrentApplication($id): void
+    {
+        DB::table('role_user')->where('user_id', $id)->where('application_id', StoneApplication::getCurrentApplicationId())->delete();
+    }
+
 
     /**
      * @return mixed

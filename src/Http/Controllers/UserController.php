@@ -186,7 +186,7 @@ class UserController extends Controller
             $user->update($input);
 
             if (User::where('id', '=', $id)->where('id', '!=', '1')->first()) {
-                DB::table('role_user')->where('user_id', $id)->where('application_id', StoneApplication::getCurrentApplicationId())->delete();
+                StoneApplication::deleteUserRoleByCurrentApplication($id);
 
                 foreach ($request->input('roles') as $key => $value) {
                     $user->attachRole($value, ['application_id', StoneApplication::getCurrentApplicationId()]);

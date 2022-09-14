@@ -342,6 +342,8 @@ return [
     // Roles Application
     "ROLE_APPLICATION_FULL"                 => 'Role-Application-Full',
     "ROLE_APPLICATION_VIEW"                 => 'Role-Application-View',
+    // Roles Configuration
+    "ROLE_CONFIGURATION_FULL"                 => 'Role-Access-Configuration',
 
     /*
     |--------------------------------------------------------------------------

@@ -60,7 +60,7 @@
                             <form action="{{ url('invite/'.app('urlBack').'/create-user/'.$code.'/'.$email) }}" method="post" class="mb-2">
                                 {{ csrf_field() }}
                                 <div class="form-group @if ($errors->has('email')) has-danger @endif">
-                                    {!! Form::text('email', $email, array('placeholder' => trans('Access-Controls::Access-Controls/Access-Controls.edit_users_email'), 'disabled' => true, 'class' => 'form-control', 'value' =>old('email') )) !!}
+                                    {!! Form::text('email', $email, array('placeholder' => trans('Access-Controls::Access-Controls/Access-Controls.edit_users_email'), 'class' => 'form-control', 'value' =>old('email') )) !!}
                                     @if ($errors->has('email'))
                                         <div class="form-control-error-list" data-error-list="">
                                             <ul>
