@@ -89,3 +89,30 @@ input[type="checkbox"]:disabled {
     color: #bab9b9;
     cursor: not-allowed;
 }
+
+.application-block {
+    padding-top: 8px;
+}
+
+.card-header-application:last-child, .card-footer-application:last-child, .card-body-application:last-child {
+    border-radius: 0 0 calc(7px - 1px) calc(7px - 1px);
+}
+.card-header-application, .card-footer-application, .card-body-application {
+    background: transparent;
+}
+.card-body-application {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 0.5rem;
+
+}
+.card-header-application {
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 0.75em;
+}
+
+.application-title {
+    color: #595c97;
+}

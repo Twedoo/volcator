@@ -58,6 +58,27 @@ class StoneApplication
     /**
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
+    public static function getCurrentApplicationName()
+    {
+        $application = Applications::where([
+                ['id', '=', StoneApplication::getCurrentApplicationId()]]
+        )->first();
+        return $application;
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public static function getApplicationNameById($id)
+    {
+        return Applications::find($id)->name;
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
     public static function getCurrentApplication()
     {
         $application = Applications::where([

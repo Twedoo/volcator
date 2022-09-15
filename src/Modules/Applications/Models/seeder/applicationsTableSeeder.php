@@ -23,6 +23,12 @@ class applicationsTableSeeder extends Seeder
 
     public function run()
     {
+        $PERMISSION_SPACE_FULL                 = Config::get('stone.PERMISSION_SPACE_FULL');
+        $PERMISSION_SPACE_VIEW                 = Config::get('stone.PERMISSION_SPACE_VIEW');
+
+        $ROLE_MANAGER_SPACE                    = Config::get('stone.ROLE_MANAGER_SPACE');
+        $ROLE_USER_SPACE                       = Config::get('stone.ROLE_USER_SPACE');
+
         $PERMISSION_APPLICATION_FULL           = Config::get('stone.PERMISSION_APPLICATION_FULL');
         $PERMISSION_APPLICATION_VIEW           = Config::get('stone.PERMISSION_APPLICATION_VIEW');
 
@@ -33,7 +39,7 @@ class applicationsTableSeeder extends Seeder
             'name' => 'Applications',
             'display_name' => 'applications_stone',
             'permission_name' => json_encode([$PERMISSION_APPLICATION_FULL]),
-            'menu_type' => 'core',
+            'menu_type' => 'hidden',
             'menu_icon' => 'fe fe-layers',
             'enable' => '1',
             'application' => 'main',
@@ -44,13 +50,6 @@ class applicationsTableSeeder extends Seeder
         $add_order = Stones::where('id', '=', $id_application_module)->first();
         $add_order->order = $id_application_module;
         $add_order->update();
-
-        Menuback::create([
-            'name_menu' => "multi_applications_menu",
-            'route_link' => "applications",
-            'id_stone' => $id_application_module,
-            'mb_permission' => $PERMISSION_APPLICATION_FULL,
-        ]);
 
         /**
          * Begin Comment
@@ -169,5 +168,95 @@ class applicationsTableSeeder extends Seeder
          * End Comment
          * Create Spaces and Applications TO Users MAJESTIC
          */
+
+
+
+        /**
+         * Begin Comment
+         * Add Permissions and Roles Manager Space & User Space
+         */
+
+        $add_stone = Stones::create([
+            'name' => 'Stones',
+            'display_name' => 'stone',
+            'permission_name' => json_encode([$PERMISSION_SPACE_FULL, $PERMISSION_SPACE_VIEW]),
+            'menu_type' => 'hidden',
+            'menu_icon' => null,
+            'enable' => '1',
+            'application' => 'main',
+            'publish' => 'public'
+        ]);
+
+        $last_id_stone = $add_stone->id;
+        $insert_order_stone = Stones::where('id', '=', $last_id_stone)->first();
+        $insert_order_stone->order = $last_id_stone;
+        $insert_order_stone->update();
+
+        $add_permissions_manager_space = Permission::create([
+            'name' => $PERMISSION_SPACE_FULL,
+            'id_stone' => $add_stone->id,
+            'display_name' => 'Permission Manager Space',
+            'description' => 'Permission manager spaces  (Create, Edit, Delete spaces)'
+        ]);
+
+        $add_permissions_user_space = Permission::create([
+            'name' => $PERMISSION_SPACE_VIEW,
+            'id_stone' => $add_stone->id,
+            'display_name' => 'Permission User Space',
+            'description' => 'Permission user spaces (Switch between spaces)'
+        ]);
+
+        $add_roles_manager_space = Role::create([
+            'name' => $ROLE_MANAGER_SPACE,
+            'display_name' => 'Role Manager Space',
+            'description' => 'Manager Space, permissions to create spaces',
+            'type' => 'main'
+        ]);
+
+        $add_roles_user_space = Role::create([
+            'name' => $ROLE_USER_SPACE,
+            'display_name' => 'Role User Space',
+            'description' => 'User Space, permissions to create spaces',
+            'type' => 'main'
+        ]);
+
+
+        $permissions_roles_manager_and_user_space = [
+            [
+                'permission_id' => $add_permissions_manager_space->id,
+                'role_id' => $add_roles_manager_space->id
+            ],
+            [
+                'permission_id' => $add_permissions_user_space->id,
+                'role_id' => $add_roles_user_space->id
+            ]
+        ];
+
+        foreach ($permissions_roles_manager_and_user_space as $key => $value) {
+            DB::table("permission_role")->insert($value);
+        }
+
+        foreach ($users_majestic as $key => $user_id) {
+            $roles_users_manager_and_user_space = [
+                [
+                    'user_id' => $user_id,
+                    'role_id' => $add_roles_manager_space->id
+                ],
+                [
+                    'user_id' => $user_id,
+                    'role_id' => $add_roles_user_space->id
+                ]
+            ];
+
+            foreach ($roles_users_manager_and_user_space as $value) {
+                DB::table("role_user")->insert($value);
+            }
+        }
+
+        /**
+         * End Comment
+         * Add Permissions and Roles Manager Space & User Space
+         */
+
     }
 }

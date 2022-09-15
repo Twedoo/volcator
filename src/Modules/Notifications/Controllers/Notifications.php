@@ -9,14 +9,29 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Twedoo\Stone\Core\StoneApplication;
 use Twedoo\Stone\Core\StoneInvitation;
+use Twedoo\Stone\Core\StoneNotification;
 use Twedoo\Stone\Core\StoneSpace;
+use Twedoo\Stone\Modules\Applications\Models\Applications;
+use Twedoo\Stone\Modules\Applications\Models\Spaces;
 use Twedoo\Stone\Modules\Notifications\Models\Invitation;
 use Twedoo\StoneGuard\Models\User;
 use Validator;
 use Hash;
+use Twedoo\Stone\Modules\Notifications\Models\notification as StonePushNotification;
 
 class Notifications extends Controller
 {
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index()
+    {
+        // TODO: pagination
+        $user = auth()->user();
+        $notifications = StonePushNotification::where(["space_id" => StoneSpace::getCurrentSpaceId(), "owner_id" => $user->id])->get();
+        return view('Notifications::Notifications.Notifications', compact('notifications'));
+    }
 
     /**
      * @param Request $request
@@ -119,13 +134,28 @@ class Notifications extends Controller
                 /**
                  * each user have main stone space and main application, stone core create them automatically
                  */
+                $is_full_space = false;
                 StoneSpace::createSpace(StoneSpace::MAIN_SPACE_NAME, null, true, $user);
                 if ($invitation->type == StoneSpace::INVITE_FULL_SPACE) {
                     StoneApplication::assignUserToAllApplicationsBySpace($invitation->space_id, $user);
+                    $is_full_space = true;
                 } else {
                     StoneApplication::assignUserToApplicationBySpace($invitation->space_id, $invitation->application_id, $user);
                 }
-                $invitation->update(['accepted' => true]);
+                $invitation->update(['accepted' => true, 'identification' => $user->id]);
+
+                /**
+                 * Push notification
+                 */
+                if ($is_full_space) {
+                    $space_name = Spaces::find($invitation->space_id)->name;
+                } else {
+                    $space_name = Applications::find($invitation->application_id)->name;
+                }
+
+                $space_name = $is_full_space ? 'all space '. $space_name : 'application ' . $space_name;
+                $notification = json_encode(['Notifications::Notifications/Notifications.user_accept_invitation_to_space', ['user' =>  $user->name, 'space_name' => $space_name]]);
+                StoneNotification::stonePushNotification($notification, StoneSpace::ALERT_TYPE, $invitation->space_id, $invitation->application_id, $user->id, $invitation->owner_id);
                 $name = $user->name;
                 return view('Notifications::Notifications.User.accept', compact('name'));
             }
@@ -144,7 +174,8 @@ class Notifications extends Controller
 
     public function isInvitedUser($current_user, $code, $identification)
     {
-        $invitation = Invitation::where(['code' => $code, 'identification' => $identification, 'accepted' => 0])->first();
+        $invitation = Invitation::where(['code' => $code, 'identification' => $identification, 'accepted' => null])->first();
+
         if (!$invitation) {
             return 1;
         }
@@ -160,7 +191,7 @@ class Notifications extends Controller
          * Internal email
          */
         if ($invitation->internal == true && !$current_user) {
-            return 1;
+            return 3;
         }
 
         return $invitation;

@@ -60,7 +60,8 @@
                 "StoneTranslation": "Twedoo\\Stone\\Facades\\StoneTranslationFacade",
                 "StoneApplication": "Twedoo\\Stone\\Facades\\StoneApplicationFacade",
                 "StoneSpace": "Twedoo\\Stone\\Facades\\StoneSpaceFacade",
-                "StoneInvitation": "Twedoo\\Stone\\Facades\\StoneInvitationFacade"
+                "StoneInvitation": "Twedoo\\Stone\\Facades\\StoneInvitationFacade",
+                "StoneNotification": "Twedoo\\Stone\\Facades\\StoneNotificationFacade"
             }
         }
     },

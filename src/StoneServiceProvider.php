@@ -12,6 +12,7 @@ use Twedoo\Stone\Core\StoneApplication;
 use Twedoo\Stone\Core\StoneInvitation;
 use Twedoo\Stone\Core\StoneLanguage;
 use Twedoo\Stone\Core\StoneMenu;
+use Twedoo\Stone\Core\StoneNotification;
 use Twedoo\Stone\Core\StoneSpace;
 use Twedoo\Stone\Core\StoneStructure;
 use Twedoo\Stone\Core\StoneTranslation;
@@ -138,6 +139,9 @@ class StoneServiceProvider extends ServiceProvider
         });
         $this->app->singleton('stoneInvitation', function () {
             return new StoneInvitation();
+        });
+        $this->app->singleton('stoneNotification', function () {
+            return new StoneNotification(null);
         });
     }
 

@@ -17,6 +17,9 @@ class StoneSpace
     const MAIN_SPACE_NAME = 'Main Stone Space';
     const INVITE_FULL_SPACE = 'FULL-SPACE';
     const INVITE_CURRENT_APPLICATION = 'CURRENT-APPLICATION';
+    const ALERT_TYPE = 'ALERT';
+    const EVENTS_TYPE = 'EVENTS';
+    const ACTIONS_TYPE = 'ACTIONS';
 
     /**
      * @param $space
@@ -33,6 +36,14 @@ class StoneSpace
     public static function getCurrentSpaceId()
     {
         return Session::get('space');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public static function getSpaceNameById($id)
+    {
+        return Spaces::find($id)->name;
     }
 
 

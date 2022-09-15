@@ -28,4 +28,18 @@ Route::group(['middleware' => ['web']], function () {
                 ]);
         });
     });
+
+    Route::group(['prefix' => app('urlBack')], function () {
+
+        Route::group([
+            'module' => 'Notifications',
+            'namespace' => 'Modules\Notifications\Controllers'
+        ], function () {
+            Route::get('/list/notifications',
+                [
+                    'as' => 'notification.user.index',
+                    'uses' => 'Notifications@index'
+                ]);
+        });
+    });
 });

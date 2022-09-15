@@ -12,9 +12,13 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Twedoo\Stone\Modules\Notifications\Models\notification as StonePushNotification;
+use Twedoo\StoneGuard\Models\User;
 
 class StoneNotification extends Notification
 {
+    const NOTIFICATION_INVITATION = 'INVITATION';
+
     use Queueable;
 
     public $email;
@@ -77,4 +81,52 @@ class StoneNotification extends Notification
             //
         ];
     }
+
+    /**
+     * @param $notification
+     * @param $type
+     * @param $space_id
+     * @param $application_id
+     * @param $user_id
+     * @param $owner_id
+     * @return mixed
+     */
+    public static function stonePushNotification($notification, $type, $space_id, $application_id, $user_id, $owner_id)
+    {
+        return StonePushNotification::create([
+            'notification' => $notification,
+            'open' => null,
+            'type' => $type,
+            'space_id' => $space_id,
+            'application_id' => $application_id,
+            'user_id' => $user_id,
+            'owner_id' => $owner_id,
+            'collection' => $space_id.$application_id.'|'.$user_id
+        ]);
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public static function getUserNameById($id)
+    {
+        return User::find($id)->name;
+    }
+
+    /**
+     * @param $notification
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public static function translateNotification($notification, $id = null)
+    {
+        $translate = json_decode($notification, true);
+        if (count($translate) >= 2) {
+            $translate = trans($translate[0], $translate[1]);
+        } else {
+            $translate = trans($translate[0]);
+        }
+        return $translate;
+    }
+
 }
