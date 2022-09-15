@@ -21,6 +21,7 @@
         "darkaonline/l5-swagger": "^8.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
+        "predis/predis": "^2.0",
         "twedoo/stoneguard": "dev-1.x-dev"
     },
     "require-dev": {

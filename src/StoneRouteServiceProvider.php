@@ -52,9 +52,13 @@ class StoneRouteServiceProvider extends ServiceProvider
             }
             $appModules = array_diff(scandir(app_path() . '/Modules', 1), array('..', '.'));
             foreach ($appModules as $module) {
-                if (file_exists(app_path() . '/Modules/' . $module . '/routes.php')) {
-                    Route::middleware('web')->group(app_path() . '/Modules/' . $module . '/routes.php');
-                    $this->loadRoutesFrom(app_path() . '/Modules/' . $module . '/routes.php');
+                if (file_exists(app_path() . '/Modules/' . $module . '/Routes/routes.php')) {
+                    Route::middleware('web')->group(app_path() . '/Modules/' . $module . '/Routes/routes.php');
+                    $this->loadRoutesFrom(app_path() . '/Modules/' . $module . '/Routes/routes.php');
+                }
+                if (file_exists(app_path() . '/Modules/' . $module . '/Routes/channels.php')) {
+                    Route::middleware('web')->group(app_path() . '/Modules/' . $module . '/Routes/channels.php');
+                    $this->loadRoutesFrom(app_path() . '/Modules/' . $module . '/Routes/channels.php');
                 }
                 if (is_dir(app_path() . '/Modules/' . $module . '/Views')) {
                     $this->loadViewsFrom(app_path() . '/Modules/' . $module . '/Views', $module);
@@ -64,10 +68,15 @@ class StoneRouteServiceProvider extends ServiceProvider
             $stoneModules = array_diff(scandir(__DIR__ . '/Modules', 1), array('..', '.'));
 
             foreach ($stoneModules as $module) {
-                if (file_exists(__DIR__ . '/Modules/' . $module . '/routes.php')) {
-                    Route::middleware('web')->group(__DIR__ . '/Modules/' . $module . '/routes.php');
-                    $this->loadRoutesFrom(__DIR__ . '/Modules/' . $module . '/routes.php');
+                if (file_exists(__DIR__ . '/Modules/' . $module . '/Routes/routes.php')) {
+                    Route::middleware('web')->group(__DIR__ . '/Modules/' . $module . '/Routes/routes.php');
+                    $this->loadRoutesFrom(__DIR__ . '/Modules/' . $module . '/Routes/routes.php');
                 }
+                if (file_exists(__DIR__ . '/Modules/' . $module . '/Routes/channels.php')) {
+                    Route::middleware('web')->group(__DIR__ . '/Modules/' . $module . '/Routes/channels.php');
+                    $this->loadRoutesFrom(__DIR__ . '/Modules/' . $module . '/Routes/channels.php');
+                }
+ 
                 if (is_dir(__DIR__ . '/Modules/' . $module . '/Views')) {
                     $this->loadViewsFrom(__DIR__ . '/Modules/' . $module . '/Views', $module);
                 }

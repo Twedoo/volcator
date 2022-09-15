@@ -105,6 +105,14 @@
     <script src="{{ asset(app('back').'/assets/components/cleanui/layout/sidebar/index.js') }}"></script>
     <script src="{{ asset(app('back').'/assets/components/cleanui/layout/support-chat/index.js') }}"></script>
     <script src="{{ asset(app('back').'/assets/components/cleanui/layout/topbar/index.js') }}"></script>
+
+    <!-- <script src="{{ asset(app('back').'/assets/plugins/laravel-echo/1.14.0/echo.common.min.js') }}"></script>
+    <script src="{{ asset(app('back').'/assets/plugins/laravel-echo/1.14.0/echo.js') }}"></script>
+    <script src="{{ asset(app('back').'/assets/plugins/laravel-echo/1.14.0/echo.min.js') }}"></script>
+    <script src="{{ asset(app('back').'/assets/plugins/laravel-echo/1.14.0/echo.iife.min.js') }}"></script> -->
+
+
+
     @if(App::getLocale() == 'ar' || App::getLocale() == 'he' || App::getLocale() == 'ru' || App::getLocale() == 'fa' )
         <link id="rtl_ltr_b1"
               href="{{asset(app('back').'/assets/plugins/bootstrap/RTL/bootstrap-rtl.min.css')}}"
@@ -486,6 +494,30 @@
     $(document).ready(function(){
         $('.dropify-picture-space').dropify();
     });
+</script>
+
+<script type="module">
+
+import Echo from "{{ asset(app('back').'/assets/plugins/laravel-echo/echo.js') }}"
+import {Pusher} from "{{ asset(app('back').'/assets/plugins/laravel-echo/pusher.js') }}"
+
+window.Pusher = Pusher
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: 'server-notification-key',
+    wsHost: window.location.hostname,
+    wsPort: 6001,
+    forceTLS: false,
+    disableStats: true,
+});
+
+window.Echo.channel('your-channel').listen('your-event-class', (e) => {
+        console.log(e)
+})
+
+console.log("websokets in use")
+
 </script>
 
 <script>
