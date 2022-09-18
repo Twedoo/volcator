@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @see \Twedoo\Stone\Core\StoneTranslation;
  */
-class StoneNotificationFacade extends Facade
+class StonePushNotificationFacade extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -16,7 +16,7 @@ class StoneNotificationFacade extends Facade
      */
     protected static function getFacadeAccessor(): string
     {
-        return 'stoneNotification';
+        return 'stonePushNotification';
     }
 }
 

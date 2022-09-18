@@ -12,10 +12,10 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Twedoo\Stone\Modules\Notifications\Models\notification as StonePushNotification;
+use Twedoo\Stone\Modules\Notifications\Models\notification as ModelNotification;
 use Twedoo\StoneGuard\Models\User;
 
-class StoneNotification extends Notification
+class StoneEmailNotification extends Notification
 {
     const NOTIFICATION_INVITATION = 'INVITATION';
 
@@ -93,7 +93,7 @@ class StoneNotification extends Notification
      */
     public static function stonePushNotification($notification, $type, $space_id, $application_id, $user_id, $owner_id)
     {
-        return StonePushNotification::create([
+        return ModelNotification::create([
             'notification' => $notification,
             'open' => null,
             'type' => $type,
@@ -120,6 +120,7 @@ class StoneNotification extends Notification
      */
     public static function translateNotification($notification, $id = null)
     {
+        // TODO: notifications improve
         $translate = json_decode($notification, true);
         if (count($translate) >= 2) {
             $translate = trans($translate[0], $translate[1]);

@@ -82,6 +82,6 @@ class StoneInvitation
     public static function notify($user_email, $email) : void
     {
         Notification::route('mail', $user_email)
-            ->notify(new StoneNotification($email));
+            ->notify(new StoneEmailNotification($email));
     }
 }

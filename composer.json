@@ -62,7 +62,8 @@
                 "StoneApplication": "Twedoo\\Stone\\Facades\\StoneApplicationFacade",
                 "StoneSpace": "Twedoo\\Stone\\Facades\\StoneSpaceFacade",
                 "StoneInvitation": "Twedoo\\Stone\\Facades\\StoneInvitationFacade",
-                "StoneNotification": "Twedoo\\Stone\\Facades\\StoneNotificationFacade"
+                "StoneEmailNotification": "Twedoo\\Stone\\Facades\\StoneEmailNotificationFacade",
+                "StonePushNotification": "Twedoo\\Stone\\Facades\\StonePushNotificationFacade"
             }
         }
     },

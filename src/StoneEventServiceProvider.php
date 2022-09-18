@@ -3,6 +3,7 @@
 namespace Twedoo\Stone;
 
 
+use App\Events\NotificationBroadcast;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -19,6 +20,7 @@ class StoneEventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+            NotificationBroadcast::class,
         ],
         Login::class => [
             'Twedoo\Stone\Listeners\LoginSuccessful'

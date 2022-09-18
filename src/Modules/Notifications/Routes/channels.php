@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('invitation.accepted', function () {
-    return "okkkkk";
+Broadcast::channel('notification.{id}', function ($user, $id) {
+    return (int) $user->id === (int) $id;
 });

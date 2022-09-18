@@ -34,7 +34,6 @@ class LoginSuccessful
     public function handle(Login $event)
     {
         $current_user = Auth::user()->id;
-//        dd(Cache::get('space-'.$current_user));
         if (Cache::has('space-'.$current_user)) {
 //            dd('cache');
             Session::put('space', Cache::get('space-'.$current_user));

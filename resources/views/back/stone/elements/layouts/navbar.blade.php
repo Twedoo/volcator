@@ -162,7 +162,7 @@
                                     <div class="cui__topbar__livesearch__result__content">
                                         <div
                                             class="cui__topbar__livesearch__result__thumb"
-                                            style="background-image: url('../../components/kit/core/img/content/photos/1.jpeg')"
+<!--                                            style="background-image: url('../../components/kit/core/img/content/photos/1.jpeg')"-->
                                         >
                                             #1
                                         </div>
@@ -176,7 +176,7 @@
                                     <div class="cui__topbar__livesearch__result__content">
                                         <div
                                             class="cui__topbar__livesearch__result__thumb"
-                                            style="background-image: url('../../components/kit/core/img/content/photos/2.jpeg')"
+<!--                                            style="background-image: url('../../components/kit/core/img/content/photos/2.jpeg')"-->
                                         >
                                             KF
                                         </div>
@@ -190,7 +190,7 @@
                                     <div class="cui__topbar__livesearch__result__content">
                                         <div
                                             class="cui__topbar__livesearch__result__thumb"
-                                            style="background-image: url('../../components/kit/core/img/content/photos/3.jpeg')"
+<!--                                            style="background-image: url('../../components/kit/core/img/content/photos/3.jpeg')"-->
                                         >
                                             GF
                                         </div>
@@ -204,7 +204,7 @@
                                     <div class="cui__topbar__livesearch__result__content">
                                         <div
                                             class="cui__topbar__livesearch__result__thumb"
-                                            style="background-image: url('../../components/kit/core/img/content/photos/4.jpeg')"
+<!--                                            style="background-image: url('../../components/kit/core/img/content/photos/4.jpeg')"-->
                                         >
                                             GF
                                         </div>

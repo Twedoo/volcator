@@ -1,14 +1,4 @@
-function _typeof(obj) {
-    "@babel/helpers - typeof";
-  
-    return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
-      return typeof obj;
-    } : function (obj) {
-      return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    }, _typeof(obj);
-  }
-  
-  function _classCallCheck(instance, Constructor) {
+function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
     }
@@ -27,9 +17,6 @@ function _typeof(obj) {
   function _createClass(Constructor, protoProps, staticProps) {
     if (protoProps) _defineProperties(Constructor.prototype, protoProps);
     if (staticProps) _defineProperties(Constructor, staticProps);
-    Object.defineProperty(Constructor, "prototype", {
-      writable: false
-    });
     return Constructor;
   }
   
@@ -63,9 +50,6 @@ function _typeof(obj) {
         configurable: true
       }
     });
-    Object.defineProperty(subClass, "prototype", {
-      writable: false
-    });
     if (superClass) _setPrototypeOf(subClass, superClass);
   }
   
@@ -91,7 +75,7 @@ function _typeof(obj) {
     if (typeof Proxy === "function") return true;
   
     try {
-      Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
+      Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
       return true;
     } catch (e) {
       return false;
@@ -109,8 +93,6 @@ function _typeof(obj) {
   function _possibleConstructorReturn(self, call) {
     if (call && (typeof call === "object" || typeof call === "function")) {
       return call;
-    } else if (call !== void 0) {
-      throw new TypeError("Derived constructors may only return object or undefined");
     }
   
     return _assertThisInitialized(self);
@@ -119,7 +101,7 @@ function _typeof(obj) {
   function _createSuper(Derived) {
     var hasNativeReflectConstruct = _isNativeReflectConstruct();
   
-    return function _createSuperInternal() {
+    return function () {
       var Super = _getPrototypeOf(Derived),
           result;
   
@@ -135,6 +117,70 @@ function _typeof(obj) {
     };
   }
   
+  var Connector = /*#__PURE__*/function () {
+    /**
+     * Create a new class instance.
+     */
+    function Connector(options) {
+      _classCallCheck(this, Connector);
+  
+      /**
+       * Default connector options.
+       */
+      this._defaultOptions = {
+        auth: {
+          headers: {}
+        },
+        authEndpoint: '/broadcasting/auth',
+        broadcaster: 'pusher',
+        csrfToken: null,
+        host: null,
+        key: null,
+        namespace: 'App.Events'
+      };
+      this.setOptions(options);
+      this.connect();
+    }
+    /**
+     * Merge the custom options with the defaults.
+     */
+  
+  
+    _createClass(Connector, [{
+      key: "setOptions",
+      value: function setOptions(options) {
+        this.options = _extends(this._defaultOptions, options);
+  
+        if (this.csrfToken()) {
+          this.options.auth.headers['X-CSRF-TOKEN'] = this.csrfToken();
+        }
+  
+        return options;
+      }
+      /**
+       * Extract the CSRF token from the page.
+       */
+  
+    }, {
+      key: "csrfToken",
+      value: function csrfToken() {
+        var selector;
+  
+        if (typeof window !== 'undefined' && window['Laravel'] && window['Laravel'].csrfToken) {
+          return window['Laravel'].csrfToken;
+        } else if (this.options.csrfToken) {
+          return this.options.csrfToken;
+        } else if (typeof document !== 'undefined' && typeof document.querySelector === 'function' && (selector = document.querySelector('meta[name="csrf-token"]'))) {
+          return selector.getAttribute('content');
+        }
+  
+        return null;
+      }
+    }]);
+  
+    return Connector;
+  }();
+  
   /**
    * This class represents a basic channel.
    */
@@ -145,11 +191,11 @@ function _typeof(obj) {
   
     _createClass(Channel, [{
       key: "listenForWhisper",
-      value:
+  
       /**
        * Listen for a whisper event on the channel instance.
        */
-      function listenForWhisper(event, callback) {
+      value: function listenForWhisper(event, callback) {
         return this.listen('.client-' + event, callback);
       }
       /**
@@ -380,11 +426,11 @@ function _typeof(obj) {
   
     _createClass(PusherPrivateChannel, [{
       key: "whisper",
-      value:
+  
       /**
        * Trigger client event on the channel.
        */
-      function whisper(eventName, data) {
+      value: function whisper(eventName, data) {
         this.pusher.channels.channels[this.name].trigger("client-".concat(eventName), data);
         return this;
       }
@@ -410,11 +456,11 @@ function _typeof(obj) {
   
     _createClass(PusherEncryptedPrivateChannel, [{
       key: "whisper",
-      value:
+  
       /**
        * Trigger client event on the channel.
        */
-      function whisper(eventName, data) {
+      value: function whisper(eventName, data) {
         this.pusher.channels.channels[this.name].trigger("client-".concat(eventName), data);
         return this;
       }
@@ -440,11 +486,11 @@ function _typeof(obj) {
   
     _createClass(PusherPresenceChannel, [{
       key: "here",
-      value:
+  
       /**
        * Register a callback to be called anytime the member list changes.
        */
-      function here(callback) {
+      value: function here(callback) {
         this.on('pusher:subscription_succeeded', function (data) {
           callback(Object.keys(data.members).map(function (k) {
             return data.members[k];
@@ -680,11 +726,11 @@ function _typeof(obj) {
   
     _createClass(SocketIoPrivateChannel, [{
       key: "whisper",
-      value:
+  
       /**
        * Trigger client event on the channel.
        */
-      function whisper(eventName, data) {
+      value: function whisper(eventName, data) {
         this.socket.emit('client event', {
           channel: this.name,
           event: "client-".concat(eventName),
@@ -714,11 +760,11 @@ function _typeof(obj) {
   
     _createClass(SocketIoPresenceChannel, [{
       key: "here",
-      value:
+  
       /**
        * Register a callback to be called anytime the member list changes.
        */
-      function here(callback) {
+      value: function here(callback) {
         this.on('presence:subscribed', function (members) {
           callback(members.map(function (m) {
             return m.user_info;
@@ -772,20 +818,20 @@ function _typeof(obj) {
   
     _createClass(NullChannel, [{
       key: "subscribe",
-      value:
+  
       /**
        * Subscribe to a channel.
        */
-      function subscribe() {//
-      }
+      value: function subscribe() {} //
+  
       /**
        * Unsubscribe from a channel.
        */
   
     }, {
       key: "unsubscribe",
-      value: function unsubscribe() {//
-      }
+      value: function unsubscribe() {} //
+  
       /**
        * Listen for an event on the channel instance.
        */
@@ -853,11 +899,11 @@ function _typeof(obj) {
   
     _createClass(NullPrivateChannel, [{
       key: "whisper",
-      value:
+  
       /**
        * Trigger client event on the channel.
        */
-      function whisper(eventName, data) {
+      value: function whisper(eventName, data) {
         return this;
       }
     }]);
@@ -882,11 +928,11 @@ function _typeof(obj) {
   
     _createClass(NullPresenceChannel, [{
       key: "here",
-      value:
+  
       /**
        * Register a callback to be called anytime the member list changes.
        */
-      function here(callback) {
+      value: function here(callback) {
         return this;
       }
       /**
@@ -920,84 +966,6 @@ function _typeof(obj) {
   
     return NullPresenceChannel;
   }(NullChannel);
-  
-  var Connector = /*#__PURE__*/function () {
-    /**
-     * Create a new class instance.
-     */
-    function Connector(options) {
-      _classCallCheck(this, Connector);
-  
-      /**
-       * Default connector options.
-       */
-      this._defaultOptions = {
-        auth: {
-          headers: {}
-        },
-        authEndpoint: '/broadcasting/auth',
-        userAuthentication: {
-          endpoint: '/broadcasting/user-auth',
-          headers: {}
-        },
-        broadcaster: 'pusher',
-        csrfToken: null,
-        bearerToken: null,
-        host: null,
-        key: null,
-        namespace: 'App.Events'
-      };
-      this.setOptions(options);
-      this.connect();
-    }
-    /**
-     * Merge the custom options with the defaults.
-     */
-  
-  
-    _createClass(Connector, [{
-      key: "setOptions",
-      value: function setOptions(options) {
-        this.options = _extends(this._defaultOptions, options);
-        var token = this.csrfToken();
-  
-        if (token) {
-          this.options.auth.headers['X-CSRF-TOKEN'] = token;
-          this.options.userAuthentication.headers['X-CSRF-TOKEN'] = token;
-        }
-  
-        token = this.options.bearerToken;
-  
-        if (token) {
-          this.options.auth.headers['Authorization'] = 'Bearer ' + token;
-          this.options.userAuthentication.headers['Authorization'] = 'Bearer ' + token;
-        }
-  
-        return options;
-      }
-      /**
-       * Extract the CSRF token from the page.
-       */
-  
-    }, {
-      key: "csrfToken",
-      value: function csrfToken() {
-        var selector;
-  
-        if (typeof window !== 'undefined' && window['Laravel'] && window['Laravel'].csrfToken) {
-          return window['Laravel'].csrfToken;
-        } else if (this.options.csrfToken) {
-          return this.options.csrfToken;
-        } else if (typeof document !== 'undefined' && typeof document.querySelector === 'function' && (selector = document.querySelector('meta[name="csrf-token"]'))) {
-          return selector.getAttribute('content');
-        }
-  
-        return null;
-      }
-    }]);
-  
-    return Connector;
-  }();
   
   /**
    * This class creates a connector to Pusher.
@@ -1034,15 +1002,6 @@ function _typeof(obj) {
         } else {
           this.pusher = new Pusher(this.options.key, this.options);
         }
-      }
-      /**
-       * Sign in the user via Pusher user authentication (https://pusher.com/docs/channels/using_channels/user-authentication/).
-       */
-  
-    }, {
-      key: "signin",
-      value: function signin() {
-        this.pusher.signin();
       }
       /**
        * Listen for an event on a channel instance.
@@ -1114,7 +1073,7 @@ function _typeof(obj) {
       value: function leave(name) {
         var _this2 = this;
   
-        var channels = [name, 'private-' + name, 'private-encrypted-' + name, 'presence-' + name];
+        var channels = [name, 'private-' + name, 'presence-' + name];
         channels.forEach(function (name, index) {
           _this2.leaveChannel(name);
         });
@@ -1338,8 +1297,8 @@ function _typeof(obj) {
   
     _createClass(NullConnector, [{
       key: "connect",
-      value: function connect() {//
-      }
+      value: function connect() {} //
+  
       /**
        * Listen for an event on a channel instance.
        */
@@ -1382,16 +1341,16 @@ function _typeof(obj) {
   
     }, {
       key: "leave",
-      value: function leave(name) {//
-      }
+      value: function leave(name) {} //
+  
       /**
        * Leave the given channel.
        */
   
     }, {
       key: "leaveChannel",
-      value: function leaveChannel(name) {//
-      }
+      value: function leaveChannel(name) {} //
+  
       /**
        * Get the socket ID for the connection.
        */
@@ -1550,10 +1509,6 @@ function _typeof(obj) {
         if (typeof jQuery === 'function') {
           this.registerjQueryAjaxSetup();
         }
-  
-        if ((typeof Turbo === "undefined" ? "undefined" : _typeof(Turbo)) === 'object') {
-          this.registerTurboRequestInterceptor();
-        }
       }
       /**
        * Register a Vue HTTP interceptor to add the X-Socket-ID header.
@@ -1606,22 +1561,9 @@ function _typeof(obj) {
           });
         }
       }
-      /**
-       * Register the Turbo Request interceptor to add the X-Socket-ID header.
-       */
-  
-    }, {
-      key: "registerTurboRequestInterceptor",
-      value: function registerTurboRequestInterceptor() {
-        var _this4 = this;
-  
-        document.addEventListener('turbo:before-fetch-request', function (event) {
-          event.detail.fetchOptions.headers['X-Socket-Id'] = _this4.socketId();
-        });
-      }
     }]);
   
     return Echo;
   }();
   
-  export { Channel, Echo as default };
+  export default Echo;

@@ -2,6 +2,7 @@
 
 namespace Twedoo\Stone;
 
+use App\Events\NotificationBroadcast;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
@@ -12,7 +13,8 @@ use Twedoo\Stone\Core\StoneApplication;
 use Twedoo\Stone\Core\StoneInvitation;
 use Twedoo\Stone\Core\StoneLanguage;
 use Twedoo\Stone\Core\StoneMenu;
-use Twedoo\Stone\Core\StoneNotification;
+use Twedoo\Stone\Core\StoneEmailNotification;
+use Twedoo\Stone\Core\StonePushNotification;
 use Twedoo\Stone\Core\StoneSpace;
 use Twedoo\Stone\Core\StoneStructure;
 use Twedoo\Stone\Core\StoneTranslation;
@@ -37,14 +39,13 @@ use Config;
 class StoneServiceProvider extends ServiceProvider
 {
 
-//    private $namespace = '\Twedoo\Stone\Http\Controllers';
 
     /**
      * Indicates if loading of the provider is deferred.
      *
      * @var bool
      */
-    protected $defer = false;
+    protected $defer = true;
 
     /**
      * Will make sure that the required modules have been fully loaded
@@ -53,9 +54,9 @@ class StoneServiceProvider extends ServiceProvider
      */
     public function boot() {
         $router = $this->app->make(Router::class);
-//        $router->pushMiddlewareToGroup('web', Language::class);
-//        $router->pushMiddlewareToGroup('web', CheckModules::class);
-//        $router->pushMiddlewareToGroup('web', \Twedoo\StoneGuard\Middleware\UserEnable::class);
+        $router->pushMiddlewareToGroup('web', Language::class);
+        $router->pushMiddlewareToGroup('web', CheckModules::class);
+        $router->pushMiddlewareToGroup('web', \Twedoo\StoneGuard\Middleware\UserEnable::class);
         $router->aliasMiddleware('role', \Twedoo\StoneGuard\Middleware\StoneGuardRole::class);
         $router->aliasMiddleware('permission', \Twedoo\StoneGuard\Middleware\StoneGuardPermission::class);
         $router->aliasMiddleware('ability', \Twedoo\StoneGuard\Middleware\StoneGuardAbility::class);
@@ -140,8 +141,11 @@ class StoneServiceProvider extends ServiceProvider
         $this->app->singleton('stoneInvitation', function () {
             return new StoneInvitation();
         });
-        $this->app->singleton('stoneNotification', function () {
-            return new StoneNotification(null);
+        $this->app->singleton('stoneEmailNotification', function () {
+            return new StoneEmailNotification(null);
+        });
+        $this->app->singleton('stonePushNotification', function () {
+            return new StonePushNotification();
         });
     }
 
