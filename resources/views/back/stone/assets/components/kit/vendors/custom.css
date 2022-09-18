@@ -112,7 +112,15 @@ input[type="checkbox"]:disabled {
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
     padding: 0.75em;
 }
-
 .application-title {
     color: #595c97;
 }
+.card-header-notification {
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 0.5em 1em 0;
+}
+.stone-simple-text {
+    color: #595c97;
+}
+

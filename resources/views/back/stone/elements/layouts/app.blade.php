@@ -488,31 +488,13 @@
 
 </body>
 {!! StoneMediaStyle::addJQUERY() !!}
-<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
-<style>
-    /* this will set the toastr icon */
-    #toast-container > .toast-success {
-        content: "\e91e";
-    }
-
-    /* this will set the toastr style */
-    .toast-success {
-        background-color: #141322;
-        content: "\e91e";
-
-    }
-
-    #toast-container .toast.toast-success {
-        content: "\e91e";
-    }
-</style>
-<script src="http://code.jquery.com/jquery-2.0.3.min.js" ></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script>
     $(document).ready(function(){
         $('.dropify-picture-space').dropify();
     });
 </script>
+<link href="{{ asset(app('back').'/assets/laravel-echo/toastr/toastr.min.css') }}" rel="stylesheet" />
+<script src="{{ asset(app('back').'/assets/laravel-echo/toastr/toastr.min.js') }}"></script>
 <script>
     window.currentUserId = {!! auth()->check() ? auth()->user()->id : null !!};
     window.PUSHER_APP_KEY =  '{{ env('PUSHER_APP_KEY')}}';
@@ -522,12 +504,11 @@
     window.PUSHER_STONE_WS_PORT = '{{ env('PUSHER_STONE_WS_PORT') }}';
     window.PUSHER_STONE_WSS_PORT = '{{ env('PUSHER_STONE_WSS_PORT') }}';
     window.PUSHER_STONE_ENCRYPTED = '{{ env('PUSHER_STONE_ENCRYPTED') }}';
+    window.SOUND_NOTIFY = '{{ asset(app('back').'/assets/laravel-echo/stone-notify.mp3') }}';
 </script>
-
+<script type="module" src="{{ asset(app('back').'/assets/laravel-echo/howler/howler.js') }}"></script>
 <script type="module" src="{{ asset(app('back').'/assets/laravel-echo/stone-websocket.js') }}"></script>
-
 <script>
-
     function clearError() {
         $('.name-space').removeClass('has-danger');
         $('.image-space').removeClass('has-danger');

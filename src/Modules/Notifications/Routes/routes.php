@@ -11,7 +11,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::group(['middleware' => ['web', 'auth']], function () {
         Route::get('/push-notification', function () {
             $user = \Twedoo\StoneGuard\Models\User::find(1);
-            StonePushNotification::notify($user, StonePushNotification::NOTIFICATION_MESSAGE_SIMPLE, "test");
+            $data = [
+                'title' => 'Invitation accepted',
+                'message' => json_encode(['Notifications::Notifications/Notifications.user_accept_invitation_to_space', ['user' =>  'Houssem', 'space_name' => 'Main Space']])
+            ];
+            StonePushNotification::notify($user, $data, true);
 //            broadcast(new NotificationBroadcast($user, 'fgfgfg'));
             dump('Event fired ddd.');
         });
@@ -44,16 +48,27 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::group(['prefix' => app('urlBack')], function () {
-
-        Route::group([
-            'module' => 'Notifications',
-            'namespace' => 'Modules\Notifications\Controllers'
-        ], function () {
-            Route::get('/list/notifications',
-                [
-                    'as' => 'notification.user.index',
-                    'uses' => 'Notifications@index'
-                ]);
+        Route::group(['middleware' => ['auth']], function () {
+            Route::group([
+                'module' => 'Notifications',
+                'namespace' => 'Modules\Notifications\Controllers'
+            ], function () {
+                Route::get('/list/notifications',
+                    [
+                        'as' => 'notification.user.index',
+                        'uses' => 'Notifications@index'
+                    ]);
+            });
+            Route::group([
+                'module' => 'Notifications',
+                'namespace' => 'Modules\Notifications\Controllers'
+            ], function () {
+                Route::get('/redirect/notification/actionUrl/{space}/{application}/{redirectTo}/{user}',
+                    [
+                        'as' => app('urlBack') .'.redirect.notification.actionUrl',
+                        'uses' => 'Notifications@actionUrl'
+                    ]);
+            });
         });
     });
 });

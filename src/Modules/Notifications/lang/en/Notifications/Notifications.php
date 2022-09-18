@@ -10,7 +10,7 @@ return [
     'message_after_create_account_with_accept' => 'Your account has been created successfully you can now log in !',
 
     # translate text notification of accept invitation
-    'user_accept_invitation_to_space' => ':user has accepted the invitation to :space_name',
+    'user_accept_invitation_to_space' => '<strong> :user </strong> has accepted the invitation to <strong>:space_name</strong>. <p class="mt-3"><strong>Click here to add roles ! </strong></p>',
 
     # List page notifications
     'title_header' => 'Notifications',

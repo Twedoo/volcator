@@ -37,7 +37,7 @@
                                         <tbody>
                                         @foreach ($notifications as $key => $notification)
                                             <tr>
-                                                <td>{{ StoneNotification::translateNotification($notification->notification, $notification->id) }}</td>
+                                                <td>{{ StonePushNotification::translateNotification($notification->notification, $notification->id) }}</td>
                                                 <td>{{ $notification->open }}</td>
                                                 <td>{{ $notification->type }}</td>
                                                 <td>{{ StoneSpace::getSpaceNameById($notification->space_id) }}</td>

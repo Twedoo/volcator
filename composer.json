@@ -22,7 +22,7 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "predis/predis": "^2.0",
-        "twedoo/stoneguard": "dev-1.x-dev"
+        "twedoo/stoneguard": "1.x-dev"
     },
     "require-dev": {
         "phpunit/phpunit": "^8|^9"

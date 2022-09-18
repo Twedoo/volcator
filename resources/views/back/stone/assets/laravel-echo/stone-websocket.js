@@ -21,21 +21,29 @@ toastr.options = {
     "onclick": null,
     "showDuration": "300",
     "hideDuration": "1000",
-    "timeOut": "511000",
-    "extendedTimeOut": "111000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
     "showEasing": "swing",
     "hideEasing": "linear",
     "showMethod": "fadeIn",
     "hideMethod": "fadeOut",
-    // iconClasses: {
-    //     error: 'fas fa-trash',
-    //     info: 'fa fa-info',
-    //     success: 'fe fe-bell',
-    //     warning: 'something',
-    // },
-}
-window.StoneEcho.channel('notification.'+window.currentUserId).listen('.notifyNotification', (event) => {
-    toastr.success('Hé, <b>ça marche !</b>', '<a href="javascript: void(0);" class="btn btn-outline-primary mb-1">View history</a>');
-    console.log(event);
-});
+    iconClasses: {
+        error: 'fas fa-trash',
+        info: 'fa fa-info',
+        success: 'fe fe-bell',
+        warning: 'something',
+    },
+};
 
+window.StoneEcho.channel('notification.'+window.currentUserId).listen('.notifyNotification', (event) => {
+    toastr.success('<a href="'+event['action']+'"  target="'+event['target']+'" class="toast-space-line">'+event['message']+'</a>', event['title']);
+    window.sound = new Howl({
+        src: [window.SOUND_NOTIFY],
+        volume: 0.5,
+        html: true
+    });
+    window.context = new AudioContext();
+    window.context.resume();
+    window.sound.muted = true;
+    window.sound.play();
+});
