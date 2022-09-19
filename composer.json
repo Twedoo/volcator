@@ -22,6 +22,8 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "predis/predis": "^2.0",
+        "symfony/yaml": "^6.0.12",
+        "pusher/pusher-php-server": "~7.0.2",
         "twedoo/stoneguard": "1.x-dev"
     },
     "require-dev": {

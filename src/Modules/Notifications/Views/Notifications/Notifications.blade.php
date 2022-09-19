@@ -37,13 +37,13 @@
                                         <tbody>
                                         @foreach ($notifications as $key => $notification)
                                             <tr>
-                                                <td>{{ StonePushNotification::translateNotification($notification->notification, $notification->id) }}</td>
+                                                <td>{!! StonePushNotification::translateNotification($notification->notification, $notification->id) !!}</td>
                                                 <td>{{ $notification->open }}</td>
                                                 <td>{{ $notification->type }}</td>
                                                 <td>{{ StoneSpace::getSpaceNameById($notification->space_id) }}</td>
                                                 <td>{{ StoneApplication::getApplicationNameById($notification->application_id) }}</td>
-                                                <td>{{ StoneNotification::getUserNameById($notification->user_id) }}</td>
-                                                <td>{{ StoneNotification::getUserNameById($notification->owner_id) }}</td>
+                                                <td>{{ StonePushNotification::getUserNameById($notification->user_id) }}</td>
+                                                <td>{{ StonePushNotification::getUserNameById($notification->owner_id) }}</td>
                                             </tr>
                                         @endforeach
                                         </tbody>

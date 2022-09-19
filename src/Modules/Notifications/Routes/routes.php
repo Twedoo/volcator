@@ -55,7 +55,7 @@ Route::group(['middleware' => ['web']], function () {
             ], function () {
                 Route::get('/list/notifications',
                     [
-                        'as' => 'notification.user.index',
+                        'as' => app('urlBack').'.notification.user.index',
                         'uses' => 'Notifications@index'
                     ]);
             });

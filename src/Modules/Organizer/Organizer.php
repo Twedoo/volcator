@@ -42,7 +42,7 @@ class Organizer extends StoneStructure
 
         $customModules = glob(base_path() . '/app/Modules/*', GLOB_ONLYDIR);
         $defaultModules = glob(__DIR__ . '/../../Modules/*', GLOB_ONLYDIR);
-
+        $GetArrayModules[] = null;
         foreach (array_merge($defaultModules, $customModules) as $key => $value) {
             $stone_name = substr($value, strrpos($value, '/') + 1);
             if (!in_array($stone_name, $modules_stone_hidden_organizer)) {
