@@ -5,9 +5,10 @@ namespace Modules\Notifications\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Twedoo\Stone\Core\StoneSpace;
 use Twedoo\Stone\Core\Utils\StonePath;
-use Twedoo\Stone\Modules\Notifications\Models\notification as StonePushNotification;
+use Twedoo\Stone\Modules\Notifications\Models\Notification as StonePushNotification;
 
 class Notifications extends Controller
 {
@@ -24,16 +25,18 @@ class Notifications extends Controller
     }
 
     /**
+     * @param $invitation
      * @param $space
      * @param $application
-     * @param $redirectTo
-     * @param $user
+     * @param $route
+     * @param $params
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function actionUrl($space, $application, $redirectTo, $user)
+    public function actionUrl($invitation, $space, $application, $route, $params)
     {
-        $route = route($redirectTo, $user);
-        StonePath::handleRoute($space, $application, $route);
-        return redirect($route);
+        $invitation = StonePushNotification::where(['id' => $invitation, 'owner_id' => Auth::user()->id])->first();
+        $invitation->update(['open' => true]);
+        $route = StonePath::switchSpaceByRoute($space, $application, $route, $params);
+        return redirect(route($route['route'], $route['params']));
     }
 }

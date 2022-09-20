@@ -6,72 +6,77 @@ use App;
 use Config;
 use DB;
 use File;
+use Illuminate\Support\Facades\Cache;
 use StoneFile;
 use Session;
-use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Twedoo\Stone\Modules\Notifications\Events\NotificationBroadcast;
-use Twedoo\Stone\Modules\Notifications\Models\notification as ModelNotification;
+use Twedoo\Stone\Modules\Notifications\Models\Notification as ModelNotification;
 use Twedoo\StoneGuard\Models\User;
 
 class StonePushNotification
 {
 
     /**
-     * @param $user
      * @param array $pusher
-     * @param bool $translate
+     * @param $user
+     * @throws \Exception
      */
-    public static function notify($user, $pusher = [], $translate = false)
+    public static function notify($pusher, $user)
     {
-        $notification = self::notification($pusher, $translate);
+        if (!count($pusher) >= 2) {
+            throw new \Exception("$pusher must be array contains title and message.");
+        }
+        $user = User::find($user);
+        $notification = self::notification($pusher, $user);
         broadcast(new NotificationBroadcast($user, $notification));
     }
 
-    private static function notification($data, $translate = false)
+    /**
+     * @param $pusher
+     * @param $user
+     * @return mixed
+     * @throws \Exception
+     */
+    private static function notification($pusher, $user)
     {
-        if (!array_key_exists('action', $data)) {
-            $data['action'] = "javascript: void(0);";
+        if (!array_key_exists('action', $pusher)) {
+            $pusher['action'] = "javascript: void(0);";
         }
-        if (!array_key_exists('target', $data)) {
-            $data['target'] = "";
+        if (!array_key_exists('target', $pusher)) {
+            $pusher['target'] = "";
         }
+        $local = Cache::get("language-user-$user->id");
 
-        if ($translate) {
-            $data['message'] = self::translateNotification($data['message']);
-        }
-        return $data;
+        $pusher['title'] = StoneTranslation::translateNotificationPusher($pusher['title'], $local);
+        $pusher['message'] = StoneTranslation::translateNotificationPusher($pusher['message'], $local);
+        return $pusher;
     }
 
-
     /**
-     * @param $notification
-     * @param $type
+     * @param $title
+     * @param $message
+     * @param $route
      * @param $space_id
      * @param $application_id
      * @param $user_id
      * @param $owner_id
-     * @param array $pusher
-     * @return mixed
+     * @return User
+     * @throws \Exception
      */
-    public static function saveWithNotify($notification, $type, $space_id, $application_id, $user_id, $owner_id, $pusher = []) : void
+    public static function saveNotification($title, $message, $route, $space_id, $application_id, $user_id, $owner_id)
     {
-        ModelNotification::create([
-            'notification' => $notification,
+//
+        return ModelNotification::create([
+            'title' => $title,
+            'notification' => json_encode($message),
+            'route' => $route,
             'open' => null,
-            'type' => $type,
             'space_id' => $space_id,
             'application_id' => $application_id,
             'user_id' => $user_id,
             'owner_id' => $owner_id,
             'collection' => $space_id.$application_id.'|'.$user_id
         ]);
-        $user = User::find($owner_id);
-        if (count($pusher) >= 2) {
-            self::notify($user, $pusher);
-        }
     }
 
     /**
@@ -82,21 +87,4 @@ class StonePushNotification
     {
         return User::find($id)->name;
     }
-
-    /**
-     * @param $notification
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
-     */
-    public static function translateNotification($notification, $id = null)
-    {
-        // TODO: notifications improve
-        $translate = json_decode($notification, true);
-        if (count($translate) >= 2) {
-            $translate = trans($translate[0], $translate[1]);
-        } else {
-            $translate = trans($translate[0]);
-        }
-        return $translate;
-    }
-
 }

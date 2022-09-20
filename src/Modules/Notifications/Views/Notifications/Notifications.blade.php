@@ -37,9 +37,17 @@
                                         <tbody>
                                         @foreach ($notifications as $key => $notification)
                                             <tr>
-                                                <td>{!! StonePushNotification::translateNotification($notification->notification, $notification->id) !!}</td>
+                                                <td>
+                                                    <a href="{{ StonePath::openNotificationByStringRoute($notification->id, $notification->route, $notification->space_id, $notification->application_id) }}">
+                                                        <strong>{!! StoneTranslation::translateNotification($notification->title) !!}</strong>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="{{ StonePath::openNotificationByStringRoute($notification->id, $notification->route, $notification->space_id, $notification->application_id) }}">
+                                                        {!! StoneTranslation::translateNotification($notification->notification) !!}
+                                                    </a>
+                                                </td>
                                                 <td>{{ $notification->open }}</td>
-                                                <td>{{ $notification->type }}</td>
                                                 <td>{{ StoneSpace::getSpaceNameById($notification->space_id) }}</td>
                                                 <td>{{ StoneApplication::getApplicationNameById($notification->application_id) }}</td>
                                                 <td>{{ StonePushNotification::getUserNameById($notification->user_id) }}</td>

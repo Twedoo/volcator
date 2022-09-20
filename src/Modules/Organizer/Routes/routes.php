@@ -21,7 +21,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
                 $shortcut = storage_path('app/public/file/Modules');
                 symlink($target, $shortcut);
             });
-            Route::get('organizer/module/pre/{module}/full/now/{isInstallAsMain?}',
+            Route::get('organizer/module/pre/{module?}/full/now/{isInstallAsMain?}',
                 [
                     'as' => app('urlBack') . '.pre.module.building',
                     'uses' => 'Organizer@preBuilding',

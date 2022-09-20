@@ -2,28 +2,9 @@
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Broadcast;
-use Twedoo\Stone\Core\StonePushNotification;
-use Twedoo\Stone\Modules\Notifications\Events\NotificationBroadcast;
 
 Route::group(['middleware' => ['web']], function () {
-
-    Route::group(['middleware' => ['web', 'auth']], function () {
-        Route::get('/push-notification', function () {
-            $user = \Twedoo\StoneGuard\Models\User::find(1);
-            $data = [
-                'title' => 'Invitation accepted',
-                'message' => json_encode(['Notifications::Notifications/Notifications.user_accept_invitation_to_space', ['user' =>  'Houssem', 'space_name' => 'Main Space']])
-            ];
-            StonePushNotification::notify($user, $data, true);
-//            broadcast(new NotificationBroadcast($user, 'fgfgfg'));
-            dump('Event fired ddd.');
-        });
-    });
-
-
     Route::group(['prefix' => 'invite/'.app('urlBack')], function () {
-
         Route::group([
             'module' => 'Notifications',
             'namespace' => 'Modules\Notifications\Controllers'
@@ -63,7 +44,7 @@ Route::group(['middleware' => ['web']], function () {
                 'module' => 'Notifications',
                 'namespace' => 'Modules\Notifications\Controllers'
             ], function () {
-                Route::get('/redirect/notification/actionUrl/{space}/{application}/{redirectTo}/{user}',
+                Route::get('/redirect/notification/actionUrl/{notification}/{space}/{application}/{redirectTo}/{user}',
                     [
                         'as' => app('urlBack') .'.redirect.notification.actionUrl',
                         'uses' => 'Notifications@actionUrl'

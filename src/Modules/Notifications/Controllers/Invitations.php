@@ -12,6 +12,7 @@ use Twedoo\Stone\Core\StoneInvitation;
 use Twedoo\Stone\Core\StoneEmailNotification;
 use Twedoo\Stone\Core\StonePushNotification;
 use Twedoo\Stone\Core\StoneSpace;
+use Twedoo\Stone\Core\StoneTranslation;
 use Twedoo\Stone\Core\Utils\StonePath;
 use Twedoo\Stone\Modules\Applications\Models\Applications;
 use Twedoo\Stone\Modules\Applications\Models\Spaces;
@@ -19,7 +20,7 @@ use Twedoo\Stone\Modules\Notifications\Models\Invitation;
 use Twedoo\StoneGuard\Models\User;
 use Validator;
 use Hash;
-use Twedoo\Stone\Modules\Notifications\Models\notification as ModelNotification;
+use Twedoo\Stone\Modules\Notifications\Models\Notification as ModelNotification;
 
 class Invitations extends Controller
 {
@@ -39,12 +40,12 @@ class Invitations extends Controller
         }
 
         $mailObject =  [
-                    'object' => trans('Notifications::Notifications/Notifications.invite_to_space'),
-                    'from' => "no-reply@twestone.io",
-                    'Sender' => Config::get('stone.name'),
-                    'greeting' => trans('Notifications::Notifications/Notifications.hello'),
-                    'first_line' => trans('Notifications::Notifications/Notifications.first_line'),
-                    'last_line' => trans('Notifications::Notifications/Notifications.last_line')
+            'object' => trans('Notifications::Notifications/Notifications.invite_to_space'),
+            'from' => "no-reply@twestone.io",
+            'Sender' => Config::get('stone.name'),
+            'greeting' => trans('Notifications::Notifications/Notifications.hello'),
+            'first_line' => trans('Notifications::Notifications/Notifications.first_line'),
+            'last_line' => trans('Notifications::Notifications/Notifications.last_line')
         ];
         StoneInvitation::inviteUser($emails,$type,$mailObject);
         return response()->json(true);
@@ -87,6 +88,7 @@ class Invitations extends Controller
      * @param $code
      * @param null $identification
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|string
+     * @throws \Exception
      */
     public function createUser(Request $request, $code, $identification = null)
     {
@@ -145,15 +147,19 @@ class Invitations extends Controller
                 }
 
                 $space_name = $is_full_space ? 'all space '. $space_name : 'application ' . $space_name;
-                $notification = json_encode(['Notifications::Notifications/Notifications.user_accept_invitation_to_space', ['user' =>  $user->name, 'space_name' => $space_name]]);
-
+                /**
+                 * Notification pusher
+                 */
+                $title = 'Notifications::Notifications/Notifications.invitation_accepted';
+                $message = ['Notifications::Notifications/Notifications.user_accept_invitation_to_space', ['user' =>  $user->name, 'space_name' => $space_name]];
+                $route = app('urlBack') .'.super.users.edit,'. $user->id;
+                $notification = StonePushNotification::saveNotification($title, $message, $route, $invitation->space_id, $invitation->application_id, $user->id, $invitation->owner_id);
                 $pusher = [
-                    'title' => 'Invitation accepted',
-                    'message' => StonePushNotification::translateNotification($notification),
-                    'action' => route(app('urlBack') . '.redirect.notification.actionUrl', [$invitation->space_id, $invitation->application_id, app('urlBack') . '.super.users.edit', $user->id])
+                    'title' => $title,
+                    'message' => $message,
+                    'action' => route(app('urlBack') . '.redirect.notification.actionUrl', [$notification->id, $invitation->space_id, $invitation->application_id, app('urlBack') . '.super.users.edit', $user->id])
                 ];
-
-                StonePushNotification::saveWithNotify($notification, StoneSpace::ALERT_TYPE, $invitation->space_id, $invitation->application_id, $user->id, $invitation->owner_id, $pusher);
+                StonePushNotification::notify($pusher, $notification->owner_id);
                 $name = $user->name;
                 return view('Notifications::Notifications.User.accept', compact('name'));
             }

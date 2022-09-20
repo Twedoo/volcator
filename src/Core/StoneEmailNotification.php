@@ -12,7 +12,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Twedoo\Stone\Modules\Notifications\Models\notification as ModelNotification;
+use Twedoo\Stone\Modules\Notifications\Models\Notification as ModelNotification;
 use Twedoo\StoneGuard\Models\User;
 
 class StoneEmailNotification extends Notification

@@ -23,66 +23,67 @@
                                     </h5>
                                 </div>
                                 <div class="row">
-                                    @foreach( $GetArrayModules as $key => $module)
-                                        @if ($module == "Organizer")
-                                            @continue
-                                        @endif
-                                        <div class="col-xl-2 col-lg-4">
-                                            <div class="card">
-                                                <div class="card-body">
+                                    @if(count($GetArrayModules) >= 1)
+                                        @foreach($GetArrayModules as $key => $module)
+                                            @if ($module == "Organizer")
+                                                @continue
+                                            @endif
+                                            <div class="col-xl-2 col-lg-4">
+                                                <div class="card">
+                                                    <div class="card-body">
 
-                                                    <div class="kit__g16__productImage mb-3">
-                                                        @if(file_exists('app/Modules/'.$module.'/screenshot.jpg'))
-                                                            <img class="kit__g16__productPhoto img-fluid"
-                                                                 style="height:150px; width:210px"
-                                                                 src="{{ asset('app/Modules/'.$module.'/screenshot.jpg') }}"
-                                                                 alt="Module">
-                                                        @else
-                                                            <img class="kit__g16__productPhoto img-fluid"
-                                                                 style="height:150px; width:210px"
-                                                                 src="{{ asset(app('back').'/assets/images/logos/stone-logo.png') }}"
-                                                                 alt="Module"/>
-                                                        @endif
-                                                    </div>
-                                                    <div
-                                                        class="font-size-18 font-weight-bold text-dark mb-2 text-center">
-                                                        @if (StoneEngine::isActiveStoneInCurrentApplication($module))
-                                                            <i class="fe @if(StoneEngine::getStatusModule($module)) fe-check-circle text-success @else fe fe-eye-off text-danger @endif font-weight-bolder font-size-32"></i>
-                                                        @else
-                                                            <a href="{{ route(app('urlBack').'.pre.module.building', [$module, StoneApplication::isStoneInstalledAsMain($module)]) }}">
-                                                                <i class="fe fe-download text-info font-weight-bolder font-size-32"></i>
-                                                            </a>
-                                                        @endif
-                                                    </div>
-                                                    <div>
-                                                        <a class="kit__g16__productFavourite text-gray-10 flex"
-                                                           href="javascript: void(0);">
-                                                            @if (StoneEngine::isActiveStoneInCurrentApplication($module))
-                                                                @foreach($modules as $onemodule)
-                                                                    @if( $onemodule->name == $module)
-                                                                        <div class="float-left">
-                                                                            {{ trans($onemodule->name.'::sidebar/sidebar.'.$onemodule->display_name.'') }}
-                                                                        </div>
-                                                                        <div class="float-right">
-                                                                            {!! StoneEngine::getModulesParams($module, $onemodule->id, $onemodule->enable) !!}
-                                                                        </div>
-                                                                    @endif
-                                                                @endforeach
+                                                        <div class="kit__g16__productImage mb-3">
+                                                            @if(file_exists('app/Modules/'.$module.'/screenshot.jpg'))
+                                                                <img class="kit__g16__productPhoto img-fluid"
+                                                                     style="height:150px; width:210px"
+                                                                     src="{{ asset('app/Modules/'.$module.'/screenshot.jpg') }}"
+                                                                     alt="Module">
                                                             @else
-                                                                <div class="float-left">
-                                                                    {{ $module }}
-                                                                </div>
-                                                                <div class="float-right">
-                                                                    {!! StoneEngine::displayRemove($module) !!}
-                                                                </div>
+                                                                <img class="kit__g16__productPhoto img-fluid"
+                                                                     style="height:150px; width:210px"
+                                                                     src="{{ asset(app('back').'/assets/images/logos/stone-logo.png') }}"
+                                                                     alt="Module"/>
                                                             @endif
-                                                        </a>
+                                                        </div>
+                                                        <div
+                                                            class="font-size-18 font-weight-bold text-dark mb-2 text-center">
+                                                            @if (StoneEngine::isActiveStoneInCurrentApplication($module))
+                                                                <i class="fe @if(StoneEngine::getStatusModule($module)) fe-check-circle text-success @else fe fe-eye-off text-danger @endif font-weight-bolder font-size-32"></i>
+                                                            @else
+                                                                <a href="{{ route(app('urlBack').'.pre.module.building', [$module, StoneApplication::isStoneInstalledAsMain($module)]) }}">
+                                                                    <i class="fe fe-download text-info font-weight-bolder font-size-32"></i>
+                                                                </a>
+                                                            @endif
+                                                        </div>
+                                                        <div>
+                                                            <a class="kit__g16__productFavourite text-gray-10 flex"
+                                                               href="javascript: void(0);">
+                                                                @if (StoneEngine::isActiveStoneInCurrentApplication($module))
+                                                                    @foreach($modules as $onemodule)
+                                                                        @if( $onemodule->name == $module)
+                                                                            <div class="float-left">
+                                                                                {{ trans($onemodule->name.'::sidebar/sidebar.'.$onemodule->display_name.'') }}
+                                                                            </div>
+                                                                            <div class="float-right">
+                                                                                {!! StoneEngine::getModulesParams($module, $onemodule->id, $onemodule->enable) !!}
+                                                                            </div>
+                                                                        @endif
+                                                                    @endforeach
+                                                                @else
+                                                                    <div class="float-left">
+                                                                        {{ $module }}
+                                                                    </div>
+                                                                    <div class="float-right">
+                                                                        {!! StoneEngine::displayRemove($module) !!}
+                                                                    </div>
+                                                                @endif
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endforeach
-
+                                        @endforeach
+                                    @endif
                                     <div class="col-lg-12 mb-5">
                                         <h5 class="mb-4">
                                             <strong>{{ trans('Organizer::Organizer/Organizer.upload_file_module_zip') }}</strong>

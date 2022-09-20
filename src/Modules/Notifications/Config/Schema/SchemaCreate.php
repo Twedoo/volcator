@@ -10,9 +10,10 @@ class SchemaCreate
         if (!Schema::hasTable(strtolower('notifications'))) {
             Schema::create('notifications', function ($table) {
                 $table->increments('id');
+                $table->string('title')->nullable();
                 $table->longtext('notification')->nullable();
+                $table->string('route')->nullable();
                 $table->integer('open')->nullable();
-                $table->string('type')->nullable(); //full-space 'space' or full-application 'application' or single-user 'user'
                 $table->integer('space_id')->nullable();
                 $table->integer('application_id')->nullable();
                 $table->integer('user_id')->nullable();

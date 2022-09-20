@@ -272,4 +272,55 @@ class StoneTranslation
         }
         return true;
     }
+
+    /**
+     * @param $notification
+     * @param null $local
+     * @param null $id
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public static function translateNotificationPusher($notification, $local = null)
+    {
+        $notification = json_decode(json_encode($notification), true);
+        if ($notification == null) {
+            $translate = self::translateNotification($notification, $local);
+        } else {
+            if (is_array($notification)) {
+                if (count($notification) >= 2) {
+                    $translate = trans($notification[0], $notification[1], $local);
+                }
+            } else {
+                $translate = trans($notification, [], $local);
+            }
+        }
+
+        return $translate;
+    }
+
+    /**
+     * @param $notification
+     * @param null $local
+     * @param null $id
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public static function translateNotification($notification, $local = null)
+    {
+        $parserNotification = json_decode($notification, true);
+        if ($parserNotification != null) {
+            if (is_array($parserNotification)) {
+                $translate = trans($parserNotification[0], $parserNotification[1], $local);
+            } else {
+                $translate = trans(json_decode($notification), [], $local);
+            }
+        }  else {
+            $translate = trans($notification, [], $local);
+        }
+
+        return $translate;
+    }
+
+    public static function currentLocalByUSerId($id)
+    {
+        return Session::get('language-user-'.$id);
+    }
 }
