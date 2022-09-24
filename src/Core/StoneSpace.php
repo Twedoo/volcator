@@ -146,7 +146,6 @@ class StoneSpace
     public static function getUsersByCurrentApplicationCurrentSpace()
     {
         $user = auth()->user();
-        DB::statement("SET SQL_MODE=''");
         return User::join('applications_user', 'applications_user.user_id', 'users.id')->where('users.id', '!=', $user->id)->where('applications_user.application_id', StoneApplication::getCurrentApplicationId())->groupBy('users.id')->get(['users.*']);
     }
 

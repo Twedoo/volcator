@@ -5,6 +5,7 @@ namespace Modules\Configurations\Controllers\Settings;
 use App\Http\Controllers\Controller;
 use Twedoo\Stone\Models\Languages;
 use Twedoo\Stone\Modules\Configurations\Models\confsettings;
+use Twedoo\Stone\Modules\Configurations\Models\confsettings_langs;
 use Twedoo\Stone\Modules\Configurations\Models\invitation;
 use Artisan;
 use DB;
@@ -34,7 +35,7 @@ class Settings extends Controller
     public function index()
     {
         $setbase = confsettings::all()->first();
-        $settings = invitation::where('id_ref', $setbase->id)->get();
+        $settings = confsettings_langs::where('id_ref', $setbase->id)->get();
         $languages = Languages::all();
         return view('Configurations::Settings.Settings', compact('setbase', 'languages', 'settings'));
     }
@@ -49,7 +50,7 @@ class Settings extends Controller
     {
         $alang = App::getLocale();
         $setbase = confsettings::all()->first();
-        $settingsbase = invitation::where('id_ref', $setbase->id)->get();
+        $settingsbase = confsettings_langs::where('id_ref', $setbase->id)->get();
 
         if (count($settingsbase) > 0) {
 
@@ -107,7 +108,7 @@ class Settings extends Controller
                             $rowlang = substr($key1, -2) . '_trans';
                         }
                         if ($key1 == $value . $l3 && !empty($value1)) {
-                            $setinsert = invitation::where('title_trans', $value)->where('id_ref', $setbase->id)->first();
+                            $setinsert = confsettings_langs::where('title_trans', $value)->where('id_ref', $setbase->id)->first();
                             $varset = $setinsert;
                             $setinsert->$rowlang = $value1;
                             $setinsert->update();
@@ -156,11 +157,12 @@ class Settings extends Controller
             ]);
 
             if ($validate->fails()) {
-                StoneLanguage::displayNotificationProgress(
-                    'error',
-                    trans('Configurations::Configurations/Settings.errors_add'),
-                    trans('Configurations::Configurations/Settings.errors')
-                );
+//                StoneLanguage::displayNotificationProgress(
+//                    'error',
+//                    trans('Configurations::Configurations/Settings.errors_add'),
+//                    trans('Configurations::Configurations/Settings.errors')
+//                );
+                dd($validate->fails());
                 return back()->withInput()->withErrors($validate);
             }
 
@@ -199,7 +201,7 @@ class Settings extends Controller
                         $rowlang = substr($key1, -2) . '_trans';
                     }
                     if ($key1 == $value . $l3) {
-                        $setinsert = invitation::where('title_trans', $value)->where('id_ref', $setbase->id)->first();
+                        $setinsert = confsettings_langs::where('title_trans', $value)->where('id_ref', $setbase->id)->first();
                         $varset = $setinsert;
                         $setinsert->$rowlang = $value1;
                         $setinsert->update();

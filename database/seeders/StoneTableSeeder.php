@@ -345,7 +345,6 @@ class StoneTableSeeder extends Seeder
          * Add Translate Languages
          */
         $languages = [
-
             [
                 'languages' => "English",
                 'code_lang' => "en",

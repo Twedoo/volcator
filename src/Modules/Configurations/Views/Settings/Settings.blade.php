@@ -79,12 +79,12 @@
                                                                 {!! Form::text('keyword'.'_'.$lang->code_lang, StoneTranslation::transDynTable('keyword','confsettings_langs',$lang->code_lang)  , array('placeholder' => trans('Configurations::Configurations/Settings.keyword') ,'class' => 'form-control', 'value' =>old('keyword'.'_'.$lang->code_lang) )) !!}
                                                                 <p class="help-block">{{$errors->first('keyword'.'_'.$lang->code_lang)}}  </p>
                                                             </div>
-                                                            <div class="col-md-12 col-sm-12 @if ($errors->has('descriptionweb'.'_'.$lang->code_lang)) has-error @endif">
+                                                            <div class="col-md-12 @if ($errors->has('descriptionweb'.'_'.$lang->code_lang)) has-error @endif">
                                                                 <label>{{ trans('Configurations::Configurations/Settings.descriptionweb') }} </label>
                                                                 {!! Form::textarea('descriptionweb'.'_'.$lang->code_lang, StoneTranslation::transDynTable('descriptionweb','confsettings_langs',$lang->code_lang)   , array('placeholder' => trans('Configurations::Configurations/Settings.descriptionweb')  ,'rows' => '4', 'class' => 'form-control', 'value' =>old('description'.'_'.$lang->code_lang) )) !!}
                                                                 <p class="help-block">{{$errors->first('descriptionweb'.'_'.$lang->code_lang)}}  </p>
                                                             </div>
-                                                            <div class="col-md-6 col-sm-6 @if ($errors->has('logo')) has-error @endif">
+                                                            <div class="col-md-6  @if ($errors->has('logo')) has-error @endif">
                                                                 <label>
                                                                     {{ trans('Configurations::Configurations/Settings.logo') }}
                                                                 </label>
@@ -105,7 +105,7 @@
                                                                 <p class="help-block">{{$errors->first('logo')}}  </p>
                                                             </div>
 
-                                                            <div class="col-md-6 col-sm-6 @if ($errors->has('languages')) has-error @endif">
+                                                            <div class="col-md-6  @if ($errors->has('languages')) has-error @endif">
                                                                 <label>{{ trans('Configurations::Configurations/Settings.languages') }} </label>
                                                                 <select name="languages"
                                                                         class="form-control pointer @if ($errors->has('choose_file')) has-error @endif">
@@ -118,15 +118,15 @@
                                                                 <p class="help-block">{{$errors->first('languages')}}  </p>
                                                             </div>
 
-                                                            <div class="col-md-6 col-sm-6 @if ($errors->has('email')) has-error @endif">
+                                                            <div class="col-md-6 @if ($errors->has('email')) has-error @endif">
                                                                 <label>{{ trans('Configurations::Configurations/Settings.email') }} </label>
                                                                 {!! Form::text('email', null, array('placeholder' => trans('Configurations::Configurations/Settings.email') ,'class' => 'form-control', 'value' =>old('email') )) !!}
                                                                 <p class="help-block">{{$errors->first('email')}}  </p>
                                                             </div>
 
-                                                            <div class="col-md-6 col-sm-6" style="margin-top:25px;">
+                                                            <div class="col-md-6">
                                                                 <label class="switch switch switch-round">
-                                                                    <span style="margin-right:25px;">{{ trans('Configurations::Configurations/Settings.maintenanceweb') }}    </span>
+                                                                    <span >{{ trans('Configurations::Configurations/Settings.maintenanceweb') }}    </span>
                                                                     <input type="checkbox" name="maintenanceweb"
                                                                            class="check_maint"
                                                                            @if( old('maintenanceweb') == 'on' || $setbase->maintenanceweb == 'on' ) checked @endif>
@@ -135,30 +135,30 @@
                                                                 </label>
                                                             </div>
 
-                                                            <div class="col-md-12 col-sm-12 @if ($errors->has('msgmaintenance'.'_'.$lang->code_lang)) has-error @endif">
+                                                            <div class="col-md-12  @if ($errors->has('msgmaintenance'.'_'.$lang->code_lang)) has-error @endif">
                                                                 <label>{{ trans('Configurations::Configurations/Settings.msgmaintenance') }}   </label>
                                                                 {!! Form::textarea('msgmaintenance'.'_'.$lang->code_lang, StoneTranslation::transDynTable('msgmaintenance','confsettings_langs',$lang->code_lang)  , array('placeholder' =>  trans('Configurations::Configurations/Settings.msgmaintenance') ,'rows' => '4', 'class' => 'form-control', 'value' =>old('msgmaintenance'.'_'.$lang->code_lang) )) !!}
                                                                 <p class="help-block">{{$errors->first('msgmaintenance'.'_'.$lang->code_lang)}}  </p>
                                                             </div>
                                                         @else
-                                                            <div class="col-md-6 col-sm-6 @if ($errors->has('sitename'.'_'.$lang->code_lang)) has-error @endif">
+                                                            <div class="col-md-6 @if ($errors->has('sitename'.'_'.$lang->code_lang)) has-error @endif">
                                                                 <label>{{ trans('Configurations::Configurations/Settings.sitename') }}    </label>
                                                                 {!! Form::text('sitename'.'_'.$lang->code_lang, StoneTranslation::transDynTable('sitename','confsettings_langs',$lang->code_lang), array('placeholder' => trans('Configurations::Configurations/Settings.sitename') ,'class' => 'form-control', 'value' =>old('sitename'.'_'.$lang->code_lang) )) !!}
                                                                 <p class="help-block">{{ $errors->first('sitename'.'_'.$lang->code_lang) }}</p>
                                                             </div>
-                                                            <div class="col-md-6 col-sm-6 @if ($errors->has('keyword'.'_'.$lang->code_lang)) has-error @endif">
+                                                            <div class="col-md-6  @if ($errors->has('keyword'.'_'.$lang->code_lang)) has-error @endif">
                                                                 <label>{{ trans('Configurations::Configurations/Settings.keyword') }}   </label>
                                                                 {!! Form::text('keyword'.'_'.$lang->code_lang, StoneTranslation::transDynTable('keyword','confsettings_langs',$lang->code_lang), array('placeholder' => trans('Configurations::Configurations/Settings.keyword') ,'class' => 'form-control', 'value' =>old('keyword'.'_'.$lang->code_lang) )) !!}
                                                                 <p class="help-block">{{$errors->first('keyword'.'_'.$lang->code_lang)}}  </p>
                                                             </div>
 
-                                                            <div class="col-md-12 col-sm-12 @if ($errors->has('descriptionweb'.'_'.$lang->code_lang)) has-error @endif">
+                                                            <div class="col-md-12  @if ($errors->has('descriptionweb'.'_'.$lang->code_lang)) has-error @endif">
                                                                 <label>{{ trans('Configurations::Configurations/Settings.descriptionweb') }}  </label>
                                                                 {!! Form::textarea('descriptionweb'.'_'.$lang->code_lang, StoneTranslation::transDynTable('descriptionweb','confsettings_langs',$lang->code_lang), array('placeholder' => trans('Configurations::Configurations/Settings.descriptionweb') ,'rows' => '4', 'class' => 'form-control', 'value' =>old('descriptionweb'.'_'.$lang->code_lang) )) !!}
                                                                 <p class="help-block">{{$errors->first('descriptionweb'.'_'.$lang->code_lang)}}  </p>
                                                             </div>
 
-                                                            <div class="col-md-12 col-sm-12 @if ($errors->has('msgmaintenance'.'_'.$lang->code_lang)) has-error @endif">
+                                                            <div class="col-md-12  @if ($errors->has('msgmaintenance'.'_'.$lang->code_lang)) has-error @endif">
                                                                 <label>{{ trans('Configurations::Configurations/Settings.msgmaintenance') }}   </label>
                                                                 {!! Form::textarea('msgmaintenance'.'_'.$lang->code_lang, StoneTranslation::transDynTable('msgmaintenance','confsettings_langs',$lang->code_lang), array('placeholder' => trans('Configurations::Configurations/Settings.msgmaintenance') ,'rows' => '4', 'class' => 'form-control', 'value' =>old('msgmaintenance'.'_'.$lang->code_lang) )) !!}
                                                                 <p class="help-block">{{$errors->first('msgmaintenance'.'_'.$lang->code_lang)}}  </p>

@@ -2,7 +2,7 @@
 namespace Modules\Configurations\Config\Schema;
 
 use Illuminate\Support\Facades\Schema;
-
+use Twedoo\Stone\Modules\Configurations\Models\seeder\ConfigurationsTableSeeder;
 class SchemaCreate
 {
 
@@ -51,5 +51,8 @@ class SchemaCreate
                 $table->timestamps();
             });
         }
+
+        $seeder = new ConfigurationsTableSeeder();
+        $seeder->run();
     }
 }
