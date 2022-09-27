@@ -257,7 +257,7 @@ class StoneEngine
      */
     public static function getModulesParams($module, $idModule, $statusModule)
     {
-        $namespace = self::stoneResolveNamespaceByDb($module);
+        $namespace = self::stoneResolveNamespace($module);
         if (method_exists($namespace . $module . '\\' . $module, 'getParameters')) {
             return \App::call($namespace . $module . '\\' . $module . '@getParameters', compact('idModule', 'statusModule'));
         }
@@ -270,7 +270,7 @@ class StoneEngine
      */
     public static function pageParameters($module, $id)
     {
-        $namespace = self::stoneResolveNamespaceByDb($module);
+        $namespace = self::stoneResolveNamespace($module);
         if (method_exists($namespace . $module . '\\' . $module, 'parameters'))
             return \App::call($namespace . $module . '\\' . $module . '@parameters', compact('id', 'module'));
         else
@@ -357,14 +357,43 @@ class StoneEngine
         return Stones::where('enable', 1)->get();
     }
 
-    public static function getRouteModule()
+    /**
+     * @return |null
+     */
+    public static function getRouteLinkByCurrentUrlStone()
     {
         $getPath = URL::current();
         $routeModule = null;
-        if (strpos($getPath, Config('prefix.urlBack')) !== false && strpos($getPath, Config('prefix.module')) !== false) {
-            $nameModelClass = explode(Config('prefix.urlBack') . '/', $getPath);// explode for get the name of controller and folder module
-            $routeModule = strtolower(explode('/', $nameModelClass[1])[1]);
+        $menu = null;
+
+        if (strpos($getPath, app('urlBack')) !== false) {
+            $nameModelClass = explode(app('urlBack') . '/', $getPath);
+            if ($nameModelClass[1]) {
+                $menu = Menuback::where('route_link', strtolower($nameModelClass[1]))->first()->route_link;
+            }
+            $routeModule = $menu ? $menu : null;
         }
+
+        return $routeModule;
+    }
+
+    /**
+     * @return |null
+     */
+    public static function getStoneNameByCurrentUrl()
+    {
+        $getPath = URL::current();
+        $routeModule = null;
+        $menu = null;
+
+        if (strpos($getPath, app('urlBack')) !== false) {
+            $nameModelClass = explode(app('urlBack') . '/', $getPath);
+            if ($nameModelClass[1]) {
+                $menu = Menuback::where('route_link', strtolower($nameModelClass[1]))->first();
+            }
+            $routeModule = $menu ? Stones::where(['id' => $menu->id_stone, 'enable' => true])->first()->name : null;
+        }
+
         return $routeModule;
     }
 
@@ -433,14 +462,19 @@ class StoneEngine
      * @param array $options
      * @return string
      */
-    public static function stoneResolveNamespaceByDb($module, $options = [])
+    public static function stoneResolveNamespace($module, $options = [])
     {
-        $stone = Stones::where('name', $module)->get()->first()->application;
-        if ($stone == "custom") {
-            $namespace = "App\\Modules\\";
-        } else {
-            $namespace = "Twedoo\\Stone\\";
+        $namespace = null;
+        $stone = Stones::where('name', $module)->get()->first();
+        if ($stone) {
+            $stone = $stone->application;
+            if ($stone == "custom") {
+                $namespace = "App\\Modules\\";
+            } else {
+                $namespace = "Twedoo\\Stone\\";
+            }
         }
+
         return $namespace;
     }
 

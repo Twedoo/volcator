@@ -12,23 +12,20 @@ use Schema;
 
 class StoneMediaStyle
 {
-    /**
-     *
-     */
-    public static function addJQUERY()
+    public static function jsMediaHook()
     {
-        $getModule = Stones::where('enable', 1)->get();
-//        dump($getModule);die;
-        foreach ($getModule as $key => $module) {
-            if (!in_array($module->name, StoneEngine::getModuleList()))
-                continue;
-            if (method_exists('Modules\\' . $module->name . '\\' . $module->name, 'js')) {
-                $function = \App::call('Modules\\' . $module->name . '\\' . $module->name . '@js');
-                if (!is_null($function)) {
-                    ksort($function);
-                    foreach ($function as $key => $js) {
-                        echo '<script type="text/javascript" src="' . asset($js) . '"></script>' . "\n" . ' ';
-                    }
+        $stone = StoneEngine::getStoneNameByCurrentUrl();
+        $namespace = StoneEngine::stoneResolveNamespace($stone);
+        if (!$namespace) {
+            return null;
+        }
+        $path = StoneEngine::pathConfigStoneResolve($namespace, $stone);
+        if (method_exists($namespace . $stone . '\\' . $stone, 'js')) {
+            $pathJs = \App::call($namespace . $stone . '\\' . $stone . '@js');
+            if (!is_null($pathJs)) {
+                foreach (array_filter($pathJs) as $key => $js) {
+                    $js = preg_replace('~'.base_path().'~', '', $path.'/Media/'.$js);
+                    echo '<script type="text/javascript" src="' . $js . '"></script>' . "\n" . ' ';
                 }
             }
         }
@@ -37,25 +34,23 @@ class StoneMediaStyle
     /**
      *
      */
-    public static function addSTYLE()
+    public static function cssMediaHook()
     {
-        $getModule = Stones::where('enable', 1)->get();
+        $stone = StoneEngine::getStoneNameByCurrentUrl();
+        $namespace = StoneEngine::stoneResolveNamespace($stone);
+        if (!$namespace) {
+            return null;
+        }
+        $path = StoneEngine::pathConfigStoneResolve($namespace, $stone);
 
-        foreach ($getModule as $key => $module) {
-            if (!in_array($module->name, StoneEngine::getModuleList()))
-                continue;
-            if (method_exists('Modules\\' . $module->name . '\\' . $module->name, 'css')) {
-                $function = \App::call('Modules\\' . $module->name . '\\' . $module->name . '@css');
-                if (!is_null($function)) {
-                    ksort($function);
-                    foreach ($function as $key => $css) {
-                        echo '<link href="' . asset($css) . '" rel="stylesheet" type="text/css"  />' . "\n" . ' ';
-                    }
+        if (method_exists($namespace . $stone . '\\' . $stone, 'css')) {
+            $pathCss = \App::call($namespace . $stone . '\\' . $stone . '@css');
+            if (!is_null($pathCss)) {
+                foreach (array_filter($pathCss) as $key => $css) {
+                    $css = preg_replace('~'.base_path().'~', '', $path.'/Media/'.$css);
+                    echo '<link href="' . $css . '" rel="stylesheet" type="text/css"  />' . "\n" . ' ';
                 }
             }
-
         }
     }
-
-
 }

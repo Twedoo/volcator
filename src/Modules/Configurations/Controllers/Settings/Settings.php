@@ -34,9 +34,10 @@ class Settings extends Controller
 
     public function index()
     {
-        $setbase = confsettings::all()->first();
+        $setbase = confsettings::first();
         $settings = confsettings_langs::where('id_ref', $setbase->id)->get();
         $languages = Languages::all();
+
         return view('Configurations::Settings.Settings', compact('setbase', 'languages', 'settings'));
     }
 
@@ -51,6 +52,7 @@ class Settings extends Controller
         $alang = App::getLocale();
         $setbase = confsettings::all()->first();
         $settingsbase = confsettings_langs::where('id_ref', $setbase->id)->get();
+
 
         if (count($settingsbase) > 0) {
 
@@ -162,7 +164,6 @@ class Settings extends Controller
 //                    trans('Configurations::Configurations/Settings.errors_add'),
 //                    trans('Configurations::Configurations/Settings.errors')
 //                );
-                dd($validate->fails());
                 return back()->withInput()->withErrors($validate);
             }
 

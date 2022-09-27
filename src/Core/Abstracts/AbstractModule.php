@@ -25,26 +25,15 @@ abstract class AbstractModule
     public $btnUninstall    = false;
     public $btnReset        = false;
     public $btnEnable       = false;
-    public $js              = array();
-    public $css             = array();
+    public $js              = [];
+    public $css             = [];
     public $dropTable;
-    public $type;
     public $uninstall;
 
     public function __construct()
     {
-        $this->type  = strtolower($this->type);
+        //
     }
 
-    abstract public function injectStyle($key, $value);
-    abstract public function getStyle();
     abstract public function route();
-//    abstract public function goUpload($request);
-//    abstract public function goPrepare($module);
-//    abstract public function goBuilding($module);
-//    abstract public function goReset($module);
-//    abstract public function goUninstall($module);
-//    abstract public function goStatus($module);
-//    abstract public function goRemove($module);
-
 }

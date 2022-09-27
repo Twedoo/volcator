@@ -270,7 +270,7 @@ class StoneTranslation
         if ($TransPass != null) {
             return $TransPass->$language;
         }
-        return true;
+        return false;
     }
 
     /**

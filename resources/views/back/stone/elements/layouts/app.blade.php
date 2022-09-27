@@ -7,9 +7,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>
         @if (app('APP_NAME') != null)
-        {{ app('APP_NAME') }}
+            {{ app('APP_NAME') }}
         @else
-        {{ Config::get('stone.app_name') }}
+            {{ Config::get('stone.app_name') }}
         @endif
     </title>
 
@@ -108,9 +108,6 @@
     <script src="{{ asset(app('back').'/assets/components/cleanui/layout/support-chat/index.js') }}"></script>
     <script src="{{ asset(app('back').'/assets/components/cleanui/layout/topbar/index.js') }}"></script>
 
-
-
-
     @if(App::getLocale() == 'ar' || App::getLocale() == 'he' || App::getLocale() == 'ru' || App::getLocale() == 'fa' )
     <link id="rtl_ltr_b1"
           href="{{asset(app('back').'/assets/plugins/bootstrap/RTL/bootstrap-rtl.min.css')}}"
@@ -147,6 +144,7 @@
             $('.initial__loading').delay(200).fadeOut(400)
         })
     </script>
+    {!! StoneMediaStyle::cssMediaHook() !!}
 </head>
 
 <body class="cui__layout--cardsShadow cui__menuLeft--dark cui__menuTop--dark">
@@ -487,7 +485,6 @@
 </div>
 
 </body>
-{!! StoneMediaStyle::addJQUERY() !!}
 <script>
     $(document).ready(function(){
         $('.dropify-picture-space').dropify();
@@ -568,5 +565,5 @@
     }
     document.querySelector('#create_space_form').addEventListener("submit", spaceStoneFormSubmit, false);
 </script>
-
+{!! StoneMediaStyle::jsMediaHook() !!}
 </html>

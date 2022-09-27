@@ -93,14 +93,20 @@
                                                                      width="5%"/>
 
                                                                 <!-- custom file upload -->
-                                                                <div class="fancy-file-upload fancy-file-primary @if ($errors->has('choose_file')) has-error @endif">
-                                                                    <i class="fa fa-upload"></i>
-                                                                    <input type="file" class="form-control" name="logo"
-                                                                           onchange="jQuery(this).next('input').val(this.value);">
-                                                                    <input type="text" class="form-control"
-                                                                           placeholder="{{ trans('Configurations::Configurations/Settings.nofile_select') }} "
-                                                                           readonly="">
-                                                                    <span class="button">{{ trans('Configurations::Configurations/Settings.choose_file') }}  </span>
+<!--                                                                <div class="fancy-file-upload fancy-file-primary @if ($errors->has('choose_file')) has-error @endif">-->
+<!--                                                                    <i class="fa fa-upload"></i>-->
+<!--                                                                    <input type="file" class="form-control" name="logo"-->
+<!--                                                                           onchange="jQuery(this).next('input').val(this.value);">-->
+<!--                                                                    <input type="text" class="form-control"-->
+<!--                                                                           placeholder="{{ trans('Configurations::Configurations/Settings.nofile_select') }} "-->
+<!--                                                                           readonly="">-->
+<!--                                                                    <span class="button">{{ trans('Configurations::Configurations/Settings.choose_file') }}  </span>-->
+<!--                                                                </div>-->
+                                                                <div class="form-group logo-setting">
+                                                                    <label class="form-label label-image-space label-extension-space"> {{ trans('Applications::Space/space.image') }} </label>
+                                                                    <input type="file" name="image_space_stone" class="dropify-picture-space dropify-event image-space extension-space" id="input-file-events image_space_stone"
+                                                                           data-allowed-formats="portrait square landscape" data-max-file-size="10M" />
+                                                                    <span class="text-image-space text-extension-space form-control-error-text"></span>
                                                                 </div>
                                                                 <p class="help-block">{{$errors->first('logo')}}  </p>
                                                             </div>

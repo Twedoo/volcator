@@ -4,7 +4,7 @@
  * Created by Twedoo.
  * User: Houssem Maamria
  * Email: mail.houssem@gmail.com
- * Site: https://www.twedoo.com
+ * Site: https://www.stonez.io
  * Desc: Twedoo ERP
  */
 
@@ -25,6 +25,9 @@ use Schema;
 class StoneStructure extends AbstractModule
 {
 
+    /**
+     * StoneStructure constructor.
+     */
     public function __construct()
     {
         Session()->forget('message');
@@ -32,31 +35,10 @@ class StoneStructure extends AbstractModule
     }
 
     /**
-     * @param $key
-     * @param $value
+     * @return mixed
      */
-    public function __set($key, $value)
-    {
-        $this->injectStyle($key, $value);// TODO: Implement __set() method.
-    }
-
-    /**
-     * @param $key
-     * @param $value
-     */
-    public function injectStyle($key, $value)
-    {
-        if($value)
-            $this->{$this->type}["'".$key."'"] = StonePath::pathMedia($this->name) . $value;
-    }
-
-    public function getStyle()
-    {
-        return $this->{strtolower($this->type)};
-    }
-
     public function route()
     {
-        return StoneEngine::getRouteModule();
+        return StoneEngine::getRouteLinkByCurrentUrlStone();
     }
 }
