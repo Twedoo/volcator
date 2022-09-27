@@ -388,7 +388,7 @@ class StoneEngine
 
         if (strpos($getPath, app('urlBack')) !== false) {
             $nameModelClass = explode(app('urlBack') . '/', $getPath);
-            if ($nameModelClass[1]) {
+            if (isset($nameModelClass[1])) {
                 $menu = Menuback::where('route_link', strtolower($nameModelClass[1]))->first();
             }
             $routeModule = $menu ? Stones::where(['id' => $menu->id_stone, 'enable' => true])->first()->name : null;
@@ -397,6 +397,10 @@ class StoneEngine
         return $routeModule;
     }
 
+    /**
+     * @param bool $isByPathOrName
+     * @return array
+     */
     public static function getDirectoryModuleByPath($isByPathOrName = true)
     {
         $defaultModules = glob(__DIR__ . '/Modules/*', GLOB_ONLYDIR);

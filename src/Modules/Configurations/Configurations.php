@@ -139,6 +139,8 @@ class Configurations extends StoneStructure
     }
 
     /**
+     * @param $id
+     * @param $module
      * @return string
      */
     public function parameters($id, $module)

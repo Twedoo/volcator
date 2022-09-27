@@ -69,7 +69,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
                     'uses' => 'Organizer@statusModule',
                     'middleware' => ['permission:'.Config::get('stone.PERMISSION_MANAGER_ORGANIZER_FULL')]
                 ]);
-            Route::get('organizer/remove/moules/{module}',
+            Route::get('organizer/remove/moules/{module?}',
                 [
                     'as' => app('urlBack') . '.super.module.remove',
                     'uses' => 'Organizer@removeModule',

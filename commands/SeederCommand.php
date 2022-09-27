@@ -63,5 +63,8 @@ class SeederCommand extends Command
 
         $module = 'Notifications';
         \App::call('Twedoo\\Stone\\Organizer\\Organizer@preBuildingConsole', compact('module'));
+
+        $module = 'Vue';
+        \App::call('Twedoo\\Stone\\Organizer\\Organizer@preBuildingConsole', compact('module'));
     }
 }

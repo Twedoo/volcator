@@ -1,0 +1,11 @@
+stone:
+  roles:
+      - name: 'Role-Stone-Vue'
+        display_name: 'Stone Vue'
+        description: 'Builder front website with zero code'
+        type: 'main'
+        permissions:
+
+          - name: 'Permission-stone-vue'
+            display_name: 'Access Stone Vue'
+            description: 'Permission Builder Stone Vue'

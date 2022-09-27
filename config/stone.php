@@ -326,6 +326,8 @@ return [
     // Permissions Application
     "PERMISSION_APPLICATION_FULL"           => 'Permission-Application-Full',
     "PERMISSION_APPLICATION_VIEW"           => 'Permission-Application-View',
+    // Permissions Stone Vue
+    "PERMISSION_STONE_VUE"                  => 'Permission-stone-vue',
 
     /*
     |--------------------------------------------------------------------------
@@ -343,7 +345,10 @@ return [
     "ROLE_APPLICATION_FULL"                 => 'Role-Application-Full',
     "ROLE_APPLICATION_VIEW"                 => 'Role-Application-View',
     // Roles Configuration
-    "ROLE_CONFIGURATION_FULL"                 => 'Role-Access-Configuration',
+    "ROLE_CONFIGURATION_FULL"               => 'Role-Access-Configuration',
+
+    // Roles Stone Vue
+    "ROLE_STONE_VUE"                        => 'Role-Stone-Vue',
 
     /*
     |--------------------------------------------------------------------------

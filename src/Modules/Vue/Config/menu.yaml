@@ -1,0 +1,5 @@
+stone:
+  menu:
+    - name_menu: 'stone_vue_builder'
+      route_link: 'vue/builder'
+      mb_permission: 'Permission-stone-vue'
