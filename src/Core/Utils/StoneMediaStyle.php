@@ -42,9 +42,9 @@ class StoneMediaStyle
             return null;
         }
         $path = StoneEngine::pathConfigStoneResolve($namespace, $stone);
-
         if (method_exists($namespace . $stone . '\\' . $stone, 'css')) {
             $pathCss = \App::call($namespace . $stone . '\\' . $stone . '@css');
+
             if (!is_null($pathCss)) {
                 foreach (array_filter($pathCss) as $key => $css) {
                     $css = preg_replace('~'.base_path().'~', '', $path.'/Media/'.$css);

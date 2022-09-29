@@ -1,0 +1,9 @@
+stone:
+  name: 'Brick'
+  display_name: 'stone_brick'
+  permission_name: ['Permission-stone-brick']
+  menu_type: 'core'
+  application: 'main'
+  menu_icon: 'fe fe-droplet'
+  enable: 1
+  publish: 'public'

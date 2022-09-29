@@ -1,9 +1,0 @@
-stone:
-  name: 'Vue'
-  display_name: 'stone_vue'
-  permission_name: ['Permission-stone-vue']
-  menu_type: 'core'
-  application: 'main'
-  menu_icon: 'fe fe-droplet'
-  enable: 1
-  publish: 'public'

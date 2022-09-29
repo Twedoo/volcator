@@ -9,7 +9,7 @@
             </div>
             <div class="create__space">
                 <a href="javascript:void(0)" data-toggle="modal" data-target="#createSpace">
-                    <i class="fa fa-plus text-center mt-24 icon__create__space"></i>
+                    <i class="fa fa-plus text-center icon__create__space"></i>
                 </a>
             </div>
             <div class="stone__spaces__list height-700 kit__customScroll__space ps-active-y">

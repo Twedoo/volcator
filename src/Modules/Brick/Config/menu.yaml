@@ -1,0 +1,5 @@
+stone:
+  menu:
+    - name_menu: 'stone_brick_builder'
+      route_link: 'brick/builder'
+      mb_permission: 'Permission-stone-brick'
