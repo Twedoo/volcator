@@ -14,20 +14,20 @@
             </div>
             <div class="stone__spaces__list height-700 kit__customScroll__space ps-active-y">
                 @foreach (StoneSpace::getSpaces() as $id => $space)
-                <a href="{{ route(app('urlBack').'.space.switch', $id) }}" >
-                    <div class="stone__spaces__element ">
-                        <div class="active__stone__space  @if ($id != StoneSpace::getCurrentSpaceId()) stone-visibility-hidden @endif">
-                            <div class="is_active__icon__stone__space"></div>
-                        </div>
-                        <div class="block__stone__space">
-                            <div class="round__stone__space">
-                                <div class="name__in__round__stone__space text-uppercase">
-                                    {{ StoneSpace::getFirstTwoLetterName($space) }}
+                    <a href="{{ route(app('urlBack').'.space.switch', $id) }}" >
+                        <div class="stone__spaces__element ">
+                            <div class="active__stone__space  @if ($id != StoneSpace::getCurrentSpaceId()) stone-visibility-hidden @endif">
+                                <div class="is_active__icon__stone__space"></div>
+                            </div>
+                            <div class="block__stone__space">
+                                <div class="round__stone__space">
+                                    <div class="name__in__round__stone__space text-uppercase">
+                                        {{ StoneSpace::getFirstTwoLetterName($space) }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
                 @endforeach
             </div>
 
@@ -80,34 +80,34 @@
                     </ul>
                 </li>
                 @foreach(StoneMenu::getMenuModule() as $key => $moduleByMenuCategory)
-                <li class="cui__menuLeft__category">
-                    {{ trans('sidebar/sidebar.'.$key.'') }}
-                </li>
-                @foreach( $moduleByMenuCategory as $key => $ModuleSideBar)
-                @if(StoneMenu::hasPermissionsMenu(json_decode($ModuleSideBar->permission_name)))
-                <li class="cui__menuLeft__item cui__menuLeft__submenu">
+                    <li class="cui__menuLeft__category">
+                        {{ trans('sidebar/sidebar.'.$key.'') }}
+                    </li>
+                    @foreach( $moduleByMenuCategory as $key => $ModuleSideBar)
+                        @if(StoneMenu::hasPermissionsMenu(json_decode($ModuleSideBar->permission_name)))
+                        <li class="cui__menuLeft__item cui__menuLeft__submenu">
                           <span class="cui__menuLeft__item__link">
                             <span class="cui__menuLeft__item__title"> {{ trans($ModuleSideBar->name.'::sidebar/sidebar.'.$ModuleSideBar->display_name.'')  }}</span>
                             <i class="cui__menuLeft__item__icon {!! $ModuleSideBar->menu_icon !!}"></i>
                           </span>
-                    <ul class="cui__menuLeft__navigation">
-                        @foreach(StoneMenu::getSubMenuModule('getSubMenuModule') as $SubMenu)
-                        @if( $ModuleSideBar->id == $SubMenu->id_stone)
-                        @permission($SubMenu->mb_permission)
-                        <li class="cui__menuLeft__item">
-                            <a class="cui__menuLeft__item__link"
-                               href="{{ url(app('urlBack').'/'.$SubMenu->route_link) }}">
-                                <span class="cui__menuLeft__item__title">{{ trans($ModuleSideBar->name.'::sidebar/sidebar.'.$SubMenu->name_menu)  }}</span>
-                            </a>
+                            <ul class="cui__menuLeft__navigation">
+                                @foreach(StoneMenu::getSubMenuModule('getSubMenuModule') as $SubMenu)
+                                    @if( $ModuleSideBar->id == $SubMenu->id_stone)
+                                        @permission($SubMenu->mb_permission)
+                                            <li class="cui__menuLeft__item">
+                                                <a class="cui__menuLeft__item__link"
+                                                   href="{{ url(app('urlBack').'/'.$SubMenu->route_link) }}">
+                                                    <span class="cui__menuLeft__item__title">{{ trans($ModuleSideBar->name.'::sidebar/sidebar.'.$SubMenu->name_menu)  }}</span>
+                                                </a>
+                                            </li>
+                                        @endpermission
+                                    @endif
+                                @endforeach
+                            </ul>
                         </li>
-                        @endpermission
-                        @endif
-                        @endforeach
-                    </ul>
-                </li>
-                @endpermission
-                @endforeach
-                @endforeach
+            @endpermission
+            @endforeach
+            @endforeach
         </div>
     </div>
 </div>

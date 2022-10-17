@@ -124,3 +124,6 @@ input[type="checkbox"]:disabled {
     color: #595c97;
 }
 
+.img-display-inline {
+    display: inline-block;
+}

@@ -7,9 +7,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>
         @if (app('APP_NAME') != null)
-            {{ app('APP_NAME') }}
+        {{ app('APP_NAME') }}
         @else
-            {{ Config::get('stone.app_name') }}
+        {{ Config::get('stone.app_name') }}
         @endif
     </title>
 
@@ -22,8 +22,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/vendors/ladda/dist/ladda-themeless.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/vendors/bootstrap-select/dist/css/bootstrap-select.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/vendors/select2/dist/css/select2.min.css') }}">
-    <!--    <link rel="stylesheet" type="text/css"-->
-    <!--          href="{{ asset(app('back').'/assets/vendors/tempus-dominus-bs4/build/css/tempusdominus-bootstrap-4.min.css') }}">-->
+<!--    <link rel="stylesheet" type="text/css"-->
+<!--          href="{{ asset(app('back').'/assets/vendors/tempus-dominus-bs4/build/css/tempusdominus-bootstrap-4.min.css') }}">-->
     <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/vendors/fullcalendar/dist/fullcalendar.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/vendors/bootstrap-sweetalert/dist/sweetalert.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/vendors/summernote/dist/summernote.css') }}">
@@ -55,7 +55,7 @@
     <script src="{{ asset(app('back').'/assets/vendors/autosize/dist/autosize.min.js') }}"></script>
     <script src="{{ asset(app('back').'/assets/vendors/bootstrap-show-password/dist/bootstrap-show-password.min.js') }}"></script>
     <script src="{{ asset(app('back').'/assets/vendors/moment/min/moment.min.js') }}"></script>
-    <!--    <script src="{{ asset(app('back').'/assets/vendors/tempus-dominus-bs4/build/js/tempusdominus-bootstrap-4.min.js') }}"></script>-->
+<!--    <script src="{{ asset(app('back').'/assets/vendors/tempus-dominus-bs4/build/js/tempusdominus-bootstrap-4.min.js') }}"></script>-->
     <script src="{{ asset(app('back').'/assets/vendors/fullcalendar/dist/fullcalendar.min.js') }}"></script>
     <script src="{{ asset(app('back').'/assets/vendors/bootstrap-sweetalert/dist/sweetalert.min.js') }}"></script>
     <script src="{{ asset(app('back').'/assets/vendors/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js') }}"></script>
@@ -72,7 +72,7 @@
     <script src="{{ asset(app('back').'/assets/vendors/chartist-plugin-tooltips-updated/dist/chartist-plugin-tooltip.min.js') }}"></script>
     <script src="{{ asset(app('back').'/assets/vendors/jquery-countTo/jquery.countTo.js') }}"></script>
     <script src="{{ asset(app('back').'/assets/vendors/nprogress/nprogress.js') }}"></script>
-    <!--    <script src="{{ asset(app('back').'/assets/vendors/jquery-steps/build/jquery.steps.min.js') }}"></script>-->
+<!--    <script src="{{ asset(app('back').'/assets/vendors/jquery-steps/build/jquery.steps.min.js') }}"></script>-->
     <script src="{{ asset(app('back').'/assets/vendors/chart.js/dist/Chart.bundle.min.js') }}"></script>
     <script src="{{ asset(app('back').'/assets/vendors/dropify/dist/js/dropify.min.js') }}"></script>
     <script src="{{ asset(app('back').'/assets/vendors/d3-dsv/dist/d3-dsv.js') }}"></script>
@@ -107,6 +107,7 @@
     <script src="{{ asset(app('back').'/assets/components/cleanui/layout/sidebar/index.js') }}"></script>
     <script src="{{ asset(app('back').'/assets/components/cleanui/layout/support-chat/index.js') }}"></script>
     <script src="{{ asset(app('back').'/assets/components/cleanui/layout/topbar/index.js') }}"></script>
+
 
     @if(App::getLocale() == 'ar' || App::getLocale() == 'he' || App::getLocale() == 'ru' || App::getLocale() == 'fa' )
     <link id="rtl_ltr_b1"

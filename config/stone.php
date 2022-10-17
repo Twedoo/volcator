@@ -327,7 +327,7 @@ return [
     "PERMISSION_APPLICATION_FULL"           => 'Permission-Application-Full',
     "PERMISSION_APPLICATION_VIEW"           => 'Permission-Application-View',
     // Permissions Stone Vue
-    "PERMISSION_STONE_BRICK"                  => 'Permission-stone-brick',
+    "PERMISSION_STONE_HEADPIECE"            => 'Permission-stone-headpiece',
 
     /*
     |--------------------------------------------------------------------------
@@ -348,7 +348,7 @@ return [
     "ROLE_CONFIGURATION_FULL"               => 'Role-Access-Configuration',
 
     // Roles Stone Vue
-    "ROLE_STONE_BRICK"                        => 'Role-Stone-Brick',
+    "ROLE_STONE_HEADPIECE"                        => 'Role-Stone-Headpiece',
 
     /*
     |--------------------------------------------------------------------------
