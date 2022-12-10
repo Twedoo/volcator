@@ -682,4 +682,7 @@
     {{--
 </nav>--}}
 
-
+<script>
+    let v_form_locale = '{!! App::getLocale() !!}';
+    localStorage.setItem('v_form_locale', v_form_locale)
+</script>

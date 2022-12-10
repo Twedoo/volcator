@@ -25,7 +25,8 @@ class StoneMediaStyle
             if (!is_null($pathJs)) {
                 foreach (array_filter($pathJs) as $key => $js) {
                     $js = preg_replace('~'.base_path().'~', '', $path.'/Media/'.$js);
-                    echo '<script type="text/javascript" src="' . $js . '"></script>' . "\n" . ' ';
+                    $key = strpos($key, 'module') !== false ? "module" : "text/javascript";
+                    echo '<script type="'.$key.'" src="' . $js . '"></script>' . "\n" . ' ';
                 }
             }
         }

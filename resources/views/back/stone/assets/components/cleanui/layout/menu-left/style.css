@@ -86,7 +86,7 @@
     position: fixed;
     z-index: 3;
     bottom: 0;
-    width: 256px;
+    /*width: 256px;*/
     height: 48px;
     background: #141322;
 }
