@@ -4,7 +4,10 @@
 [![Total Downloads][ico-downloads]][link-downloads]
 [![Build Status][ico-travis]][link-travis] 
 
-This is where your description should go. Take a look at [contributing.md](contributing.md) to see a to do list.
+Stone IO is not a traditional CMS, the idea of its architectural design software is completely different from the traditional CMS because it's built to supports SAAS systems, it's directed mainly to companies and it also supports the space system for each company (space) contains many applications that can be install and delete it not from the entire platform, but only from the user's private space.
+
+The new thing in Stone IO its the IDE based on Vue3 that enables the platform owner to develop his applications and build any application he wants from the user interface without the need to write any line of code by drag & drop.
+
 
 ## Version 
 
