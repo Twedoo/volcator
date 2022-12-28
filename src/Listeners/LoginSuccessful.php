@@ -34,9 +34,7 @@ class LoginSuccessful
     public function handle(Login $event)
     {
         $current_user = Auth::user()->id;
-//        dd(Cache::get('space-'.$current_user));
         if (Cache::has('space-'.$current_user)) {
-//            dd('cache');
             Session::put('space', Cache::get('space-'.$current_user));
         } else {
             Session::put('space', StoneSpace::getSpaceId());
@@ -46,6 +44,10 @@ class LoginSuccessful
             Session::put('application', Cache::get('application-'.$current_user));
         } else {
             Session::put('application', StoneApplication::getApplicationId());
+        }
+
+        if (!Cache::has('language-user-'.$current_user)) {
+            Cache::put('language-user-'.$current_user, Session::get('applocale'));
         }
     }
 }

@@ -19,6 +19,7 @@ use Session;
 use Twedoo\StoneGuard\Models\Permission;
 use Twedoo\StoneGuard\Models\Role;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Twedoo\StoneGuard\Models\User;
 
 class StoneEngine
 {
@@ -80,12 +81,12 @@ class StoneEngine
     /**
      * Lunch installer module.
      * @param $module
-     * @param $uninstall
-     * @param bool $status
+     * @param $reinstall
+     * @param bool $console
      * @return mixed
      * pass value true for re-install or false for first install
      */
-    public static function setModule($module, $reinstall)
+    public static function setModule($module, $reinstall, $console = false)
     {
         $pathConfig = StoneEngine::pathConfigStoneResolve(self::namespaceResolve($module), $module);
         $namespace = self::namespaceResolve($module);
@@ -109,7 +110,9 @@ class StoneEngine
         $access_data = StoneEngine::loadStoneConfigYaml($pathConfig, 'access');
         StoneEngine::createAccess($access_data, $createStone);
 
-        return self::afterCheckInstall($reinstall);
+        if (!$console) {
+            return self::afterCheckInstall($reinstall);
+        }
     }
 
     /**
@@ -254,7 +257,7 @@ class StoneEngine
      */
     public static function getModulesParams($module, $idModule, $statusModule)
     {
-        $namespace = self::stoneResolveNamespaceByDb($module);
+        $namespace = self::stoneResolveNamespace($module);
         if (method_exists($namespace . $module . '\\' . $module, 'getParameters')) {
             return \App::call($namespace . $module . '\\' . $module . '@getParameters', compact('idModule', 'statusModule'));
         }
@@ -267,7 +270,7 @@ class StoneEngine
      */
     public static function pageParameters($module, $id)
     {
-        $namespace = self::stoneResolveNamespaceByDb($module);
+        $namespace = self::stoneResolveNamespace($module);
         if (method_exists($namespace . $module . '\\' . $module, 'parameters'))
             return \App::call($namespace . $module . '\\' . $module . '@parameters', compact('id', 'module'));
         else
@@ -354,17 +357,50 @@ class StoneEngine
         return Stones::where('enable', 1)->get();
     }
 
-    public static function getRouteModule()
+    /**
+     * @return |null
+     */
+    public static function getRouteLinkByCurrentUrlStone()
     {
         $getPath = URL::current();
         $routeModule = null;
-        if (strpos($getPath, Config('prefix.urlBack')) !== false && strpos($getPath, Config('prefix.module')) !== false) {
-            $nameModelClass = explode(Config('prefix.urlBack') . '/', $getPath);// explode for get the name of controller and folder module
-            $routeModule = strtolower(explode('/', $nameModelClass[1])[1]);
+        $menu = null;
+
+        if (strpos($getPath, app('urlBack')) !== false) {
+            $nameModelClass = explode(app('urlBack') . '/', $getPath);
+            if ($nameModelClass[1]) {
+                $menu = Menuback::where('route_link', strtolower($nameModelClass[1]))->first()->route_link;
+            }
+            $routeModule = $menu ? $menu : null;
         }
+
         return $routeModule;
     }
 
+    /**
+     * @return |null
+     */
+    public static function getStoneNameByCurrentUrl()
+    {
+        $getPath = URL::current();
+        $routeModule = null;
+        $menu = null;
+
+        if (strpos($getPath, app('urlBack')) !== false) {
+            $nameModelClass = explode(app('urlBack') . '/', $getPath);
+            if (isset($nameModelClass[1])) {
+                $menu = Menuback::where('route_link', strtolower($nameModelClass[1]))->first();
+            }
+            $routeModule = $menu ? Stones::where(['id' => $menu->id_stone, 'enable' => true])->first()->name : null;
+        }
+
+        return $routeModule;
+    }
+
+    /**
+     * @param bool $isByPathOrName
+     * @return array
+     */
     public static function getDirectoryModuleByPath($isByPathOrName = true)
     {
         $defaultModules = glob(__DIR__ . '/Modules/*', GLOB_ONLYDIR);
@@ -430,14 +466,19 @@ class StoneEngine
      * @param array $options
      * @return string
      */
-    public static function stoneResolveNamespaceByDb($module, $options = [])
+    public static function stoneResolveNamespace($module, $options = [])
     {
-        $stone = Stones::where('name', $module)->get()->first()->application;
-        if ($stone == "custom") {
-            $namespace = "App\\Modules\\";
-        } else {
-            $namespace = "Twedoo\\Stone\\";
+        $namespace = null;
+        $stone = Stones::where('name', $module)->get()->first();
+        if ($stone) {
+            $stone = $stone->application;
+            if ($stone == "custom") {
+                $namespace = "App\\Modules\\";
+            } else {
+                $namespace = "Twedoo\\Stone\\";
+            }
         }
+
         return $namespace;
     }
 
@@ -469,10 +510,12 @@ class StoneEngine
         $update_order = Stones::where('id', '=', $last_id_stone)->first();
         $update_order->order = $last_id_stone;
         $update_order->update();
-        $currentApplication = StoneApplication::getCurrentApplicationId();
+        $currentApplication = StoneApplication::getCurrentApplicationId() ? StoneApplication::getCurrentApplicationId() : 1;
+        $currentSpace = StoneSpace::getCurrentSpaceId() ? StoneSpace::getCurrentSpaceId() : 1;
         DB::table("applications_stone")->insert([
             'application_id' => $currentApplication,
-            'stone_id' => $last_id_stone
+            'stone_id' => $last_id_stone,
+            'space_id' => $currentSpace
         ]);
         return $last_id_stone;
     }
@@ -483,10 +526,12 @@ class StoneEngine
      */
     public static function createMenu($menuData, $id_stone): void
     {
-        $menuData = current($menuData);
-        foreach (current($menuData) as $menu) {
-            $menu['id_stone'] = $id_stone;
-            Menuback::create($menu);
+        if ($menuData) {
+            $menuData = current($menuData);
+            foreach (current($menuData) as $menu) {
+                $menu['id_stone'] = $id_stone;
+                Menuback::create($menu);
+            }
         }
     }
 
@@ -497,35 +542,38 @@ class StoneEngine
      */
     public static function createAccess($accessData, $id_stone): void
     {
-        $user_auth = auth()->user();
-        $accessData = current($accessData);
-        $currentApplication = StoneApplication::getCurrentApplicationId();
+        if ($accessData) {
+            $user_auth = auth()->user() ? auth()->user() : User::first();
 
-        foreach (current($accessData) as $roles) {
-            $temporary = $roles['permissions'];
-            unset($roles['permissions']);
-            $add_role = Role::create($roles);
-            $roles['permissions'] = $temporary;
-            foreach ($roles['permissions'] as $key => $permission) {
-                $permission['id_stone'] = $id_stone;
-                $roles['permissions'][$key] = $permission;
-                $add_permission = Permission::create($permission);
-                DB::table("permission_role")->insert([
-                    'permission_id' => $add_permission->id,
-                    'role_id' => $add_role->id
-                ]);
-            }
-            $role_assigned = Role::where('name', $roles['name'])->get()->first()->id;
-            $is_role_assigned = DB::table("role_user")
-                ->where('user_id', $user_auth->id)
-                ->where('application_id', $currentApplication)
-                ->where('role_id', $role_assigned)->get();
-            if ($is_role_assigned->isEmpty()) {
-                DB::table("role_user")->insert([
-                    'user_id' => $user_auth->id,
-                    'role_id' => $add_role->id,
-                    'application_id' => $currentApplication
-                ]);
+            $accessData = current($accessData);
+            $currentApplication = StoneApplication::getCurrentApplicationId() ? StoneApplication::getCurrentApplicationId() : 1;
+
+            foreach (current($accessData) as $roles) {
+                $temporary = $roles['permissions'];
+                unset($roles['permissions']);
+                $add_role = Role::create($roles);
+                $roles['permissions'] = $temporary;
+                foreach ($roles['permissions'] as $key => $permission) {
+                    $permission['id_stone'] = $id_stone;
+                    $roles['permissions'][$key] = $permission;
+                    $add_permission = Permission::create($permission);
+                    DB::table("permission_role")->insert([
+                        'permission_id' => $add_permission->id,
+                        'role_id' => $add_role->id
+                    ]);
+                }
+                $role_assigned = Role::where('name', $roles['name'])->get()->first()->id;
+                $is_role_assigned = DB::table("role_user")
+                    ->where('user_id', $user_auth->id)
+                    ->where('application_id', $currentApplication)
+                    ->where('role_id', $role_assigned)->get();
+                if ($is_role_assigned->isEmpty()) {
+                    DB::table("role_user")->insert([
+                        'user_id' => $user_auth->id,
+                        'role_id' => $add_role->id,
+                        'application_id' => $currentApplication
+                    ]);
+                }
             }
         }
     }

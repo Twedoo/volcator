@@ -2,6 +2,7 @@
 
 namespace Twedoo\Stone;
 
+use App\Events\NotificationBroadcast;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
@@ -9,8 +10,11 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Twedoo\Stone\Core\StoneApplication;
+use Twedoo\Stone\Core\StoneInvitation;
 use Twedoo\Stone\Core\StoneLanguage;
 use Twedoo\Stone\Core\StoneMenu;
+use Twedoo\Stone\Core\StoneEmailNotification;
+use Twedoo\Stone\Core\StonePushNotification;
 use Twedoo\Stone\Core\StoneSpace;
 use Twedoo\Stone\Core\StoneStructure;
 use Twedoo\Stone\Core\StoneTranslation;
@@ -35,14 +39,13 @@ use Config;
 class StoneServiceProvider extends ServiceProvider
 {
 
-//    private $namespace = '\Twedoo\Stone\Http\Controllers';
 
     /**
      * Indicates if loading of the provider is deferred.
      *
      * @var bool
      */
-    protected $defer = false;
+    protected $defer = true;
 
     /**
      * Will make sure that the required modules have been fully loaded
@@ -57,6 +60,7 @@ class StoneServiceProvider extends ServiceProvider
         $router->aliasMiddleware('role', \Twedoo\StoneGuard\Middleware\StoneGuardRole::class);
         $router->aliasMiddleware('permission', \Twedoo\StoneGuard\Middleware\StoneGuardPermission::class);
         $router->aliasMiddleware('ability', \Twedoo\StoneGuard\Middleware\StoneGuardAbility::class);
+        $routes = $this->app['router']->getRoutes();
 
         // publish package
         $this->publishes([
@@ -87,6 +91,7 @@ class StoneServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/prefix.php', 'prefix');
         $this->mergeConfigFrom(__DIR__.'/../config/languages.php', 'languages');
         $this->app->register(StoneRouteServiceProvider::class);
+        $this->app->register(StoneMailServiceProvider::class);
         $this->app->register(StoneEventServiceProvider::class);
         $this->app->register(StoneTranslationServiceProvider::class);
         $this->app->register(StoneGuardServiceProvider::class);
@@ -132,6 +137,15 @@ class StoneServiceProvider extends ServiceProvider
         });
         $this->app->singleton('stoneSpace', function () {
             return new StoneSpace();
+        });
+        $this->app->singleton('stoneInvitation', function () {
+            return new StoneInvitation();
+        });
+        $this->app->singleton('stoneEmailNotification', function () {
+            return new StoneEmailNotification(null);
+        });
+        $this->app->singleton('stonePushNotification', function () {
+            return new StonePushNotification();
         });
     }
 

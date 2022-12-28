@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Twedoo\Stone\Models\Languages;
 use Twedoo\Stone\Modules\Configurations\Models\confsettings;
 use Twedoo\Stone\Modules\Configurations\Models\confsettings_langs;
+use Twedoo\Stone\Modules\Configurations\Models\invitation;
 use Artisan;
 use DB;
 use Illuminate\Http\Request;
@@ -33,9 +34,10 @@ class Settings extends Controller
 
     public function index()
     {
-        $setbase = confsettings::all()->first();
+        $setbase = confsettings::first();
         $settings = confsettings_langs::where('id_ref', $setbase->id)->get();
         $languages = Languages::all();
+
         return view('Configurations::Settings.Settings', compact('setbase', 'languages', 'settings'));
     }
 
@@ -50,6 +52,7 @@ class Settings extends Controller
         $alang = App::getLocale();
         $setbase = confsettings::all()->first();
         $settingsbase = confsettings_langs::where('id_ref', $setbase->id)->get();
+
 
         if (count($settingsbase) > 0) {
 
@@ -156,11 +159,11 @@ class Settings extends Controller
             ]);
 
             if ($validate->fails()) {
-                StoneLanguage::displayNotificationProgress(
-                    'error',
-                    trans('Configurations::Configurations/Settings.errors_add'),
-                    trans('Configurations::Configurations/Settings.errors')
-                );
+//                StoneLanguage::displayNotificationProgress(
+//                    'error',
+//                    trans('Configurations::Configurations/Settings.errors_add'),
+//                    trans('Configurations::Configurations/Settings.errors')
+//                );
                 return back()->withInput()->withErrors($validate);
             }
 

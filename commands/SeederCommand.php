@@ -57,5 +57,14 @@ class SeederCommand extends Command
             Artisan::call('db:seed', ['--class' => "Twedoo\\Stone\\database\\seeders\\StoneTableSeeder"]);
             $this->line('');
         }
+
+        $module = 'Configurations';
+        \App::call('Twedoo\\Stone\\Organizer\\Organizer@preBuildingConsole', compact('module'));
+
+        $module = 'Notifications';
+        \App::call('Twedoo\\Stone\\Organizer\\Organizer@preBuildingConsole', compact('module'));
+
+        $module = 'Headpiece';
+        \App::call('Twedoo\\Stone\\Organizer\\Organizer@preBuildingConsole', compact('module'));
     }
 }

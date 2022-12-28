@@ -6,6 +6,7 @@ cache/
 
 /bootstrap/compiled.php
 /vendor
+
 composer.phar
 .DS_Store
 Thumbs.db
@@ -18,3 +19,14 @@ Thumbs.db
 
 # sublime phpintel plugin
 /.phpintel
+
+/node_modules
+node_modules
+
+src/Modules/Brick/.history/
+src/Modules/Brick/node_modules
+/src/Modules/Brick/node_modules
+
+src/Modules/Headpiece/
+src/Modules/Headpiece/*
+src/Modules/Headpiece

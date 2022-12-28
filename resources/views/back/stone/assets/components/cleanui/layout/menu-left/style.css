@@ -86,7 +86,7 @@
     position: fixed;
     z-index: 3;
     bottom: 0;
-    width: 256px;
+    /*width: 256px;*/
     height: 48px;
     background: #141322;
 }
@@ -151,16 +151,16 @@
     height: 1.6rem;
     white-space: nowrap;
     width: 100%;
+
 }
 
 .cui__menuLeft__logo_img {
-    width: 75px;
-    height: 55px;
+    width: 50%;
+    margin: 0 auto !important;
 }
 
 .cui__logo_w70_h70 {
-    width: 75px;
-    height: 75px;
+    width: 5%;
 }
 
 .setting_trigger_left {
@@ -169,10 +169,11 @@
 }
 
 .cui__menuLeft__logo__container {
-    height: 64px;
+    height: 94px;
     display: flex;
     align-items: center;
-    padding: 0 1rem 0 1.86rem;
+    padding-top: 1rem;
+    margin-bottom: 15px;
 }
 
 .cui__menuLeft__logo__name {

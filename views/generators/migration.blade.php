@@ -12,8 +12,6 @@ class StoneSetupTables extends Migration
      */
     public function up()
     {
-        DB::beginTransaction();
-
         if (!Schema::hasTable('{{ $stonesTable }}')) {
             Schema::create('{{ $stonesTable }}', function (Blueprint $table) {
                 $table->increments('id');

@@ -3,6 +3,10 @@
 namespace Twedoo\Stone\Core\Utils;
 
 use App;
+use Illuminate\Support\Facades\Auth;
+use Twedoo\Stone\Core\StoneApplication;
+use Twedoo\Stone\Core\StoneSpace;
+use Twedoo\Stone\Modules\Notifications\Models\Notification as StonePushNotification;
 
 class StonePath
 {
@@ -15,5 +19,41 @@ class StonePath
         $path = explode('\\', $class);
         $pathMedia = "app/Modules/" . array_pop($path) . "/Media/";
         return $pathMedia;
+    }
+
+    /**
+     * @param $space
+     * @param $application
+     * @param $route
+     * @param $params
+     * @return array
+     * this method @see switchSpaceByRoute accept $route & $params as params
+     * it's not string route like this @see stringRouteGeneratorSwitchSpace.
+     */
+    public static function switchSpaceByRoute($space, $application, $route, $params)
+    {
+        StoneSpace::setCurrentSpace($space);
+        StoneApplication::setCurrentApplication($application);
+
+        return ['route' => $route, 'params' => $params];
+    }
+
+    /**
+     * @param $invitation
+     * @param $route
+     * @param null $space
+     * @param null $application
+     * @return string string
+     * this method accept $route params like this pattern 'Prefix.super.users.edit, 1'; a @see stringRouteGeneratorSwitchSpace wil change to url
+     */
+    public static function openNotificationByStringRoute($invitation, $route, $space = null, $application = null)
+    {
+        $invitation = StonePushNotification::where(['id' => $invitation, 'owner_id' => Auth::user()->id])->first();
+        $invitation->update(['open' => true]);
+        $prepareRoute = explode(",", $route);
+        $route = $prepareRoute[0];
+        $params = preg_replace('/\s+/', '', $prepareRoute[1]);
+        $route = StonePath::switchSpaceByRoute($space, $application, $route, $params);
+        return route($route['route'], $route['params']);
     }
 }

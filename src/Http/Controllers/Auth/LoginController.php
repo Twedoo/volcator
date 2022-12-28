@@ -50,9 +50,10 @@ class LoginController extends Controller
 
     /**
      * @param Request $request
+     * @param null $redirectTo
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function logout(Request $request)
+    public function logout(Request $request, $redirectTo = null)
     {
         if (!Auth::user()) {
             return redirect('login');
@@ -69,6 +70,9 @@ class LoginController extends Controller
             App::setLocale($applocale);
             Cache::put('application-'.$current_user, $application, 10080);
             Cache::put('space-'.$current_user, $space, 10080);
+            if ($redirectTo) {
+                return redirect($redirectTo);
+            }
             return redirect(app('urlBack') . '/login');
         } else {
             $current_user = Auth::user()->id;
@@ -81,6 +85,9 @@ class LoginController extends Controller
             App::setLocale($applocale);
             Cache::put('application-'.$current_user, $application, 10080);
             Cache::put('space-'.$current_user, $space, 10080);
+            if ($redirectTo) {
+                return redirect($redirectTo);
+            }
             return redirect(app('urlBack') . '/login');
         }
     }

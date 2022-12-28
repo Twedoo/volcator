@@ -86,11 +86,11 @@ class MultiApplications extends Controller
         ]);
 
         if ($validate->fails()) {
-            StoneLanguage::displayNotificationProgress(
-                'error',
-                trans('Applications::Applications/Applications.errors_add'),
-                trans('Applications::Applications/Applications.errors')
-            );
+//            StoneLanguage::displayNotificationProgress(
+//                'error',
+//                trans('Applications::Applications/Applications.errors_add'),
+//                trans('Applications::Applications/Applications.errors')
+//            );
             return back()->withInput()->withErrors($validate);
 
         } else {

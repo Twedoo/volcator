@@ -1,0 +1,22 @@
+<?php
+return [
+    'hello_only' => 'Hello',
+    'hello' => 'Hello !',
+    'create_account' => 'Create your account',
+    'invite_to_space' => 'Invite to space',
+    'accept_invitation' => 'Accept invitation',
+    'first_line' => 'You are invited to access a private space',
+    'last_line' => 'Best regards!',
+    'message_after_create_account_with_accept' => 'Your account has been created successfully you can now log in !',
+    'invitation_accepted' => 'تم قبول الدعوة',
+    'user_accept_invitation_to_space' => '<strong> :user </strong> قبل دعوتك لـ <strong>:space_name</strong>. <p class="mt-3"><strong>إضغط هنا لتضيه له الصلوحيات!</strong></p>',
+    'title_header' => 'Notifications',
+    'list_notification' => 'List Notifications',
+    'notification_column' => 'Notification',
+    'open_column' => 'Open',
+    'type_column' => 'Type',
+    'space_column' => 'Space',
+    'application_column' => 'Application',
+    'by_column' => 'By',
+    'owner_column' => 'Owner',
+];

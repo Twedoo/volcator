@@ -17,6 +17,63 @@ use Validation;
 class Configurations extends StoneStructure
 {
     /**
+     * @var string
+     */
+    public $nameDisplay;
+    /**
+     * @var string
+     */
+    public $name;
+    /**
+     * @var string
+     */
+    public $description;
+    /**
+     * @var string
+     */
+    public $author;
+    /**
+     * @var string
+     */
+    public $menuTranslate;
+    /**
+     * @var string
+     */
+    public $typeModule;
+    /**
+     * @var bool
+     */
+    public $btnParameters;
+    /**
+     * @var bool
+     */
+    public $btnEnable;
+    /**
+     * @var bool
+     */
+    public $btnReset;
+    /**
+     * @var bool
+     */
+    public $btnUninstall;
+    /**
+     * @var bool
+     */
+    public $btnRemove;
+    /**
+     * @var string
+     */
+    public $dropTable;
+    /**
+     * @var string
+     */
+    public $categoryMenu;
+    /**
+     * @var string
+     */
+    public $type;
+
+    /**
      * Configurations constructor.
      */
     public function __construct()
@@ -44,15 +101,29 @@ class Configurations extends StoneStructure
         //
     }
 
+    /**
+     * @return array
+     */
     public function js()
     {
-        $this->type = __FUNCTION__;
-        $this->{'1'} = $this->route() == 'settings' ? 'js/settings.js' : '';
-        $this->{'1'} = $this->route() == 'languages' ? 'js/languages.js' : '';
-        return $this->getStyle();
+        $js[] = self::route() == 'settings' ? 'js/settings.js' : '';
+        return $js;
     }
 
+    /**
+     * @return array
+     */
+    public function css()
+    {
+        $css[] = self::route() == 'settings' ? 'css/style.css' : '';
+        return $css;
+    }
 
+    /**
+     * @param $idModule
+     * @param $statusModule
+     * @return mixed
+     */
     public function getParameters($idModule, $statusModule)
     {
         return StoneEngine::displayParameters(
@@ -68,6 +139,8 @@ class Configurations extends StoneStructure
     }
 
     /**
+     * @param $id
+     * @param $module
      * @return string
      */
     public function parameters($id, $module)
@@ -78,6 +151,5 @@ class Configurations extends StoneStructure
                 'module'
             )
         );
-
     }
 }

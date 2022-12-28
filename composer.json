@@ -21,7 +21,10 @@
         "darkaonline/l5-swagger": "^8.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
-        "twedoo/stoneguard": "^1.0"
+        "predis/predis": "^2.0",
+        "symfony/yaml": "^6.0.12",
+        "pusher/pusher-php-server": "~7.0.2",
+        "twedoo/stoneguard": "1.x-dev"
     },
     "require-dev": {
         "phpunit/phpunit": "^8|^9"
@@ -59,7 +62,10 @@
                 "StoneFile": "Twedoo\\Stone\\Facades\\StoneFileFacade",
                 "StoneTranslation": "Twedoo\\Stone\\Facades\\StoneTranslationFacade",
                 "StoneApplication": "Twedoo\\Stone\\Facades\\StoneApplicationFacade",
-                "StoneSpace": "Twedoo\\Stone\\Facades\\StoneSpaceFacade"
+                "StoneSpace": "Twedoo\\Stone\\Facades\\StoneSpaceFacade",
+                "StoneInvitation": "Twedoo\\Stone\\Facades\\StoneInvitationFacade",
+                "StoneEmailNotification": "Twedoo\\Stone\\Facades\\StoneEmailNotificationFacade",
+                "StonePushNotification": "Twedoo\\Stone\\Facades\\StonePushNotificationFacade"
             }
         }
     },

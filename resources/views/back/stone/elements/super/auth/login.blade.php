@@ -7,7 +7,7 @@
                 <div class="cui__auth__topbar">
                     <div class="cui__auth__logoContainer">
                         <div class="cui__auth__logoContainer__logo">
-                            <img src="{{ asset(app('back').'/assets/images/logos/twedoo-logo.png') }}" class="mr-2 cui__logo_w70_h70" alt="Twedoo" />
+                            <img src="{{ asset(app('back').'/assets/images/logos/stone-logo.png') }}" class="mr-2 cui__logo_w70_h70" alt="Twedoo" />
                             <div class="cui__auth__logoContainer__name">Twedoo</div>
                         </div>
                     </div>
@@ -43,16 +43,16 @@
                     </div>
                 </div>
                 <div class="cui__auth__containerInner">
-                    <div class="text-center mb-5">
-                        <h1 class="mb-5 px-3 cui__auth__text__above__form__login">
-                            <strong>Welcome to Twedoo</strong>
-                        </h1>
-                        <p class="mb-4">
-                            Twedoo is a stack services platform for enterprise.
-                            <br />
-                            Launch your business on Twedoo and fall in love with multiple services.
-                        </p>
-                    </div>
+                        <div class="text-center mb-5">
+                            <h1 class="mb-5 px-3 cui__auth__text__above__form__login">
+                                <strong>Welcome to {{ app('APP_NAME') }}</strong>
+                            </h1>
+                            <p class="mb-4">
+                                {{ app('APP_NAME') }} {{  trans('Configurations::Configurations/Configurations.description_app_stone_space')   }}
+                                <br />
+                                {{  trans('Configurations::Configurations/Configurations.description_app_stone_space_two')   }}
+                            </p>
+                        </div>
                     <div class="card cui__auth__boxContainer">
                         <div class="text-dark font-size-24 mb-4">
                             <strong class="text__color__stone-blue">Sign in </strong>
@@ -75,18 +75,20 @@
                                     </span>
                                 @endif
                             </div>
-                            <button class="btn btn__primary__stone text-center w-100">
-                                <strong>Log In</strong>
+                            <div class="flex items-center">
+                                <a href="auth-forgot-password.html" class="kit__utils__link font-size-16">
+                                    {{ trans('Access-Controls::Access-Controls/Access-Controls.forget_password') }}
+                                </a>
+                            </div>
+                           <button class="btn btn__primary__stone text-center w-30 pull-right mt-3">
+                                <strong>{{ trans('Access-Controls::Access-Controls/Access-Controls.login') }}</strong>
                             </button>
                         </form>
-                        <a href="auth-forgot-password.html" class="kit__utils__link font-size-16">
-                            Forgot password?
-                        </a>
                     </div>
                     <div class="text-center pt-2 mb-auto">
                         <span class="mr-2">Don't have an account?</span>
                         <a href="{{ url(app('urlBack').'/password/reset') }}" class="kit__utils__link font-size-16">
-                            Sign up
+                        {{ trans('Access-Controls::Access-Controls/Access-Controls.create_account') }}
                         </a>
                     </div>
                 </div>
@@ -106,10 +108,10 @@
                         </li>
                     </ul>
                     <div class="text-center">
-                        Copyright © 2017-2020 Mdtk Soft |
-                        <a href="https://www.mediatec.org/privacy" target="_blank" rel="noopener noreferrer">
-                            Privacy Policy
-                        </a>
+                            Copyright &copy; <script>document.write(new Date().getFullYear())</script> Stonespace.io |
+                            <a href="https://www.stonespace.io/privacy" target="_blank" rel="noopener noreferrer">
+                                Privacy Policy
+                            </a>
                     </div>
                 </div>
             </div>

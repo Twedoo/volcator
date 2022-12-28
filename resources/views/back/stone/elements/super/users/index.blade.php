@@ -1,7 +1,12 @@
 @extends('elements.layouts.app')
 @section('content')
     <style>
-
+        .select2-search__field {
+            width: auto !important;
+        }
+        .select2-results .select2-results__option[aria-selected=true] {
+            display: none;
+        }
     </style>
     <section id="middle">
         <div class="cui__layout__content">
@@ -21,10 +26,16 @@
                     <h5>
                         <span class="mr-3">{{ trans('Access-Controls::Access-Controls/Access-Controls.index_users_management') }}</span>
                         @permission(Config::get('stone.PERMISSION_USER_ACCESS_CONTROL'))
-                        <a href="{{ route(app('urlBack').'.super.users.create') }}" class="btn btn-sm btn-light">
-                            <i class="fa fa-edit"></i> {{ trans('Access-Controls::Access-Controls/Access-Controls.index_users_invite') }}
+                        <a href="{{ route(app('urlBack').'.super.users.create') }}" data-toggle="modal" data-target="#InviteUserApplication" class="btn btn-sm btn-light">
+                            <i class="fa fa-envelope"></i> {{ trans('Access-Controls::Access-Controls/Access-Controls.index_users_invite') }}
                         </a>
                         @endpermission
+                        @permission(Config::get('stone.PERMISSION_USER_ACCESS_CONTROL'))
+                        <a href="{{ route(app('urlBack').'.super.users.create') }}" class="btn btn-sm btn-light">
+                            <i class="fa fa-user"></i> {{ trans('Access-Controls::Access-Controls/Access-Controls.index_users_create') }}
+                        </a>
+                        @endpermission
+
                     </h5>
                 </div>
                 <div class="card">
@@ -157,7 +168,123 @@
             </div>
         </div>
     </div>
+
+    <div id="InviteUserApplication" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="InviteUserApplication"
+         aria-hidden="true" user="" href="">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <strong class="modal-title pull-left" id="InviteUserApplication"> {{ trans('Access-Controls::Access-Controls/Access-Controls.invite_user') }} </strong>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="inviteUserSpaceAppForm" enctype="multipart/form-data">
+                        <meta name="csrf-token" content="{{ csrf_token() }}">
+                        <div class="form-group liveSearchUserAutocomplete-group">
+                            <label class="form-label label-name-space from_current_application"> {{ trans('Access-Controls::Access-Controls/Access-Controls.invite_user_live_search') }}</label>
+                            <select class="select2 form-control liveSearchUserAutocomplete" multiple="'multiple" name="liveSearchUserAutocomplete"></select>
+                            <div class="form-control-error-list" data-error-list="">
+                                <ul>
+                                    <li class="liveSearchUserAutocomplete-error">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        @role(Config::get('stone.ROLE_MANAGER_SPACE'))
+                        <div class="form-group name-space">
+                            <label class="form-label invite-full-space"> {{ trans('Access-Controls::Access-Controls/Access-Controls.invite_full_space') }}
+                                {{ Form::checkbox(false, false, false, ['class' => 'invite_full_space_checkbox']) }}
+                            </label>
+                        </div>
+                        @endrole
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-dark" > {{ trans('Access-Controls::Access-Controls/Access-Controls.invite') }} </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
+
+        function validateEmail(email) {
+            let filter = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return filter.test(email);
+        }
+
+        const inviteFormSubmit = async (e) => {
+            $('.liveSearchUserAutocomplete-group').removeClass('has-danger');
+            $('.liveSearchUserAutocomplete-error').html('');
+            e.preventDefault();
+            let invites = $('.liveSearchUserAutocomplete').val();
+            let type = $('.invite_full_space_checkbox').is(':checked');
+            let formData = new FormData();
+            let url = '{{ route('invite.users.invite') }}';
+            formData.append('invites', invites);
+            formData.append('type', type);
+            formData.append('_token', "{{ csrf_token() }}");
+            let validate = true;
+            if (invites) {
+                invites.forEach(function(email) {
+                    validate = validateEmail(email);
+                });
+            }
+
+            if (validate && invites) {
+                try {
+                    const apiUrl = url;
+                    const options = {
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        method: 'POST',
+                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+                        body: formData,
+                        dataType: 'json',
+                    };
+                    const response = await fetch(apiUrl, options);
+                    let result = await response.json();
+                    $('#InviteUserApplication').modal('hide');
+                } catch (error) {
+                    //
+                }
+            } else {
+                $('.liveSearchUserAutocomplete-group').addClass('has-danger')
+                $('.liveSearchUserAutocomplete-error').html('{{ trans("Access-Controls::Access-Controls/Access-Controls.invite_user_error_email") }}');
+            }
+        }
+        document.querySelector('#inviteUserSpaceAppForm').addEventListener("submit", inviteFormSubmit, false);
+
+
+        $('.select2').select2({
+            placeholder: "{{ trans('Access-Controls::Access-Controls/Access-Controls.invite_user_live_search_placeholder') }}",
+            minimumInputLength: 3,
+            tags: true,
+            tokenSeparators: [',', ' '],
+            width: 'resolve',
+            allowClear: true,
+            selectOnClose: false,
+            ajax: {
+                url:'{{ route(app('urlBack') . '.super.users.live-search') }}',
+                dataType: 'json',
+                delay: 250,
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                text: item.email,
+                                id: item.email
+                            }
+                        })
+                    };
+                },
+                // cache: true
+            }
+        });
+
         $('.delete_user_button').on('click', function (e) {
             $('#deleteUserSpace').attr('user', $(this).attr('user'));
             $('#deleteUserSpace').attr('href', $(this).attr('href'));
