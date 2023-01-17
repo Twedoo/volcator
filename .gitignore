@@ -23,10 +23,3 @@ Thumbs.db
 /node_modules
 node_modules
 
-src/Modules/Brick/.history/
-src/Modules/Brick/node_modules
-/src/Modules/Brick/node_modules
-
-src/Modules/Headpiece/
-src/Modules/Headpiece/*
-src/Modules/Headpiece

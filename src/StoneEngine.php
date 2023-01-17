@@ -286,6 +286,7 @@ class StoneEngine
      */
     public static function getAttributes($module = null, $attribute = null, $main = false)
     {
+        $resultat = null;
         if ($module) {
             $namespace = 'Twedoo\\Stone\\';
             if ($main == 'custom') {
