@@ -11,9 +11,10 @@ The new thing in Stone IO its the IDE based on Vue3 that enables the platform ow
 
 ## Version 
 
-This stone version in 3.x is not ready for use yet !<br />
+### This stone version in 3.x is not ready for use yet !<br />
 We are working hard and smart to get it to the production stage ^^ !<br />
-We have dealine **August 28, 2022**<br />
+We have dealine **August 28, 2022**<br /> ==> this deadline done !
+The nest step  ..we working on Headpiece platform to create and custimiz anything in template based on Tailwindcss without code just by drag & drop new deadline **Mars 28, 2023**
 
 ## Installation
 
