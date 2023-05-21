@@ -1,31 +1,31 @@
-# Stone
+# Volcator
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
 [![Build Status][ico-travis]][link-travis] 
 
-Stone IO is not a traditional CMS, the idea of its architectural design software is completely different from the traditional CMS because it's built to supports SAAS systems, it's directed mainly to companies and it also supports the space system for each company (space) contains many applications that can be install and delete it not from the entire platform, but only from the user's private space.
+Volcator is not a traditional CMS, the idea of its architectural design software is completely different from the traditional CMS because it's built to supports SAAS systems, it's directed mainly to companies and it also supports the space system for each company (space) contains many applications that can be install and delete it not from the entire platform, but only from the user's private space.
 
-The new thing in Stone IO its the IDE based on Vue3 that enables the platform owner to develop his applications and build any application he wants from the user interface without the need to write any line of code by drag & drop.
+The new thing in Volcator its the IDE based on Vue3 that enables the platform owner to develop his applications and build any application he wants from the user interface without the need to write any line of code by drag & drop.
 
 
 ## Version 
 
-### This stone version in 3.x is not ready for use yet !<br />
+### This Volcator version in 3.x is not ready for use yet !<br />
 We are working hard and smart to get it to the production stage ^^ !<br />
 We have dealine **August 28, 2022** ==> this deadline done ! <br />
  <br />
-The next step  > ...we working on **Headpiece** web interface IDE (The important component of Stone IO based on Vue3 & Nuxt) to create and customize anything in template based on Tailwindcss without code just by drag & drop new deadline **Mars 28, 2023**
+The next step  > ...we working on **Headpiece** web interface IDE (The important component of Volcator based on Vue3 & Nuxt) to create and customize anything in template based on Tailwindcss without code just by drag & drop new deadline **Mars 28, 2023**
 
 ## Installation
 
 Via Composer
 
 ``` bash
-$ composer require twedoo/stone
+$ composer require twedoo/Volcator
 ```
 
-Publish stone views and translate (lang):
+Publish Volcator views and translate (lang):
 
 ``` bash
 php artisan vendor:publish --provider="Twedoo\Stone\StoneServiceProvider"
@@ -33,7 +33,7 @@ php artisan vendor:publish --provider="Twedoo\Stone\StoneServiceProvider"
 
 ## Usage
 
-From Laravel scratch project install default migration table of Laravel and Stone (**Should add DB connection in .env and launch commands**):
+From Laravel scratch project install default migration table of Laravel and Volcator (**Should add DB connection in .env and launch commands**):
 
 
 
