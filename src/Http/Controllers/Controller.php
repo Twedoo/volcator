@@ -1,6 +1,6 @@
 <?php
 
-namespace Twedoo\Stone\Http\Controllers;
+namespace Twedoo\Volcator\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;

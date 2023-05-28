@@ -1,20 +1,20 @@
 <?php
 
-namespace Twedoo\Stone\Configurations;
+namespace Twedoo\Volcator\Configurations;
 
 use App\Modules\InstallModules\Models\toconfigurations;
 use Artisan;
 use getPath;
 use Modules\Configurations\Component\Schema\SchemaCreate;
-use StoneStructure;
-use StoneEngine;
-use StoneTranslation;
+use VolcatorStructure;
+use VolcatorEngine;
+use VolcatorTranslation;
 use Route;
 use Schema;
 use Session;
 use Validation;
 
-class Configurations extends StoneStructure
+class Configurations extends VolcatorStructure
 {
     /**
      * @var string
@@ -96,7 +96,7 @@ class Configurations extends StoneStructure
     /**
      * Void
      */
-    public function bootStone() : void
+    public function bootVolcator() : void
     {
         //
     }
@@ -126,7 +126,7 @@ class Configurations extends StoneStructure
      */
     public function getParameters($idModule, $statusModule)
     {
-        return StoneEngine::displayParameters(
+        return VolcatorEngine::displayParameters(
             $idModule,
             $statusModule,
             $this->name,

@@ -36,11 +36,11 @@
                          src="{{ asset('app/Modules/'.$module.'/screenshot.jpg') }}" alt="">
                 </figure><!-- /image -->
 
-                @if( StoneEngine::TestingModulesFolder($module) && StoneEngine::TestingModulesDB($module) )
+                @if( VolcatorEngine::TestingModulesFolder($module) && VolcatorEngine::TestingModulesDB($module) )
                     <i class="glyphicon glyphicon-ok text-success size-25" aria-hidden="true"></i>
                     <br/>
                     {{ trans('Organizer::Organizer/Organizer.check_module_fullinstall')  }}
-                @elseif(StoneEngine::TestingModulesFolder($module) && !StoneEngine::TestingModulesDB($module))
+                @elseif(VolcatorEngine::TestingModulesFolder($module) && !VolcatorEngine::TestingModulesDB($module))
                     <a link="{{ route(app('urlBack').'.super.module.install',$module) }}"
                        class="Organizer">
                         <i class="glyphicon glyphicon-download text-info size-25"
@@ -62,11 +62,11 @@
 
                     <li class="text-black size-18">
                         <strong>
-                            @if( StoneEngine::TestingModulesFolder($module) && StoneEngine::TestingModulesDB($module) )
+                            @if( VolcatorEngine::TestingModulesFolder($module) && VolcatorEngine::TestingModulesDB($module) )
                                 @foreach($OrganizerDB as $onemodule)
                                     @if( $onemodule->im_name_modules == $module)
                                         {{ trans('sidebar/sidebar.'.$onemodule->im_name_modules_display.'')  }}
-                                        {!! StoneEngine::getModulesParams($module,$onemodule->im_id, $onemodule->enable) !!}
+                                        {!! VolcatorEngine::getModulesParams($module,$onemodule->im_id, $onemodule->enable) !!}
                                     @endif
                                 @endforeach
                             @else

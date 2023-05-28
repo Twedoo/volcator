@@ -1,6 +1,6 @@
 <?php
 
-namespace Twedoo\Stone\Core\Abstracts;
+namespace Twedoo\Volcator\Core\Abstracts;
 
 /**
  * Created by Twedoo.

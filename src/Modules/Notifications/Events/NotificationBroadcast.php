@@ -1,6 +1,6 @@
 <?php
 
-namespace Twedoo\Stone\Modules\Notifications\Events;
+namespace Twedoo\Volcator\Modules\Notifications\Events;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;

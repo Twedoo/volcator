@@ -19,7 +19,7 @@ return [
     */
 
 
-    'organizer_stone' => "Managment Modules",
+    'organizer_volcator' => "Managment Modules",
     'title_Organizer' => "Install Modules",
     'nom_modules' => "Name Module",
     'check_module_notinstall' => "Module exist but not install",

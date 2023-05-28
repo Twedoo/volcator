@@ -1,14 +1,14 @@
 <?php
-namespace Twedoo\Stone\Modules\Notifications\Models\seeder;
+namespace Twedoo\Volcator\Modules\Notifications\Models\seeder;
 
-use Twedoo\Stone\Models\Menuback;
-use Twedoo\Stone\Modules\Configurations\Models\confsettings;
-use Twedoo\Stone\Organizer\Models\Stones;
-use Twedoo\StoneGuard\Models\Permission;
+use Twedoo\Volcator\Models\Menuback;
+use Twedoo\Volcator\Modules\Configurations\Models\confsettings;
+use Twedoo\Volcator\Organizer\Models\Volcators;
+use Twedoo\VolcatorGuard\Models\Permission;
 use Illuminate\Database\Seeder;
 use DB;
 
-class invitationStoneTableSeeder extends Seeder
+class invitationVolcatorTableSeeder extends Seeder
 {
 
     /**

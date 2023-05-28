@@ -46,7 +46,7 @@
                                             <option value="{{ $module }}">{{$module}}</option>
                                         @endforeach
                                         <input type="hidden" name="lang"
-                                               value="{{StoneLanguage::getDefaultLanguage(true)}}"/>
+                                               value="{{VolcatorLanguage::getDefaultLanguage(true)}}"/>
                                     </select>
                                 </div>
 
@@ -73,7 +73,7 @@
                                             <option value="{{ $module }}">{{$module}}</option>
                                         @endforeach
                                         <input type="hidden" name="lang"
-                                               value="{{StoneLanguage::getDefaultLanguage(true)}}"/>
+                                               value="{{VolcatorLanguage::getDefaultLanguage(true)}}"/>
                                     </select>
                                 </div>
                                 <div class="col-lg-2 pull-right">
@@ -100,7 +100,7 @@
                                             <option value="{{ $module }}">{{$module}}</option>
                                         @endforeach
                                         <input type="hidden" name="lang"
-                                               value="{{StoneLanguage::getDefaultLanguage(true)}}"/>
+                                               value="{{VolcatorLanguage::getDefaultLanguage(true)}}"/>
                                         <input type="hidden" name="moduleTranslate" value="langRresources"/>
                                     </select>
                                 </div>

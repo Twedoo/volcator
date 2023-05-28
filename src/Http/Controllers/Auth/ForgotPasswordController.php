@@ -1,8 +1,8 @@
 <?php
 
-namespace Twedoo\Stone\Http\Controllers\Auth;
+namespace Twedoo\Volcator\Http\Controllers\Auth;
 
-use Twedoo\Stone\Http\Controllers\Controller;
+use Twedoo\Volcator\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 

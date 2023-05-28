@@ -7,7 +7,7 @@
                     <div class="cui__auth__topbar">
                         <div class="cui__auth__logoContainer">
                             <div class="cui__auth__logoContainer__logo">
-                                <img src="{{ asset(app('back').'/assets/images/logos/stone-logo.png') }}" class="mr-2 cui__logo_w70_h70" alt="{{ app('APP_NAME') }}" />
+                                <img src="{{ asset(app('back').'/assets/images/logos/volcator-logo.png') }}" class="mr-2 cui__logo_w70_h70" alt="{{ app('APP_NAME') }}" />
                             </div>
                         </div>
                         <div class="d-none d-sm-block">
@@ -48,14 +48,14 @@
                                 <strong>Welcome to {{ app('APP_NAME') }}</strong>
                             </h1>
                             <p class="mb-4">
-                                {{ app('APP_NAME') }} {{  trans('Configurations::Configurations/Configurations.description_app_stone_space')   }}
+                                {{ app('APP_NAME') }} {{  trans('Configurations::Configurations/Configurations.description_app_volcator_space')   }}
                                 <br />
-                                {{  trans('Configurations::Configurations/Configurations.description_app_stone_space_two')   }}
+                                {{  trans('Configurations::Configurations/Configurations.description_app_volcator_space_two')   }}
                             </p>
                         </div>
                         <div class="card cui__auth__boxContainer">
                             <div class="text-dark font-size-24 mb-4">
-                                <strong class="text__color__stone-blue">{{ trans('Access-Controls::Access-Controls/Access-Controls.create_account') }}</strong>
+                                <strong class="text__color__volcator-blue">{{ trans('Access-Controls::Access-Controls/Access-Controls.create_account') }}</strong>
                             </div>
                             <form action="{{ url('invite/'.app('urlBack').'/create-user/'.$code.'/'.$email) }}" method="post" class="mb-2">
                                 {{ csrf_field() }}
@@ -112,7 +112,7 @@
                                     <span class="ml-2 form-label">{{ trans('Configurations::Configurations/Configurations.agree_to') }} {{ app('APP_NAME')}}
                                     <a href="/terms" target="_blank" class="underline">{{ trans('Configurations::Configurations/Configurations.terms_of_service') }}</a></span>
                                 </div>
-                               <button class="btn btn__primary__stone text-center w-30 pull-right mt-3">
+                               <button class="btn btn__primary__volcator text-center w-30 pull-right mt-3">
                                     <strong>{{ trans('Access-Controls::Access-Controls/Access-Controls.create_account') }}</strong>
                                 </button>
                             </form>
@@ -149,8 +149,8 @@
                             </li>
                         </ul>
                         <div class="text-center">
-                            Copyright &copy; <script>document.write(new Date().getFullYear())</script> Stonespace.io |
-                            <a href="https://www.stonespace.io/privacy" target="_blank" rel="noopener noreferrer">
+                            Copyright &copy; <script>document.write(new Date().getFullYear())</script> Volcatorspace.io |
+                            <a href="https://www.volcatorspace.io/privacy" target="_blank" rel="noopener noreferrer">
                                 Privacy Policy
                             </a>
                         </div>

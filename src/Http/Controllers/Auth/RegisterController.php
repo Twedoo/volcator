@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Twedoo\Stone\Http\Controllers\Controller;
-use Twedoo\StoneGuard\Models\User;
+use Twedoo\Volcator\Http\Controllers\Controller;
+use Twedoo\VolcatorGuard\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Validator;
 

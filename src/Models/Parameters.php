@@ -1,6 +1,6 @@
 <?php
 
-namespace Twedoo\Stone\Models;
+namespace Twedoo\Volcator\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

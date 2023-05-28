@@ -1,6 +1,6 @@
 <?php
 
-namespace Twedoo\Stone\Modules\Notifications\Models;
+namespace Twedoo\Volcator\Modules\Notifications\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Notification extends Model

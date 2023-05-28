@@ -1,10 +1,10 @@
 <?php
 
-namespace Twedoo\Stone\Http\Controllers\Auth;
+namespace Twedoo\Volcator\Http\Controllers\Auth;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
-use Twedoo\Stone\Http\Controllers\Controller;
+use Twedoo\Volcator\Http\Controllers\Controller;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;

@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class StoneSetupTables extends Migration
+class VolcatorSetupTables extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class StoneSetupTables extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('{{ $stonesTable }}')) {
-            Schema::create('{{ $stonesTable }}', function (Blueprint $table) {
+        if (!Schema::hasTable('{{ $volcatorsTable }}')) {
+            Schema::create('{{ $volcatorsTable }}', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('name');
                 $table->string('display_name');
@@ -44,7 +44,7 @@ class StoneSetupTables extends Migration
                 $table->string('name_menu');
                 $table->string('route_link');
                 $table->string('menu_icon')->nullable();
-                $table->string('id_stone')->nullable();
+                $table->string('id_volcator')->nullable();
                 $table->string('mb_permission')->nullable();
                 $table->integer('parent_id')->nullable();
                 $table->integer('lft')->nullable();
@@ -112,7 +112,7 @@ class StoneSetupTables extends Migration
             Schema::create('{{ $permissionsTable }}', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('name')->unique();
-                $table->string('id_stone')->nullable();
+                $table->string('id_volcator')->nullable();
                 $table->string('display_name')->nullable();
                 $table->string('description')->nullable();
                 $table->timestamps();
@@ -183,17 +183,17 @@ class StoneSetupTables extends Migration
             });
         }
 
-        if (!Schema::hasTable('{{ $applicationsStoneTable }}')) {
-            Schema::create('{{ $applicationsStoneTable }}', function (Blueprint $table) {
+        if (!Schema::hasTable('{{ $applicationsVolcatorTable }}')) {
+            Schema::create('{{ $applicationsVolcatorTable }}', function (Blueprint $table) {
                 $table->integer('application_id')->unsigned();
-                $table->integer('stone_id')->unsigned();
+                $table->integer('volcator_id')->unsigned();
                 $table->integer('space_id')->nullable();
 
-                $table->foreign('stone_id')->references('id')->on('{{ $stonesTable }}')
+                $table->foreign('volcator_id')->references('id')->on('{{ $volcatorsTable }}')
                 ->onUpdate('cascade')->onDelete('cascade');
                 $table->foreign('application_id')->references('id')->on('{{ $applicationsTable }}');
 
-                $table->primary(['application_id', 'stone_id']);
+                $table->primary(['application_id', 'volcator_id']);
             });
         }
     }
@@ -226,8 +226,8 @@ class StoneSetupTables extends Migration
         if (Schema::hasTable('{{ $rolesTable }}')) {
             Schema::drop('{{ $rolesTable }}');
         }
-        if (Schema::hasTable('{{ $applicationsStoneTable }}')) {
-            Schema::drop('{{ $applicationsStoneTable }}');
+        if (Schema::hasTable('{{ $applicationsVolcatorTable }}')) {
+            Schema::drop('{{ $applicationsVolcatorTable }}');
         }
         if (Schema::hasTable('{{ $applicationsUserTable }}')) {
             Schema::drop('{{ $applicationsUserTable }}');

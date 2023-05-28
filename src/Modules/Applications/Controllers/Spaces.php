@@ -6,18 +6,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
 use Input;
-use StoneLanguage;
+use VolcatorLanguage;
 use Route;
 use Schema;
 use Session;
-use Twedoo\Stone\Core\StoneApplication;
-use Twedoo\Stone\Core\StoneSpace;
-use Twedoo\Stone\Modules\Applications\Models\Applications;
+use Twedoo\Volcator\Core\VolcatorApplication;
+use Twedoo\Volcator\Core\VolcatorSpace;
+use Twedoo\Volcator\Modules\Applications\Models\Applications;
 use Validator;
 use DB;
 use Storage;
 use App;
-use Twedoo\StoneGuard\Models\User;
+use Twedoo\VolcatorGuard\Models\User;
 
 // TODO : Pagination
 class Spaces extends Controller
@@ -28,8 +28,8 @@ class Spaces extends Controller
      */
     public function switchSpace($space)
     {
-        StoneSpace::setCurrentSpace($space);
-        StoneApplication::setCurrentApplication(StoneApplication::getCurrentApplication()->id);
+        VolcatorSpace::setCurrentSpace($space);
+        VolcatorApplication::setCurrentApplication(VolcatorApplication::getCurrentApplication()->id);
         return Redirect::back();
     }
 
@@ -63,7 +63,7 @@ class Spaces extends Controller
             $generateFileName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME) . '-' .time();
             $storageFileName = $generateFileName.'.'.$image->guessExtension();
             if ($image->storeAs(storage_path().'/'.'app/public/file', $storageFileName)) {
-                StoneSpace::createSpace($name, $storageFileName);
+                VolcatorSpace::createSpace($name, $storageFileName);
             } else {
                 $errors['image-space'] = [
                     'error' => trans('Applications::Space/space.error_image')

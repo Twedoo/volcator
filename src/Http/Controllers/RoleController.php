@@ -1,18 +1,18 @@
 <?php
 
-namespace Twedoo\Stone\Http\Controllers;
+namespace Twedoo\Volcator\Http\Controllers;
 
 use App;
-use Twedoo\Stone\Organizer\Models\Stones;
-use Twedoo\StoneGuard\Models\Permission;
-use Twedoo\StoneGuard\Models\Role;
+use Twedoo\Volcator\Organizer\Models\Volcators;
+use Twedoo\VolcatorGuard\Models\Permission;
+use Twedoo\VolcatorGuard\Models\Role;
 use DB;
 use Config;
 use Illuminate\Http\Request;
 use Schema;
 use Session;
 use Validator;
-use Twedoo\StoneGuard\Models\User;
+use Twedoo\VolcatorGuard\Models\User;
 
 // TODO : Pagination dynamic
 class RoleController extends Controller
@@ -45,7 +45,7 @@ class RoleController extends Controller
     public function create()
     {
         $user = auth()->user();
-        $module = Stones::All();
+        $module = Volcators::All();
         $getPermissions = $user->with('roles.permissions')->where("users.id", $user->id)->get();
         $getFilterRole = $this->getPermissionsPerUserAll($module, $getPermissions);
         return view('elements.super.roles.create', compact('getFilterRole'));
@@ -137,11 +137,11 @@ class RoleController extends Controller
     {
         $user = auth()->user();
         $role = Role::find($id);
-        if ($role->name == Config::get('stone.MAJESTIC') ||  $role->type == 'main') {
+        if ($role->name == Config::get('volcator.MAJESTIC') ||  $role->type == 'main') {
             return back();
         }
-        $module = Stones::All();
-        $permission = Permission::orderBy('id', 'DESC')->where('id_stone', '')->get();
+        $module = Volcators::All();
+        $permission = Permission::orderBy('id', 'DESC')->where('id_volcator', '')->get();
         $rolePermissions = DB::table("permission_role")->where("permission_role.role_id", $id)
             ->pluck('permission_role.permission_id', 'permission_role.permission_id')->toarray();
 
@@ -247,7 +247,7 @@ class RoleController extends Controller
     {
         $getFilterRole = [];
         foreach ($module as $value) {
-            foreach ($value->getPermissions()->where('id_stone', $value->id)->get() as $getModulePermission) {
+            foreach ($value->getPermissions()->where('id_volcator', $value->id)->get() as $getModulePermission) {
                 foreach ($getPermissions as $key => $roles) {
                     foreach ($roles->roles as $rolePermission) {
                         foreach ($rolePermission->permissions as $permission) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Twedoo\Stone\Http\Middleware;
+namespace Twedoo\Volcator\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\App;

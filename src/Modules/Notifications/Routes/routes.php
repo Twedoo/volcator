@@ -23,7 +23,7 @@ Route::group(['middleware' => ['web']], function () {
                 [
                     'as' => 'invite.users.invite',
                     'uses' => 'Invitations@invite',
-                    'middleware' => ['permission:'.Config::get('stone.PERMISSION_USER_ACCESS_CONTROL')]
+                    'middleware' => ['permission:'.Config::get('volcator.PERMISSION_USER_ACCESS_CONTROL')]
                 ]);
         });
     });

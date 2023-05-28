@@ -6,17 +6,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
 use Input;
-use StoneLanguage;
+use VolcatorLanguage;
 use Route;
 use Schema;
 use Session;
-use Twedoo\Stone\Core\StoneApplication;
-use Twedoo\Stone\Core\StoneSpace;
-use Twedoo\Stone\Modules\Applications\Models\Applications;
+use Twedoo\Volcator\Core\VolcatorApplication;
+use Twedoo\Volcator\Core\VolcatorSpace;
+use Twedoo\Volcator\Modules\Applications\Models\Applications;
 use Validator;
 use DB;
 use App;
-use Twedoo\StoneGuard\Models\User;
+use Twedoo\VolcatorGuard\Models\User;
 use Config;
 
 // TODO : Pagination
@@ -28,7 +28,7 @@ class MultiApplications extends Controller
      */
     public function switchApplication($application)
     {
-        StoneApplication::setCurrentApplication($application);
+        VolcatorApplication::setCurrentApplication($application);
         return Redirect::back();
     }
 
@@ -38,7 +38,7 @@ class MultiApplications extends Controller
     public function index()
     {
         $user = auth()->user();
-        $applications = StoneApplication::getApplicationsUserBySpaces($user->id, true, true);
+        $applications = VolcatorApplication::getApplicationsUserBySpaces($user->id, true, true);
         return view('Applications::Applications.index', compact('applications'));
     }
 
@@ -52,7 +52,7 @@ class MultiApplications extends Controller
     public function show($id)
     {
         $application = Applications::find($id);
-        $users = StoneApplication::getUserCurrentApplication($id);
+        $users = VolcatorApplication::getUserCurrentApplication($id);
         return view('Applications::Applications.show', compact('application', 'users'));
 
     }
@@ -62,7 +62,7 @@ class MultiApplications extends Controller
      */
     public function create()
     {
-        $users = StoneApplication::getUsersCurrentSpace();
+        $users = VolcatorApplication::getUsersCurrentSpace();
         return view('Applications::Applications.create', compact('users'));
     }
 
@@ -86,7 +86,7 @@ class MultiApplications extends Controller
         ]);
 
         if ($validate->fails()) {
-//            StoneLanguage::displayNotificationProgress(
+//            VolcatorLanguage::displayNotificationProgress(
 //                'error',
 //                trans('Applications::Applications/Applications.errors_add'),
 //                trans('Applications::Applications/Applications.errors')
@@ -95,7 +95,7 @@ class MultiApplications extends Controller
 
         } else {
 
-            StoneApplication::createApplication($request);
+            VolcatorApplication::createApplication($request);
 
             switch (App::getLocale()) {
                 case "ar":
@@ -123,7 +123,7 @@ class MultiApplications extends Controller
     public function edit($id)
     {
         $application = Applications::where('id', $id)->first();
-        $users = StoneApplication::getUsersCurrentSpace();
+        $users = VolcatorApplication::getUsersCurrentSpace();
         return view('Applications::Applications.edit', compact('application', 'users'));
     }
 
@@ -147,7 +147,7 @@ class MultiApplications extends Controller
         ]);
 
         if ($validate->fails()) {
-            StoneLanguage::displayNotificationProgress(
+            VolcatorLanguage::displayNotificationProgress(
                 'error',
                 trans('Applications::Applications/Applications.errors_add'),
                 trans('Applications::Applications/Applications.errors')
@@ -156,7 +156,7 @@ class MultiApplications extends Controller
 
         } else {
 
-            StoneApplication::updateApplication($request, $id);
+            VolcatorApplication::updateApplication($request, $id);
 
             switch (App::getLocale()) {
                 case "ar":
@@ -183,7 +183,7 @@ class MultiApplications extends Controller
 
     public function destroy($id)
     {
-        if (StoneApplication::deleteApplication($id)) {
+        if (VolcatorApplication::deleteApplication($id)) {
             switch (App::getLocale()) {
                 case "ar":
                     \Toastr::success(trans('Applications::Applications/Applications.success_delete_application'), trans('Applications::Applications/Applications.success'), ["positionClass" => "toast-top-left"]);

@@ -7,7 +7,7 @@ return [
     'remove_from_current_application' => 'Remove from current application',
     'remove_from_current_space' => 'Remove from current space',
     'remove_from_all_space' => 'Remove from all spaces',
-    'access_controls_stone' => 'Access Controle',
+    'access_controls_volcator' => 'Access Controle',
     'management_acl_users' => 'Users Management',
     'management_acl_roles' => 'Roles Management',
     'management_acl_permissions' => 'Permissions Management',

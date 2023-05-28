@@ -7,20 +7,20 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
-use Twedoo\Stone\Core\StoneApplication;
-use Twedoo\Stone\Core\StoneInvitation;
-use Twedoo\Stone\Core\StoneEmailNotification;
-use Twedoo\Stone\Core\StonePushNotification;
-use Twedoo\Stone\Core\StoneSpace;
-use Twedoo\Stone\Core\StoneTranslation;
-use Twedoo\Stone\Core\Utils\StonePath;
-use Twedoo\Stone\Modules\Applications\Models\Applications;
-use Twedoo\Stone\Modules\Applications\Models\Spaces;
-use Twedoo\Stone\Modules\Notifications\Models\Invitation;
-use Twedoo\StoneGuard\Models\User;
+use Twedoo\Volcator\Core\VolcatorApplication;
+use Twedoo\Volcator\Core\VolcatorInvitation;
+use Twedoo\Volcator\Core\VolcatorEmailNotification;
+use Twedoo\Volcator\Core\VolcatorPushNotification;
+use Twedoo\Volcator\Core\VolcatorSpace;
+use Twedoo\Volcator\Core\VolcatorTranslation;
+use Twedoo\Volcator\Core\Utils\VolcatorPath;
+use Twedoo\Volcator\Modules\Applications\Models\Applications;
+use Twedoo\Volcator\Modules\Applications\Models\Spaces;
+use Twedoo\Volcator\Modules\Notifications\Models\Invitation;
+use Twedoo\VolcatorGuard\Models\User;
 use Validator;
 use Hash;
-use Twedoo\Stone\Modules\Notifications\Models\Notification as ModelNotification;
+use Twedoo\Volcator\Modules\Notifications\Models\Notification as ModelNotification;
 
 class Invitations extends Controller
 {
@@ -33,7 +33,7 @@ class Invitations extends Controller
     {
         $current_user = Auth::user();
         $emails = explode(",", $request->get('invites'));
-        if ($current_user->can(Config::get('stone.PERMISSION_SPACE_FULL'))) {
+        if ($current_user->can(Config::get('volcator.PERMISSION_SPACE_FULL'))) {
             $type = $request->get('type');
         } else {
             $type = false;
@@ -41,13 +41,13 @@ class Invitations extends Controller
 
         $mailObject =  [
             'object' => trans('Notifications::Notifications/Notifications.invite_to_space'),
-            'from' => "no-reply@twestone.io",
-            'Sender' => Config::get('stone.name'),
+            'from' => "no-reply@twevolcator.io",
+            'Sender' => Config::get('volcator.name'),
             'greeting' => trans('Notifications::Notifications/Notifications.hello'),
             'first_line' => trans('Notifications::Notifications/Notifications.first_line'),
             'last_line' => trans('Notifications::Notifications/Notifications.last_line')
         ];
-        StoneInvitation::inviteUser($emails,$type,$mailObject);
+        VolcatorInvitation::inviteUser($emails,$type,$mailObject);
         return response()->json(true);
     }
 
@@ -125,15 +125,15 @@ class Invitations extends Controller
                 $user = User::create($input);
 
                 /**
-                 * each user have main stone space and main application, stone core create them automatically
+                 * each user have main volcator space and main application, volcator core create them automatically
                  */
                 $is_full_space = false;
-                StoneSpace::createSpace(StoneSpace::MAIN_SPACE_NAME, null, true, $user);
-                if ($invitation->type == StoneSpace::INVITE_FULL_SPACE) {
-                    StoneApplication::assignUserToAllApplicationsBySpace($invitation->space_id, $user);
+                VolcatorSpace::createSpace(VolcatorSpace::MAIN_SPACE_NAME, null, true, $user);
+                if ($invitation->type == VolcatorSpace::INVITE_FULL_SPACE) {
+                    VolcatorApplication::assignUserToAllApplicationsBySpace($invitation->space_id, $user);
                     $is_full_space = true;
                 } else {
-                    StoneApplication::assignUserToApplicationBySpace($invitation->space_id, $invitation->application_id, $user);
+                    VolcatorApplication::assignUserToApplicationBySpace($invitation->space_id, $invitation->application_id, $user);
                 }
                 $invitation->update(['accepted' => true, 'identification' => $user->id]);
 
@@ -153,13 +153,13 @@ class Invitations extends Controller
                 $title = 'Notifications::Notifications/Notifications.invitation_accepted';
                 $message = ['Notifications::Notifications/Notifications.user_accept_invitation_to_space', ['user' =>  $user->name, 'space_name' => $space_name]];
                 $route = app('urlBack') .'.super.users.edit,'. $user->id;
-                $notification = StonePushNotification::saveNotification($title, $message, $route, $invitation->space_id, $invitation->application_id, $user->id, $invitation->owner_id);
+                $notification = VolcatorPushNotification::saveNotification($title, $message, $route, $invitation->space_id, $invitation->application_id, $user->id, $invitation->owner_id);
                 $pusher = [
                     'title' => $title,
                     'message' => $message,
                     'action' => route(app('urlBack') . '.redirect.notification.actionUrl', [$notification->id, $invitation->space_id, $invitation->application_id, app('urlBack') . '.super.users.edit', $user->id])
                 ];
-                StonePushNotification::notify($pusher, $notification->owner_id);
+                VolcatorPushNotification::notify($pusher, $notification->owner_id);
                 $name = $user->name;
                 return view('Notifications::Notifications.User.accept', compact('name'));
             }

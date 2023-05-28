@@ -1,18 +1,18 @@
 <?php
 
-namespace Twedoo\Stone\Notifications;
+namespace Twedoo\Volcator\Notifications;
 
 use Artisan;
 use getPath;
-use StoneStructure;
-use StoneEngine;
-use StoneTranslation;
+use VolcatorStructure;
+use VolcatorEngine;
+use VolcatorTranslation;
 use Route;
 use Schema;
 use Session;
 use Validation;
 
-class Notifications extends StoneStructure
+class Notifications extends VolcatorStructure
 {
     /**
      * Configurations constructor.
@@ -21,7 +21,7 @@ class Notifications extends StoneStructure
     {
         $this->name = 'Notifications';
         $this->nameDisplay = 'Notifications global';
-        $this->description = 'Notifications Generale System Stone';
+        $this->description = 'Notifications Generale System Volcator';
         $this->author = 'Houssem Maamria';
         $this->menuTranslate = 'sidebar/sidebar.php';
         $this->typeModule = 'back';
@@ -37,7 +37,7 @@ class Notifications extends StoneStructure
     /**
      * Void
      */
-    public function bootStone() : void
+    public function bootVolcator() : void
     {
         //
     }
@@ -50,7 +50,7 @@ class Notifications extends StoneStructure
 
     public function getParameters($idModule, $statusModule)
     {
-        return StoneEngine::displayParameters(
+        return VolcatorEngine::displayParameters(
             $idModule,
             $statusModule,
             $this->name,
