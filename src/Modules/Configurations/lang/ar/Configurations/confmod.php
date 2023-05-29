@@ -19,7 +19,7 @@ return [
     */
 
 
-    'organizer_stone' => "إدارة المحاور",
+    'organizer_volcator' => "إدارة المحاور",
     'title_installmodules' => "Install Modules",
     'nom_modules' => "Name Module",
     'check_module_notinstall' => "Module exist but not install",

@@ -4,7 +4,7 @@
         <div class="cui__layout__content">
             <div class="cui__breadcrumbs">
                 <div class="cui__breadcrumbs__path">
-                    <a href="javascript: void(0);">Stone</a>
+                    <a href="javascript: void(0);">Volcator</a>
                     <span>
                         <span class="cui__breadcrumbs__arrow"></span>
                         <strong>{{ trans('Applications::Applications/Applications.title_header') }}</strong>

@@ -1,17 +1,17 @@
 <?php
 
-namespace Twedoo\Stone\Organizer;
+namespace Twedoo\Volcator\Organizer;
 
 use Config;
-use Twedoo\Stone\Core\StoneApplication;
-use Twedoo\Stone\Organizer\Models\Stones;
+use Twedoo\Volcator\Core\VolcatorApplication;
+use Twedoo\Volcator\Organizer\Models\Volcators;
 use DB;
 use File;
 use Illuminate\Http\Request;
-use StonePath;
-use StoneStructure;
-use StoneEngine;
-use StoneLanguage;
+use VolcatorPath;
+use VolcatorStructure;
+use VolcatorEngine;
+use VolcatorLanguage;
 use Route;
 use Schema;
 use Session;
@@ -19,7 +19,7 @@ use Validator;
 use ZipArchive;
 
 // TODO: pagination
-class Organizer extends StoneStructure
+class Organizer extends VolcatorStructure
 {
     /**
      * Display a listing of the resource.
@@ -37,16 +37,16 @@ class Organizer extends StoneStructure
      */
     public function index()
     {
-        $modules = Stones::where('menu_type', '!=', 'hidden-organizer')->orwhere('menu_type', null)->get();
-        $modules_stone_hidden_organizer = Stones::whereIn('application', ['main'])->get()->pluck('name')->toArray();
+        $modules = Volcators::where('menu_type', '!=', 'hidden-organizer')->orwhere('menu_type', null)->get();
+        $modules_volcator_hidden_organizer = Volcators::whereIn('application', ['main'])->get()->pluck('name')->toArray();
 
         $customModules = glob(base_path() . '/app/Modules/*', GLOB_ONLYDIR);
         $defaultModules = glob(__DIR__ . '/../../Modules/*', GLOB_ONLYDIR);
         $GetArrayModules[] = null;
         foreach (array_merge($defaultModules, $customModules) as $key => $value) {
-            $stone_name = substr($value, strrpos($value, '/') + 1);
-            if (!in_array($stone_name, $modules_stone_hidden_organizer)) {
-                $GetArrayModules[] = $stone_name;
+            $volcator_name = substr($value, strrpos($value, '/') + 1);
+            if (!in_array($volcator_name, $modules_volcator_hidden_organizer)) {
+                $GetArrayModules[] = $volcator_name;
             }
         }
 
@@ -116,7 +116,7 @@ class Organizer extends StoneStructure
      */
     public function preBuildingConsole($module, $console = true) :void
     {
-        $isInstalled = Stones::where('name', $module)->first();
+        $isInstalled = Volcators::where('name', $module)->first();
         if (!$isInstalled) {
             $this->setBuilding($module, $console);
         }
@@ -128,15 +128,15 @@ class Organizer extends StoneStructure
      */
     public function isMainInstalled($module)
     {
-        return Stones::where('name', $module)->whereIn('application', ['main'])->first();
+        return Volcators::where('name', $module)->whereIn('application', ['main'])->first();
     }
 
     /**
-     * @param $stone
+     * @param $volcator
      */
-    public function setActive($stone)
+    public function setActive($volcator)
     {
-        StoneApplication::activeStoneInCurrentApplication($stone);
+        VolcatorApplication::activeVolcatorInCurrentApplication($volcator);
         return redirect()->route(app('urlBack') . '.super.modules.index');
     }
 
@@ -147,11 +147,11 @@ class Organizer extends StoneStructure
     public function setBuilding($module, $console = false)
     {
 
-        $OrganizerDB = Stones::where('name', $module)->first();
+        $OrganizerDB = Volcators::where('name', $module)->first();
         if ($OrganizerDB) {
             return redirect()->route(app('urlBack') . '.super.modules.index');
         } else {
-            return StoneEngine::setModule($module, false, $console);
+            return VolcatorEngine::setModule($module, false, $console);
         }
     }
 
@@ -162,7 +162,7 @@ class Organizer extends StoneStructure
      */
     public function parametres($id, $module)
     {
-        return StoneEngine::pageParameters($module, $id);
+        return VolcatorEngine::pageParameters($module, $id);
     }
 
 
@@ -175,8 +175,8 @@ class Organizer extends StoneStructure
     public function resetModule($module)
     {
         if ($this->isMainInstalled($module) == null) {
-            if (StoneEngine::uninstallStone($module)) {
-                StoneEngine::setModule($module, true);
+            if (VolcatorEngine::uninstallVolcator($module)) {
+                VolcatorEngine::setModule($module, true);
             }
         }
         return redirect()->route(app('urlBack') . '.super.modules.index');
@@ -191,8 +191,8 @@ class Organizer extends StoneStructure
     public function uninstallModule($module)
     {
         if ($this->isMainInstalled($module) == null) {
-            if (StoneEngine::uninstallStone($module)) {
-                StoneLanguage::displayNotificationProgress(
+            if (VolcatorEngine::uninstallVolcator($module)) {
+                VolcatorLanguage::displayNotificationProgress(
                     'success',
                     trans('Organizer::Organizer/Organizer.success_uninstallmodule'),
                     trans('Organizer::Organizer/Organizer.success')
@@ -206,13 +206,13 @@ class Organizer extends StoneStructure
 
     public function statusModule($id, $module)
     {
-        $isMainInstalled = Stones::where('id', $id)->whereIn('application', ['main'])->first();
+        $isMainInstalled = Volcators::where('id', $id)->whereIn('application', ['main'])->first();
         if ($isMainInstalled == null) {
-            $status = Stones::find($id);
+            $status = Volcators::find($id);
             if ($status->enable == 1) {
                 $status->enable = 0;
                 $status->update();
-                StoneLanguage::displayNotificationProgress(
+                VolcatorLanguage::displayNotificationProgress(
                     'success',
                     trans('Organizer::Organizer/Organizer.disablem'),
                     trans('Organizer::Organizer/Organizer.success')
@@ -221,7 +221,7 @@ class Organizer extends StoneStructure
             } else {
                 $status->enable = 1;
                 $status->update();
-                StoneLanguage::displayNotificationProgress(
+                VolcatorLanguage::displayNotificationProgress(
                     'success',
                     trans('Organizer::Organizer/Organizer.enablem'),
                     trans('Organizer::Organizer/Organizer.success')
@@ -237,10 +237,10 @@ class Organizer extends StoneStructure
     public function removeModule($module)
     {
         if ($this->isMainInstalled($module) == null) {
-            $isExist = StoneEngine::isActiveStoneInCurrentApplication($module);
+            $isExist = VolcatorEngine::isActiveVolcatorInCurrentApplication($module);
             if (!$isExist) {
-                StoneEngine::deleteDirModule(app_path('Modules/' . $module), $module);
-                StoneLanguage::displayNotificationProgress(
+                VolcatorEngine::deleteDirModule(app_path('Modules/' . $module), $module);
+                VolcatorLanguage::displayNotificationProgress(
                     'success',
                     trans('Organizer::Organizer/Organizer.success_remove_modules'),
                     trans('Organizer::Organizer/Organizer.success')

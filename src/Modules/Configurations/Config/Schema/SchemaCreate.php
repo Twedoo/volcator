@@ -2,7 +2,7 @@
 namespace Modules\Configurations\Config\Schema;
 
 use Illuminate\Support\Facades\Schema;
-use Twedoo\Stone\Modules\Configurations\Models\seeder\ConfigurationsTableSeeder;
+use Twedoo\Volcator\Modules\Configurations\Models\seeder\ConfigurationsTableSeeder;
 class SchemaCreate
 {
 

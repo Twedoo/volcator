@@ -1,16 +1,16 @@
 <?php
 
-namespace Twedoo\Stone\Http\Controllers;
+namespace Twedoo\Volcator\Http\Controllers;
 
 use App;
 use Illuminate\Support\Facades\Notification;
-use Twedoo\Stone\Core\StoneSpace;
-use Twedoo\Stone\Modules\Applications\Models\Applications;
-use Twedoo\Stone\Core\StoneApplication;
-use Twedoo\Stone\Modules\Applications\Models\Spaces;
-use Twedoo\Stone\Organizer\Models\Stones;
-use Twedoo\StoneGuard\Models\Role;
-use Twedoo\StoneGuard\Models\User;
+use Twedoo\Volcator\Core\VolcatorSpace;
+use Twedoo\Volcator\Modules\Applications\Models\Applications;
+use Twedoo\Volcator\Core\VolcatorApplication;
+use Twedoo\Volcator\Modules\Applications\Models\Spaces;
+use Twedoo\Volcator\Organizer\Models\Volcators;
+use Twedoo\VolcatorGuard\Models\Role;
+use Twedoo\VolcatorGuard\Models\User;
 use DB;
 use Hash;
 use Illuminate\Http\Request;
@@ -29,7 +29,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = StoneSpace::getUsersByCurrentApplicationCurrentSpace();
+        $data = VolcatorSpace::getUsersByCurrentApplicationCurrentSpace();
         return view('elements.super.users.index', compact('data'));
     }
 
@@ -41,7 +41,7 @@ class UserController extends Controller
     public function create()
     {
         $user = auth()->user();
-        if(!$user->hasRole(Config::get('stone.MAJESTIC'))) {
+        if(!$user->hasRole(Config::get('volcator.MAJESTIC'))) {
             $roles = Role::where('id', '!=', 1)->pluck('display_name', 'id');
         }  else {
             $roles = Role::pluck('display_name', 'id');
@@ -91,7 +91,7 @@ class UserController extends Controller
                 $user->attachRole($value);
             }
 
-            StoneApplication::CreateMainApplicationOrAssignUser($user);
+            VolcatorApplication::CreateMainApplicationOrAssignUser($user);
 
             if (App::getLocale() == 'ar' || App::getLocale() == 'ur') {
                 \Toastr::success(trans('access/roles_managment.toastr_success_create_users'), trans('access/roles_managment.toastr_success'), ["positionClass" => "toast-top-left"]);
@@ -112,7 +112,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = auth()->user();
-        if(!$user->hasRole(Config::get('stone.MAJESTIC')) && $id == 1)
+        if(!$user->hasRole(Config::get('volcator.MAJESTIC')) && $id == 1)
             return back();
 
         $user = User::find($id);
@@ -129,14 +129,14 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = auth()->user();
-        if(!$user->hasRole(Config::get('stone.MAJESTIC')) && $id == 1)
+        if(!$user->hasRole(Config::get('volcator.MAJESTIC')) && $id == 1)
             return back();
 
         $user = User::where('id', '=', $id)->first();
         $roles = Role::where('id', '!=', 1)->pluck('display_name', 'id');
-        $userRole = DB::table('role_user')->where('application_id', StoneApplication::getCurrentApplicationId())
+        $userRole = DB::table('role_user')->where('application_id', VolcatorApplication::getCurrentApplicationId())
             ->where('user_id', $id)->distinct()->pluck('role_id')->toArray();
-//        dd($userRole, StoneApplication::getCurrentApplicationId() );
+//        dd($userRole, VolcatorApplication::getCurrentApplicationId() );
         return view('elements.super.users.edit', compact('user', 'roles', 'userRole'));
     }
 
@@ -186,10 +186,10 @@ class UserController extends Controller
             $user->update($input);
 
             if (User::where('id', '=', $id)->where('id', '!=', '1')->first()) {
-                StoneApplication::deleteUserRoleByCurrentApplication($id);
+                VolcatorApplication::deleteUserRoleByCurrentApplication($id);
 
                 foreach ($request->input('roles') as $key => $value) {
-                    $user->attachRole($value, ['application_id', StoneApplication::getCurrentApplicationId()]);
+                    $user->attachRole($value, ['application_id', VolcatorApplication::getCurrentApplicationId()]);
                 }
             }
 
@@ -219,15 +219,15 @@ class UserController extends Controller
         }
 
         if ($level == 2) {
-            $is_destroy = StoneSpace::destroyUserByApplication($id);
+            $is_destroy = VolcatorSpace::destroyUserByApplication($id);
         }
 
-       if ($level == 3 && $user->hasRole(Config::get('stone.ROLE_USER_SPACE'))) {
-           $is_destroy = StoneSpace::destroyUserSpace($id);
+       if ($level == 3 && $user->hasRole(Config::get('volcator.ROLE_USER_SPACE'))) {
+           $is_destroy = VolcatorSpace::destroyUserSpace($id);
        }
 
-        if ($level == 4 && $user->hasRole(Config::get('stone.ROLE_MANAGER_SPACE'))) {
-            $is_destroy = StoneSpace::destroyUserBySpacesStrict($id);
+        if ($level == 4 && $user->hasRole(Config::get('volcator.ROLE_MANAGER_SPACE'))) {
+            $is_destroy = VolcatorSpace::destroyUserBySpacesStrict($id);
         }
         if ($is_destroy) {
             if (App::getLocale() == 'ar' || App::getLocale() == 'ur') {

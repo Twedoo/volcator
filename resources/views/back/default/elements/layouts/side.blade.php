@@ -7,7 +7,7 @@
             </a>
         </li>
 
-        @foreach( StoneMenu::getMenuModule() as $key => $moduleByMenuCategory)
+        @foreach( VolcatorMenu::getMenuModule() as $key => $moduleByMenuCategory)
             <br/><h3>{{ trans('sidebar/sidebar.'.$key.'')  }}</h3>
             @foreach( $moduleByMenuCategory as $key => $ModuleSideBar)
                 @permission($ModuleSideBar->im_permission)
@@ -20,11 +20,11 @@
                         </span>
                     </a>
                     <ul><!-- submenus -->
-                        @foreach( StoneMenu::getSubMenuModule('getSubMenuModule') as $SubMenu)
-                            @if( $ModuleSideBar->im_id == $SubMenu->id_stone)
+                        @foreach( VolcatorMenu::getSubMenuModule('getSubMenuModule') as $SubMenu)
+                            @if( $ModuleSideBar->im_id == $SubMenu->id_volcator)
                                 @permission($SubMenu->mb_permission)
                                 <li>
-                                    @if($SubMenu->id_stone >= 3)
+                                    @if($SubMenu->id_volcator >= 3)
                                         <a href="{{ url(app('urlBack').'/'.app('module').'/'.$SubMenu->route_link) }}">
                                             {{ trans('sidebar/sidebar.'.$SubMenu->name_menu.'')  }}
                                         </a>

@@ -4,15 +4,15 @@ namespace Modules\Configurations\Controllers\Languages;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use Twedoo\Stone\Organizer\Models\Stones;
+use Twedoo\Volcator\Organizer\Models\Volcators;
 use App\Transglobals;
 use Artisan;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
-use StoneEngine;
-use StoneLanguage;
-use StoneTranslation;
+use VolcatorEngine;
+use VolcatorLanguage;
+use VolcatorTranslation;
 use Route;
 use Schema;
 use Session;
@@ -43,7 +43,7 @@ class Languages extends Controller
     {
         $moduleBack = [];
         $moduleFront = [];
-        $getModuleType = StoneEngine::getAttributesEnable('typeModule');
+        $getModuleType = VolcatorEngine::getAttributesEnable('typeModule');
         foreach ($getModuleType as $key => $value) {
             if ($value == 'back')
                 $moduleBack[] = $key;
@@ -52,7 +52,7 @@ class Languages extends Controller
                 $moduleFront[] = $key;
         }
 
-        $getFileBase = StoneTranslation::getFileBase(StoneLanguage::getDefaultLanguage(true));
+        $getFileBase = VolcatorTranslation::getFileBase(VolcatorLanguage::getDefaultLanguage(true));
         return view('Configurations::Languages.Languages')
             ->with('moduleBack', $moduleBack)
             ->with('getFileBase', $getFileBase)
@@ -67,10 +67,10 @@ class Languages extends Controller
             $file = $request->file;
 
         $getPath = URL::current();
-        $getLanguages = StoneTranslation::getLanguages();
-        $wordsToTrans = StoneTranslation::getFile($request->moduleTranslate, $request->lang, $file);
-        $getFiles = StoneTranslation::getFiles($request->moduleTranslate, $request->lang, $file);
-        $getKeyWord = StoneTranslation::getKeyFile($request->moduleTranslate, $request->lang, $file);
+        $getLanguages = VolcatorTranslation::getLanguages();
+        $wordsToTrans = VolcatorTranslation::getFile($request->moduleTranslate, $request->lang, $file);
+        $getFiles = VolcatorTranslation::getFiles($request->moduleTranslate, $request->lang, $file);
+        $getKeyWord = VolcatorTranslation::getKeyFile($request->moduleTranslate, $request->lang, $file);
         $getModuleName = modules::where('im_name_modules', $request->moduleTranslate)->first();
 
         return view('Configurations::Languages.Backend.transbackend', compact('getModuleName', $getModuleName))
@@ -102,7 +102,7 @@ class Languages extends Controller
         ]);
 
         if ($validate->fails()) {
-            StoneLanguage::displayNotificationProgress(
+            VolcatorLanguage::displayNotificationProgress(
                 'error',
                 trans('Configurations::Configurations/Languages.data_empty'),
                 trans('Configurations::Configurations/Languages.errors')
@@ -132,12 +132,12 @@ class Languages extends Controller
                 }
             }
         }
-        return StoneTranslation::writeInFile($path, $data);
+        return VolcatorTranslation::writeInFile($path, $data);
     }
 
     public function backlang()
     {
-        $getModuleEnable = StoneEngine::getModuleEnable();
+        $getModuleEnable = VolcatorEngine::getModuleEnable();
 //        return view('Configurations::Languages.Backend.transbackend')->with('getModuleEnable',$getModuleEnable);
     }
 

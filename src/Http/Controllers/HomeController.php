@@ -1,6 +1,6 @@
 <?php
 
-namespace Twedoo\Stone\Http\Controllers;
+namespace Twedoo\Volcator\Http\Controllers;
 
 class HomeController extends Controller
 {

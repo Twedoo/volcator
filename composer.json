@@ -1,6 +1,6 @@
 {
-    "name": "twedoo/stone",
-    "description": "Twedoo Stone to build applications fast, comes with multiples modules configurable, that provides modern content management system (CMS).",
+    "name": "twedoo/volcator",
+    "description": "Twedoo Volcator to build applications fast, comes with multiples modules configurable, that provides modern content management system (CMS).",
     "license": "MIT",
     "authors": [
         {
@@ -9,8 +9,8 @@
             "homepage": "https://twedoo.com"
         }
     ],
-    "homepage": "https://github.com/twedoo/stone",
-    "keywords": ["Laravel", "Stone", "CMS", "Multi-Application", "Multi-Spaces"],
+    "homepage": "https://github.com/twedoo/volcator",
+    "keywords": ["Laravel", "Volcator", "CMS", "Multi-Application", "Multi-Spaces"],
     "require": {
         "php": "^7.2|^8.0",
         "symfony/yaml": "^5.4",
@@ -24,7 +24,7 @@
         "predis/predis": "^2.0",
         "symfony/yaml": "^6.0.12",
         "pusher/pusher-php-server": "~7.0.2",
-        "twedoo/stoneguard": "1.x-dev"
+        "twedoo/volcatorguard": "1.x-dev"
     },
     "require-dev": {
         "phpunit/phpunit": "^8|^9"
@@ -37,35 +37,35 @@
             "database/seeders"
         ],
         "psr-4": {
-            "Twedoo\\Stone\\": "src/",
+            "Twedoo\\Volcator\\": "src/",
             "Modules\\": "src/Modules"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Twedoo\\Stone\\Tests\\": "tests"
+            "Twedoo\\Volcator\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Twedoo\\Stone\\StoneServiceProvider"
+                "Twedoo\\Volcator\\VolcatorServiceProvider"
             ],
             "aliases": {
                 "Entrust": "Zizaco\\Entrust\\EntrustFacade",
-                "StoneEngine": "Twedoo\\Stone\\Facades\\StoneEngineFacade",
-                "StoneStructure": "Twedoo\\Stone\\Facades\\StoneStructureFacade",
-                "StoneMediaStyle": "Twedoo\\Stone\\Facades\\StoneMediaStyleFacade",
-                "StoneLanguage": "Twedoo\\Stone\\Facades\\StoneLanguageFacade",
-                "StoneMenu": "Twedoo\\Stone\\Facades\\StoneMenuFacade",
-                "StonePath": "Twedoo\\Stone\\Facades\\StonePathFacade",
-                "StoneFile": "Twedoo\\Stone\\Facades\\StoneFileFacade",
-                "StoneTranslation": "Twedoo\\Stone\\Facades\\StoneTranslationFacade",
-                "StoneApplication": "Twedoo\\Stone\\Facades\\StoneApplicationFacade",
-                "StoneSpace": "Twedoo\\Stone\\Facades\\StoneSpaceFacade",
-                "StoneInvitation": "Twedoo\\Stone\\Facades\\StoneInvitationFacade",
-                "StoneEmailNotification": "Twedoo\\Stone\\Facades\\StoneEmailNotificationFacade",
-                "StonePushNotification": "Twedoo\\Stone\\Facades\\StonePushNotificationFacade"
+                "VolcatorEngine": "Twedoo\\Volcator\\Facades\\VolcatorEngineFacade",
+                "VolcatorStructure": "Twedoo\\Volcator\\Facades\\VolcatorStructureFacade",
+                "VolcatorMediaStyle": "Twedoo\\Volcator\\Facades\\VolcatorMediaStyleFacade",
+                "VolcatorLanguage": "Twedoo\\Volcator\\Facades\\VolcatorLanguageFacade",
+                "VolcatorMenu": "Twedoo\\Volcator\\Facades\\VolcatorMenuFacade",
+                "VolcatorPath": "Twedoo\\Volcator\\Facades\\VolcatorPathFacade",
+                "VolcatorFile": "Twedoo\\Volcator\\Facades\\VolcatorFileFacade",
+                "VolcatorTranslation": "Twedoo\\Volcator\\Facades\\VolcatorTranslationFacade",
+                "VolcatorApplication": "Twedoo\\Volcator\\Facades\\VolcatorApplicationFacade",
+                "VolcatorSpace": "Twedoo\\Volcator\\Facades\\VolcatorSpaceFacade",
+                "VolcatorInvitation": "Twedoo\\Volcator\\Facades\\VolcatorInvitationFacade",
+                "VolcatorEmailNotification": "Twedoo\\Volcator\\Facades\\VolcatorEmailNotificationFacade",
+                "VolcatorPushNotification": "Twedoo\\Volcator\\Facades\\VolcatorPushNotificationFacade"
             }
         }
     },
@@ -74,7 +74,7 @@
             "@php mkdir app/Modules"
         ],
         "post-autoload-dum": [
-            "@php artisan vendor:publish --provider='Twedoo\\Stone\\StoneServiceProvider' --tag=public --force"
+            "@php artisan vendor:publish --provider='Twedoo\\Volcator\\VolcatorServiceProvider' --tag=public --force"
         ]
     }
 }

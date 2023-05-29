@@ -1,11 +1,11 @@
-<?php namespace Twedoo\Stone;
+<?php namespace Twedoo\Volcator;
 
 /**
- * This file is part of StoneGuard,
+ * This file is part of VolcatorGuard,
  * a role & permission management solution for Laravel.
  *
  * @license MIT
- * @package Twedoo\stone
+ * @package Twedoo\volcator
  */
 
 use Illuminate\Console\Command;
@@ -20,14 +20,14 @@ class MigrationCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'stone:migration {--p|--purge-database=false : delete all tables and launch new migration}';
+    protected $signature = 'volcator:migration {--p|--purge-database=false : delete all tables and launch new migration}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Creates a migration following the stone specifications.';
+    protected $description = 'Creates a migration following the volcator specifications.';
 
     /**
      * Execute the console command.
@@ -46,25 +46,25 @@ class MigrationCommand extends Command
      */
     public function handle()
     {
-        $this->laravel->view->addNamespace('stone', substr(__DIR__, 0, -8) . 'views');
+        $this->laravel->view->addNamespace('volcator', substr(__DIR__, 0, -8) . 'views');
         $purge = $this->options()['purge-database'];
-        $spacesTable = Config::get('stone.spaces_table');
-        $applicationsTable = Config::get('stone.applications_table');
-        $applicationsStoneTable = Config::get('stone.applications_stone_table');
-        $applicationsUserTable = Config::get('stone.applications_user_table');
-        $stonesTable = Config::get('stone.stones_table');
-        $parametersTable = Config::get('stone.parameters_table');
-        $menuBackTable = Config::get('stone.menuBacks_table');
-        $languagesTable = Config::get('stone.languages_table');
-        $rolesTable = Config::get('stone.roles_table');
-        $roleUserTable = Config::get('stone.role_user_table');
-        $permissionsTable = Config::get('stone.permissions_table');
-        $permissionRoleTable = Config::get('stone.permission_role_table');
+        $spacesTable = Config::get('volcator.spaces_table');
+        $applicationsTable = Config::get('volcator.applications_table');
+        $applicationsVolcatorTable = Config::get('volcator.applications_volcator_table');
+        $applicationsUserTable = Config::get('volcator.applications_user_table');
+        $volcatorsTable = Config::get('volcator.volcators_table');
+        $parametersTable = Config::get('volcator.parameters_table');
+        $menuBackTable = Config::get('volcator.menuBacks_table');
+        $languagesTable = Config::get('volcator.languages_table');
+        $rolesTable = Config::get('volcator.roles_table');
+        $roleUserTable = Config::get('volcator.role_user_table');
+        $permissionsTable = Config::get('volcator.permissions_table');
+        $permissionRoleTable = Config::get('volcator.permission_role_table');
 
         $this->line('');
-        $this->info("Tables: $spacesTable, $applicationsTable, $applicationsStoneTable, $applicationsUserTable, $rolesTable, $roleUserTable, $permissionsTable, $permissionRoleTable, $stonesTable, $parametersTable, $menuBackTable, $languagesTable");
+        $this->info("Tables: $spacesTable, $applicationsTable, $applicationsVolcatorTable, $applicationsUserTable, $rolesTable, $roleUserTable, $permissionsTable, $permissionRoleTable, $volcatorsTable, $parametersTable, $menuBackTable, $languagesTable");
 
-        $message = "A migration that creates '$spacesTable', '$applicationsTable', '$applicationsStoneTable', '$applicationsUserTable', '$rolesTable', '$roleUserTable', '$permissionsTable', '$permissionRoleTable', '$stonesTable', '$parametersTable', '$menuBackTable', '$languagesTable'" .
+        $message = "A migration that creates '$spacesTable', '$applicationsTable', '$applicationsVolcatorTable', '$applicationsUserTable', '$rolesTable', '$roleUserTable', '$permissionsTable', '$permissionRoleTable', '$volcatorsTable', '$parametersTable', '$menuBackTable', '$languagesTable'" .
             " tables will be created in database/migrations directory";
 
         $this->comment($message);
@@ -74,10 +74,10 @@ class MigrationCommand extends Command
 
             $this->line('');
             if ($purge) {
-                $this->clearMigration("_stone_setup_tables", true, true);
+                $this->clearMigration("_Volcator_setup_tables", true, true);
             }
             $this->info("Creating migration...");
-            if ($this->createMigration($spacesTable, $applicationsTable, $applicationsStoneTable, $applicationsUserTable, $rolesTable, $roleUserTable, $permissionsTable, $permissionRoleTable, $stonesTable, $parametersTable, $menuBackTable, $languagesTable)) {
+            if ($this->createMigration($spacesTable, $applicationsTable, $applicationsVolcatorTable, $applicationsUserTable, $rolesTable, $roleUserTable, $permissionsTable, $permissionRoleTable, $volcatorsTable, $parametersTable, $menuBackTable, $languagesTable)) {
                 $this->info("Migration successfully created!");
                 $this->clearMigration("_create_users_table");
             } else {
@@ -90,8 +90,8 @@ class MigrationCommand extends Command
             $this->line('');
 
         }
-        $this->callSilent('vendor:publish', ['--provider' => 'Twedoo\Stone\StoneServiceProvider']);
-        $this->info('Twedoo\Stone was installed successfully.');
+        $this->callSilent('vendor:publish', ['--provider' => 'Twedoo\Volcator\VolcatorServiceProvider']);
+        $this->info('Twedoo\Volcator was installed successfully.');
         \Session::flush();
         $files = glob(storage_path().'/framework/sessions/*');
         foreach($files as $file){
@@ -108,18 +108,18 @@ class MigrationCommand extends Command
      *
      * @return bool
      */
-    protected function createMigration($spacesTable, $applicationsTable, $applicationsStoneTable, $applicationsUserTable, $rolesTable, $roleUserTable, $permissionsTable, $permissionRoleTable, $stonesTable, $parametersTable, $menuBackTable, $languagesTable)
+    protected function createMigration($spacesTable, $applicationsTable, $applicationsVolcatorTable, $applicationsUserTable, $rolesTable, $roleUserTable, $permissionsTable, $permissionRoleTable, $volcatorsTable, $parametersTable, $menuBackTable, $languagesTable)
     {
-        $migrationFile = base_path("/database/migrations") . "/" . date('Y_m_d_His') . "_stone_setup_tables.php";
+        $migrationFile = base_path("/database/migrations") . "/" . date('Y_m_d_His') . "_Volcator_setup_tables.php";
 
         $userModelName = Config::get('auth.providers.users.model');
         $userModel = new $userModelName();
         $usersTable = $userModel->getTable();
         $userKeyName = $userModel->getKeyName();
 
-        $data = compact('spacesTable', 'applicationsTable', 'applicationsStoneTable', 'applicationsUserTable', 'rolesTable', 'roleUserTable', 'permissionsTable', 'permissionRoleTable', 'parametersTable', 'stonesTable', 'menuBackTable', 'languagesTable', 'usersTable', 'userKeyName');
+        $data = compact('spacesTable', 'applicationsTable', 'applicationsVolcatorTable', 'applicationsUserTable', 'rolesTable', 'roleUserTable', 'permissionsTable', 'permissionRoleTable', 'parametersTable', 'volcatorsTable', 'menuBackTable', 'languagesTable', 'usersTable', 'userKeyName');
 
-        $output = $this->laravel->view->make('stone::generators.migration')->with($data)->render();
+        $output = $this->laravel->view->make('volcator::generators.migration')->with($data)->render();
 
         if (!file_exists($migrationFile) && $fs = fopen($migrationFile, 'x')) {
             fwrite($fs, $output);
@@ -146,7 +146,7 @@ class MigrationCommand extends Command
             }
         }
         if ($debug) {
-            $this->info("Stone successfully purge all tables!");
+            $this->info("Volcator successfully purge all tables!");
         }
     }
 }

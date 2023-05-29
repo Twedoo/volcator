@@ -1,13 +1,13 @@
 <?php
 
-namespace Twedoo\Stone\Http\Middleware;
+namespace Twedoo\Volcator\Http\Middleware;
 
 use App;
-use Twedoo\Stone\Models\Menuback;
+use Twedoo\Volcator\Models\Menuback;
 use Closure;
 use Config;
-use StoneEngine;
-use StoneLanguage;
+use VolcatorEngine;
+use VolcatorLanguage;
 use Schema;
 use Session;
 

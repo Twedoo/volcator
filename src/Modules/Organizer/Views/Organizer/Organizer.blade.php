@@ -5,7 +5,7 @@
         <div class="cui__layout__content">
             <div class="cui__breadcrumbs">
                 <div class="cui__breadcrumbs__path">
-                    <a href="javascript: void(0);">Stone</a>
+                    <a href="javascript: void(0);">Volcator</a>
                     <span>
                         <span class="cui__breadcrumbs__arrow"></span>
                         <strong class="cui__breadcrumbs__current">{{ trans('Organizer::Organizer/Organizer.module_managment')  }}</strong>
@@ -41,16 +41,16 @@
                                                             @else
                                                                 <img class="kit__g16__productPhoto img-fluid"
                                                                      style="height:150px; width:210px"
-                                                                     src="{{ asset(app('back').'/assets/images/logos/stone-logo.png') }}"
+                                                                     src="{{ asset(app('back').'/assets/images/logos/volcator-logo.png') }}"
                                                                      alt="Module"/>
                                                             @endif
                                                         </div>
                                                         <div
                                                             class="font-size-18 font-weight-bold text-dark mb-2 text-center">
-                                                            @if (StoneEngine::isActiveStoneInCurrentApplication($module))
-                                                                <i class="fe @if(StoneEngine::getStatusModule($module)) fe-check-circle text-success @else fe fe-eye-off text-danger @endif font-weight-bolder font-size-32"></i>
+                                                            @if (VolcatorEngine::isActiveVolcatorInCurrentApplication($module))
+                                                                <i class="fe @if(VolcatorEngine::getStatusModule($module)) fe-check-circle text-success @else fe fe-eye-off text-danger @endif font-weight-bolder font-size-32"></i>
                                                             @else
-                                                                <a href="{{ route(app('urlBack').'.pre.module.building', [$module, StoneApplication::isStoneInstalledAsMain($module)]) }}">
+                                                                <a href="{{ route(app('urlBack').'.pre.module.building', [$module, VolcatorApplication::isVolcatorInstalledAsMain($module)]) }}">
                                                                     <i class="fe fe-download text-info font-weight-bolder font-size-32"></i>
                                                                 </a>
                                                             @endif
@@ -58,14 +58,14 @@
                                                         <div>
                                                             <a class="kit__g16__productFavourite text-gray-10 flex"
                                                                href="javascript: void(0);">
-                                                                @if (StoneEngine::isActiveStoneInCurrentApplication($module))
+                                                                @if (VolcatorEngine::isActiveVolcatorInCurrentApplication($module))
                                                                     @foreach($modules as $onemodule)
                                                                         @if( $onemodule->name == $module)
                                                                             <div class="float-left">
                                                                                 {{ trans($onemodule->name.'::sidebar/sidebar.'.$onemodule->display_name.'') }}
                                                                             </div>
                                                                             <div class="float-right">
-                                                                                {!! StoneEngine::getModulesParams($module, $onemodule->id, $onemodule->enable) !!}
+                                                                                {!! VolcatorEngine::getModulesParams($module, $onemodule->id, $onemodule->enable) !!}
                                                                             </div>
                                                                         @endif
                                                                     @endforeach
@@ -74,7 +74,7 @@
                                                                         {{ $module }}
                                                                     </div>
                                                                     <div class="float-right">
-                                                                        {!! StoneEngine::displayRemove($module) !!}
+                                                                        {!! VolcatorEngine::displayRemove($module) !!}
                                                                     </div>
                                                                 @endif
                                                             </a>

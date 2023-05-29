@@ -7,7 +7,7 @@
                     <div class="cui__auth__topbar">
                         <div class="cui__auth__logoContainer">
                             <div class="cui__auth__logoContainer__logo">
-                                <img src="{{ asset(app('back').'/assets/images/logos/stone-logo.png') }}" class="mr-2 cui__logo_w70_h70" alt="{{ app('APP_NAME') }}" />
+                                <img src="{{ asset(app('back').'/assets/images/logos/volcator-logo.png') }}" class="mr-2 cui__logo_w70_h70" alt="{{ app('APP_NAME') }}" />
                             </div>
                         </div>
                         <div class="d-none d-sm-block">
@@ -54,7 +54,7 @@
                                     {{  trans('Notifications::Notifications/Notifications.message_after_create_account_with_accept')   }}
                                     <p class="text-center">
                                         <a href="{{ url(app('urlBack').'/login') }}" class="kit__utils__link font-size-16">
-                                            <button class="btn btn__primary__stone text-center w-30  mt-4">
+                                            <button class="btn btn__primary__volcator text-center w-30  mt-4">
                                                 <strong>{{ trans('Access-Controls::Access-Controls/Access-Controls.login') }}</strong>
                                             </button>
                                         </a>
@@ -79,8 +79,8 @@
                             </li>
                         </ul>
                         <div class="text-center">
-                            Copyright &copy; <script>document.write(new Date().getFullYear())</script> Stonespace.io |
-                            <a href="https://www.stonespace.io/privacy" target="_blank" rel="noopener noreferrer">
+                            Copyright &copy; <script>document.write(new Date().getFullYear())</script> Volcatorspace.io |
+                            <a href="https://www.volcatorspace.io/privacy" target="_blank" rel="noopener noreferrer">
                                 Privacy Policy
                             </a>
                         </div>

@@ -25,7 +25,7 @@
 
     <link href="{{ asset(app('back').'/assets/css/layout-datatables.css') }}" rel="stylesheet" type="text/css"/>
 
-    {!! StoneMediaStyle::addSTYLE() !!}
+    {!! VolcatorMediaStyle::addSTYLE() !!}
 
     @if(App::getLocale() == 'ar' || App::getLocale() == 'he' || App::getLocale() == 'ru' || App::getLocale() == 'fa' )
         <link id="rtl_ltr_b1"
@@ -95,7 +95,7 @@
         src="{{ asset(app('back').'/assets/plugins/jquery/jquery-2.1.4.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset(app('back').'/assets/js/app.js')}}"></script>
 
-{!! StoneMediaStyle::addJQUERY() !!}
+{!! VolcatorMediaStyle::addJQUERY() !!}
 
 <!-- PAGE LEVEL SCRIPT -->
 <script type="text/javascript">

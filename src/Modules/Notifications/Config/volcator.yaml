@@ -1,0 +1,9 @@
+volcator:
+  name: 'Notifications'
+  display_name: 'notifications'
+  permission_name: ''
+  menu_type: 'hidden'
+  application: 'main'
+  menu_icon: 'fa fa-bell'
+  enable: 1,
+  publish: 'public'

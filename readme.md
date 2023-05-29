@@ -4,31 +4,26 @@
 [![Total Downloads][ico-downloads]][link-downloads]
 [![Build Status][ico-travis]][link-travis] 
 
-Volcator is not a traditional CMS, the idea of its architectural design software is completely different from the traditional CMS because it's built to supports SAAS systems, it's directed mainly to companies and it also supports the space system for each company (space) contains many applications that can be install and delete it not from the entire platform, but only from the user's private space.
-
-The new thing in Volcator its the IDE based on Vue3 that enables the platform owner to develop his applications and build any application he wants from the user interface without the need to write any line of code by drag & drop.
-
+This is where your description should go. Take a look at [contributing.md](contributing.md) to see a to do list.
 
 ## Version 
 
-### This Volcator version in 3.x is not ready for use yet !<br />
+This volcator version in 3.x is not ready for use yet !<br />
 We are working hard and smart to get it to the production stage ^^ !<br />
-We have dealine **August 28, 2022** ==> this deadline done ! <br />
- <br />
-The next step  > ...we working on **Headpiece** web interface IDE (The important component of Volcator based on Vue3 & Nuxt) to create and customize anything in template based on Tailwindcss without code just by drag & drop new deadline **Mars 28, 2023**
+We have dealine **August 28, 2022**<br />
 
 ## Installation
 
 Via Composer
 
 ``` bash
-$ composer require twedoo/Volcator
+$ composer require twedoo/volcator
 ```
 
-Publish Volcator views and translate (lang):
+Publish volcator views and translate (lang):
 
 ``` bash
-php artisan vendor:publish --provider="Twedoo\Stone\StoneServiceProvider"
+php artisan vendor:publish --provider="Twedoo\Volcator\VolcatorServiceProvider"
 ```
 
 ## Usage
@@ -38,7 +33,7 @@ From Laravel scratch project install default migration table of Laravel and Volc
 
 
 ``` bash
-$ php artisan stone:migration
+$ php artisan volcator:migration
 ```
 
 
@@ -52,23 +47,23 @@ $ php artisan migrate
  
 
 ``` bash
-php artisan stone:seeder
+php artisan volcator:seeder
 ```
 
 In another way use command one line:
 
 ```
-php artisan stone:migration && php artisan migrate:install && php artisan migrate && php artisan stone:seeder
+php artisan volcator:migration && php artisan migrate:install && php artisan migrate && php artisan volcator:seeder
 ```
 
 
 ## From existing project:
 
 ``` bash
-$ php artisan stone:migration
+$ php artisan volcator:migration
 ```
 
-Migrate all stone tables:
+Migrate all volcator tables:
 
 ``` bash
 $ php artisan migrate
@@ -79,9 +74,9 @@ $ php artisan migrate
 ````
 namespace App\Models;
 
-use Twedoo\StoneGuard\Models\User as StoneUser;
+use Twedoo\VolcatorGuard\Models\User as VolcatorUser;
 
-class User extends StoneUser
+class User extends VolcatorUser
 {
     /**
      *
@@ -94,10 +89,10 @@ It's done :D refresh your application !
 
 ## For developers (Mode Dev)
 
-Only mode Dev use command one line to purge all Stone tables and regenerate them automatically: 
+Only mode Dev use command one line to purge all Volcator tables and regenerate them automatically: 
 
 ```
-php artisan stone:migration -p true && php artisan stone:migration  && php artisan migrate:install && php artisan migrate && php artisan stone:seeder
+php artisan volcator:migration -p true && php artisan volcator:migration  && php artisan migrate:install && php artisan migrate && php artisan volcator:seeder
 ```
 
 ### Config web socket with Devilbox
@@ -176,7 +171,7 @@ Should run this command in same container of project to mount host websocket lar
     SSL_PASS: 'ssl.passphrase',
 };
 ```
-### Variable .env StoneEcho
+### Variable .env VolcatorEcho
 
 ```.env
 
@@ -202,7 +197,7 @@ import Echo from './echo.js';
 import {Pusher} from './pusher.js';
 window.Pusher = Pusher;
 
-window.StoneEcho =  new Echo({
+window.VolcatorEcho =  new Echo({
     broadcaster: 'pusher',
     key: window.PUSHER_APP_KEY,
     cluster: window.PUSHER_APP_CLUSTER,
@@ -215,7 +210,7 @@ window.StoneEcho =  new Echo({
 });
 
 
-window.StoneEcho.channel('notification.'+window.currentUserId).listen('.notifyNotification', (event) => {
+window.VolcatorEcho.channel('notification.'+window.currentUserId).listen('.notifyNotification', (event) => {
     toastr.success('Hé, <b>ça marche !</b>', '<a href="javascript: void(0);" class="btn btn-outline-primary mb-1">View history</a>');
     console.log(event);
 });
@@ -247,14 +242,14 @@ If you discover any security related issues, please email houssem.maamria@twedoo
 
 MIT. Please see the [license file](license.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/twedoo/stone.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/twedoo/stone.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/twedoo/stone/master.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/twedoo/volcator.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/twedoo/volcator.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/twedoo/volcator/master.svg?style=flat-square
 [ico-styleci]: https://styleci.io/repos/12345678/shield
 
-[link-packagist]: https://packagist.org/packages/twedoo/stone
-[link-downloads]: https://packagist.org/packages/twedoo/stone
-[link-travis]: https://travis-ci.org/twedoo/stone
+[link-packagist]: https://packagist.org/packages/twedoo/volcator
+[link-downloads]: https://packagist.org/packages/twedoo/volcator
+[link-travis]: https://travis-ci.org/twedoo/volcator
 [link-styleci]: https://styleci.io/repos/12345678
 [link-author]: https://github.com/twedoo
 [link-contributors]: ../../contributors

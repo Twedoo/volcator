@@ -1,0 +1,129 @@
+.border-permission
+{
+    border: 1px solid #fff;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 10px;
+}
+.permission-margin {
+    margin: 20px;
+}
+.all-permission
+{
+    background: #DDDDDD;
+    padding: 10px;
+    border-radius: 7px;
+    margin: 10px;
+}
+.list-permissions
+{
+    margin-bottom: 8px;
+}
+.name-permission
+{
+    font-weight: bold;
+    padding: 5px 0 10px 0;
+    margin-bottom: 15px;
+}
+
+.hidden-volcator
+{
+    display: none;
+}
+
+.form-control-error-text
+{
+    color: #f5222e;
+}
+
+.volcator-disable-click {
+    cursor: not-allowed;
+    opacity: 0.5%;
+}
+
+
+input[type="checkbox"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    /* Remove most all native input styles */
+    appearance: none;
+    /* For iOS < 15 */
+    /* Not removed via appearance */
+
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+    margin: 3px;
+    display: grid;
+    place-content: center;
+    float: left;
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    transform: scale(0);
+    transform-origin: bottom left;
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em rebeccapurple;
+    /* Windows High Contrast Mode */
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+input[type="checkbox"]:focus {
+    outline: max(2px, 0.15em) solid currentColor;
+    outline-offset: max(2px, 0.15em);
+}
+
+input[type="checkbox"]:disabled {
+    --form-control-color: #bab9b9;
+    color: #bab9b9;
+    cursor: not-allowed;
+}
+
+.application-block {
+    padding-top: 8px;
+}
+
+.card-header-application:last-child, .card-footer-application:last-child, .card-body-application:last-child {
+    border-radius: 0 0 calc(7px - 1px) calc(7px - 1px);
+}
+.card-header-application, .card-footer-application, .card-body-application {
+    background: transparent;
+}
+.card-body-application {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 0.5rem;
+
+}
+.card-header-application {
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 0.75em;
+}
+.application-title {
+    color: #595c97;
+}
+.card-header-notification {
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 0.5em 1em 0;
+}
+.volcator-simple-text {
+    color: #595c97;
+}
+
+.img-display-inline {
+    display: inline-block;
+}

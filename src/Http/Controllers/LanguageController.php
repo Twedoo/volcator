@@ -1,6 +1,6 @@
 <?php
 
-namespace Twedoo\Stone\Http\Controllers;
+namespace Twedoo\Volcator\Http\Controllers;
 
 use App\Http\Requests;
 use Config;
@@ -21,8 +21,10 @@ class LanguageController extends Controller
     {
         if (array_key_exists($lang, Config::get('languages'))) {
             Session::put('applocale', $lang);
-            $current_user = Auth::user()->id;
-            Cache::put('language-user-'.$current_user, $lang);
+            if (isset(Auth::user()->id)) {
+                $current_user = Auth::user()->id;
+                Cache::put('language-user-'.$current_user, $lang);
+            }
         }
         return Redirect::back();
     }

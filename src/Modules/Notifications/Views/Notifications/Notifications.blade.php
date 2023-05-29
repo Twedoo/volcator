@@ -4,7 +4,7 @@
         <div class="cui__layout__content">
             <div class="cui__breadcrumbs">
                 <div class="cui__breadcrumbs__path">
-                    <a href="javascript: void(0);">Stone</a>
+                    <a href="javascript: void(0);">Volcator</a>
                     <span>
                         <span class="cui__breadcrumbs__arrow"></span>
                         <strong>{{ trans('Notifications::Notifications/Notifications.title_header') }}</strong>
@@ -38,20 +38,20 @@
                                         @foreach ($notifications as $key => $notification)
                                             <tr>
                                                 <td>
-                                                    <a href="{{ StonePath::openNotificationByStringRoute($notification->id, $notification->route, $notification->space_id, $notification->application_id) }}">
-                                                        <strong>{!! StoneTranslation::translateNotification($notification->title) !!}</strong>
+                                                    <a href="{{ VolcatorPath::openNotificationByStringRoute($notification->id, $notification->route, $notification->space_id, $notification->application_id) }}">
+                                                        <strong>{!! VolcatorTranslation::translateNotification($notification->title) !!}</strong>
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="{{ StonePath::openNotificationByStringRoute($notification->id, $notification->route, $notification->space_id, $notification->application_id) }}">
-                                                        {!! StoneTranslation::translateNotification($notification->notification) !!}
+                                                    <a href="{{ VolcatorPath::openNotificationByStringRoute($notification->id, $notification->route, $notification->space_id, $notification->application_id) }}">
+                                                        {!! VolcatorTranslation::translateNotification($notification->notification) !!}
                                                     </a>
                                                 </td>
                                                 <td>{{ $notification->open }}</td>
-                                                <td>{{ StoneSpace::getSpaceNameById($notification->space_id) }}</td>
-                                                <td>{{ StoneApplication::getApplicationNameById($notification->application_id) }}</td>
-                                                <td>{{ StonePushNotification::getUserNameById($notification->user_id) }}</td>
-                                                <td>{{ StonePushNotification::getUserNameById($notification->owner_id) }}</td>
+                                                <td>{{ VolcatorSpace::getSpaceNameById($notification->space_id) }}</td>
+                                                <td>{{ VolcatorApplication::getApplicationNameById($notification->application_id) }}</td>
+                                                <td>{{ VolcatorPushNotification::getUserNameById($notification->user_id) }}</td>
+                                                <td>{{ VolcatorPushNotification::getUserNameById($notification->owner_id) }}</td>
                                             </tr>
                                         @endforeach
                                         </tbody>

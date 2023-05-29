@@ -11,14 +11,14 @@ Route::group(['middleware' => ['web', 'auth']], function () {
             'module' => 'Applications',
             'middleware' => [
                 'web',
-                //            'permission:'.Config::get('stone.PERMISSION_APPLICATION_VIEW')
+                //            'permission:'.Config::get('volcator.PERMISSION_APPLICATION_VIEW')
             ],
             'namespace' => 'Modules\Applications\Controllers'
         ], function () {
             Route::get('/switch/application/{application}', [
                 'as' => app('urlBack') . '.application.switch',
                 'uses' => 'MultiApplications@switchApplication',
-                'middleware' => ['permission:' . Config::get('stone.PERMISSION_APPLICATION_VIEW')]
+                'middleware' => ['permission:' . Config::get('volcator.PERMISSION_APPLICATION_VIEW')]
             ]);
         });
 
@@ -26,14 +26,14 @@ Route::group(['middleware' => ['web', 'auth']], function () {
             'module' => 'Applications',
             'middleware' => [
                 'web',
-                //            'permission:'.Config::get('stone.PERMISSION_SPACE_VIEW')
+                //            'permission:'.Config::get('volcator.PERMISSION_SPACE_VIEW')
             ],
             'namespace' => 'Modules\Applications\Controllers'
         ], function () {
             Route::get('/switch/space/{space}', [
                 'as' => app('urlBack') . '.space.switch',
                 'uses' => 'Spaces@switchSpace',
-                'middleware' => ['permission:' . Config::get('stone.PERMISSION_SPACE_VIEW')]
+                'middleware' => ['permission:' . Config::get('volcator.PERMISSION_SPACE_VIEW')]
             ]);
         });
 
@@ -41,7 +41,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
             'module' => 'Applications',
             'middleware' => [
                 'web',
-                //                'permission:'.Config::get('stone.PERMISSION_SPACE_FULL')
+                //                'permission:'.Config::get('volcator.PERMISSION_SPACE_FULL')
             ],
             'namespace' => 'Modules\Applications\Controllers'
         ], function () {
@@ -49,7 +49,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
                 [
                     'as' => app('urlBack') . '.store.manager',
                     'uses' => 'Spaces@store',
-                    'middleware' => ['permission:' . Config::get('stone.PERMISSION_SPACE_FULL')]
+                    'middleware' => ['permission:' . Config::get('volcator.PERMISSION_SPACE_FULL')]
                 ]);
         });
         /**
@@ -58,7 +58,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         Route::group([
             'middleware' => [
                 'web',
-                'permission:'.Config::get('stone.PERMISSION_APPLICATION_FULL')
+                'permission:'.Config::get('volcator.PERMISSION_APPLICATION_FULL')
             ],
             'namespace' => 'Modules\Applications\Controllers'
         ], function () {
@@ -67,43 +67,43 @@ Route::group(['middleware' => ['web', 'auth']], function () {
                 [
                     'as' => app('urlBack') . '.multi.applications.index',
                     'uses' => 'MultiApplications@index',
-                    'middleware' => ['permission:' . Config::get('stone.PERMISSION_APPLICATION_FULL')]
+                    'middleware' => ['permission:' . Config::get('volcator.PERMISSION_APPLICATION_FULL')]
                 ]);
             Route::get('applications/{id}/show',
                 [
                     'as' => app('urlBack') . '.multi.applications.show',
                     'uses' => 'MultiApplications@show',
-                    'middleware' => ['permission:' . Config::get('stone.PERMISSION_APPLICATION_FULL')]
+                    'middleware' => ['permission:' . Config::get('volcator.PERMISSION_APPLICATION_FULL')]
                 ]);
             Route::get('applications/create',
                 [
                     'as' => app('urlBack') . '.multi.applications.create',
                     'uses' => 'MultiApplications@create',
-                    'middleware' => ['permission:' . Config::get('stone.PERMISSION_APPLICATION_FULL')]
+                    'middleware' => ['permission:' . Config::get('volcator.PERMISSION_APPLICATION_FULL')]
                 ]);
             Route::post('applications/create',
                 [
                     'as' => app('urlBack') . '.multi.applications.create',
                     'uses' => 'MultiApplications@store',
-                    'middleware' => ['permission:' . Config::get('stone.PERMISSION_APPLICATION_FULL')]
+                    'middleware' => ['permission:' . Config::get('volcator.PERMISSION_APPLICATION_FULL')]
                 ]);
             Route::get('applications/{id}/edit',
                 [
                     'as' => app('urlBack') . '.multi.applications.edit',
                     'uses' => 'MultiApplications@edit',
-                    'middleware' => ['permission:' . Config::get('stone.PERMISSION_APPLICATION_FULL')]
+                    'middleware' => ['permission:' . Config::get('volcator.PERMISSION_APPLICATION_FULL')]
                 ]);
             Route::patch('applications/{id}/edit',
                 [
                     'as' => app('urlBack') . '.multi.applications.edit',
                     'uses' => 'MultiApplications@update',
-                    'middleware' => ['permission:' . Config::get('stone.PERMISSION_APPLICATION_FULL')]
+                    'middleware' => ['permission:' . Config::get('volcator.PERMISSION_APPLICATION_FULL')]
                 ]);
             Route::get('applications/{id}/delete',
                 [
                     'as' => app('urlBack') . '.multi.applications.delete',
                     'uses' => 'MultiApplications@destroy',
-                    'middleware' => ['permission:' . Config::get('stone.PERMISSION_APPLICATION_FULL')]
+                    'middleware' => ['permission:' . Config::get('volcator.PERMISSION_APPLICATION_FULL')]
                 ]);
         });
     });
