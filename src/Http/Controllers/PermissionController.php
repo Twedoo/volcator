@@ -1,8 +1,8 @@
 <?php
 
-namespace Twedoo\Stone\Http\Controllers;
+namespace Twedoo\Volcator\Http\Controllers;
 
-use Twedoo\StoneGuard\Models\Permission;
+use Twedoo\VolcatorGuard\Models\Permission;
 use Artisan;
 use DB;
 use Hash;
@@ -24,7 +24,7 @@ class PermissionController extends Controller
 
     public function index(Request $request)
     {
-        $data = Permission::orderBy('id', 'DESC')->where('id_stone', '!=', '')->get();
+        $data = Permission::orderBy('id', 'DESC')->where('id_volcator', '!=', '')->get();
         return view('elements.super.permissions.index')->with('data', $data->all());
     }
 

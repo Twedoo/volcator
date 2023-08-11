@@ -4,7 +4,7 @@
         <div class="cui__layout__content">
             <div class="cui__breadcrumbs">
                 <div class="cui__breadcrumbs__path">
-                    <a href="javascript: void(0);">Stone</a>
+                    <a href="javascript: void(0);">Volcator</a>
                     <span>
                         <span class="cui__breadcrumbs__arrow"></span>
                         <strong>{{ trans('Configurations::Configurations/Settings.title_settings') }}</strong>
@@ -36,7 +36,7 @@
                                                 <span class="mr-3">{{ trans('Configurations::Configurations/Settings.title_settings') }}</span>
                                             </div>
                                             <div class="col-md-2">
-                                                <select id="stone-cl" class="form-control">
+                                                <select id="volcator-cl" class="form-control">
                                                     <option value="">{{ trans('Configurations::Configurations/Settings.selctoption_lan') }}</option>
                                                     @foreach($languages as $key => $language)
                                                         <option value="{{ $key }}" @if(App::getLocale() == $language->code_lang) selected @endif>
@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="row p-3">
                                         <div>
-                                            <ul class="nav nav-tabs pull-left hidden-stone" id="switch-language">
+                                            <ul class="nav nav-tabs pull-left hidden-volcator" id="switch-language">
                                                 @foreach($languages as $key => $language)
                                                     <li class="nav-item">
                                                         <a class="nav-link
@@ -71,20 +71,20 @@
                                                         @if(App::getLocale() == $lang->code_lang)
                                                             <div class="col-lg-6 mb-5 @if ($errors->has('sitename'.'_'.$lang->code_lang)) has-error @endif">
                                                                 <label>{{ trans('Configurations::Configurations/Settings.sitename') }}   </label>
-                                                                {!! Form::text('sitename'.'_'.$lang->code_lang,   StoneTranslation::transDynTable('sitename','confsettings_langs',$lang->code_lang) , array('placeholder' =>  trans('Configurations::Configurations/Settings.sitename') ,'class' => 'form-control', 'value' =>old('sitename'.'_'.$lang->code_lang) )) !!}
+                                                                {!! Form::text('sitename'.'_'.$lang->code_lang,   VolcatorTranslation::transDynTable('sitename','confsettings_langs',$lang->code_lang) , array('placeholder' =>  trans('Configurations::Configurations/Settings.sitename') ,'class' => 'form-control', 'value' =>old('sitename'.'_'.$lang->code_lang) )) !!}
                                                                 <p class="help-block">{{$errors->first('sitename'.'_'.$lang->code_lang)}}  </p>
                                                             </div>
                                                             <div class="col-lg-6 mb-5 @if ($errors->has('keyword'.'_'.$lang->code_lang)) has-error @endif">
                                                                 <label>{{ trans('Configurations::Configurations/Settings.keyword') }}  </label>
-                                                                {!! Form::text('keyword'.'_'.$lang->code_lang, StoneTranslation::transDynTable('keyword','confsettings_langs',$lang->code_lang)  , array('placeholder' => trans('Configurations::Configurations/Settings.keyword') ,'class' => 'form-control', 'value' =>old('keyword'.'_'.$lang->code_lang) )) !!}
+                                                                {!! Form::text('keyword'.'_'.$lang->code_lang, VolcatorTranslation::transDynTable('keyword','confsettings_langs',$lang->code_lang)  , array('placeholder' => trans('Configurations::Configurations/Settings.keyword') ,'class' => 'form-control', 'value' =>old('keyword'.'_'.$lang->code_lang) )) !!}
                                                                 <p class="help-block">{{$errors->first('keyword'.'_'.$lang->code_lang)}}  </p>
                                                             </div>
-                                                            <div class="col-md-12 col-sm-12 @if ($errors->has('descriptionweb'.'_'.$lang->code_lang)) has-error @endif">
+                                                            <div class="col-md-12 @if ($errors->has('descriptionweb'.'_'.$lang->code_lang)) has-error @endif">
                                                                 <label>{{ trans('Configurations::Configurations/Settings.descriptionweb') }} </label>
-                                                                {!! Form::textarea('descriptionweb'.'_'.$lang->code_lang, StoneTranslation::transDynTable('descriptionweb','confsettings_langs',$lang->code_lang)   , array('placeholder' => trans('Configurations::Configurations/Settings.descriptionweb')  ,'rows' => '4', 'class' => 'form-control', 'value' =>old('description'.'_'.$lang->code_lang) )) !!}
+                                                                {!! Form::textarea('descriptionweb'.'_'.$lang->code_lang, VolcatorTranslation::transDynTable('descriptionweb','confsettings_langs',$lang->code_lang)   , array('placeholder' => trans('Configurations::Configurations/Settings.descriptionweb')  ,'rows' => '4', 'class' => 'form-control', 'value' =>old('description'.'_'.$lang->code_lang) )) !!}
                                                                 <p class="help-block">{{$errors->first('descriptionweb'.'_'.$lang->code_lang)}}  </p>
                                                             </div>
-                                                            <div class="col-md-6 col-sm-6 @if ($errors->has('logo')) has-error @endif">
+                                                            <div class="col-md-6  @if ($errors->has('logo')) has-error @endif">
                                                                 <label>
                                                                     {{ trans('Configurations::Configurations/Settings.logo') }}
                                                                 </label>
@@ -93,19 +93,25 @@
                                                                      width="5%"/>
 
                                                                 <!-- custom file upload -->
-                                                                <div class="fancy-file-upload fancy-file-primary @if ($errors->has('choose_file')) has-error @endif">
-                                                                    <i class="fa fa-upload"></i>
-                                                                    <input type="file" class="form-control" name="logo"
-                                                                           onchange="jQuery(this).next('input').val(this.value);">
-                                                                    <input type="text" class="form-control"
-                                                                           placeholder="{{ trans('Configurations::Configurations/Settings.nofile_select') }} "
-                                                                           readonly="">
-                                                                    <span class="button">{{ trans('Configurations::Configurations/Settings.choose_file') }}  </span>
+<!--                                                                <div class="fancy-file-upload fancy-file-primary @if ($errors->has('choose_file')) has-error @endif">-->
+<!--                                                                    <i class="fa fa-upload"></i>-->
+<!--                                                                    <input type="file" class="form-control" name="logo"-->
+<!--                                                                           onchange="jQuery(this).next('input').val(this.value);">-->
+<!--                                                                    <input type="text" class="form-control"-->
+<!--                                                                           placeholder="{{ trans('Configurations::Configurations/Settings.nofile_select') }} "-->
+<!--                                                                           readonly="">-->
+<!--                                                                    <span class="button">{{ trans('Configurations::Configurations/Settings.choose_file') }}  </span>-->
+<!--                                                                </div>-->
+                                                                <div class="form-group logo-setting">
+                                                                    <label class="form-label label-image-space label-extension-space"> {{ trans('Applications::Space/space.image') }} </label>
+                                                                    <input type="file" name="image_space_volcator" class="dropify-picture-space dropify-event image-space extension-space" id="input-file-events image_space_volcator"
+                                                                           data-allowed-formats="portrait square landscape" data-max-file-size="10M" />
+                                                                    <span class="text-image-space text-extension-space form-control-error-text"></span>
                                                                 </div>
                                                                 <p class="help-block">{{$errors->first('logo')}}  </p>
                                                             </div>
 
-                                                            <div class="col-md-6 col-sm-6 @if ($errors->has('languages')) has-error @endif">
+                                                            <div class="col-md-6  @if ($errors->has('languages')) has-error @endif">
                                                                 <label>{{ trans('Configurations::Configurations/Settings.languages') }} </label>
                                                                 <select name="languages"
                                                                         class="form-control pointer @if ($errors->has('choose_file')) has-error @endif">
@@ -118,15 +124,15 @@
                                                                 <p class="help-block">{{$errors->first('languages')}}  </p>
                                                             </div>
 
-                                                            <div class="col-md-6 col-sm-6 @if ($errors->has('email')) has-error @endif">
+                                                            <div class="col-md-6 @if ($errors->has('email')) has-error @endif">
                                                                 <label>{{ trans('Configurations::Configurations/Settings.email') }} </label>
                                                                 {!! Form::text('email', null, array('placeholder' => trans('Configurations::Configurations/Settings.email') ,'class' => 'form-control', 'value' =>old('email') )) !!}
                                                                 <p class="help-block">{{$errors->first('email')}}  </p>
                                                             </div>
 
-                                                            <div class="col-md-6 col-sm-6" style="margin-top:25px;">
+                                                            <div class="col-md-6">
                                                                 <label class="switch switch switch-round">
-                                                                    <span style="margin-right:25px;">{{ trans('Configurations::Configurations/Settings.maintenanceweb') }}    </span>
+                                                                    <span >{{ trans('Configurations::Configurations/Settings.maintenanceweb') }}    </span>
                                                                     <input type="checkbox" name="maintenanceweb"
                                                                            class="check_maint"
                                                                            @if( old('maintenanceweb') == 'on' || $setbase->maintenanceweb == 'on' ) checked @endif>
@@ -135,32 +141,32 @@
                                                                 </label>
                                                             </div>
 
-                                                            <div class="col-md-12 col-sm-12 @if ($errors->has('msgmaintenance'.'_'.$lang->code_lang)) has-error @endif">
+                                                            <div class="col-md-12  @if ($errors->has('msgmaintenance'.'_'.$lang->code_lang)) has-error @endif">
                                                                 <label>{{ trans('Configurations::Configurations/Settings.msgmaintenance') }}   </label>
-                                                                {!! Form::textarea('msgmaintenance'.'_'.$lang->code_lang, StoneTranslation::transDynTable('msgmaintenance','confsettings_langs',$lang->code_lang)  , array('placeholder' =>  trans('Configurations::Configurations/Settings.msgmaintenance') ,'rows' => '4', 'class' => 'form-control', 'value' =>old('msgmaintenance'.'_'.$lang->code_lang) )) !!}
+                                                                {!! Form::textarea('msgmaintenance'.'_'.$lang->code_lang, VolcatorTranslation::transDynTable('msgmaintenance','confsettings_langs',$lang->code_lang)  , array('placeholder' =>  trans('Configurations::Configurations/Settings.msgmaintenance') ,'rows' => '4', 'class' => 'form-control', 'value' =>old('msgmaintenance'.'_'.$lang->code_lang) )) !!}
                                                                 <p class="help-block">{{$errors->first('msgmaintenance'.'_'.$lang->code_lang)}}  </p>
                                                             </div>
                                                         @else
-                                                            <div class="col-md-6 col-sm-6 @if ($errors->has('sitename'.'_'.$lang->code_lang)) has-error @endif">
+                                                            <div class="col-md-6 @if ($errors->has('sitename'.'_'.$lang->code_lang)) has-error @endif">
                                                                 <label>{{ trans('Configurations::Configurations/Settings.sitename') }}    </label>
-                                                                {!! Form::text('sitename'.'_'.$lang->code_lang, StoneTranslation::transDynTable('sitename','confsettings_langs',$lang->code_lang), array('placeholder' => trans('Configurations::Configurations/Settings.sitename') ,'class' => 'form-control', 'value' =>old('sitename'.'_'.$lang->code_lang) )) !!}
+                                                                {!! Form::text('sitename'.'_'.$lang->code_lang, VolcatorTranslation::transDynTable('sitename','confsettings_langs',$lang->code_lang), array('placeholder' => trans('Configurations::Configurations/Settings.sitename') ,'class' => 'form-control', 'value' =>old('sitename'.'_'.$lang->code_lang) )) !!}
                                                                 <p class="help-block">{{ $errors->first('sitename'.'_'.$lang->code_lang) }}</p>
                                                             </div>
-                                                            <div class="col-md-6 col-sm-6 @if ($errors->has('keyword'.'_'.$lang->code_lang)) has-error @endif">
+                                                            <div class="col-md-6  @if ($errors->has('keyword'.'_'.$lang->code_lang)) has-error @endif">
                                                                 <label>{{ trans('Configurations::Configurations/Settings.keyword') }}   </label>
-                                                                {!! Form::text('keyword'.'_'.$lang->code_lang, StoneTranslation::transDynTable('keyword','confsettings_langs',$lang->code_lang), array('placeholder' => trans('Configurations::Configurations/Settings.keyword') ,'class' => 'form-control', 'value' =>old('keyword'.'_'.$lang->code_lang) )) !!}
+                                                                {!! Form::text('keyword'.'_'.$lang->code_lang, VolcatorTranslation::transDynTable('keyword','confsettings_langs',$lang->code_lang), array('placeholder' => trans('Configurations::Configurations/Settings.keyword') ,'class' => 'form-control', 'value' =>old('keyword'.'_'.$lang->code_lang) )) !!}
                                                                 <p class="help-block">{{$errors->first('keyword'.'_'.$lang->code_lang)}}  </p>
                                                             </div>
 
-                                                            <div class="col-md-12 col-sm-12 @if ($errors->has('descriptionweb'.'_'.$lang->code_lang)) has-error @endif">
+                                                            <div class="col-md-12  @if ($errors->has('descriptionweb'.'_'.$lang->code_lang)) has-error @endif">
                                                                 <label>{{ trans('Configurations::Configurations/Settings.descriptionweb') }}  </label>
-                                                                {!! Form::textarea('descriptionweb'.'_'.$lang->code_lang, StoneTranslation::transDynTable('descriptionweb','confsettings_langs',$lang->code_lang), array('placeholder' => trans('Configurations::Configurations/Settings.descriptionweb') ,'rows' => '4', 'class' => 'form-control', 'value' =>old('descriptionweb'.'_'.$lang->code_lang) )) !!}
+                                                                {!! Form::textarea('descriptionweb'.'_'.$lang->code_lang, VolcatorTranslation::transDynTable('descriptionweb','confsettings_langs',$lang->code_lang), array('placeholder' => trans('Configurations::Configurations/Settings.descriptionweb') ,'rows' => '4', 'class' => 'form-control', 'value' =>old('descriptionweb'.'_'.$lang->code_lang) )) !!}
                                                                 <p class="help-block">{{$errors->first('descriptionweb'.'_'.$lang->code_lang)}}  </p>
                                                             </div>
 
-                                                            <div class="col-md-12 col-sm-12 @if ($errors->has('msgmaintenance'.'_'.$lang->code_lang)) has-error @endif">
+                                                            <div class="col-md-12  @if ($errors->has('msgmaintenance'.'_'.$lang->code_lang)) has-error @endif">
                                                                 <label>{{ trans('Configurations::Configurations/Settings.msgmaintenance') }}   </label>
-                                                                {!! Form::textarea('msgmaintenance'.'_'.$lang->code_lang, StoneTranslation::transDynTable('msgmaintenance','confsettings_langs',$lang->code_lang), array('placeholder' => trans('Configurations::Configurations/Settings.msgmaintenance') ,'rows' => '4', 'class' => 'form-control', 'value' =>old('msgmaintenance'.'_'.$lang->code_lang) )) !!}
+                                                                {!! Form::textarea('msgmaintenance'.'_'.$lang->code_lang, VolcatorTranslation::transDynTable('msgmaintenance','confsettings_langs',$lang->code_lang), array('placeholder' => trans('Configurations::Configurations/Settings.msgmaintenance') ,'rows' => '4', 'class' => 'form-control', 'value' =>old('msgmaintenance'.'_'.$lang->code_lang) )) !!}
                                                                 <p class="help-block">{{$errors->first('msgmaintenance'.'_'.$lang->code_lang)}}  </p>
                                                             </div>
                                                         @endif

@@ -7,7 +7,7 @@ return [
     'remove_from_current_application' => 'Remove from current application',
     'remove_from_current_space' => 'Remove from current space',
     'remove_from_all_space' => 'Remove from all spaces',
-    'access_controls_stone' => 'Access Controle',
+    'access_controls_volcator' => 'Access Controle',
     'management_acl_users' => 'Users Management',
     'management_acl_roles' => 'Roles Management',
     'management_acl_permissions' => 'Permissions Management',
@@ -88,8 +88,8 @@ return [
     'edit_users_role' => 'Roles',
     'edit_users_update' => 'Update',
     'index_users_title' => 'Users',
-    'index_users_create' => 'Create New Users',
-    'index_users_invite' => 'Invite New Users',
+    'index_users_create' => 'Create New User',
+    'index_users_invite' => 'Invite User',
     'index_users_management' => 'Users Management',
     'index_users_name' => 'Name',
     'index_users_email' => 'Email',
@@ -122,5 +122,17 @@ return [
     'permission_delete_index' => 'Delete',
     'errors_permissions' => 'Access denied or not found !',
     'message_error_permissions' => 'Access denied, don\'t have permission or this page not found !!',
-
+    # Register and Login
+    'create_account' => 'Create account',
+    'login' => 'Log In',
+    'forget_password' => 'Forget password ?',
+    'dont_have_account' => 'Don\'t have an account ?',
+    'have_account' => 'Have an account ?',
+    # popup invite user
+    'invite_user' => 'Invite user',
+    'invite' => 'Invite',
+    'invite_user_live_search' => 'Invite a user by email',
+    'invite_user_live_search_placeholder' => 'Filter users or write an email to invite',
+    'invite_user_error_email' => 'Invalid email address.',
+    'invite_full_space' => 'Invite users to full space',
 ];

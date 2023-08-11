@@ -1,6 +1,6 @@
 <?php
 return [
-    'organizer_stone' => 'taliona',
+    'organizer_volcator' => 'taliona',
     'title_Organizer' => 'taliona',
     'nom_modules' => 'taliona',
     'check_module_notinstall' => '',

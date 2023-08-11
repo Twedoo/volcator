@@ -1,21 +1,78 @@
 <?php
 
-namespace Twedoo\Stone\Configurations;
+namespace Twedoo\Volcator\Configurations;
 
 use App\Modules\InstallModules\Models\toconfigurations;
 use Artisan;
 use getPath;
 use Modules\Configurations\Component\Schema\SchemaCreate;
-use StoneStructure;
-use StoneEngine;
-use StoneTranslation;
+use VolcatorStructure;
+use VolcatorEngine;
+use VolcatorTranslation;
 use Route;
 use Schema;
 use Session;
 use Validation;
 
-class Configurations extends StoneStructure
+class Configurations extends VolcatorStructure
 {
+    /**
+     * @var string
+     */
+    public $nameDisplay;
+    /**
+     * @var string
+     */
+    public $name;
+    /**
+     * @var string
+     */
+    public $description;
+    /**
+     * @var string
+     */
+    public $author;
+    /**
+     * @var string
+     */
+    public $menuTranslate;
+    /**
+     * @var string
+     */
+    public $typeModule;
+    /**
+     * @var bool
+     */
+    public $btnParameters;
+    /**
+     * @var bool
+     */
+    public $btnEnable;
+    /**
+     * @var bool
+     */
+    public $btnReset;
+    /**
+     * @var bool
+     */
+    public $btnUninstall;
+    /**
+     * @var bool
+     */
+    public $btnRemove;
+    /**
+     * @var string
+     */
+    public $dropTable;
+    /**
+     * @var string
+     */
+    public $categoryMenu;
+    /**
+     * @var string
+     */
+    public $type;
+
     /**
      * Configurations constructor.
      */
@@ -39,23 +96,37 @@ class Configurations extends StoneStructure
     /**
      * Void
      */
-    public function bootStone() : void
+    public function bootVolcator() : void
     {
         //
     }
 
+    /**
+     * @return array
+     */
     public function js()
     {
-        $this->type = __FUNCTION__;
-        $this->{'1'} = $this->route() == 'settings' ? 'js/settings.js' : '';
-        $this->{'1'} = $this->route() == 'languages' ? 'js/languages.js' : '';
-        return $this->getStyle();
+        $js[] = self::route() == 'settings' ? 'js/settings.js' : '';
+        return $js;
     }
 
+    /**
+     * @return array
+     */
+    public function css()
+    {
+        $css[] = self::route() == 'settings' ? 'css/style.css' : '';
+        return $css;
+    }
 
+    /**
+     * @param $idModule
+     * @param $statusModule
+     * @return mixed
+     */
     public function getParameters($idModule, $statusModule)
     {
-        return StoneEngine::displayParameters(
+        return VolcatorEngine::displayParameters(
             $idModule,
             $statusModule,
             $this->name,
@@ -68,6 +139,8 @@ class Configurations extends StoneStructure
     }
 
     /**
+     * @param $id
+     * @param $module
      * @return string
      */
     public function parameters($id, $module)
@@ -78,6 +151,5 @@ class Configurations extends StoneStructure
                 'module'
             )
         );
-
     }
 }

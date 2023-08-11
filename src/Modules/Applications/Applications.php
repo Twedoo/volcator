@@ -6,20 +6,20 @@
  * Time: 22:46
  */
 
-namespace Twedoo\Stone\Applications;
+namespace Twedoo\Volcator\Applications;
 
 use Illuminate\Database\Schema\Blueprint;
 use Artisan;
-use StonePath;
-use StoneStructure;
-use StoneEngine;
-use StoneTranslation;
+use VolcatorPath;
+use VolcatorStructure;
+use VolcatorEngine;
+use VolcatorTranslation;
 use Route;
 use Schema;
 use Session;
 use Validation;
 
-class Applications extends StoneStructure
+class Applications extends VolcatorStructure
 {
     /**
      * Configurations constructor.
@@ -45,7 +45,7 @@ class Applications extends StoneStructure
     /**
      * Void
      */
-    public function bootStone() : void
+    public function bootVolcator() : void
     {
         //
     }
@@ -57,7 +57,7 @@ class Applications extends StoneStructure
     public function building($module)
     {
 
-        if (!StoneEngine::isActiveStoneInCurrentApplication($module)) {
+        if (!VolcatorEngine::isActiveVolcatorInCurrentApplication($module)) {
 
             if (!Schema::hasTable(strtolower('spaces'))) {
                 Schema::create('spaces', function (Blueprint $table) {
@@ -121,10 +121,10 @@ class Applications extends StoneStructure
 
             //Artisan::call('db:seed');
             Artisan::call('db:seed', [
-                '--class' => 'Twedoo\\Stone\\Modules\\'.$module.'\\Models\\seeder\\applicationsTableSeeder'
+                '--class' => 'Twedoo\\Volcator\\Modules\\'.$module.'\\Models\\seeder\\applicationsTableSeeder'
             ]);
         }
-        StoneTranslation::setTranslateModules($this->name, $this->menuTranslate);
+        VolcatorTranslation::setTranslateModules($this->name, $this->menuTranslate);
     }
 
     public function js()
@@ -139,7 +139,7 @@ class Applications extends StoneStructure
      */
     public function getParameters($idModule, $statusModule)
     {
-        return StoneEngine::displayParameters(
+        return VolcatorEngine::displayParameters(
             $idModule,
             $statusModule,
             $this->name,

@@ -1,4 +1,4 @@
-stone:
+volcator:
   roles:
       - name: 'Role-Access-Configuration'
         display_name: 'Module configuration'

@@ -154,7 +154,7 @@ $(document).on('click', '#switch-language li a', function (e) {//best method to 
 
 });
 //$('#mySelect').on('change', function(e) {
-$(document).on('change', '#stone-cl', function (e) {//best method to be called the condition down multipal gain
+$(document).on('change', '#volcator-cl', function (e) {//best method to be called the condition down multipal gain
 alert(okkkkk)
     var maintenance = $('.check_maint').is(':checked');
     if (maintenance == false) {

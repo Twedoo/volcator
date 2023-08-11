@@ -22,6 +22,7 @@ return [
     'title_header' => "Multi-Applications",
     'first_name_header' => "List Multi-Applications",
     'create_application' => "Create Application",
+    'management_application' => "Applications",
     'edit_application' => "Edit Application",
     'show_application' => "Show Application",
     'create' => "Create",

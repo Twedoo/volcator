@@ -1,4 +1,4 @@
-stone:
+volcator:
   menu:
     - name_menu: 'menugenerale_settings'
       route_link: 'settings'

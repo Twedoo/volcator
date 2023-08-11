@@ -1,9 +1,9 @@
 <?php
 
-namespace Twedoo\Stone\Modules\Applications\Models;
+namespace Twedoo\Volcator\Modules\Applications\Models;
 use Illuminate\Database\Eloquent\Model;
-use Twedoo\Stone\Organizer\Models\Stones;
-use Twedoo\StoneGuard\Models\User;
+use Twedoo\Volcator\Organizer\Models\Volcators;
+use Twedoo\VolcatorGuard\Models\User;
 
 class Applications extends Model
 {
@@ -27,8 +27,8 @@ class Applications extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function stones()
+    public function volcators()
     {
-        return $this->belongsToMany(Stones::class, 'applications_stone', 'application_id', 'stone_id')->withPivot('space_id');
+        return $this->belongsToMany(Volcators::class, 'applications_volcator', 'application_id', 'volcator_id')->withPivot('space_id');
     }
 }

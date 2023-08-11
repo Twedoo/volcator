@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'organizer_stone' => 'Organizer',
-    'organizer_menu' => 'Management Stones'
+    'organizer_volcator' => 'Organizer',
+    'organizer_menu' => 'Management Volcators'
 ];

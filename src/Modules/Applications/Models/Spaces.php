@@ -1,10 +1,10 @@
 <?php
 
-namespace Twedoo\Stone\Modules\Applications\Models;
+namespace Twedoo\Volcator\Modules\Applications\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Twedoo\Stone\Organizer\Models\Stones;
-use Twedoo\StoneGuard\Models\User;
+use Twedoo\Volcator\Organizer\Models\Volcators;
+use Twedoo\VolcatorGuard\Models\User;
 
 class Spaces extends Model
 {

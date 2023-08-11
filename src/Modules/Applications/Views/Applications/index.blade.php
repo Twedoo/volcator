@@ -4,7 +4,7 @@
         <div class="cui__layout__content">
             <div class="cui__breadcrumbs">
                 <div class="cui__breadcrumbs__path">
-                    <a href="javascript: void(0);">Stone</a>
+                    <a href="javascript: void(0);">Volcator</a>
                     <span>
                         <span class="cui__breadcrumbs__arrow"></span>
                         <strong>{{ trans('Applications::Applications/Applications.title_header') }}</strong>
@@ -33,13 +33,13 @@
                                         <tr>
                                             <th>{{ trans('Applications::Applications/Applications.name_application') }}</th>
                                             <th>{{ trans('Applications::Applications/Applications.name_app_dis') }}</th>
-                                            @permission(Config::get('stone.PERMISSION_APPLICATION_FULL'))
+                                            @permission(Config::get('volcator.PERMISSION_APPLICATION_FULL'))
                                                 <th>{{ trans('Applications::Applications/Applications.show') }}</th>
                                             @endpermission
-                                            @permission(Config::get('stone.PERMISSION_APPLICATION_FULL'))
+                                            @permission(Config::get('volcator.PERMISSION_APPLICATION_FULL'))
                                                 <th>{{ trans('Applications::Applications/Applications.edit') }}</th>
                                             @endpermission
-                                            @permission(Config::get('stone.PERMISSION_APPLICATION_FULL'))
+                                            @permission(Config::get('volcator.PERMISSION_APPLICATION_FULL'))
                                                 <th>{{ trans('Applications::Applications/Applications.delete') }}</th>
                                             @endpermission
                                         </tr>
@@ -49,25 +49,25 @@
                                             <tr>
                                                 <td>{{ $application->name }}</td>
                                                 <td class="center">{{ $application->display_name }}</td>
-                                                @permission(Config::get('stone.PERMISSION_APPLICATION_FULL'))
+                                                @permission(Config::get('volcator.PERMISSION_APPLICATION_FULL'))
                                                 <td>
                                                     <a href="{{ route(app('urlBack') . '.multi.applications.show', $application->id) }}">
                                                         <i class="fa fa-eye btn btn-darken-1" aria-hidden="true"></i>
                                                     </a>
                                                 </td>
                                                 @endpermission
-                                                @permission(Config::get('stone.PERMISSION_APPLICATION_FULL'))
+                                                @permission(Config::get('volcator.PERMISSION_APPLICATION_FULL'))
                                                 <td>
                                                     <a href="{{ route(app('urlBack').'.multi.applications.edit', $application->id) }}">
                                                         <i class="fa fa-edit btn btn-darken-1" aria-hidden="true"></i>
                                                     </a>
                                                 </td>
                                                 @endpermission
-                                                @permission(Config::get('stone.PERMISSION_APPLICATION_FULL'))
+                                                @permission(Config::get('volcator.PERMISSION_APPLICATION_FULL'))
                                                 <td>
                                                     <a href="{{ route(app('urlBack').'.multi.applications.delete', $application->id) }}"
-                                                       @if ($application->type == 'main') class="disabled stone-disable-click " @endif>
-                                                        <i class="fa fa-trash btn btn-darken-1 @if ($application->type == 'main') disabled stone-disable-click @endif" aria-hidden="true" ></i>
+                                                       @if ($application->type == 'main') class="disabled volcator-disable-click " @endif>
+                                                        <i class="fa fa-trash btn btn-darken-1 @if ($application->type == 'main') disabled volcator-disable-click @endif" aria-hidden="true" ></i>
                                                     </a>
                                                 </td>
                                                 @endpermission
@@ -78,13 +78,13 @@
                                             <tr>
                                                 <th>{{ trans('Applications::Applications/Applications.name_application') }}</th>
                                                 <th>{{ trans('Applications::Applications/Applications.name_app_dis') }}</th>
-                                                @permission(Config::get('stone.PERMISSION_APPLICATION_FULL'))
+                                                @permission(Config::get('volcator.PERMISSION_APPLICATION_FULL'))
                                                 <th>{{ trans('Applications::Applications/Applications.show') }}</th>
                                                 @endpermission
-                                                @permission(Config::get('stone.PERMISSION_APPLICATION_FULL'))
+                                                @permission(Config::get('volcator.PERMISSION_APPLICATION_FULL'))
                                                 <th>{{ trans('Applications::Applications/Applications.edit') }}</th>
                                                 @endpermission
-                                                @permission(Config::get('stone.PERMISSION_APPLICATION_FULL'))
+                                                @permission(Config::get('volcator.PERMISSION_APPLICATION_FULL'))
                                                 <th>{{ trans('Applications::Applications/Applications.delete') }}</th>
                                                 @endpermission
                                             </tr>

@@ -72,14 +72,14 @@
             <!-- Modal Body -->
             <div class="modal-body">
                 <strong><h5>{{ trans('Organizer::Organizer/Organizer.name_modules') }}</h5></strong>
-                <h6>{!! StoneEngine::getAttributes($modulesName, 'name') !!}</h6>
+                <h6>{!! VolcatorEngine::getAttributes($modulesName, 'name') !!}</h6>
 
                 <strong><h5>{{ trans('Organizer::Organizer/Organizer.description_modules') }}</h5>
                 </strong>
-                <h6>{!! StoneEngine::getAttributes($modulesName, 'description') !!}</h6>
+                <h6>{!! VolcatorEngine::getAttributes($modulesName, 'description') !!}</h6>
 
                 <strong><h5>{{ trans('Organizer::Organizer/Organizer.author_modules') }}</h5></strong>
-                <h6>{!! StoneEngine::getAttributes($modulesName, 'author') !!}</h6>
+                <h6>{!! VolcatorEngine::getAttributes($modulesName, 'author') !!}</h6>
 
             </div>
 

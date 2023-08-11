@@ -1,10 +1,10 @@
 <?php
 
-namespace Twedoo\Stone\Http\Controllers\Auth;
+namespace Twedoo\Volcator\Http\Controllers\Auth;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
-use Twedoo\Stone\Http\Controllers\Controller;
+use Twedoo\Volcator\Http\Controllers\Controller;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -50,9 +50,10 @@ class LoginController extends Controller
 
     /**
      * @param Request $request
+     * @param null $redirectTo
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function logout(Request $request)
+    public function logout(Request $request, $redirectTo = null)
     {
         if (!Auth::user()) {
             return redirect('login');
@@ -69,6 +70,9 @@ class LoginController extends Controller
             App::setLocale($applocale);
             Cache::put('application-'.$current_user, $application, 10080);
             Cache::put('space-'.$current_user, $space, 10080);
+            if ($redirectTo) {
+                return redirect($redirectTo);
+            }
             return redirect(app('urlBack') . '/login');
         } else {
             $current_user = Auth::user()->id;
@@ -81,6 +85,9 @@ class LoginController extends Controller
             App::setLocale($applocale);
             Cache::put('application-'.$current_user, $application, 10080);
             Cache::put('space-'.$current_user, $space, 10080);
+            if ($redirectTo) {
+                return redirect($redirectTo);
+            }
             return redirect(app('urlBack') . '/login');
         }
     }
