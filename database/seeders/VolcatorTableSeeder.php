@@ -33,9 +33,8 @@ class VolcatorTableSeeder extends Seeder
         $PERMISSION_USER_ACCESS_CONTROL        = Config::get('volcator.PERMISSION_USER_ACCESS_CONTROL');
         $PERMISSION_ROLE_ACCESS_CONTROL        = Config::get('volcator.PERMISSION_ROLE_ACCESS_CONTROL');
         $PERMISSION_PERMISSION_ACCESS_CONTROL  = Config::get('volcator.PERMISSION_PERMISSION_ACCESS_CONTROL');
-        dump("Houssem");
-        dump($MAJESTIC);
-        dump($PERMISSION_MAJESTIC_VOLCATOR);
+
+
         /**
          * Roles name constants
          */

@@ -43,6 +43,7 @@ class VolcatorMediaStyle
             return null;
         }
         $path = VolcatorEngine::pathConfigVolcatorResolve($namespace, $volcator);
+
         if (method_exists($namespace . $volcator . '\\' . $volcator, 'css')) {
             $pathCss = \App::call($namespace . $volcator . '\\' . $volcator . '@css');
 
