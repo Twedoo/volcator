@@ -327,7 +327,7 @@ return [
     "PERMISSION_APPLICATION_FULL"           => 'Permission-Application-Full',
     "PERMISSION_APPLICATION_VIEW"           => 'Permission-Application-View',
     // Permissions Volcator Vue
-    "PERMISSION_Volcator_HEADPIECE"            => 'Permission-volcator-headpiece',
+    "PERMISSION_VOLCATOR_HEADPIECE"         => 'Permission-volcator-headpiece',
 
     /*
     |--------------------------------------------------------------------------
