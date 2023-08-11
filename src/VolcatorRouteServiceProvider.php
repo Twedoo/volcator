@@ -31,7 +31,7 @@ class VolcatorRouteServiceProvider extends ServiceProvider
             ]);
 
              if ($segment_one == config()["params"]["TW_APP_BACK_PREFIX"] || 'invite/'.config()["params"]["TW_APP_BACK_PREFIX"] == $segment_one.'/'.$segment_two) {
-                $path =   'resources/views/back/' . config()["params"]["TW_APP_TEMPLATE_BACK"];
+                $path =   '../resources/views/back/' . config()["params"]["TW_APP_TEMPLATE_BACK"];
             } else {
                 $path =   'resources/views/front/' . config()["params"]["TW_APP_TEMPLATE_FRONT"];
             }
