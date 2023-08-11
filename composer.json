@@ -23,11 +23,11 @@
         "fruitcake/laravel-cors": "^2.0",
         "predis/predis": "^2.0",
         "symfony/yaml": "^6.0.12",
-        "pusher/pusher-php-server": "~7.0.2",
+        "pusher/pusher-php-server": "~7.0.2", 
         "beyondcode/laravel-websockets": "^1.13",
         "guzzlehttp/guzzle": "^7.0.1",
         "gazsp/baum": "^2.0",
-        "twedoo/volcatorguard": "1.x-dev"
+        "twedoo/volcatorguard": "2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^8|^9"
