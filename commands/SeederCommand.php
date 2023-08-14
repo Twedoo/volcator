@@ -64,7 +64,9 @@ class SeederCommand extends Command
         $module = 'Notifications';
         \App::call('Twedoo\\Volcator\\Organizer\\Organizer@preBuildingConsole', compact('module'));
 
-        $module = 'Headpiece';
-        \App::call('Twedoo\\Volcator\\Organizer\\Organizer@preBuildingConsole', compact('module'));
+        if (file_exists(__DIR__ . '/../src/Modules/Headpiece/Headpiece.php')) {
+            $module = 'Headpiece';
+            \App::call('Twedoo\\Volcator\\Organizer\\Organizer@preBuildingConsole', compact('module'));
+        }
     }
 }

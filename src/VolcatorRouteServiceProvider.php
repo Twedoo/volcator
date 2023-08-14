@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 use Twedoo\Volcator\Models\Parameters;
+use Illuminate\Support\Facades\URL;
 
 class VolcatorRouteServiceProvider extends ServiceProvider
 {
@@ -20,6 +21,10 @@ class VolcatorRouteServiceProvider extends ServiceProvider
     public function boot()
     {
         if (!$this->app->runningInConsole()) {
+            if($this->app->environment('production')) {
+                URL::forceScheme('https');
+            }
+
             $segment_one = Request()->segment(1);
             $segment_two = Request()->segment(2);
             $segment_three = Request()->segment(3);
@@ -30,7 +35,7 @@ class VolcatorRouteServiceProvider extends ServiceProvider
                 })->toArray()
             ]);
 
-             if ($segment_one == config()["params"]["TW_APP_BACK_PREFIX"] || 'invite/'.config()["params"]["TW_APP_BACK_PREFIX"] == $segment_one.'/'.$segment_two) {
+            if ($segment_one == config()["params"]["TW_APP_BACK_PREFIX"] || 'invite/'.config()["params"]["TW_APP_BACK_PREFIX"] == $segment_one.'/'.$segment_two) {
                 $path =   '../resources/views/back/' . config()["params"]["TW_APP_TEMPLATE_BACK"];
             } else {
                 $path =   'resources/views/front/' . config()["params"]["TW_APP_TEMPLATE_FRONT"];
