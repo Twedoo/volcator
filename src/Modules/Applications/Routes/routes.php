@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
+// dump(Cache::get('access_token'));die;
 
 Route::group(['middleware' => ['web', 'auth']], function () {
     Route::auth();
