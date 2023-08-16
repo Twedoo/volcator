@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "19dc04fd6c0a393199ee94954a89f4f6",
+    "content-hash": "ceed82a0a93cbf9baadd366e9aa0deef",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -326,31 +326,31 @@
         },
         {
             "name": "darkaonline/l5-swagger",
-            "version": "8.4.1",
+            "version": "8.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DarkaOnLine/L5-Swagger.git",
-                "reference": "0b1c3f5aca80fc710877bf7fdbab6d28d9b54f4c"
+                "reference": "02348149f1833c63bf52764838d5659507857394"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DarkaOnLine/L5-Swagger/zipball/0b1c3f5aca80fc710877bf7fdbab6d28d9b54f4c",
-                "reference": "0b1c3f5aca80fc710877bf7fdbab6d28d9b54f4c",
+                "url": "https://api.github.com/repos/DarkaOnLine/L5-Swagger/zipball/02348149f1833c63bf52764838d5659507857394",
+                "reference": "02348149f1833c63bf52764838d5659507857394",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "laravel/framework": "^9.0 || >=8.40.0 || ^7.0",
+                "laravel/framework": "^10.0 || ^9.0 || >=8.40.0 || ^7.0",
                 "php": "^7.2 || ^8.0",
-                "swagger-api/swagger-ui": "^3.0 || ^4.0",
+                "swagger-api/swagger-ui": "^3.0 || >=4.1.3",
                 "symfony/yaml": "^5.0 || ^6.0",
-                "zircote/swagger-php": "^3.2 || ^4.0"
+                "zircote/swagger-php": "^3.2.0 || ^4.0.0"
             },
             "require-dev": {
                 "mockery/mockery": "1.*",
-                "orchestra/testbench": "7.* || ^6.15 || 5.*",
+                "orchestra/testbench": "^8.0 || 7.* || ^6.15 || 5.*",
                 "php-coveralls/php-coveralls": "^2.0",
-                "phpunit/phpunit": "^9.5"
+                "phpunit/phpunit": "^10.0 || ^9.5"
             },
             "type": "library",
             "extra": {
@@ -393,7 +393,7 @@
             ],
             "support": {
                 "issues": "https://github.com/DarkaOnLine/L5-Swagger/issues",
-                "source": "https://github.com/DarkaOnLine/L5-Swagger/tree/8.4.1"
+                "source": "https://github.com/DarkaOnLine/L5-Swagger/tree/8.5.1"
             },
             "funding": [
                 {
@@ -401,7 +401,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-09-22T05:16:35+00:00"
+            "time": "2023-06-05T04:21:50+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -3433,16 +3433,16 @@
         },
         {
             "name": "predis/predis",
-            "version": "v2.2.0",
+            "version": "v2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/predis/predis.git",
-                "reference": "33b70b971a32b0d28b4f748b0547593dce316e0d"
+                "reference": "5f2b410a74afaff296a87a494e4c5488cf9fab57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/predis/predis/zipball/33b70b971a32b0d28b4f748b0547593dce316e0d",
-                "reference": "33b70b971a32b0d28b4f748b0547593dce316e0d",
+                "url": "https://api.github.com/repos/predis/predis/zipball/5f2b410a74afaff296a87a494e4c5488cf9fab57",
+                "reference": "5f2b410a74afaff296a87a494e4c5488cf9fab57",
                 "shasum": ""
             },
             "require": {
@@ -3482,7 +3482,7 @@
             ],
             "support": {
                 "issues": "https://github.com/predis/predis/issues",
-                "source": "https://github.com/predis/predis/tree/v2.2.0"
+                "source": "https://github.com/predis/predis/tree/v2.2.1"
             },
             "funding": [
                 {
@@ -3490,7 +3490,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-06-14T10:37:31+00:00"
+            "time": "2023-08-15T23:01:46+00:00"
         },
         {
             "name": "psr/cache",
@@ -4931,16 +4931,16 @@
         },
         {
             "name": "swagger-api/swagger-ui",
-            "version": "v4.19.1",
+            "version": "v5.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swagger-api/swagger-ui.git",
-                "reference": "92ffd76d15671954c239fdefb43d1951e06f8bb5"
+                "reference": "b6802e0acad7bad11ef7144ee6bb144179ca309d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swagger-api/swagger-ui/zipball/92ffd76d15671954c239fdefb43d1951e06f8bb5",
-                "reference": "92ffd76d15671954c239fdefb43d1951e06f8bb5",
+                "url": "https://api.github.com/repos/swagger-api/swagger-ui/zipball/b6802e0acad7bad11ef7144ee6bb144179ca309d",
+                "reference": "b6802e0acad7bad11ef7144ee6bb144179ca309d",
                 "shasum": ""
             },
             "type": "library",
@@ -4986,9 +4986,9 @@
             ],
             "support": {
                 "issues": "https://github.com/swagger-api/swagger-ui/issues",
-                "source": "https://github.com/swagger-api/swagger-ui/tree/v4.19.1"
+                "source": "https://github.com/swagger-api/swagger-ui/tree/v5.3.2"
             },
-            "time": "2023-06-12T16:31:43+00:00"
+            "time": "2023-08-14T13:15:27+00:00"
         },
         {
             "name": "symfony/console",
@@ -7461,12 +7461,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Twedoo/volcatorguard.git",
-                "reference": "83dd9d9bf7130fddfd74c1be46098cef708635e9"
+                "reference": "fadea4404e436b38e4391ba4797f17edf4ae00ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Twedoo/volcatorguard/zipball/83dd9d9bf7130fddfd74c1be46098cef708635e9",
-                "reference": "83dd9d9bf7130fddfd74c1be46098cef708635e9",
+                "url": "https://api.github.com/repos/Twedoo/volcatorguard/zipball/fadea4404e436b38e4391ba4797f17edf4ae00ba",
+                "reference": "fadea4404e436b38e4391ba4797f17edf4ae00ba",
                 "shasum": ""
             },
             "require": {
@@ -7536,9 +7536,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Twedoo/volcatorguard/issues",
-                "source": "https://github.com/Twedoo/volcatorguard/tree/main"
+                "source": "https://github.com/Twedoo/volcatorguard/tree/2.x-dev"
             },
-            "time": "2023-08-13T17:49:01+00:00"
+            "time": "2023-08-15T23:10:04+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
