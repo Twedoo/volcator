@@ -25,6 +25,7 @@
         "beyondcode/laravel-websockets": "^1.13",
         "guzzlehttp/guzzle": "^7.0.1",
         "gazsp/baum": "^2.0",
+        "laravel/ui": "^4.2",
         "twedoo/volcatorguard": "2.0"
     },
     "require-dev": {
