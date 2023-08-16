@@ -79,6 +79,10 @@ class VolcatorRouteServiceProvider extends ServiceProvider
                     Route::middleware('web')->group(__DIR__ . '/Modules/' . $module . '/Routes/routes.php');
                     $this->loadRoutesFrom(__DIR__ . '/Modules/' . $module . '/Routes/routes.php');
                 }
+                if (file_exists(__DIR__ . '/Modules/' . $module . '/Routes/api.php')) {
+                    Route::middleware('web')->group(__DIR__ . '/Modules/' . $module . '/Routes/api.php');
+                    $this->loadRoutesFrom(__DIR__ . '/Modules/' . $module . '/Routes/api.php');
+                }
                 if (file_exists(__DIR__ . '/Modules/' . $module . '/Routes/channels.php')) {
                     Route::middleware('web')->group(__DIR__ . '/Modules/' . $module . '/Routes/channels.php');
                     $this->loadRoutesFrom(__DIR__ . '/Modules/' . $module . '/Routes/channels.php');

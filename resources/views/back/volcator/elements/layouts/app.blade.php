@@ -11,9 +11,10 @@
         @else
         {{ Config::get('volcator.app_name') }}
         @endif
+        {{ trans('Configurations::Configurations/Configurations.title_tab_description') }}
     </title>
 
-    <link rel="icon" type="image/png" href="{{ asset(app('back').'/assets/components/kit/core/img/favicon.png') }}" />
+    <link rel="icon" type="image/png" href="{{ asset(app('back').'/assets/components/kit/core/img/favicon.ico') }}" />
     <link href="https://fonts.googleapis.com/css?family=Mukta:400,700,800&display=swap" rel="stylesheet">
 
     <!-- VENDORS -->

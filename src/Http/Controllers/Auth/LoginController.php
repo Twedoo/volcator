@@ -37,11 +37,14 @@ class LoginController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function authenticated()
     {
         if (Auth::user()->type != null) {
+            $token = Auth::user()->createToken('auth_token')->plainTextToken;
+//            Session::put('access_token', $token);
+            Cache::put('access_token', $token);
             return redirect(app('urlBack'));
         }
         return redirect(app('urlBack'));
