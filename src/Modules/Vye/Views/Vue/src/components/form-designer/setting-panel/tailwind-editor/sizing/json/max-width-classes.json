@@ -1,0 +1,94 @@
+[
+    {
+        "label": "max-w-0",
+        "value": "tsz-max-w-0"
+    },
+    {
+        "label": "max-w-none",
+        "value": "tsz-max-w-none"
+    },
+    {
+        "label": "max-w-xs",
+        "value": "tsz-max-w-xs"
+    },
+    {
+        "label": "max-w-sm",
+        "value": "tsz-max-w-sm"
+    },
+    {
+        "label": "max-w-md",
+        "value": "tsz-max-w-md"
+    },
+    {
+        "label": "max-w-lg",
+        "value": "tsz-max-w-lg"
+    },
+    {
+        "label": "max-w-xl",
+        "value": "tsz-max-w-xl"
+    },
+    {
+        "label": "max-w-2xl",
+        "value": "tsz-max-w-2xl"
+    },
+    {
+        "label": "max-w-3xl",
+        "value": "tsz-max-w-3xl"
+    },
+    {
+        "label": "max-w-4xl",
+        "value": "tsz-max-width"
+    },
+    {
+        "label": "max-w-5xl",
+        "value": "tsz-max-w-5xl"
+    },
+    {
+        "label": "max-w-6xl",
+        "value": "tsz-max-w-6xl"
+    },
+    {
+        "label": "max-w-7xl",
+        "value": "tsz-max-w-7xl"
+    },
+    {
+        "label": "max-w-full",
+        "value": "tsz-max-w-full"
+    },
+    {
+        "label": "max-w-min",
+        "value": "tsz-max-w-min"
+    },
+    {
+        "label": "max-w-max",
+        "value": "tsz-max-w-max"
+    },
+    {
+        "label": "max-w-fit",
+        "value": "tsz-max-w-fit"
+    },
+    {
+        "label": "max-w-prose",
+        "value": "tsz-max-w-prose"
+    },
+    {
+        "label": "max-w-screen-sm",
+        "value": "tsz-max-w-screen-sm"
+    },
+    {
+        "label": "max-w-screen-md",
+        "value": "tsz-max-w-screen-md"
+    },
+    {
+        "label": "max-w-screen-lg",
+        "value": "tsz-max-w-screen-lg"
+    },
+    {
+        "label": "max-w-screen-xl",
+        "value": "tsz-max-w-screen-xl"
+    },
+    {
+        "label": "max-w-screen-2xl",
+        "value": "tsz-max-w-screen-2xl"
+    }
+]

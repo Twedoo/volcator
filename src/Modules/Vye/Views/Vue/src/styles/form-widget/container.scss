@@ -1,0 +1,153 @@
+/**
+* Style containers widgets
+ */
+.highlight-droppable-widget {
+    border: 1px dashed rgba(170, 170, 170, 0.75);
+    //margin: 2px;
+}
+
+// container grid-widget.vue
+.el-row.grid-container {
+    min-height: 60px;
+    margin-left: 0px !important;
+    margin-right: 0px !important;;
+    //outline: 1px dashed #336699;
+
+    .form-widget-list {
+        min-height: 28px;
+    }
+
+}
+
+.container-box.selected {
+    outline: 2px solid $--color-primary !important;
+    //margin: 2px;
+    z-index: 50;
+    //margin-bottom: 2px;
+    //padding: 3px;
+}
+
+
+/*
+ this container-design only for display inside design tool of container-widget.vue
+ */
+//TODO: chane class by default tailwindcss classes screen when project building
+.container-design-sm {
+    margin: 0 auto;
+    width: 640px;
+}
+
+.container-design-md {
+    margin: 0 auto;
+    width: 768px;
+}
+
+.container-design-lg {
+    margin: 0 auto;
+    width: 1024px;
+}
+
+.container-design-xl {
+    margin: 0 auto;
+    width: 1280px;
+}
+
+.container-design-2xl {
+    margin: 0 auto;
+    width: 1536px;
+}
+
+/*
+ Edn this container-design only for display inside design tool
+ */
+
+// container : container-widget.vue & grid-col-widget.vue
+.container-box {
+    min-height: 60px !important;
+    //padding: 3px;
+    position: relative;
+
+    .form-widget-list {
+        min-height: 28px;
+    }
+
+    .grid-col-action {
+        position: absolute;
+        bottom: 0;
+        right: -2px;
+        height: 28px;
+        line-height: 28px;
+        background: $--color-primary;
+        z-index: 999;
+
+        i {
+            font-size: 14px;
+            color: #fff;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+    }
+
+    .grid-col-handler {
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        height: 22px;
+        line-height: 22px;
+        background: $--color-primary;
+        z-index: 9;
+
+        i {
+            font-size: 14px;
+            font-style: normal;
+            color: #fff;
+            margin: 4px;
+            cursor: default;
+        }
+    }
+}
+
+.grid-col-action, .grid-col-handler {
+    :deep(.svg-icon) {
+        margin-left: 0.1em;
+        margin-right: 0.1em;
+    }
+}
+
+
+// Layouts
+
+.common-layout .el-main {
+    overflow: hidden;
+}
+
+.grid-container.selected, .container-box.selected {
+    //margin: 3px;
+
+}
+
+.common-layout .el-container .el-header-layout {
+    min-height: 60px !important;
+}
+
+
+.common-layout .el-main-layout {
+    background-color: var(--el-color-primary-light-9);
+    color: var(--el-text-color-primary);
+    text-align: center;
+    height: 150px;
+}
+
+//.common-layout .el-header {
+//    display: none !important;
+//    justify-content: center;
+//    align-items: center;
+//    position: inherit !important;
+//}
+
+//.common-layout .el-header {
+//    background-color: var(--el-color-primary-light-7);
+//    color: var(--el-text-color-primary);
+//    text-align: center;
+//
+//}

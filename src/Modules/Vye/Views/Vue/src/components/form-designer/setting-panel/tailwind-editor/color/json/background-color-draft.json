@@ -1,0 +1,978 @@
+[
+    {
+        "label": "bg-black",
+        "value": "tsz-bg-black"
+    },
+    {
+        "label": "bg-white",
+        "value": "tsz-bg-white"
+    },
+    {
+        "label": "bg-slate-50",
+        "value": "tsz-bg-slate-50"
+    },
+    {
+        "label": "bg-slate-100",
+        "value": "tsz-bg-slate-100"
+    },
+    {
+        "label": "bg-slate-200",
+        "value": "tsz-bg-slate-200"
+    },
+    {
+        "label": "bg-slate-300",
+        "value": "tsz-bg-slate-300"
+    },
+    {
+        "label": "bg-slate-400",
+        "value": "tsz-bg-slate-400"
+    },
+    {
+        "label": "bg-slate-500",
+        "value": "tsz-bg-slate-500"
+    },
+    {
+        "label": "bg-slate-600",
+        "value": "tsz-bg-slate-600"
+    },
+    {
+        "label": "bg-slate-700",
+        "value": "tsz-bg-slate-700"
+    },
+    {
+        "label": "bg-slate-800",
+        "value": "tsz-bg-slate-800"
+    },
+    {
+        "label": "bg-slate-900",
+        "value": "tsz-bg-slate-900"
+    },
+    {
+        "label": "bg-slate-950",
+        "value": "tsz-bg-slate-950"
+    },
+    {
+        "label": "bg-gray-50",
+        "value": "tsz-bg-gray-50"
+    },
+    {
+        "label": "bg-gray-100",
+        "value": "tsz-bg-gray-100"
+    },
+    {
+        "label": "bg-gray-200",
+        "value": "tsz-bg-gray-200"
+    },
+    {
+        "label": "bg-gray-300",
+        "value": "tsz-bg-gray-300"
+    },
+    {
+        "label": "bg-gray-400",
+        "value": "tsz-bg-gray-400"
+    },
+    {
+        "label": "bg-gray-500",
+        "value": "tsz-bg-gray-500"
+    },
+    {
+        "label": "bg-gray-600",
+        "value": "tsz-bg-gray-600"
+    },
+    {
+        "label": "bg-gray-700",
+        "value": "tsz-bg-gray-700"
+    },
+    {
+        "label": "bg-gray-800",
+        "value": "tsz-bg-gray-800"
+    },
+    {
+        "label": "bg-gray-900",
+        "value": "tsz-bg-gray-900"
+    },
+    {
+        "label": "bg-gray-950",
+        "value": "tsz-bg-gray-950"
+    },
+    {
+        "label": "bg-zinc-50",
+        "value": "tsz-bg-zinc-50"
+    },
+    {
+        "label": "bg-zinc-100",
+        "value": "tsz-bg-zinc-100"
+    },
+    {
+        "label": "bg-zinc-200",
+        "value": "tsz-bg-zinc-200"
+    },
+    {
+        "label": "bg-zinc-300",
+        "value": "tsz-bg-zinc-300"
+    },
+    {
+        "label": "bg-zinc-400",
+        "value": "tsz-bg-zinc-400"
+    },
+    {
+        "label": "bg-zinc-500",
+        "value": "tsz-bg-zinc-500"
+    },
+    {
+        "label": "bg-zinc-600",
+        "value": "tsz-bg-zinc-600"
+    },
+    {
+        "label": "bg-zinc-700",
+        "value": "tsz-bg-zinc-700"
+    },
+    {
+        "label": "bg-zinc-800",
+        "value": "tsz-bg-zinc-800"
+    },
+    {
+        "label": "bg-zinc-900",
+        "value": "tsz-bg-zinc-900"
+    },
+    {
+        "label": "bg-zinc-950",
+        "value": "tsz-bg-zinc-950"
+    },
+    {
+        "label": "bg-neutral-50",
+        "value": "tsz-bg-neutral-50"
+    },
+    {
+        "label": "bg-neutral-100",
+        "value": "tsz-bg-neutral-100"
+    },
+    {
+        "label": "bg-neutral-200",
+        "value": "tsz-bg-neutral-200"
+    },
+    {
+        "label": "bg-neutral-300",
+        "value": "tsz-bg-neutral-300"
+    },
+    {
+        "label": "bg-neutral-400",
+        "value": "tsz-bg-neutral-400"
+    },
+    {
+        "label": "bg-neutral-500",
+        "value": "tsz-bg-neutral-500"
+    },
+    {
+        "label": "bg-neutral-600",
+        "value": "tsz-bg-neutral-600"
+    },
+    {
+        "label": "bg-neutral-700",
+        "value": "tsz-bg-neutral-700"
+    },
+    {
+        "label": "bg-neutral-800",
+        "value": "tsz-bg-neutral-800"
+    },
+    {
+        "label": "bg-neutral-900",
+        "value": "tsz-bg-neutral-900"
+    },
+    {
+        "label": "bg-neutral-950",
+        "value": "tsz-bg-neutral-950"
+    },
+    {
+        "label": "bg-stone-50",
+        "value": "tsz-bg-stone-50"
+    },
+    {
+        "label": "bg-stone-100",
+        "value": "tsz-bg-stone-100"
+    },
+    {
+        "label": "bg-stone-200",
+        "value": "tsz-bg-stone-200"
+    },
+    {
+        "label": "bg-stone-300",
+        "value": "tsz-bg-stone-300"
+    },
+    {
+        "label": "bg-stone-400",
+        "value": "tsz-bg-stone-400"
+    },
+    {
+        "label": "bg-stone-500",
+        "value": "tsz-bg-stone-500"
+    },
+    {
+        "label": "bg-stone-600",
+        "value": "tsz-bg-stone-600"
+    },
+    {
+        "label": "bg-stone-700",
+        "value": "tsz-bg-stone-700"
+    },
+    {
+        "label": "bg-stone-800",
+        "value": "tsz-bg-stone-800"
+    },
+    {
+        "label": "bg-stone-900",
+        "value": "tsz-bg-stone-900"
+    },
+    {
+        "label": "bg-stone-950",
+        "value": "tsz-bg-stone-950"
+    },
+    {
+        "label": "bg-red-50",
+        "value": "tsz-bg-red-50"
+    },
+    {
+        "label": "bg-red-100",
+        "value": "tsz-bg-red-100"
+    },
+    {
+        "label": "bg-red-200",
+        "value": "tsz-bg-red-200"
+    },
+    {
+        "label": "bg-red-300",
+        "value": "tsz-bg-red-300"
+    },
+    {
+        "label": "bg-red-400",
+        "value": "tsz-bg-red-400"
+    },
+    {
+        "label": "bg-red-500",
+        "value": "tsz-bg-red-500"
+    },
+    {
+        "label": "bg-red-600",
+        "value": "tsz-bg-red-600"
+    },
+    {
+        "label": "bg-red-700",
+        "value": "tsz-bg-red-700"
+    },
+    {
+        "label": "bg-red-800",
+        "value": "tsz-bg-red-800"
+    },
+    {
+        "label": "bg-red-900",
+        "value": "tsz-bg-red-900"
+    },
+    {
+        "label": "bg-red-950",
+        "value": "tsz-bg-red-950"
+    },
+    {
+        "label": "bg-orange-50",
+        "value": "tsz-bg-orange-50"
+    },
+    {
+        "label": "bg-orange-100",
+        "value": "tsz-bg-orange-100"
+    },
+    {
+        "label": "bg-orange-200",
+        "value": "tsz-bg-orange-200"
+    },
+    {
+        "label": "bg-orange-300",
+        "value": "tsz-bg-orange-300"
+    },
+    {
+        "label": "bg-orange-400",
+        "value": "tsz-bg-orange-400"
+    },
+    {
+        "label": "bg-orange-500",
+        "value": "tsz-bg-orange-500"
+    },
+    {
+        "label": "bg-orange-600",
+        "value": "tsz-bg-orange-600"
+    },
+    {
+        "label": "bg-orange-700",
+        "value": "tsz-bg-orange-700"
+    },
+    {
+        "label": "bg-orange-800",
+        "value": "tsz-bg-orange-800"
+    },
+    {
+        "label": "bg-orange-900",
+        "value": "tsz-bg-orange-900"
+    },
+    {
+        "label": "bg-orange-950",
+        "value": "tsz-bg-orange-950"
+    },
+    {
+        "label": "bg-amber-50",
+        "value": "tsz-bg-amber-50"
+    },
+    {
+        "label": "bg-amber-100",
+        "value": "tsz-bg-amber-100"
+    },
+    {
+        "label": "bg-amber-200",
+        "value": "tsz-bg-amber-200"
+    },
+    {
+        "label": "bg-amber-300",
+        "value": "tsz-bg-amber-300"
+    },
+    {
+        "label": "bg-amber-400",
+        "value": "tsz-bg-amber-400"
+    },
+    {
+        "label": "bg-amber-500",
+        "value": "tsz-bg-amber-500"
+    },
+    {
+        "label": "bg-amber-600",
+        "value": "tsz-bg-amber-600"
+    },
+    {
+        "label": "bg-amber-700",
+        "value": "tsz-bg-amber-700"
+    },
+    {
+        "label": "bg-amber-800",
+        "value": "tsz-bg-amber-800"
+    },
+    {
+        "label": "bg-amber-900",
+        "value": "tsz-bg-amber-900"
+    },
+    {
+        "label": "bg-amber-950",
+        "value": "tsz-bg-amber-950"
+    },
+    {
+        "label": "bg-yellow-50",
+        "value": "tsz-bg-yellow-50"
+    },
+    {
+        "label": "bg-yellow-100",
+        "value": "tsz-bg-yellow-100"
+    },
+    {
+        "label": "bg-yellow-200",
+        "value": "tsz-bg-yellow-200"
+    },
+    {
+        "label": "bg-yellow-300",
+        "value": "tsz-bg-yellow-300"
+    },
+    {
+        "label": "bg-yellow-400",
+        "value": "tsz-bg-yellow-400"
+    },
+    {
+        "label": "bg-yellow-500",
+        "value": "tsz-bg-yellow-500"
+    },
+    {
+        "label": "bg-yellow-600",
+        "value": "tsz-bg-yellow-600"
+    },
+    {
+        "label": "bg-yellow-700",
+        "value": "tsz-bg-yellow-700"
+    },
+    {
+        "label": "bg-yellow-800",
+        "value": "tsz-bg-yellow-800"
+    },
+    {
+        "label": "bg-yellow-900",
+        "value": "tsz-bg-yellow-900"
+    },
+    {
+        "label": "bg-yellow-950",
+        "value": "tsz-bg-yellow-950"
+    },
+    {
+        "label": "bg-lime-50",
+        "value": "tsz-bg-lime-50"
+    },
+    {
+        "label": "bg-lime-100",
+        "value": "tsz-bg-lime-100"
+    },
+    {
+        "label": "bg-lime-200",
+        "value": "tsz-bg-lime-200"
+    },
+    {
+        "label": "bg-lime-300",
+        "value": "tsz-bg-lime-300"
+    },
+    {
+        "label": "bg-lime-400",
+        "value": "tsz-bg-lime-400"
+    },
+    {
+        "label": "bg-lime-500",
+        "value": "tsz-bg-lime-500"
+    },
+    {
+        "label": "bg-lime-600",
+        "value": "tsz-bg-lime-600"
+    },
+    {
+        "label": "bg-lime-700",
+        "value": "tsz-bg-lime-700"
+    },
+    {
+        "label": "bg-lime-800",
+        "value": "tsz-bg-lime-800"
+    },
+    {
+        "label": "bg-lime-900",
+        "value": "tsz-bg-lime-900"
+    },
+    {
+        "label": "bg-lime-950",
+        "value": "tsz-bg-lime-950"
+    },
+    {
+        "label": "bg-green-50",
+        "value": "tsz-bg-green-50"
+    },
+    {
+        "label": "bg-green-100",
+        "value": "tsz-bg-green-100"
+    },
+    {
+        "label": "bg-green-200",
+        "value": "tsz-bg-green-200"
+    },
+    {
+        "label": "bg-green-300",
+        "value": "tsz-bg-green-300"
+    },
+    {
+        "label": "bg-green-400",
+        "value": "tsz-bg-green-400"
+    },
+    {
+        "label": "bg-green-500",
+        "value": "tsz-bg-green-500"
+    },
+    {
+        "label": "bg-green-600",
+        "value": "tsz-bg-green-600"
+    },
+    {
+        "label": "bg-green-700",
+        "value": "tsz-bg-green-700"
+    },
+    {
+        "label": "bg-green-800",
+        "value": "tsz-bg-green-800"
+    },
+    {
+        "label": "bg-green-900",
+        "value": "tsz-bg-green-900"
+    },
+    {
+        "label": "bg-green-950",
+        "value": "tsz-bg-green-950"
+    },
+    {
+        "label": "bg-emerald-50",
+        "value": "tsz-bg-emerald-50"
+    },
+    {
+        "label": "bg-emerald-100",
+        "value": "tsz-bg-emerald-100"
+    },
+    {
+        "label": "bg-emerald-200",
+        "value": "tsz-bg-emerald-200"
+    },
+    {
+        "label": "bg-emerald-300",
+        "value": "tsz-bg-emerald-300"
+    },
+    {
+        "label": "bg-emerald-400",
+        "value": "tsz-bg-emerald-400"
+    },
+    {
+        "label": "bg-emerald-500",
+        "value": "tsz-bg-emerald-500"
+    },
+    {
+        "label": "bg-emerald-600",
+        "value": "tsz-bg-emerald-600"
+    },
+    {
+        "label": "bg-emerald-700",
+        "value": "tsz-bg-emerald-700"
+    },
+    {
+        "label": "bg-emerald-800",
+        "value": "tsz-bg-emerald-800"
+    },
+    {
+        "label": "bg-emerald-900",
+        "value": "tsz-bg-emerald-900"
+    },
+    {
+        "label": "bg-emerald-950",
+        "value": "tsz-bg-emerald-950"
+    },
+    {
+        "label": "bg-teal-50",
+        "value": "tsz-bg-teal-50"
+    },
+    {
+        "label": "bg-teal-100",
+        "value": "tsz-bg-teal-100"
+    },
+    {
+        "label": "bg-teal-200",
+        "value": "tsz-bg-teal-200"
+    },
+    {
+        "label": "bg-teal-300",
+        "value": "tsz-bg-teal-300"
+    },
+    {
+        "label": "bg-teal-400",
+        "value": "tsz-bg-teal-400"
+    },
+    {
+        "label": "bg-teal-500",
+        "value": "tsz-bg-teal-500"
+    },
+    {
+        "label": "bg-teal-600",
+        "value": "tsz-bg-teal-600"
+    },
+    {
+        "label": "bg-teal-700",
+        "value": "tsz-bg-teal-700"
+    },
+    {
+        "label": "bg-teal-800",
+        "value": "tsz-bg-teal-800"
+    },
+    {
+        "label": "bg-teal-900",
+        "value": "tsz-bg-teal-900"
+    },
+    {
+        "label": "bg-teal-950",
+        "value": "tsz-bg-teal-950"
+    },
+    {
+        "label": "bg-cyan-50",
+        "value": "tsz-bg-cyan-50"
+    },
+    {
+        "label": "bg-cyan-100",
+        "value": "tsz-bg-cyan-100"
+    },
+    {
+        "label": "bg-cyan-200",
+        "value": "tsz-bg-cyan-200"
+    },
+    {
+        "label": "bg-cyan-300",
+        "value": "tsz-bg-cyan-300"
+    },
+    {
+        "label": "bg-cyan-400",
+        "value": "tsz-bg-cyan-400"
+    },
+    {
+        "label": "bg-cyan-500",
+        "value": "tsz-bg-cyan-500"
+    },
+    {
+        "label": "bg-cyan-600",
+        "value": "tsz-bg-cyan-600"
+    },
+    {
+        "label": "bg-cyan-700",
+        "value": "tsz-bg-cyan-700"
+    },
+    {
+        "label": "bg-cyan-800",
+        "value": "tsz-bg-cyan-800"
+    },
+    {
+        "label": "bg-cyan-900",
+        "value": "tsz-bg-cyan-900"
+    },
+    {
+        "label": "bg-cyan-950",
+        "value": "tsz-bg-cyan-950"
+    },
+    {
+        "label": "bg-sky-50",
+        "value": "tsz-bg-sky-50"
+    },
+    {
+        "label": "bg-sky-100",
+        "value": "tsz-bg-sky-100"
+    },
+    {
+        "label": "bg-sky-200",
+        "value": "tsz-bg-sky-200"
+    },
+    {
+        "label": "bg-sky-300",
+        "value": "tsz-bg-sky-300"
+    },
+    {
+        "label": "bg-sky-400",
+        "value": "tsz-bg-sky-400"
+    },
+    {
+        "label": "bg-sky-500",
+        "value": "tsz-bg-sky-500"
+    },
+    {
+        "label": "bg-sky-600",
+        "value": "tsz-bg-sky-600"
+    },
+    {
+        "label": "bg-sky-700",
+        "value": "tsz-bg-sky-700"
+    },
+    {
+        "label": "bg-sky-800",
+        "value": "tsz-bg-sky-800"
+    },
+    {
+        "label": "bg-sky-900",
+        "value": "tsz-bg-sky-900"
+    },
+    {
+        "label": "bg-sky-950",
+        "value": "tsz-bg-sky-950"
+    },
+    {
+        "label": "bg-blue-50",
+        "value": "tsz-bg-blue-50"
+    },
+    {
+        "label": "bg-blue-100",
+        "value": "tsz-bg-blue-100"
+    },
+    {
+        "label": "bg-blue-200",
+        "value": "tsz-bg-blue-200"
+    },
+    {
+        "label": "bg-blue-300",
+        "value": "tsz-bg-blue-300"
+    },
+    {
+        "label": "bg-blue-400",
+        "value": "tsz-bg-blue-400"
+    },
+    {
+        "label": "bg-blue-500",
+        "value": "tsz-bg-blue-500"
+    },
+    {
+        "label": "bg-blue-600",
+        "value": "tsz-bg-blue-600"
+    },
+    {
+        "label": "bg-blue-700",
+        "value": "tsz-bg-blue-700"
+    },
+    {
+        "label": "bg-blue-800",
+        "value": "tsz-bg-blue-800"
+    },
+    {
+        "label": "bg-blue-900",
+        "value": "tsz-bg-blue-900"
+    },
+    {
+        "label": "bg-blue-950",
+        "value": "tsz-bg-blue-950"
+    },
+    {
+        "label": "bg-indigo-50",
+        "value": "tsz-bg-indigo-50"
+    },
+    {
+        "label": "bg-indigo-100",
+        "value": "tsz-bg-indigo-100"
+    },
+    {
+        "label": "bg-indigo-200",
+        "value": "tsz-bg-indigo-200"
+    },
+    {
+        "label": "bg-indigo-300",
+        "value": "tsz-bg-indigo-300"
+    },
+    {
+        "label": "bg-indigo-400",
+        "value": "tsz-bg-indigo-400"
+    },
+    {
+        "label": "bg-indigo-500",
+        "value": "tsz-bg-indigo-500"
+    },
+    {
+        "label": "bg-indigo-600",
+        "value": "tsz-bg-indigo-600"
+    },
+    {
+        "label": "bg-indigo-700",
+        "value": "tsz-bg-indigo-700"
+    },
+    {
+        "label": "bg-indigo-800",
+        "value": "tsz-bg-indigo-800"
+    },
+    {
+        "label": "bg-indigo-900",
+        "value": "tsz-bg-indigo-900"
+    },
+    {
+        "label": "bg-indigo-950",
+        "value": "tsz-bg-indigo-950"
+    },
+    {
+        "label": "bg-violet-50",
+        "value": "tsz-bg-violet-50"
+    },
+    {
+        "label": "bg-violet-100",
+        "value": "tsz-bg-violet-100"
+    },
+    {
+        "label": "bg-violet-200",
+        "value": "tsz-bg-violet-200"
+    },
+    {
+        "label": "bg-violet-300",
+        "value": "tsz-bg-violet-300"
+    },
+    {
+        "label": "bg-violet-400",
+        "value": "tsz-bg-violet-400"
+    },
+    {
+        "label": "bg-violet-500",
+        "value": "tsz-bg-violet-500"
+    },
+    {
+        "label": "bg-violet-600",
+        "value": "tsz-bg-violet-600"
+    },
+    {
+        "label": "bg-violet-700",
+        "value": "tsz-bg-violet-700"
+    },
+    {
+        "label": "bg-violet-800",
+        "value": "tsz-bg-violet-800"
+    },
+    {
+        "label": "bg-violet-900",
+        "value": "tsz-bg-violet-900"
+    },
+    {
+        "label": "bg-violet-950",
+        "value": "tsz-bg-violet-950"
+    },
+    {
+        "label": "bg-purple-50",
+        "value": "tsz-bg-purple-50"
+    },
+    {
+        "label": "bg-purple-100",
+        "value": "tsz-bg-purple-100"
+    },
+    {
+        "label": "bg-purple-200",
+        "value": "tsz-bg-purple-200"
+    },
+    {
+        "label": "bg-purple-300",
+        "value": "tsz-bg-purple-300"
+    },
+    {
+        "label": "bg-purple-400",
+        "value": "tsz-bg-purple-400"
+    },
+    {
+        "label": "bg-purple-500",
+        "value": "tsz-bg-purple-500"
+    },
+    {
+        "label": "bg-purple-600",
+        "value": "tsz-bg-purple-600"
+    },
+    {
+        "label": "bg-purple-700",
+        "value": "tsz-bg-purple-700"
+    },
+    {
+        "label": "bg-purple-800",
+        "value": "tsz-bg-purple-800"
+    },
+    {
+        "label": "bg-purple-900",
+        "value": "tsz-bg-purple-900"
+    },
+    {
+        "label": "bg-purple-950",
+        "value": "tsz-bg-purple-950"
+    },
+    {
+        "label": "bg-fuchsia-50",
+        "value": "tsz-bg-fuchsia-50"
+    },
+    {
+        "label": "bg-fuchsia-100",
+        "value": "tsz-bg-fuchsia-100"
+    },
+    {
+        "label": "bg-fuchsia-200",
+        "value": "tsz-bg-fuchsia-200"
+    },
+    {
+        "label": "bg-fuchsia-300",
+        "value": "tsz-bg-fuchsia-300"
+    },
+    {
+        "label": "bg-fuchsia-400",
+        "value": "tsz-bg-fuchsia-400"
+    },
+    {
+        "label": "bg-fuchsia-500",
+        "value": "tsz-bg-fuchsia-500"
+    },
+    {
+        "label": "bg-fuchsia-600",
+        "value": "tsz-bg-fuchsia-600"
+    },
+    {
+        "label": "bg-fuchsia-700",
+        "value": "tsz-bg-fuchsia-700"
+    },
+    {
+        "label": "bg-fuchsia-800",
+        "value": "tsz-bg-fuchsia-800"
+    },
+    {
+        "label": "bg-fuchsia-900",
+        "value": "tsz-bg-fuchsia-900"
+    },
+    {
+        "label": "bg-fuchsia-950",
+        "value": "tsz-bg-fuchsia-950"
+    },
+    {
+        "label": "bg-pink-50",
+        "value": "tsz-bg-pink-50"
+    },
+    {
+        "label": "bg-pink-100",
+        "value": "tsz-bg-pink-100"
+    },
+    {
+        "label": "bg-pink-200",
+        "value": "tsz-bg-pink-200"
+    },
+    {
+        "label": "bg-pink-300",
+        "value": "tsz-bg-pink-300"
+    },
+    {
+        "label": "bg-pink-400",
+        "value": "tsz-bg-pink-400"
+    },
+    {
+        "label": "bg-pink-500",
+        "value": "tsz-bg-pink-500"
+    },
+    {
+        "label": "bg-pink-600",
+        "value": "tsz-bg-pink-600"
+    },
+    {
+        "label": "bg-pink-700",
+        "value": "tsz-bg-pink-700"
+    },
+    {
+        "label": "bg-pink-800",
+        "value": "tsz-bg-pink-800"
+    },
+    {
+        "label": "bg-pink-900",
+        "value": "tsz-bg-pink-900"
+    },
+    {
+        "label": "bg-pink-950",
+        "value": "tsz-bg-pink-950"
+    },
+    {
+        "label": "bg-rose-50",
+        "value": "tsz-bg-rose-50"
+    },
+    {
+        "label": "bg-rose-100",
+        "value": "tsz-bg-rose-100"
+    },
+    {
+        "label": "bg-rose-200",
+        "value": "tsz-bg-rose-200"
+    },
+    {
+        "label": "bg-rose-300",
+        "value": "tsz-bg-rose-300"
+    },
+    {
+        "label": "bg-rose-400",
+        "value": "tsz-bg-rose-400"
+    },
+    {
+        "label": "bg-rose-500",
+        "value": "tsz-bg-rose-500"
+    },
+    {
+        "label": "bg-rose-600",
+        "value": "tsz-bg-rose-600"
+    },
+    {
+        "label": "bg-rose-700",
+        "value": "tsz-bg-rose-700"
+    },
+    {
+        "label": "bg-rose-800",
+        "value": "tsz-bg-rose-800"
+    },
+    {
+        "label": "bg-rose-900",
+        "value": "tsz-bg-rose-900"
+    },
+    {
+        "label": "bg-rose-950",
+        "value": "tsz-bg-rose-950"
+    }
+]

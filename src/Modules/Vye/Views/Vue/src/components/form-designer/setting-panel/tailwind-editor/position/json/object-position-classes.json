@@ -1,0 +1,42 @@
+[
+    {
+        "label": "none",
+        "value": ""
+    },
+    {
+        "label": "object-bottom",
+        "value": "tsz-object-none tsz-object-bottom"
+    },
+    {
+        "label": "object-center",
+        "value": "tsz-object-none tsz-object-center"
+    },
+    {
+        "label": "object-left",
+        "value": "tsz-object-none tsz-object-left"
+    },
+    {
+        "label": "object-left-bottom",
+        "value": "tsz-object-none tsz-object-left-bottom"
+    },
+    {
+        "label": "object-left-top",
+        "value": "tsz-object-none tsz-object-left-top"
+    },
+    {
+        "label": "object-right",
+        "value": "tsz-object-none tsz-object-right"
+    },
+    {
+        "label": "object-right-bottom",
+        "value": "tsz-object-none tsz-object-right-bottom"
+    },
+    {
+        "label": "object-right-top",
+        "value": "tsz-object-none tsz-object-right-top"
+    },
+    {
+        "label": "object-top",
+        "value": "tsz-object-none tsz-object-top"
+    }
+]

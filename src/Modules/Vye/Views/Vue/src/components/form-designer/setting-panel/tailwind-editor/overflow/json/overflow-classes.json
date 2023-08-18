@@ -1,0 +1,62 @@
+[
+    {
+        "label": "overflow-auto",
+        "value": "tsz-overflow-auto"
+    },
+    {
+        "label": "overflow-hidden",
+        "value": "tsz-overflow-hidden"
+    },
+    {
+        "label": "overflow-clip",
+        "value": "tsz-overflow-clip"
+    },
+    {
+        "label": "overflow-visible",
+        "value": "tsz-overflow-visible"
+    },
+    {
+        "label": "overflow-scroll",
+        "value": "tsz-overflow-scroll"
+    },
+    {
+        "label": "overflow-x-auto",
+        "value": "tsz-overflow-x-auto"
+    },
+    {
+        "label": "overflow-y-auto",
+        "value": "tsz-overflow-y-auto"
+    },
+    {
+        "label": "overflow-x-hidden",
+        "value": "tsz-overflow-x-hidden"
+    },
+    {
+        "label": "overflow-y-hidden",
+        "value": "tsz-overflow-y-hidden"
+    },
+    {
+        "label": "overflow-x-clip",
+        "value": "tsz-overflow-x-clip"
+    },
+    {
+        "label": "overflow-y-clip",
+        "value": "tsz-overflow-y-clip"
+    },
+    {
+        "label": "overflow-x-visible",
+        "value": "tsz-overflow-x-visible"
+    },
+    {
+        "label": "overflow-y-visible",
+        "value": "tsz-overflow-y-visible"
+    },
+    {
+        "label": "overflow-x-scroll",
+        "value": "tsz-overflow-x-scroll"
+    },
+    {
+        "label": "overflow-y-scroll",
+        "value": "tsz-overflow-y-scroll"
+    }
+]

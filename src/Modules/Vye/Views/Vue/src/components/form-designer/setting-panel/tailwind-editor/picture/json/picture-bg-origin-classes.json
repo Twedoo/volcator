@@ -1,0 +1,18 @@
+[
+    {
+        "label": "None",
+        "value": ""
+    },
+    {
+        "label": "bg-origin-border",
+        "value": "tsz-bg-origin-border"
+    },
+    {
+        "label": "bg-origin-padding",
+        "value": "tsz-bg-origin-padding"
+    },
+    {
+        "label": "bg-origin-content",
+        "value": "tsz-bg-origin-content"
+    }
+]

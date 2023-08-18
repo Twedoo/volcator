@@ -1,0 +1,354 @@
+[
+    {
+        "label": "text-left",
+        "value": "tsz-text-left"
+    },
+    {
+        "label": "text-center",
+        "value": "tsz-text-center"
+    },
+    {
+        "label": "text-right",
+        "value": "tsz-text-right"
+    },
+    {
+        "label": "text-justify",
+        "value": "tsz-text-justify"
+    },
+    {
+        "label": "text-start",
+        "value": "tsz-text-start"
+    },
+    {
+        "label": "text-end",
+        "value": "tsz-text-end"
+    },
+    {
+        "label": "underline",
+        "value": "tsz-underline"
+    },
+    {
+        "label": "overline",
+        "value": "tsz-overline"
+    },
+    {
+        "label": "line-through",
+        "value": "tsz-line-through"
+    },
+    {
+        "label": "no-underline",
+        "value": "tsz-no-underline"
+    },
+    {
+        "label": "decoration-solid",
+        "value": "tsz-decoration-solid"
+    },
+    {
+        "label": "decoration-double",
+        "value": "tsz-decoration-double"
+    },
+    {
+        "label": "decoration-dotted",
+        "value": "tsz-decoration-dotted"
+    },
+    {
+        "label": "decoration-dashed",
+        "value": "tsz-decoration-dashed"
+    },
+    {
+        "label": "decoration-wavy",
+        "value": "tsz-decoration-wavy"
+    },
+    {
+        "label": "decoration-auto",
+        "value": "tsz-decoration-auto"
+    },
+    {
+        "label": "decoration-from-font",
+        "value": "tsz-decoration-from-font"
+    },
+    {
+        "label": "decoration-0",
+        "value": "tsz-decoration-0"
+    },
+    {
+        "label": "decoration-1",
+        "value": "tsz-decoration-1"
+    },
+    {
+        "label": "decoration-2",
+        "value": "tsz-decoration-2"
+    },
+    {
+        "label": "decoration-4",
+        "value": "tsz-decoration-4"
+    },
+    {
+        "label": "decoration-8",
+        "value": "tsz-decoration-8"
+    },
+    {
+        "label": "underline-offset-auto",
+        "value": "tsz-underline-offset-auto"
+    },
+    {
+        "label": "underline-offset-0",
+        "value": "tsz-underline-offset-0"
+    },
+    {
+        "label": "underline-offset-1",
+        "value": "tsz-underline-offset-1"
+    },
+    {
+        "label": "underline-offset-2",
+        "value": "tsz-underline-offset-2"
+    },
+    {
+        "label": "underline-offset-4",
+        "value": "tsz-underline-offset-4"
+    },
+    {
+        "label": "underline-offset-8",
+        "value": "tsz-underline-offset-8"
+    },
+    {
+        "label": "uppercase",
+        "value": "tsz-uppercase"
+    },
+    {
+        "label": "lowercase",
+        "value": "tsz-lowercase"
+    },
+    {
+        "label": "capitalize",
+        "value": "tsz-capitalize"
+    },
+    {
+        "label": "normal-case",
+        "value": "tsz-normal-case"
+    },
+    {
+        "label": "truncate",
+        "value": "tsz-normal-case"
+    },
+    {
+        "label": "text-ellipsis",
+        "value": "tsz-text-ellipsis"
+    },
+    {
+        "label": "text-clip",
+        "value": "tsz-text-clip"
+    },
+    {
+        "label": "indent-0",
+        "value": "tsz-indent-0"
+    },
+    {
+        "label": "indent-px",
+        "value": "tsz-indent-px"
+    },
+    {
+        "label": "indent-0.5",
+        "value": "tsz-indent-0.5"
+    },
+    {
+        "label": "indent-1",
+        "value": "tsz-indent-1"
+    },
+    {
+        "label": "indent-1.5",
+        "value": "tsz-indent-1.5"
+    },
+    {
+        "label": "indent-2",
+        "value": "tsz-indent-2"
+    },
+    {
+        "label": "indent-2.5",
+        "value": "tsz-indent-2.5"
+    },
+    {
+        "label": "indent-3",
+        "value": "tsz-indent-3"
+    },
+    {
+        "label": "indent-3.5",
+        "value": "tsz-indent-3.5"
+    },
+    {
+        "label": "indent-4",
+        "value": "tsz-indent-4"
+    },
+    {
+        "label": "indent-5",
+        "value": "tsz-indent-5"
+    },
+    {
+        "label": "indent-6",
+        "value": "tsz-indent-6"
+    },
+    {
+        "label": "indent-7",
+        "value": "tsz-indent-7"
+    },
+    {
+        "label": "indent-8",
+        "value": "tsz-indent-8"
+    },
+    {
+        "label": "indent-9",
+        "value": "tsz-indent-9"
+    },
+    {
+        "label": "indent-10",
+        "value": "tsz-indent-10"
+    },
+    {
+        "label": "indent-11",
+        "value": "tsz-indent-11"
+    },
+    {
+        "label": "indent-12",
+        "value": "tsz-indent-12"
+    },
+    {
+        "label": "indent-14",
+        "value": "tsz-indent-14"
+    },
+    {
+        "label": "indent-16",
+        "value": "tsz-indent-16"
+    },
+    {
+        "label": "indent-20",
+        "value": "tsz-indent-20"
+    },
+    {
+        "label": "indent-24",
+        "value": "tsz-indent-24"
+    },
+    {
+        "label": "indent-28",
+        "value": "tsz-indent-28"
+    },
+    {
+        "label": "indent-32",
+        "value": "tsz-indent-32"
+    },
+    {
+        "label": "indent-36",
+        "value": "tsz-indent-36"
+    },
+    {
+        "label": "indent-40",
+        "value": "tsz-indent-40"
+    },
+    {
+        "label": "indent-44",
+        "value": "tsz-indent-44"
+    },
+    {
+        "label": "indent-48",
+        "value": "tsz-indent-48"
+    },
+    {
+        "label": "indent-52",
+        "value": "tsz-indent-52"
+    },
+    {
+        "label": "indent-56",
+        "value": "tsz-indent-56"
+    },
+    {
+        "label": "indent-60",
+        "value": "tsz-indent-60"
+    },
+    {
+        "label": "indent-64",
+        "value": "tsz-indent-64"
+    },
+    {
+        "label": "indent-72",
+        "value": "tsz-indent-72"
+    },
+    {
+        "label": "indent-80",
+        "value": "tsz-indent-80"
+    },
+    {
+        "label": "indent-96",
+        "value": "tsz-indent-96"
+    },
+    {
+        "label": "align-baseline",
+        "value": "tsz-align-baseline"
+    },
+    {
+        "label": "align-top",
+        "value": "tsz-align-top"
+    },
+    {
+        "label": "align-middle",
+        "value": "tsz-align-middle"
+    },
+    {
+        "label": "align-bottom",
+        "value": "tsz-align-bottom"
+    },
+    {
+        "label": "align-text-top",
+        "value": "tsz-align-text-top"
+    },
+    {
+        "label": "align-text-bottom",
+        "value": "tsz-align-text-bottom"
+    },
+    {
+        "label": "align-sub",
+        "value": "tsz-align-sub"
+    },
+    {
+        "label": "align-super",
+        "value": "tsz-align-super"
+    },
+    {
+        "label": "whitespace-normal",
+        "value": "tsz-whitespace-normal"
+    },
+    {
+        "label": "whitespace-nowrap",
+        "value": "tsz-whitespace-nowrap"
+    },
+    {
+        "label": "whitespace-pre",
+        "value": "tsz-whitespace-pre"
+    },
+    {
+        "label": "whitespace-pre-line",
+        "value": "tsz-whitespace-pre-line"
+    },
+    {
+        "label": "whitespace-pre-wrap",
+        "value": "tsz-whitespace-pre-wrap"
+    },
+    {
+        "label": "break-normal",
+        "value": "tsz-break-normal"
+    },
+    {
+        "label": "break-words",
+        "value": "tsz-break-words"
+    },
+    {
+        "label": "break-all",
+        "value": "tsz-break-all"
+    },
+    {
+        "label": "break-keep",
+        "value": "tsz-break-keep"
+    },
+    {
+        "label": "content-none",
+        "value": "tsz-content-none"
+    }
+]

@@ -157,6 +157,7 @@ class VolcatorSetupTables extends Migration
                 $table->string('name');
                 $table->string('display_name')->nullable();
                 $table->string('unique_identity')->unique();
+                $table->string('active_vye')->nullable();
                 $table->string('type');
                 $table->tinyInteger('enable')->default('1');
                 $table->unsignedInteger('space_id');

@@ -1,0 +1,61 @@
+version: '3.2'
+
+volumes:
+    minio_storage: {}
+
+services:
+    minio1:
+        image: minio/minio
+        ports:
+            - "9000:9000"
+            - "9001:9001"
+        volumes:
+            - minio_storage:/data
+        environment:
+            MINIO_ROOT_USER: minioadmin
+            MINIO_ROOT_PASSWORD: minioadmin
+        command: server --console-address ":9001" /data
+        networks:
+            app_net:
+                ipv4_address: 172.16.230.31
+
+    minio_nginx:
+        image: nginx:1.19.2-alpine
+        hostname: minio_nginx
+        volumes:
+            - ./.docker/nginx.conf:/etc/nginx/nginx.conf:ro
+        ports:
+            - "801:801"
+        depends_on:
+            - minio1
+        networks:
+            app_net:
+                ipv4_address: 172.16.230.4
+
+    minio_volcator:
+        build:
+            context: .
+            dockerfile: .docker/Dockerfile
+        working_dir: /home/node/app
+        container_name: minio_volcator
+        hostname: minio_volcator
+        ports:
+            - "3000:3000"
+        volumes:
+            - .:/home/node/app
+            - ./.docker/command.sh:/usr/local/bin/command.sh
+        entrypoint: /bin/bash
+        command: /usr/local/bin/command.sh
+        networks:
+            app_net:
+                ipv4_address: 172.16.230.2
+
+networks:
+    app_net:
+        driver: bridge
+        driver_opts:
+            com.docker.network.enable_ipv6: "false"
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.16.230.0/24

@@ -1,0 +1,53 @@
+[
+    {
+        "label": "text-xs",
+        "value": "tsz-text-xs"
+    },
+    {
+        "label": "text-sm",
+        "value": "tsz-text-sm"
+    },
+    {
+        "label": "text-base",
+        "value": "tsz-text-base"
+    },
+    {
+        "label": "text-lg",
+        "value": "tsz-text-lg"
+    },
+    {
+        "label": "text-xl",
+        "value": "tsz-text-xl"
+    },
+    {
+        "label": "text-2xl",
+        "value": "tsz-text-2xl"
+    },
+    {
+        "label": "text-3xl",
+        "value": "tsz-text-3xl"
+    },
+    {
+        "label": "text-4xl",
+        "value": "tsz-text-4xl"
+    },
+    {
+        "label": "text-5xl",
+        "value": "tsz-text-5xl"
+    },
+    {
+        "label": "text-6xl",
+        "value": "tsz-text-6xl"
+    },
+    {
+        "label": "text-7xl",
+        "value": "tsz-text-7xl"
+    },
+    {
+        "label": "text-8xl",
+        "value": "tsz-text-8xl"
+    },
+    {
+        "label": "text-9xl",
+        "value": "tsz-text-9xl"}
+]

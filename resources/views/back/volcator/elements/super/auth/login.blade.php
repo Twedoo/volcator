@@ -121,3 +121,9 @@
 </div>
 
 @endsection
+<script>
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("volcator_application");
+    localStorage.removeItem("widget__list__backup");
+    localStorage.removeItem("form__config__backup");
+</script>

@@ -1,0 +1,30 @@
+[
+    {
+        "label": "None",
+        "value": ""
+    },
+    {
+        "label": "bg-no-repeat",
+        "value": "tsz-bg-no-repeat"
+    },
+    {
+        "label": "bg-repeat",
+        "value": "tsz-bg-repeat"
+    },
+    {
+        "label": "bg-repeat-x",
+        "value": "tsz-bg-repeat-x"
+    },
+    {
+        "label": "bg-repeat-y",
+        "value": "tsz-bg-repeat-y"
+    },
+    {
+        "label": "bg-repeat-round",
+        "value": "tsz-bg-repeat-round"
+    },
+    {
+        "label": "bg-repeat-space",
+        "value": "tsz-bg-repeat-space"
+    }
+]

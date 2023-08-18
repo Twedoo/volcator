@@ -1,0 +1,14 @@
+[
+    {
+        "label": "float-none",
+        "value": "tsz-float-none"
+    },
+    {
+        "label": "float-right",
+        "value": "tsz-float-right"
+    },
+    {
+        "label": "float-left",
+        "value": "tsz-float-left"
+    }
+]

@@ -1,0 +1,9 @@
+stone:
+  name: 'Vye'
+  display_name: 'volcator_vye'
+  permission_name: ['Permission-volcator-vye']
+  menu_type: 'core'
+  application: 'main'
+  menu_icon: 'fe fe-droplet'
+  enable: 1
+  publish: 'public'

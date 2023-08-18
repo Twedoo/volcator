@@ -1,0 +1,18 @@
+[
+    {
+        "label": "None",
+        "value": ""
+    },
+    {
+        "label": "bg-auto",
+        "value": "tsz-bg-auto"
+    },
+    {
+        "label": "bg-cover",
+        "value": "tsz-bg-cover"
+    },
+    {
+        "label": "bg-contain",
+        "value": "tsz-bg-contain"
+    }
+]

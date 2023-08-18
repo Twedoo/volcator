@@ -1,0 +1,14 @@
+[
+    {
+        "label": "font-sans",
+        "value": "tsz-font-sans"
+    },
+    {
+        "label": "font-serif",
+        "value": "tsz-font-serif"
+    },
+    {
+        "label": "font-mono",
+        "value": "tsz-font-mono"
+    }
+]

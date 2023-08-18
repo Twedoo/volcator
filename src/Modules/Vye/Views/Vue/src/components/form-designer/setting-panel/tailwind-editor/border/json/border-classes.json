@@ -1,0 +1,506 @@
+[
+    {
+        "label": "rounded-none",
+        "value": "tsz-rounded-none"
+    },
+    {
+        "label": "rounded-sm",
+        "value": "tsz-rounded-sm"
+    },
+    {
+        "label": "rounded",
+        "value": "tsz-rounded"
+    },
+    {
+        "label": "rounded-md",
+        "value": "tsz-rounded-md"
+    },
+    {
+        "label": "rounded-lg",
+        "value": "tsz-rounded-lg"
+    },
+    {
+        "label": "rounded-xl",
+        "value": "tsz-rounded-xl"
+    },
+    {
+        "label": "rounded-2xl",
+        "value": "tsz-rounded-2xl"
+    },
+    {
+        "label": "rounded-3xl",
+        "value": "tsz-rounded-3xl"
+    },
+    {
+        "label": "rounded-full",
+        "value": "tsz-rounded-full"
+    },
+    {
+        "label": "rounded-t-none",
+        "value": "tsz-rounded-t-none"
+    },
+    {
+        "label": "rounded-t-sm",
+        "value": "tsz-rounded-t-sm"
+    },
+    {
+        "label": "rounded-t",
+        "value": "tsz-rounded-t"
+    },
+    {
+        "label": "rounded-t-md",
+        "value": "tsz-rounded-t-md"
+    },
+    {
+        "label": "rounded-t-lg",
+        "value": "tsz-rounded-t-lg"
+    },
+    {
+        "label": "rounded-t-xl",
+        "value": "tsz-rounded-t-xl"
+    },
+    {
+        "label": "rounded-t-2xl",
+        "value": "tsz-rounded-t-2xl"
+    },
+    {
+        "label": "rounded-t-3xl",
+        "value": "tsz-rounded-t-3xl"
+    },
+    {
+        "label": "rounded-t-full",
+        "value": "tsz-rounded-t-full"
+    },
+    {
+        "label": "rounded-r-none",
+        "value": "tsz-rounded-r-none"
+    },
+    {
+        "label": "rounded-r-sm",
+        "value": "tsz-rounded-r-sm"
+    },
+    {
+        "label": "rounded-r",
+        "value": "tsz-rounded-r"
+    },
+    {
+        "label": "rounded-r-md",
+        "value": "tsz-rounded-r-md"
+    },
+    {
+        "label": "rounded-r-lg",
+        "value": "tsz-rounded-r-lg"
+    },
+    {
+        "label": "rounded-r-xl",
+        "value": "tsz-rounded-r-xl"
+    },
+    {
+        "label": "rounded-r-2xl",
+        "value": "tsz-rounded-r-2xl"
+    },
+    {
+        "label": "rounded-r-3xl",
+        "value": "tsz-rounded-r-3xl"
+    },
+    {
+        "label": "rounded-r-full",
+        "value": "tsz-rounded-r-full"
+    },
+    {
+        "label": "rounded-b-none",
+        "value": "tsz-rounded-b-none"
+    },
+    {
+        "label": "rounded-b-sm",
+        "value": "tsz-rounded-b-sm"
+    },
+    {
+        "label": "rounded-b",
+        "value": "tsz-rounded-b"
+    },
+    {
+        "label": "rounded-b-md",
+        "value": "tsz-rounded-b-md"
+    },
+    {
+        "label": "rounded-b-lg",
+        "value": "tsz-rounded-b-lg"
+    },
+    {
+        "label": "rounded-b-xl",
+        "value": "tsz-rounded-b-xl"
+    },
+    {
+        "label": "rounded-b-2xl",
+        "value": "tsz-rounded-b-2xl"
+    },
+    {
+        "label": "rounded-b-3xl",
+        "value": "tsz-rounded-b-3xl"
+    },
+    {
+        "label": "rounded-b-full",
+        "value": "tsz-rounded-b-full"
+    },
+    {
+        "label": "rounded-l-none",
+        "value": "tsz-rounded-l-none"
+    },
+    {
+        "label": "rounded-l-sm",
+        "value": "tsz-rounded-l-sm"
+    },
+    {
+        "label": "rounded-l",
+        "value": "tsz-rounded-l"
+    },
+    {
+        "label": "rounded-l-md",
+        "value": "tsz-rounded-l-md"
+    },
+    {
+        "label": "rounded-l-lg",
+        "value": "tsz-rounded-l-lg"
+    },
+    {
+        "label": "rounded-l-xl",
+        "value": "tsz-rounded-l-xl"
+    },
+    {
+        "label": "rounded-l-2xl",
+        "value": "tsz-rounded-l-2xl"
+    },
+    {
+        "label": "rounded-l-3xl",
+        "value": "tsz-rounded-l-3xl"
+    },
+    {
+        "label": "rounded-l-full",
+        "value": "tsz-rounded-l-full"
+    },
+    {
+        "label": "rounded-tl-none",
+        "value": "tsz-rounded-tl-none"
+    },
+    {
+        "label": "rounded-tl-sm",
+        "value": "tsz-rounded-tl-sm"
+    },
+    {
+        "label": "rounded-tl",
+        "value": "tsz-rounded-tl"
+    },
+    {
+        "label": "rounded-tl-md",
+        "value": "tsz-rounded-tl-md"
+    },
+    {
+        "label": "rounded-tl-lg",
+        "value": "tsz-rounded-tl-lg"
+    },
+    {
+        "label": "rounded-tl-xl",
+        "value": "tsz-rounded-tl-xl"
+    },
+    {
+        "label": "rounded-tl-2xl",
+        "value": "tsz-rounded-tl-2xl"
+    },
+    {
+        "label": "rounded-tl-3xl",
+        "value": "tsz-rounded-tl-3xl"
+    },
+    {
+        "label": "rounded-tl-full",
+        "value": "tsz-rounded-tl-full"
+    },
+    {
+        "label": "rounded-tr-none",
+        "value": "tsz-rounded-tr-none"
+    },
+    {
+        "label": "rounded-tr-sm",
+        "value": "tsz-rounded-tr-sm"
+    },
+    {
+        "label": "rounded-tr",
+        "value": "tsz-rounded-tr"
+    },
+    {
+        "label": "rounded-tr-md",
+        "value": "tsz-rounded-tr-md"
+    },
+    {
+        "label": "rounded-tr-lg",
+        "value": "tsz-rounded-tr-lg"
+    },
+    {
+        "label": "rounded-tr-xl",
+        "value": "tsz-rounded-tr-xl"
+    },
+    {
+        "label": "rounded-tr-2xl",
+        "value": "tsz-rounded-tr-2xl"
+    },
+    {
+        "label": "rounded-tr-3xl",
+        "value": "tsz-rounded-tr-3xl"
+    },
+    {
+        "label": "rounded-tr-full",
+        "value": "tsz-rounded-tr-full"
+    },
+    {
+        "label": "rounded-br-none",
+        "value": "tsz-rounded-br-none"
+    },
+    {
+        "label": "rounded-br-sm",
+        "value": "tsz-rounded-br-sm"
+    },
+    {
+        "label": "rounded-br",
+        "value": "tsz-rounded-br"
+    },
+    {
+        "label": "rounded-br-md",
+        "value": "tsz-rounded-br-md"
+    },
+    {
+        "label": "rounded-br-lg",
+        "value": "tsz-rounded-br-lg"
+    },
+    {
+        "label": "rounded-br-xl",
+        "value": "tsz-rounded-br-xl"
+    },
+    {
+        "label": "rounded-br-2xl",
+        "value": "tsz-rounded-br-2xl"
+    },
+    {
+        "label": "rounded-br-3xl",
+        "value": "tsz-rounded-br-3xl"
+    },
+    {
+        "label": "rounded-br-full",
+        "value": "tsz-rounded-br-full"
+    },
+    {
+        "label": "rounded-bl-none",
+        "value": "tsz-rounded-bl-none"
+    },
+    {
+        "label": "rounded-bl-sm",
+        "value": "tsz-rounded-bl-sm"
+    },
+    {
+        "label": "rounded-bl",
+        "value": "tsz-rounded-bl"
+    },
+    {
+        "label": "rounded-bl-md",
+        "value": "tsz-rounded-bl-md"
+    },
+    {
+        "label": "rounded-bl-lg",
+        "value": "tsz-rounded-bl-lg"
+    },
+    {
+        "label": "rounded-bl-xl",
+        "value": "tsz-rounded-bl-xl"
+    },
+    {
+        "label": "rounded-bl-2xl",
+        "value": "tsz-rounded-bl-2xl"
+    },
+    {
+        "label": "rounded-bl-3xl",
+        "value": "tsz-rounded-bl-3xl"
+    },
+    {
+        "label": "rounded-bl-full",
+        "value": "tsz-rounded-bl-full"
+    },
+    {
+        "label": "border-0",
+        "value": "tsz-border-0"
+    },
+    {
+        "label": "border-2",
+        "value": "tsz-border-2"
+    },
+    {
+        "label": "border-4",
+        "value": "tsz-border-4"
+    },
+    {
+        "label": "border-8",
+        "value": "tsz-border-8"
+    },
+    {
+        "label": "border",
+        "value": "tsz-border"
+    },
+    {
+        "label": "border-x-0",
+        "value": "tsz-border-x-0"
+    },
+    {
+        "label": "border-x-2",
+        "value": "tsz-border-x-2"
+    },
+    {
+        "label": "border-x-4",
+        "value": "tsz-border-x-4"
+    },
+    {
+        "label": "border-x-8",
+        "value": "tsz-border-x-8"
+    },
+    {
+        "label": "border-x",
+        "value": "tsz-border-x"
+    },
+    {
+        "label": "border-y-0",
+        "value": "tsz-border-y-0"
+    },
+    {
+        "label": "border-y-2",
+        "value": "tsz-border-y-2"
+    },
+    {
+        "label": "border-y-4",
+        "value": "tsz-border-y-4"
+    },
+    {
+        "label": "border-y-8",
+        "value": "tsz-border-y-8"
+    },
+    {
+        "label": "border-y",
+        "value": "tsz-border-y"
+    },
+    {
+        "label": "border-s-0",
+        "value": "tsz-border-s-0"
+    },
+    {
+        "label": "border-s-2",
+        "value": "tsz-border-s-2"
+    },
+    {
+        "label": "border-s-4",
+        "value": "tsz-border-s-4"
+    },
+    {
+        "label": "border-s-8",
+        "value": "tsz-border-s-8"
+    },
+    {
+        "label": "border-s",
+        "value": "tsz-border-s"
+    },
+    {
+        "label": "border-e-0",
+        "value": "tsz-border-e-0"
+    },
+    {
+        "label": "border-e-2",
+        "value": "tsz-border-e-2"
+    },
+    {
+        "label": "border-e-4",
+        "value": "tsz-border-e-4"
+    },
+    {
+        "label": "border-e-8",
+        "value": "tsz-border-e-8"
+    },
+    {
+        "label": "border-e",
+        "value": "tsz-border-e"
+    },
+    {
+        "label": "border-t-0",
+        "value": "tsz-border-t-0"
+    },
+    {
+        "label": "border-t-2",
+        "value": "tsz-border-t-2"
+    },
+    {
+        "label": "border-t-4",
+        "value": "tsz-border-t-4"
+    },
+    {
+        "label": "border-t-8",
+        "value": "tsz-border-t-8"
+    },
+    {
+        "label": "border-t",
+        "value": "tsz-border-t"
+    },
+    {
+        "label": "border-r-0",
+        "value": "tsz-border-r-0"
+    },
+    {
+        "label": "border-r-2",
+        "value": "tsz-border-r-2"
+    },
+    {
+        "label": "border-r-4",
+        "value": "tsz-border-r-4"
+    },
+    {
+        "label": "border-r-8",
+        "value": "tsz-border-r-8"
+    },
+    {
+        "label": "border-r",
+        "value": "tsz-border-r"
+    },
+    {
+        "label": "border-b-0",
+        "value": "tsz-border-b-0"
+    },
+    {
+        "label": "border-b-2",
+        "value": "tsz-border-b-2"
+    },
+    {
+        "label": "border-b-4",
+        "value": "tsz-border-b-4"
+    },
+    {
+        "label": "border-b-8",
+        "value": "tsz-border-b-8"
+    },
+    {
+        "label": "border-b",
+        "value": "tsz-border-b"
+    },
+    {
+        "label": "border-l-0",
+        "value": "tsz-border-l-0"
+    },
+    {
+        "label": "border-l-2",
+        "value": "tsz-border-l-2"
+    },
+    {
+        "label": "border-l-4",
+        "value": "tsz-border-l-4"
+    },
+    {
+        "label": "border-l-8",
+        "value": "tsz-border-l-8"
+    },
+    {
+        "label": "border-l",
+        "value": "tsz-border-l"
+    }
+]

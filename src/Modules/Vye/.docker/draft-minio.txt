@@ -1,0 +1,134 @@
+
+// onChangeFile: function (event) {
+//     console.log("fileSelected", event.target.files[0]);
+//     this.fileSelected = event.target.files[0];
+//     console.log(
+//         "process.env.VUE_APP_AWS_ACCESS_KEY",
+//         "process.env.VUE_APP_AWS_ACCESS_KEY"
+//     );
+//     console.log("send file", this.fileSelected);
+//     let S3CustomClient = new AWSS3UploadAshClient(this.config);
+//     S3CustomClient.uploadFile(
+//         this.fileSelected,
+//         this.fileSelected.type,
+//         undefined,
+//         this.fileSelected.name,
+//         'public-read'
+//     )
+//         .then((data) => console.log(data))
+//         .catch((err) => console.error(err));
+//     alert('okkkkkk')
+// },
+
+// handleSendFile: function () {
+//     console.log(
+//         "process.env.VUE_APP_AWS_ACCESS_KEY",
+//         "process.env.VUE_APP_AWS_ACCESS_KEY"
+//     );
+//     console.log("send file", this.fileSelected);
+//     let S3CustomClient = new AWSS3UploadAshClient(this.config);
+//     S3CustomClient.uploadFile(
+//         this.fileSelected,
+//         this.fileSelected.type,
+//         undefined,
+//         this.fileSelected.name,
+//         'public-read'
+//     )
+//         .then((data) => console.log(data))
+//         .catch((err) => console.error(err));
+// },
+
+
+// var Minio = require('minio')
+
+// console.log("fileSelected", event.target.files[0]);
+// this.fileSelected = event.target.files[0];
+
+
+
+// console.log(
+//     "process.env.VUE_APP_AWS_ACCESS_KEY",
+//     "process.env.VUE_APP_AWS_ACCESS_KEY"
+// );
+// // console.log("send file", this.fileSelected);
+// let S3CustomClient = new AWSS3UploadAshClient(this.config);
+// alert('okkkkkk')
+// S3CustomClient.uploadFile(
+//     // this.fileSelected,
+//     // this.fileSelected.type,
+//     '/home/proox/Documents/ella_dulce_patante.jpeg',
+//     'jpeg',
+//     undefined,
+//     'ella_dulce_patante',
+//     // this.fileSelected.name,
+//     'public-read'
+// )
+//     .then((data) => console.log(data))
+//     .catch((err) => console.error(err));
+
+
+
+// Instantiate the minio client with the endpoint
+// and access keys as shown below.
+//         var minioClient = new Minio.Client({
+//             endPoint: 'minio.pridori.com',
+//             port: 9000,
+//             useSSL: true,
+//             accessKey: 'IshDqAAJ4pqwdq1jKJC4',
+//             secretKey: 'zuf+xzuCw68ANNA8q4Fod3ZtFYLMr8E56NPBPCp7r8Yx',
+//         })
+//
+// // File that needs to be uploaded.
+//         var file = '/home/proox/Documents/ella_dulce_patante.jpeg'
+//
+// // Make a bucket called europetrip.
+//         minioClient.makeBucket('public-image', 'us-east-1', function (err) {
+//             if (err) return console.log(err)
+//
+//             console.log('Bucket created successfully in "us-east-1".')
+//
+//             var metaData = {
+//                 'Content-Type': 'application/octet-stream',
+//                 'X-Amz-Meta-Testing': 1234,
+//                 example: 5678,
+//             }
+//             // Using fPutObject API upload your file to the bucket europetrip.
+//             minioClient.fPutObject('europetrip', 'photos-europe.tar', file, metaData, function (err, etag) {
+//                 if (err) return console.log(err)
+//                 console.log('File uploaded successfully.')
+//             })
+//         })
+
+// Configurez les informations d'identification et les paramètres de connexion à MinIO
+// const minioClient = new AWS({
+//     endpoint: 'http://minio.pridori.com:9000',
+//     accessKeyId: 'IshDqAAJ4pqwdq1jKJC4',
+//     secretAccessKey: 'zuf+xzuCw68ANNA8q4Fod3ZtFYLMr8E56NPBPCp7r8Yx',
+// });
+//
+// // Définissez les détails du fichier que vous souhaitez uploader
+// const bucketName = 'public-image';
+// const objectName = 'photos-europe.tar';
+// const filePath = '/home/proox/Documents/ella_dulce_patante.jpeg';
+// const contentType = 'application/octet-stream';
+// const metaData = {
+//     'X-Amz-Meta-Testing': '1234',
+//     example: '5678',
+// };
+//
+// // Utilisez la méthode `upload` de l'objet S3 pour uploader le fichier vers MinIO
+// minioClient.upload({
+//     Bucket: bucketName,
+//     Key: objectName,
+//     // Body: new Blob([new Uint8Array(require('fs').readFileSync(filePath))]),
+//     Body: new Blob([new Uint8Array(fs.readFileSync(filePath, {encoding: 'utf-8'}))]),
+//
+//     ContentType: contentType,
+//     Metadata: metaData,
+// }, (err, data) => {
+//     if (err) {
+//         console.error('Erreur lors de l\'upload du fichier :', err);
+//     } else {
+//         console.log('Fichier uploadé avec succès :', data.Location);
+//     }
+// });

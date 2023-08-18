@@ -1,0 +1,990 @@
+[
+    {
+        "label": "ring-inherit",
+        "value": "tsz-ring-inherit"
+    },
+    {
+        "label": "ring-current",
+        "value": "tsz-ring-current"
+    },
+    {
+        "label": "ring-transparent",
+        "value": "tsz-ring-transparent"
+    },
+    {
+        "label": "ring-black",
+        "value": "tsz-ring-black"
+    },
+    {
+        "label": "ring-white",
+        "value": "tsz-ring-white"
+    },
+    {
+        "label": "ring-slate-50",
+        "value": "tsz-ring-slate-50"
+    },
+    {
+        "label": "ring-slate-100",
+        "value": "tsz-ring-slate-100"
+    },
+    {
+        "label": "ring-slate-200",
+        "value": "tsz-ring-slate-200"
+    },
+    {
+        "label": "ring-slate-300",
+        "value": "tsz-ring-slate-300"
+    },
+    {
+        "label": "ring-slate-400",
+        "value": "tsz-ring-slate-400"
+    },
+    {
+        "label": "ring-slate-500",
+        "value": "tsz-ring-slate-500"
+    },
+    {
+        "label": "ring-slate-600",
+        "value": "tsz-ring-slate-600"
+    },
+    {
+        "label": "ring-slate-700",
+        "value": "tsz-ring-slate-700"
+    },
+    {
+        "label": "ring-slate-800",
+        "value": "tsz-ring-slate-800"
+    },
+    {
+        "label": "ring-slate-900",
+        "value": "tsz-ring-slate-900"
+    },
+    {
+        "label": "ring-slate-950",
+        "value": "tsz-ring-slate-950"
+    },
+    {
+        "label": "ring-gray-50",
+        "value": "tsz-ring-gray-50"
+    },
+    {
+        "label": "ring-gray-100",
+        "value": "tsz-ring-gray-100"
+    },
+    {
+        "label": "ring-gray-200",
+        "value": "tsz-ring-gray-200"
+    },
+    {
+        "label": "ring-gray-300",
+        "value": "tsz-ring-gray-300"
+    },
+    {
+        "label": "ring-gray-400",
+        "value": "tsz-ring-gray-400"
+    },
+    {
+        "label": "ring-gray-500",
+        "value": "tsz-ring-gray-500"
+    },
+    {
+        "label": "ring-gray-600",
+        "value": "tsz-ring-gray-600"
+    },
+    {
+        "label": "ring-gray-700",
+        "value": "tsz-ring-gray-700"
+    },
+    {
+        "label": "ring-gray-800",
+        "value": "tsz-ring-gray-800"
+    },
+    {
+        "label": "ring-gray-900",
+        "value": "tsz-ring-gray-900"
+    },
+    {
+        "label": "ring-gray-950",
+        "value": "tsz-ring-gray-950"
+    },
+    {
+        "label": "ring-zinc-50",
+        "value": "tsz-ring-zinc-50"
+    },
+    {
+        "label": "ring-zinc-100",
+        "value": "tsz-ring-zinc-100"
+    },
+    {
+        "label": "ring-zinc-200",
+        "value": "tsz-ring-zinc-200"
+    },
+    {
+        "label": "ring-zinc-300",
+        "value": "tsz-ring-zinc-300"
+    },
+    {
+        "label": "ring-zinc-400",
+        "value": "tsz-ring-zinc-400"
+    },
+    {
+        "label": "ring-zinc-500",
+        "value": "tsz-ring-zinc-500"
+    },
+    {
+        "label": "ring-zinc-600",
+        "value": "tsz-ring-zinc-600"
+    },
+    {
+        "label": "ring-zinc-700",
+        "value": "tsz-ring-zinc-700"
+    },
+    {
+        "label": "ring-zinc-800",
+        "value": "tsz-ring-zinc-800"
+    },
+    {
+        "label": "ring-zinc-900",
+        "value": "tsz-ring-zinc-900"
+    },
+    {
+        "label": "ring-zinc-950",
+        "value": "tsz-ring-zinc-950"
+    },
+    {
+        "label": "ring-neutral-50",
+        "value": "tsz-ring-neutral-50"
+    },
+    {
+        "label": "ring-neutral-100",
+        "value": "tsz-ring-neutral-100"
+    },
+    {
+        "label": "ring-neutral-200",
+        "value": "tsz-ring-neutral-200"
+    },
+    {
+        "label": "ring-neutral-300",
+        "value": "tsz-ring-neutral-300"
+    },
+    {
+        "label": "ring-neutral-400",
+        "value": "tsz-ring-neutral-400"
+    },
+    {
+        "label": "ring-neutral-500",
+        "value": "tsz-ring-neutral-500"
+    },
+    {
+        "label": "ring-neutral-600",
+        "value": "tsz-ring-neutral-600"
+    },
+    {
+        "label": "ring-neutral-700",
+        "value": "tsz-ring-neutral-700"
+    },
+    {
+        "label": "ring-neutral-800",
+        "value": "tsz-ring-neutral-800"
+    },
+    {
+        "label": "ring-neutral-900",
+        "value": "tsz-ring-neutral-900"
+    },
+    {
+        "label": "ring-neutral-950",
+        "value": "tsz-ring-neutral-950"
+    },
+    {
+        "label": "ring-stone-50",
+        "value": "tsz-ring-stone-50"
+    },
+    {
+        "label": "ring-stone-100",
+        "value": "tsz-ring-stone-100"
+    },
+    {
+        "label": "ring-stone-200",
+        "value": "tsz-ring-stone-200"
+    },
+    {
+        "label": "ring-stone-300",
+        "value": "tsz-ring-stone-300"
+    },
+    {
+        "label": "ring-stone-400",
+        "value": "tsz-ring-stone-400"
+    },
+    {
+        "label": "ring-stone-500",
+        "value": "tsz-ring-stone-500"
+    },
+    {
+        "label": "ring-stone-600",
+        "value": "tsz-ring-stone-600"
+    },
+    {
+        "label": "ring-stone-700",
+        "value": "tsz-ring-stone-700"
+    },
+    {
+        "label": "ring-stone-800",
+        "value": "tsz-ring-stone-800"
+    },
+    {
+        "label": "ring-stone-900",
+        "value": "tsz-ring-stone-900"
+    },
+    {
+        "label": "ring-stone-950",
+        "value": "tsz-ring-stone-950"
+    },
+    {
+        "label": "ring-red-50",
+        "value": "tsz-ring-red-50"
+    },
+    {
+        "label": "ring-red-100",
+        "value": "tsz-ring-red-100"
+    },
+    {
+        "label": "ring-red-200",
+        "value": "tsz-ring-red-200"
+    },
+    {
+        "label": "ring-red-300",
+        "value": "tsz-ring-red-300"
+    },
+    {
+        "label": "ring-red-400",
+        "value": "tsz-ring-red-400"
+    },
+    {
+        "label": "ring-red-500",
+        "value": "tsz-ring-red-500"
+    },
+    {
+        "label": "ring-red-600",
+        "value": "tsz-ring-red-600"
+    },
+    {
+        "label": "ring-red-700",
+        "value": "tsz-ring-red-700"
+    },
+    {
+        "label": "ring-red-800",
+        "value": "tsz-ring-red-800"
+    },
+    {
+        "label": "ring-red-900",
+        "value": "tsz-ring-red-900"
+    },
+    {
+        "label": "ring-red-950",
+        "value": "tsz-ring-red-950"
+    },
+    {
+        "label": "ring-orange-50",
+        "value": "tsz-ring-orange-50"
+    },
+    {
+        "label": "ring-orange-100",
+        "value": "tsz-ring-orange-100"
+    },
+    {
+        "label": "ring-orange-200",
+        "value": "tsz-ring-orange-200"
+    },
+    {
+        "label": "ring-orange-300",
+        "value": "tsz-ring-orange-300"
+    },
+    {
+        "label": "ring-orange-400",
+        "value": "tsz-ring-orange-400"
+    },
+    {
+        "label": "ring-orange-500",
+        "value": "tsz-ring-orange-500"
+    },
+    {
+        "label": "ring-orange-600",
+        "value": "tsz-ring-orange-600"
+    },
+    {
+        "label": "ring-orange-700",
+        "value": "tsz-ring-orange-700"
+    },
+    {
+        "label": "ring-orange-800",
+        "value": "tsz-ring-orange-800"
+    },
+    {
+        "label": "ring-orange-900",
+        "value": "tsz-ring-orange-900"
+    },
+    {
+        "label": "ring-orange-950",
+        "value": "tsz-ring-orange-950"
+    },
+    {
+        "label": "ring-amber-50",
+        "value": "tsz-ring-amber-50"
+    },
+    {
+        "label": "ring-amber-100",
+        "value": "tsz-ring-amber-100"
+    },
+    {
+        "label": "ring-amber-200",
+        "value": "tsz-ring-amber-200"
+    },
+    {
+        "label": "ring-amber-300",
+        "value": "tsz-ring-amber-300"
+    },
+    {
+        "label": "ring-amber-400",
+        "value": "tsz-ring-amber-400"
+    },
+    {
+        "label": "ring-amber-500",
+        "value": "tsz-ring-amber-500"
+    },
+    {
+        "label": "ring-amber-600",
+        "value": "tsz-ring-amber-600"
+    },
+    {
+        "label": "ring-amber-700",
+        "value": "tsz-ring-amber-700"
+    },
+    {
+        "label": "ring-amber-800",
+        "value": "tsz-ring-amber-800"
+    },
+    {
+        "label": "ring-amber-900",
+        "value": "tsz-ring-amber-900"
+    },
+    {
+        "label": "ring-amber-950",
+        "value": "tsz-ring-amber-950"
+    },
+    {
+        "label": "ring-yellow-50",
+        "value": "tsz-ring-yellow-50"
+    },
+    {
+        "label": "ring-yellow-100",
+        "value": "tsz-ring-yellow-100"
+    },
+    {
+        "label": "ring-yellow-200",
+        "value": "tsz-ring-yellow-200"
+    },
+    {
+        "label": "ring-yellow-300",
+        "value": "tsz-ring-yellow-300"
+    },
+    {
+        "label": "ring-yellow-400",
+        "value": "tsz-ring-yellow-400"
+    },
+    {
+        "label": "ring-yellow-500",
+        "value": "tsz-ring-yellow-500"
+    },
+    {
+        "label": "ring-yellow-600",
+        "value": "tsz-ring-yellow-600"
+    },
+    {
+        "label": "ring-yellow-700",
+        "value": "tsz-ring-yellow-700"
+    },
+    {
+        "label": "ring-yellow-800",
+        "value": "tsz-ring-yellow-800"
+    },
+    {
+        "label": "ring-yellow-900",
+        "value": "tsz-ring-yellow-900"
+    },
+    {
+        "label": "ring-yellow-950",
+        "value": "tsz-ring-yellow-950"
+    },
+    {
+        "label": "ring-lime-50",
+        "value": "tsz-ring-lime-50"
+    },
+    {
+        "label": "ring-lime-100",
+        "value": "tsz-ring-lime-100"
+    },
+    {
+        "label": "ring-lime-200",
+        "value": "tsz-ring-lime-200"
+    },
+    {
+        "label": "ring-lime-300",
+        "value": "tsz-ring-lime-300"
+    },
+    {
+        "label": "ring-lime-400",
+        "value": "tsz-ring-lime-400"
+    },
+    {
+        "label": "ring-lime-500",
+        "value": "tsz-ring-lime-500"
+    },
+    {
+        "label": "ring-lime-600",
+        "value": "tsz-ring-lime-600"
+    },
+    {
+        "label": "ring-lime-700",
+        "value": "tsz-ring-lime-700"
+    },
+    {
+        "label": "ring-lime-800",
+        "value": "tsz-ring-lime-800"
+    },
+    {
+        "label": "ring-lime-900",
+        "value": "tsz-ring-lime-900"
+    },
+    {
+        "label": "ring-lime-950",
+        "value": "tsz-ring-lime-950"
+    },
+    {
+        "label": "ring-green-50",
+        "value": "tsz-ring-green-50"
+    },
+    {
+        "label": "ring-green-100",
+        "value": "tsz-ring-green-100"
+    },
+    {
+        "label": "ring-green-200",
+        "value": "tsz-ring-green-200"
+    },
+    {
+        "label": "ring-green-300",
+        "value": "tsz-ring-green-300"
+    },
+    {
+        "label": "ring-green-400",
+        "value": "tsz-ring-green-400"
+    },
+    {
+        "label": "ring-green-500",
+        "value": "tsz-ring-green-500"
+    },
+    {
+        "label": "ring-green-600",
+        "value": "tsz-ring-green-600"
+    },
+    {
+        "label": "ring-green-700",
+        "value": "tsz-ring-green-700"
+    },
+    {
+        "label": "ring-green-800",
+        "value": "tsz-ring-green-800"
+    },
+    {
+        "label": "ring-green-900",
+        "value": "tsz-ring-green-900"
+    },
+    {
+        "label": "ring-green-950",
+        "value": "tsz-ring-green-950"
+    },
+    {
+        "label": "ring-emerald-50",
+        "value": "tsz-ring-emerald-50"
+    },
+    {
+        "label": "ring-emerald-100",
+        "value": "tsz-ring-emerald-100"
+    },
+    {
+        "label": "ring-emerald-200",
+        "value": "tsz-ring-emerald-200"
+    },
+    {
+        "label": "ring-emerald-300",
+        "value": "tsz-ring-emerald-300"
+    },
+    {
+        "label": "ring-emerald-400",
+        "value": "tsz-ring-emerald-400"
+    },
+    {
+        "label": "ring-emerald-500",
+        "value": "tsz-ring-emerald-500"
+    },
+    {
+        "label": "ring-emerald-600",
+        "value": "tsz-ring-emerald-600"
+    },
+    {
+        "label": "ring-emerald-700",
+        "value": "tsz-ring-emerald-700"
+    },
+    {
+        "label": "ring-emerald-800",
+        "value": "tsz-ring-emerald-800"
+    },
+    {
+        "label": "ring-emerald-900",
+        "value": "tsz-ring-emerald-900"
+    },
+    {
+        "label": "ring-emerald-950",
+        "value": "tsz-ring-emerald-950"
+    },
+    {
+        "label": "ring-teal-50",
+        "value": "tsz-ring-teal-50"
+    },
+    {
+        "label": "ring-teal-100",
+        "value": "tsz-ring-teal-100"
+    },
+    {
+        "label": "ring-teal-200",
+        "value": "tsz-ring-teal-200"
+    },
+    {
+        "label": "ring-teal-300",
+        "value": "tsz-ring-teal-300"
+    },
+    {
+        "label": "ring-teal-400",
+        "value": "tsz-ring-teal-400"
+    },
+    {
+        "label": "ring-teal-500",
+        "value": "tsz-ring-teal-500"
+    },
+    {
+        "label": "ring-teal-600",
+        "value": "tsz-ring-teal-600"
+    },
+    {
+        "label": "ring-teal-700",
+        "value": "tsz-ring-teal-700"
+    },
+    {
+        "label": "ring-teal-800",
+        "value": "tsz-ring-teal-800"
+    },
+    {
+        "label": "ring-teal-900",
+        "value": "tsz-ring-teal-900"
+    },
+    {
+        "label": "ring-teal-950",
+        "value": "tsz-ring-teal-950"
+    },
+    {
+        "label": "ring-cyan-50",
+        "value": "tsz-ring-cyan-50"
+    },
+    {
+        "label": "ring-cyan-100",
+        "value": "tsz-ring-cyan-100"
+    },
+    {
+        "label": "ring-cyan-200",
+        "value": "tsz-ring-cyan-200"
+    },
+    {
+        "label": "ring-cyan-300",
+        "value": "tsz-ring-cyan-300"
+    },
+    {
+        "label": "ring-cyan-400",
+        "value": "tsz-ring-cyan-400"
+    },
+    {
+        "label": "ring-cyan-500",
+        "value": "tsz-ring-cyan-500"
+    },
+    {
+        "label": "ring-cyan-600",
+        "value": "tsz-ring-cyan-600"
+    },
+    {
+        "label": "ring-cyan-700",
+        "value": "tsz-ring-cyan-700"
+    },
+    {
+        "label": "ring-cyan-800",
+        "value": "tsz-ring-cyan-800"
+    },
+    {
+        "label": "ring-cyan-900",
+        "value": "tsz-ring-cyan-900"
+    },
+    {
+        "label": "ring-cyan-950",
+        "value": "tsz-ring-cyan-950"
+    },
+    {
+        "label": "ring-sky-50",
+        "value": "tsz-ring-sky-50"
+    },
+    {
+        "label": "ring-sky-100",
+        "value": "tsz-ring-sky-100"
+    },
+    {
+        "label": "ring-sky-200",
+        "value": "tsz-ring-sky-200"
+    },
+    {
+        "label": "ring-sky-300",
+        "value": "tsz-ring-sky-300"
+    },
+    {
+        "label": "ring-sky-400",
+        "value": "tsz-ring-sky-400"
+    },
+    {
+        "label": "ring-sky-500",
+        "value": "tsz-ring-sky-500"
+    },
+    {
+        "label": "ring-sky-600",
+        "value": "tsz-ring-sky-600"
+    },
+    {
+        "label": "ring-sky-700",
+        "value": "tsz-ring-sky-700"
+    },
+    {
+        "label": "ring-sky-800",
+        "value": "tsz-ring-sky-800"
+    },
+    {
+        "label": "ring-sky-900",
+        "value": "tsz-ring-sky-900"
+    },
+    {
+        "label": "ring-sky-950",
+        "value": "tsz-ring-sky-950"
+    },
+    {
+        "label": "ring-blue-50",
+        "value": "tsz-ring-blue-50"
+    },
+    {
+        "label": "ring-blue-100",
+        "value": "tsz-ring-blue-100"
+    },
+    {
+        "label": "ring-blue-200",
+        "value": "tsz-ring-blue-200"
+    },
+    {
+        "label": "ring-blue-300",
+        "value": "tsz-ring-blue-300"
+    },
+    {
+        "label": "ring-blue-400",
+        "value": "tsz-ring-blue-400"
+    },
+    {
+        "label": "ring-blue-500",
+        "value": "tsz-ring-blue-500"
+    },
+    {
+        "label": "ring-blue-600",
+        "value": "tsz-ring-blue-600"
+    },
+    {
+        "label": "ring-blue-700",
+        "value": "tsz-ring-blue-700"
+    },
+    {
+        "label": "ring-blue-800",
+        "value": "tsz-ring-blue-800"
+    },
+    {
+        "label": "ring-blue-900",
+        "value": "tsz-ring-blue-900"
+    },
+    {
+        "label": "ring-blue-950",
+        "value": "tsz-ring-blue-950"
+    },
+    {
+        "label": "ring-indigo-50",
+        "value": "tsz-ring-indigo-50"
+    },
+    {
+        "label": "ring-indigo-100",
+        "value": "tsz-ring-indigo-100"
+    },
+    {
+        "label": "ring-indigo-200",
+        "value": "tsz-ring-indigo-200"
+    },
+    {
+        "label": "ring-indigo-300",
+        "value": "tsz-ring-indigo-300"
+    },
+    {
+        "label": "ring-indigo-400",
+        "value": "tsz-ring-indigo-400"
+    },
+    {
+        "label": "ring-indigo-500",
+        "value": "tsz-ring-indigo-500"
+    },
+    {
+        "label": "ring-indigo-600",
+        "value": "tsz-ring-indigo-600"
+    },
+    {
+        "label": "ring-indigo-700",
+        "value": "tsz-ring-indigo-700"
+    },
+    {
+        "label": "ring-indigo-800",
+        "value": "tsz-ring-indigo-800"
+    },
+    {
+        "label": "ring-indigo-900",
+        "value": "tsz-ring-indigo-900"
+    },
+    {
+        "label": "ring-indigo-950",
+        "value": "tsz-ring-indigo-950"
+    },
+    {
+        "label": "ring-violet-50",
+        "value": "tsz-ring-violet-50"
+    },
+    {
+        "label": "ring-violet-100",
+        "value": "tsz-ring-violet-100"
+    },
+    {
+        "label": "ring-violet-200",
+        "value": "tsz-ring-violet-200"
+    },
+    {
+        "label": "ring-violet-300",
+        "value": "tsz-ring-violet-300"
+    },
+    {
+        "label": "ring-violet-400",
+        "value": "tsz-ring-violet-400"
+    },
+    {
+        "label": "ring-violet-500",
+        "value": "tsz-ring-violet-500"
+    },
+    {
+        "label": "ring-violet-600",
+        "value": "tsz-ring-violet-600"
+    },
+    {
+        "label": "ring-violet-700",
+        "value": "tsz-ring-violet-700"
+    },
+    {
+        "label": "ring-violet-800",
+        "value": "tsz-ring-violet-800"
+    },
+    {
+        "label": "ring-violet-900",
+        "value": "tsz-ring-violet-900"
+    },
+    {
+        "label": "ring-violet-950",
+        "value": "tsz-ring-violet-950"
+    },
+    {
+        "label": "ring-purple-50",
+        "value": "tsz-ring-purple-50"
+    },
+    {
+        "label": "ring-purple-100",
+        "value": "tsz-ring-purple-100"
+    },
+    {
+        "label": "ring-purple-200",
+        "value": "tsz-ring-purple-200"
+    },
+    {
+        "label": "ring-purple-300",
+        "value": "tsz-ring-purple-300"
+    },
+    {
+        "label": "ring-purple-400",
+        "value": "tsz-ring-purple-400"
+    },
+    {
+        "label": "ring-purple-500",
+        "value": "tsz-ring-purple-500"
+    },
+    {
+        "label": "ring-purple-600",
+        "value": "tsz-ring-purple-600"
+    },
+    {
+        "label": "ring-purple-700",
+        "value": "tsz-ring-purple-700"
+    },
+    {
+        "label": "ring-purple-800",
+        "value": "tsz-ring-purple-800"
+    },
+    {
+        "label": "ring-purple-900",
+        "value": "tsz-ring-purple-900"
+    },
+    {
+        "label": "ring-purple-950",
+        "value": "tsz-ring-purple-950"
+    },
+    {
+        "label": "ring-fuchsia-50",
+        "value": "tsz-ring-fuchsia-50"
+    },
+    {
+        "label": "ring-fuchsia-100",
+        "value": "tsz-ring-fuchsia-100"
+    },
+    {
+        "label": "ring-fuchsia-200",
+        "value": "tsz-ring-fuchsia-200"
+    },
+    {
+        "label": "ring-fuchsia-300",
+        "value": "tsz-ring-fuchsia-300"
+    },
+    {
+        "label": "ring-fuchsia-400",
+        "value": "tsz-ring-fuchsia-400"
+    },
+    {
+        "label": "ring-fuchsia-500",
+        "value": "tsz-ring-fuchsia-500"
+    },
+    {
+        "label": "ring-fuchsia-600",
+        "value": "tsz-ring-fuchsia-600"
+    },
+    {
+        "label": "ring-fuchsia-700",
+        "value": "tsz-ring-fuchsia-700"
+    },
+    {
+        "label": "ring-fuchsia-800",
+        "value": "tsz-ring-fuchsia-800"
+    },
+    {
+        "label": "ring-fuchsia-900",
+        "value": "tsz-ring-fuchsia-900"
+    },
+    {
+        "label": "ring-fuchsia-950",
+        "value": "tsz-ring-fuchsia-950"
+    },
+    {
+        "label": "ring-pink-50",
+        "value": "tsz-ring-pink-50"
+    },
+    {
+        "label": "ring-pink-100",
+        "value": "tsz-ring-pink-100"
+    },
+    {
+        "label": "ring-pink-200",
+        "value": "tsz-ring-pink-200"
+    },
+    {
+        "label": "ring-pink-300",
+        "value": "tsz-ring-pink-300"
+    },
+    {
+        "label": "ring-pink-400",
+        "value": "tsz-ring-pink-400"
+    },
+    {
+        "label": "ring-pink-500",
+        "value": "tsz-ring-pink-500"
+    },
+    {
+        "label": "ring-pink-600",
+        "value": "tsz-ring-pink-600"
+    },
+    {
+        "label": "ring-pink-700",
+        "value": "tsz-ring-pink-700"
+    },
+    {
+        "label": "ring-pink-800",
+        "value": "tsz-ring-pink-800"
+    },
+    {
+        "label": "ring-pink-900",
+        "value": "tsz-ring-pink-900"
+    },
+    {
+        "label": "ring-pink-950",
+        "value": "tsz-ring-pink-950"
+    },
+    {
+        "label": "ring-rose-50",
+        "value": "tsz-ring-rose-50"
+    },
+    {
+        "label": "ring-rose-100",
+        "value": "tsz-ring-rose-100"
+    },
+    {
+        "label": "ring-rose-200",
+        "value": "tsz-ring-rose-200"
+    },
+    {
+        "label": "ring-rose-300",
+        "value": "tsz-ring-rose-300"
+    },
+    {
+        "label": "ring-rose-400",
+        "value": "tsz-ring-rose-400"
+    },
+    {
+        "label": "ring-rose-500",
+        "value": "tsz-ring-rose-500"
+    },
+    {
+        "label": "ring-rose-600",
+        "value": "tsz-ring-rose-600"
+    },
+    {
+        "label": "ring-rose-700",
+        "value": "tsz-ring-rose-700"
+    },
+    {
+        "label": "ring-rose-800",
+        "value": "tsz-ring-rose-800"
+    },
+    {
+        "label": "ring-rose-900",
+        "value": "tsz-ring-rose-900"
+    },
+    {
+        "label": "ring-rose-950",
+        "value": "tsz-ring-rose-950"
+    }
+]

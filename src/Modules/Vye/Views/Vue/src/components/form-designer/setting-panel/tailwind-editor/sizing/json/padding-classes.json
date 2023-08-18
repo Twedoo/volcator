@@ -1,0 +1,982 @@
+[
+    {
+        "label": "p-0",
+        "value": "tsz-p-0"
+    },
+    {
+        "label": "px-0",
+        "value": "tsz-px-0"
+    },
+    {
+        "label": "py-0",
+        "value": "tsz-py-0"
+    },
+    {
+        "label": "pt-0",
+        "value": "tsz-pt-0"
+    },
+    {
+        "label": "pr-0",
+        "value": "tsz-pr-0"
+    },
+    {
+        "label": "pb-0",
+        "value": "tsz-pb-0"
+    },
+    {
+        "label": "pl-0",
+        "value": "tsz-pl-0"
+    },
+    {
+        "label": "p-px",
+        "value": "tsz-p-px"
+    },
+    {
+        "label": "px-px",
+        "value": "tsz-px-px"
+    },
+    {
+        "label": "py-px",
+        "value": "tsz-py-px"
+    },
+    {
+        "label": "pt-px",
+        "value": "tsz-pt-px"
+    },
+    {
+        "label": "pr-px",
+        "value": "tsz-pr-px"
+    },
+    {
+        "label": "pb-px",
+        "value": "tsz-pb-px"
+    },
+    {
+        "label": "pl-px",
+        "value": "tsz-pl-px"
+    },
+    {
+        "label": "p-0.5",
+        "value": "tsz-p-0.5"
+    },
+    {
+        "label": "px-0.5",
+        "value": "tsz-px-0.5"
+    },
+    {
+        "label": "py-0.5",
+        "value": "tsz-py-0.5"
+    },
+    {
+        "label": "pt-0.5",
+        "value": "tsz-pt-0.5"
+    },
+    {
+        "label": "pr-0.5",
+        "value": "tsz-pr-0.5"
+    },
+    {
+        "label": "pb-0.5",
+        "value": "tsz-pb-0.5"
+    },
+    {
+        "label": "pl-0.5",
+        "value": "tsz-pl-0.5"
+    },
+    {
+        "label": "p-1",
+        "value": "tsz-p-1"
+    },
+    {
+        "label": "px-1",
+        "value": "tsz-px-1"
+    },
+    {
+        "label": "py-1",
+        "value": "tsz-py-1"
+    },
+    {
+        "label": "pt-1",
+        "value": "tsz-pt-1"
+    },
+    {
+        "label": "pr-1",
+        "value": "tsz-pr-1"
+    },
+    {
+        "label": "pb-1",
+        "value": "tsz-pb-1"
+    },
+    {
+        "label": "pl-1",
+        "value": "tsz-pl-1"
+    },
+    {
+        "label": "p-1.5",
+        "value": "tsz-p-1.5"
+    },
+    {
+        "label": "px-1.5",
+        "value": "tsz-px-1.5"
+    },
+    {
+        "label": "py-1.5",
+        "value": "tsz-py-1.5"
+    },
+    {
+        "label": "pt-1.5",
+        "value": "tsz-pt-1.5"
+    },
+    {
+        "label": "pr-1.5",
+        "value": "tsz-pr-1.5"
+    },
+    {
+        "label": "pb-1.5",
+        "value": "tsz-pb-1.5"
+    },
+    {
+        "label": "pl-1.5",
+        "value": "tsz-pl-1.5"
+    },
+    {
+        "label": "p-2",
+        "value": "tsz-p-2"
+    },
+    {
+        "label": "px-2",
+        "value": "tsz-px-2"
+    },
+    {
+        "label": "py-2",
+        "value": "tsz-py-2"
+    },
+    {
+        "label": "pt-2",
+        "value": "tsz-pt-2"
+    },
+    {
+        "label": "pr-2",
+        "value": "tsz-pr-2"
+    },
+    {
+        "label": "pb-2",
+        "value": "tsz-pb-2"
+    },
+    {
+        "label": "pl-2",
+        "value": "tsz-pl-2"
+    },
+    {
+        "label": "p-2.5",
+        "value": "tsz-p-2.5"
+    },
+    {
+        "label": "px-2.5",
+        "value": "tsz-px-2.5"
+    },
+    {
+        "label": "py-2.5",
+        "value": "tsz-py-2.5"
+    },
+    {
+        "label": "pt-2.5",
+        "value": "tsz-pt-2.5"
+    },
+    {
+        "label": "pr-2.5",
+        "value": "tsz-pr-2.5"
+    },
+    {
+        "label": "pb-2.5",
+        "value": "tsz-pb-2.5"
+    },
+    {
+        "label": "pl-2.5",
+        "value": "tsz-pl-2.5"
+    },
+    {
+        "label": "p-3",
+        "value": "tsz-p-3"
+    },
+    {
+        "label": "px-3",
+        "value": "tsz-px-3"
+    },
+    {
+        "label": "py-3",
+        "value": "tsz-py-3"
+    },
+    {
+        "label": "pt-3",
+        "value": "tsz-pt-3"
+    },
+    {
+        "label": "pr-3",
+        "value": "tsz-pr-3"
+    },
+    {
+        "label": "pb-3",
+        "value": "tsz-pb-3"
+    },
+    {
+        "label": "pl-3",
+        "value": "tsz-pl-3"
+    },
+    {
+        "label": "p-3.5",
+        "value": "tsz-p-3.5"
+    },
+    {
+        "label": "px-3.5",
+        "value": "tsz-px-3.5"
+    },
+    {
+        "label": "py-3.5",
+        "value": "tsz-py-3.5"
+    },
+    {
+        "label": "pt-3.5",
+        "value": "tsz-pt-3.5"
+    },
+    {
+        "label": "pr-3.5",
+        "value": "tsz-pr-3.5"
+    },
+    {
+        "label": "pb-3.5",
+        "value": "tsz-pb-3.5"
+    },
+    {
+        "label": "pl-3.5",
+        "value": "tsz-pl-3.5"
+    },
+    {
+        "label": "p-4",
+        "value": "tsz-p-4"
+    },
+    {
+        "label": "px-4",
+        "value": "tsz-px-4"
+    },
+    {
+        "label": "py-4",
+        "value": "tsz-py-4"
+    },
+    {
+        "label": "pt-4",
+        "value": "tsz-pt-4"
+    },
+    {
+        "label": "pr-4",
+        "value": "tsz-pr-4"
+    },
+    {
+        "label": "pb-4",
+        "value": "tsz-pb-4"
+    },
+    {
+        "label": "pl-4",
+        "value": "tsz-pl-4"
+    },
+    {
+        "label": "p-5",
+        "value": "tsz-p-5"
+    },
+    {
+        "label": "px-5",
+        "value": "tsz-px-5"
+    },
+    {
+        "label": "py-5",
+        "value": "tsz-py-5"
+    },
+    {
+        "label": "pt-5",
+        "value": "tsz-pt-5"
+    },
+    {
+        "label": "pr-5",
+        "value": "tsz-pr-5"
+    },
+    {
+        "label": "pb-5",
+        "value": "tsz-pb-5"
+    },
+    {
+        "label": "pl-5",
+        "value": "tsz-pl-5"
+    },
+    {
+        "label": "p-6",
+        "value": "tsz-p-6"
+    },
+    {
+        "label": "px-6",
+        "value": "tsz-px-6"
+    },
+    {
+        "label": "py-6",
+        "value": "tsz-py-6"
+    },
+    {
+        "label": "pt-6",
+        "value": "tsz-pt-6"
+    },
+    {
+        "label": "pr-6",
+        "value": "tsz-pr-6"
+    },
+    {
+        "label": "pb-6",
+        "value": "tsz-pb-6"
+    },
+    {
+        "label": "pl-6",
+        "value": "tsz-pl-6"
+    },
+    {
+        "label": "p-7",
+        "value": "tsz-p-7"
+    },
+    {
+        "label": "px-7",
+        "value": "tsz-px-7"
+    },
+    {
+        "label": "py-7",
+        "value": "tsz-py-7"
+    },
+    {
+        "label": "pt-7",
+        "value": "tsz-pt-7"
+    },
+    {
+        "label": "pr-7",
+        "value": "tsz-pr-7"
+    },
+    {
+        "label": "pb-7",
+        "value": "tsz-pb-7"
+    },
+    {
+        "label": "pl-7",
+        "value": "tsz-pl-7"
+    },
+    {
+        "label": "p-8",
+        "value": "tsz-p-8"
+    },
+    {
+        "label": "px-8",
+        "value": "tsz-px-8"
+    },
+    {
+        "label": "py-8",
+        "value": "tsz-py-8"
+    },
+    {
+        "label": "pt-8",
+        "value": "tsz-pt-8"
+    },
+    {
+        "label": "pr-8",
+        "value": "tsz-pr-8"
+    },
+    {
+        "label": "pb-8",
+        "value": "tsz-pb-8"
+    },
+    {
+        "label": "pl-8",
+        "value": "tsz-pl-8"
+    },
+    {
+        "label": "p-9",
+        "value": "tsz-p-9"
+    },
+    {
+        "label": "px-9",
+        "value": "tsz-px-9"
+    },
+    {
+        "label": "py-9",
+        "value": "tsz-py-9"
+    },
+    {
+        "label": "pt-9",
+        "value": "tsz-pt-9"
+    },
+    {
+        "label": "pr-9",
+        "value": "tsz-pr-9"
+    },
+    {
+        "label": "pb-9",
+        "value": "tsz-pb-9"
+    },
+    {
+        "label": "pl-9",
+        "value": "tsz-pl-9"
+    },
+    {
+        "label": "p-10",
+        "value": "tsz-p-10"
+    },
+    {
+        "label": "px-10",
+        "value": "tsz-px-10"
+    },
+    {
+        "label": "py-10",
+        "value": "tsz-py-10"
+    },
+    {
+        "label": "pt-10",
+        "value": "tsz-pt-10"
+    },
+    {
+        "label": "pr-10",
+        "value": "tsz-pr-10"
+    },
+    {
+        "label": "pb-10",
+        "value": "tsz-pb-10"
+    },
+    {
+        "label": "pl-10",
+        "value": "tsz-pl-10"
+    },
+    {
+        "label": "p-11",
+        "value": "tsz-p-11"
+    },
+    {
+        "label": "px-11",
+        "value": "tsz-px-11"
+    },
+    {
+        "label": "py-11",
+        "value": "tsz-py-11"
+    },
+    {
+        "label": "pt-11",
+        "value": "tsz-pt-11"
+    },
+    {
+        "label": "pr-11",
+        "value": "tsz-pr-11"
+    },
+    {
+        "label": "pb-11",
+        "value": "tsz-pb-11"
+    },
+    {
+        "label": "pl-11",
+        "value": "tsz-pl-11"
+    },
+    {
+        "label": "p-12",
+        "value": "tsz-p-12"
+    },
+    {
+        "label": "px-12",
+        "value": "tsz-px-12"
+    },
+    {
+        "label": "py-12",
+        "value": "tsz-py-12"
+    },
+    {
+        "label": "pt-12",
+        "value": "tsz-pt-12"
+    },
+    {
+        "label": "pr-12",
+        "value": "tsz-pr-12"
+    },
+    {
+        "label": "pb-12",
+        "value": "tsz-pb-12"
+    },
+    {
+        "label": "pl-12",
+        "value": "tsz-pl-12"
+    },
+    {
+        "label": "p-14",
+        "value": "tsz-p-14"
+    },
+    {
+        "label": "px-14",
+        "value": "tsz-px-14"
+    },
+    {
+        "label": "py-14",
+        "value": "tsz-py-14"
+    },
+    {
+        "label": "pt-14",
+        "value": "tsz-pt-14"
+    },
+    {
+        "label": "pr-14",
+        "value": "tsz-pr-14"
+    },
+    {
+        "label": "pb-14",
+        "value": "tsz-pb-14"
+    },
+    {
+        "label": "pl-14",
+        "value": "tsz-pl-14"
+    },
+    {
+        "label": "p-16",
+        "value": "tsz-p-16"
+    },
+    {
+        "label": "px-16",
+        "value": "tsz-px-16"
+    },
+    {
+        "label": "py-16",
+        "value": "tsz-py-16"
+    },
+    {
+        "label": "pt-16",
+        "value": "tsz-pt-16"
+    },
+    {
+        "label": "pr-16",
+        "value": "tsz-pr-16"
+    },
+    {
+        "label": "pb-16",
+        "value": "tsz-pb-16"
+    },
+    {
+        "label": "pl-16",
+        "value": "tsz-pl-16"
+    },
+    {
+        "label": "p-20",
+        "value": "tsz-p-20"
+    },
+    {
+        "label": "px-20",
+        "value": "tsz-px-20"
+    },
+    {
+        "label": "py-20",
+        "value": "tsz-py-20"
+    },
+    {
+        "label": "pt-20",
+        "value": "tsz-pt-20"
+    },
+    {
+        "label": "pr-20",
+        "value": "tsz-pr-20"
+    },
+    {
+        "label": "pb-20",
+        "value": "tsz-pb-20"
+    },
+    {
+        "label": "pl-20",
+        "value": "tsz-pl-20"
+    },
+    {
+        "label": "p-24",
+        "value": "tsz-p-24"
+    },
+    {
+        "label": "px-24",
+        "value": "tsz-px-24"
+    },
+    {
+        "label": "py-24",
+        "value": "tsz-py-24"
+    },
+    {
+        "label": "pt-24",
+        "value": "tsz-pt-24"
+    },
+    {
+        "label": "pr-24",
+        "value": "tsz-pr-24"
+    },
+    {
+        "label": "pb-24",
+        "value": "tsz-pb-24"
+    },
+    {
+        "label": "pl-24",
+        "value": "tsz-pl-24"
+    },
+    {
+        "label": "p-28",
+        "value": "tsz-p-28"
+    },
+    {
+        "label": "px-28",
+        "value": "tsz-px-28"
+    },
+    {
+        "label": "py-28",
+        "value": "tsz-py-28"
+    },
+    {
+        "label": "pt-28",
+        "value": "tsz-pt-28"
+    },
+    {
+        "label": "pr-28",
+        "value": "tsz-pr-28"
+    },
+    {
+        "label": "pb-28",
+        "value": "tsz-pb-28"
+    },
+    {
+        "label": "pl-28",
+        "value": "tsz-pl-28"
+    },
+    {
+        "label": "p-32",
+        "value": "tsz-p-32"
+    },
+    {
+        "label": "px-32",
+        "value": "tsz-px-32"
+    },
+    {
+        "label": "py-32",
+        "value": "tsz-py-32"
+    },
+    {
+        "label": "pt-32",
+        "value": "tsz-pt-32"
+    },
+    {
+        "label": "pr-32",
+        "value": "tsz-pr-32"
+    },
+    {
+        "label": "pb-32",
+        "value": "tsz-pb-32"
+    },
+    {
+        "label": "pl-32",
+        "value": "tsz-pl-32"
+    },
+    {
+        "label": "p-36",
+        "value": "tsz-p-36"
+    },
+    {
+        "label": "px-36",
+        "value": "tsz-px-36"
+    },
+    {
+        "label": "py-36",
+        "value": "tsz-py-36"
+    },
+    {
+        "label": "pt-36",
+        "value": "tsz-pt-36"
+    },
+    {
+        "label": "pr-36",
+        "value": "tsz-pr-36"
+    },
+    {
+        "label": "pb-36",
+        "value": "tsz-pb-36"
+    },
+    {
+        "label": "pl-36",
+        "value": "tsz-pl-36"
+    },
+    {
+        "label": "p-40",
+        "value": "tsz-p-40"
+    },
+    {
+        "label": "px-40",
+        "value": "tsz-px-40"
+    },
+    {
+        "label": "py-40",
+        "value": "tsz-py-40"
+    },
+    {
+        "label": "pt-40",
+        "value": "tsz-pt-40"
+    },
+    {
+        "label": "pr-40",
+        "value": "tsz-pr-40"
+    },
+    {
+        "label": "pb-40",
+        "value": "tsz-pb-40"
+    },
+    {
+        "label": "pl-40",
+        "value": "tsz-pl-40"
+    },
+    {
+        "label": "p-44",
+        "value": "tsz-p-44"
+    },
+    {
+        "label": "px-44",
+        "value": "tsz-px-44"
+    },
+    {
+        "label": "py-44",
+        "value": "tsz-py-44"
+    },
+    {
+        "label": "pt-44",
+        "value": "tsz-pt-44"
+    },
+    {
+        "label": "pr-44",
+        "value": "tsz-pr-44"
+    },
+    {
+        "label": "pb-44",
+        "value": "tsz-pb-44"
+    },
+    {
+        "label": "pl-44",
+        "value": "tsz-pl-44"
+    },
+    {
+        "label": "p-48",
+        "value": "tsz-p-48"
+    },
+    {
+        "label": "px-48",
+        "value": "tsz-px-48"
+    },
+    {
+        "label": "py-48",
+        "value": "tsz-py-48"
+    },
+    {
+        "label": "pt-48",
+        "value": "tsz-pt-48"
+    },
+    {
+        "label": "pr-48",
+        "value": "tsz-pr-48"
+    },
+    {
+        "label": "pb-48",
+        "value": "tsz-pb-48"
+    },
+    {
+        "label": "pl-48",
+        "value": "tsz-pl-48"
+    },
+    {
+        "label": "p-52",
+        "value": "tsz-p-52"
+    },
+    {
+        "label": "px-52",
+        "value": "tsz-px-52"
+    },
+    {
+        "label": "py-52",
+        "value": "tsz-py-52"
+    },
+    {
+        "label": "pt-52",
+        "value": "tsz-pt-52"
+    },
+    {
+        "label": "pr-52",
+        "value": "tsz-pr-52"
+    },
+    {
+        "label": "pb-52",
+        "value": "tsz-pb-52"
+    },
+    {
+        "label": "pl-52",
+        "value": "tsz-pl-52"
+    },
+    {
+        "label": "p-56",
+        "value": "tsz-p-56"
+    },
+    {
+        "label": "px-56",
+        "value": "tsz-px-56"
+    },
+    {
+        "label": "py-56",
+        "value": "tsz-py-56"
+    },
+    {
+        "label": "pt-56",
+        "value": "tsz-pt-56"
+    },
+    {
+        "label": "pr-56",
+        "value": "tsz-pr-56"
+    },
+    {
+        "label": "pb-56",
+        "value": "tsz-pb-56"
+    },
+    {
+        "label": "pl-56",
+        "value": "tsz-pl-56"
+    },
+    {
+        "label": "p-60",
+        "value": "tsz-p-60"
+    },
+    {
+        "label": "px-60",
+        "value": "tsz-px-60"
+    },
+    {
+        "label": "py-60",
+        "value": "tsz-py-60"
+    },
+    {
+        "label": "pt-60",
+        "value": "tsz-pt-60"
+    },
+    {
+        "label": "pr-60",
+        "value": "tsz-pr-60"
+    },
+    {
+        "label": "pb-60",
+        "value": "tsz-pb-60"
+    },
+    {
+        "label": "pl-60",
+        "value": "tsz-pl-60"
+    },
+    {
+        "label": "p-64",
+        "value": "tsz-p-64"
+    },
+    {
+        "label": "px-64",
+        "value": "tsz-px-64"
+    },
+    {
+        "label": "py-64",
+        "value": "tsz-py-64"
+    },
+    {
+        "label": "pt-64",
+        "value": "tsz-pt-64"
+    },
+    {
+        "label": "pr-64",
+        "value": "tsz-pr-64"
+    },
+    {
+        "label": "pb-64",
+        "value": "tsz-pb-64"
+    },
+    {
+        "label": "pl-64",
+        "value": "tsz-pl-64"
+    },
+    {
+        "label": "p-72",
+        "value": "tsz-p-72"
+    },
+    {
+        "label": "px-72",
+        "value": "tsz-px-72"
+    },
+    {
+        "label": "py-72",
+        "value": "tsz-py-72"
+    },
+    {
+        "label": "pt-72",
+        "value": "tsz-pt-72"
+    },
+    {
+        "label": "pr-72",
+        "value": "tsz-pr-72"
+    },
+    {
+        "label": "pb-72",
+        "value": "tsz-pb-72"
+    },
+    {
+        "label": "pl-72",
+        "value": "tsz-pl-72"
+    },
+    {
+        "label": "p-80",
+        "value": "tsz-p-80"
+    },
+    {
+        "label": "px-80",
+        "value": "tsz-px-80"
+    },
+    {
+        "label": "py-80",
+        "value": "tsz-py-80"
+    },
+    {
+        "label": "pt-80",
+        "value": "tsz-pt-80"
+    },
+    {
+        "label": "pr-80",
+        "value": "tsz-pr-80"
+    },
+    {
+        "label": "pb-80",
+        "value": "tsz-pb-80"
+    },
+    {
+        "label": "pl-80",
+        "value": "tsz-pl-80"
+    },
+    {
+        "label": "p-96",
+        "value": "tsz-p-96"
+    },
+    {
+        "label": "px-96",
+        "value": "tsz-px-96"
+    },
+    {
+        "label": "py-96",
+        "value": "tsz-py-96"
+    },
+    {
+        "label": "pt-96",
+        "value": "tsz-pt-96"
+    },
+    {
+        "label": "pr-96",
+        "value": "tsz-pr-96"
+    },
+    {
+        "label": "pb-96",
+        "value": "tsz-pb-96"
+    },
+    {
+        "label": "pl-96",
+        "value": "tsz-pl-96"
+    }
+]

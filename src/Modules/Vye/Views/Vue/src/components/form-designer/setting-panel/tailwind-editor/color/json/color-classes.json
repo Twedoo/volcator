@@ -1,0 +1,990 @@
+[
+    {
+        "label": "text-inherit",
+        "value": "tsz-text-inherit"
+    },
+    {
+        "label": "text-current",
+        "value": "tsz-text-current"
+    },
+    {
+        "label": "text-transparent",
+        "value": "tsz-text-transparent"
+    },
+    {
+        "label": "text-black",
+        "value": "tsz-text-black"
+    },
+    {
+        "label": "text-white",
+        "value": "tsz-text-white"
+    },
+    {
+        "label": "text-slate-50",
+        "value": "tsz-text-slate-50"
+    },
+    {
+        "label": "text-slate-100",
+        "value": "tsz-text-slate-100"
+    },
+    {
+        "label": "text-slate-200",
+        "value": "tsz-text-slate-200"
+    },
+    {
+        "label": "text-slate-300",
+        "value": "tsz-text-slate-300"
+    },
+    {
+        "label": "text-slate-400",
+        "value": "tsz-text-slate-400"
+    },
+    {
+        "label": "text-slate-500",
+        "value": "tsz-text-slate-500"
+    },
+    {
+        "label": "text-slate-600",
+        "value": "tsz-text-slate-600"
+    },
+    {
+        "label": "text-slate-700",
+        "value": "tsz-text-slate-700"
+    },
+    {
+        "label": "text-slate-800",
+        "value": "tsz-text-slate-800"
+    },
+    {
+        "label": "text-slate-900",
+        "value": "tsz-text-slate-900"
+    },
+    {
+        "label": "text-slate-950",
+        "value": "tsz-text-slate-950"
+    },
+    {
+        "label": "text-gray-50",
+        "value": "tsz-text-gray-50"
+    },
+    {
+        "label": "text-gray-100",
+        "value": "tsz-text-gray-100"
+    },
+    {
+        "label": "text-gray-200",
+        "value": "tsz-text-gray-200"
+    },
+    {
+        "label": "text-gray-300",
+        "value": "tsz-text-gray-300"
+    },
+    {
+        "label": "text-gray-400",
+        "value": "tsz-text-gray-400"
+    },
+    {
+        "label": "text-gray-500",
+        "value": "tsz-text-gray-500"
+    },
+    {
+        "label": "text-gray-600",
+        "value": "tsz-text-gray-600"
+    },
+    {
+        "label": "text-gray-700",
+        "value": "tsz-text-gray-700"
+    },
+    {
+        "label": "text-gray-800",
+        "value": "tsz-text-gray-800"
+    },
+    {
+        "label": "text-gray-900",
+        "value": "tsz-text-gray-900"
+    },
+    {
+        "label": "text-gray-950",
+        "value": "tsz-text-gray-950"
+    },
+    {
+        "label": "text-zinc-50",
+        "value": "tsz-text-zinc-50"
+    },
+    {
+        "label": "text-zinc-100",
+        "value": "tsz-text-zinc-100"
+    },
+    {
+        "label": "text-zinc-200",
+        "value": "tsz-text-zinc-200"
+    },
+    {
+        "label": "text-zinc-300",
+        "value": "tsz-text-zinc-300"
+    },
+    {
+        "label": "text-zinc-400",
+        "value": "tsz-text-zinc-400"
+    },
+    {
+        "label": "text-zinc-500",
+        "value": "tsz-text-zinc-500"
+    },
+    {
+        "label": "text-zinc-600",
+        "value": "tsz-text-zinc-600"
+    },
+    {
+        "label": "text-zinc-700",
+        "value": "tsz-text-zinc-700"
+    },
+    {
+        "label": "text-zinc-800",
+        "value": "tsz-text-zinc-800"
+    },
+    {
+        "label": "text-zinc-900",
+        "value": "tsz-text-zinc-900"
+    },
+    {
+        "label": "text-zinc-950",
+        "value": "tsz-text-zinc-950"
+    },
+    {
+        "label": "text-neutral-50",
+        "value": "tsz-text-neutral-50"
+    },
+    {
+        "label": "text-neutral-100",
+        "value": "tsz-text-neutral-100"
+    },
+    {
+        "label": "text-neutral-200",
+        "value": "tsz-text-neutral-200"
+    },
+    {
+        "label": "text-neutral-300",
+        "value": "tsz-text-neutral-300"
+    },
+    {
+        "label": "text-neutral-400",
+        "value": "tsz-text-neutral-400"
+    },
+    {
+        "label": "text-neutral-500",
+        "value": "tsz-text-neutral-500"
+    },
+    {
+        "label": "text-neutral-600",
+        "value": "tsz-text-neutral-600"
+    },
+    {
+        "label": "text-neutral-700",
+        "value": "tsz-text-neutral-700"
+    },
+    {
+        "label": "text-neutral-800",
+        "value": "tsz-text-neutral-800"
+    },
+    {
+        "label": "text-neutral-900",
+        "value": "tsz-text-neutral-900"
+    },
+    {
+        "label": "text-neutral-950",
+        "value": "tsz-text-neutral-950"
+    },
+    {
+        "label": "text-stone-50",
+        "value": "tsz-text-stone-50"
+    },
+    {
+        "label": "text-stone-100",
+        "value": "tsz-text-stone-100"
+    },
+    {
+        "label": "text-stone-200",
+        "value": "tsz-text-stone-200"
+    },
+    {
+        "label": "text-stone-300",
+        "value": "tsz-text-stone-300"
+    },
+    {
+        "label": "text-stone-400",
+        "value": "tsz-text-stone-400"
+    },
+    {
+        "label": "text-stone-500",
+        "value": "tsz-text-stone-500"
+    },
+    {
+        "label": "text-stone-600",
+        "value": "tsz-text-stone-600"
+    },
+    {
+        "label": "text-stone-700",
+        "value": "tsz-text-stone-700"
+    },
+    {
+        "label": "text-stone-800",
+        "value": "tsz-text-stone-800"
+    },
+    {
+        "label": "text-stone-900",
+        "value": "tsz-text-stone-900"
+    },
+    {
+        "label": "text-stone-950",
+        "value": "tsz-text-stone-950"
+    },
+    {
+        "label": "text-red-50",
+        "value": "tsz-text-red-50"
+    },
+    {
+        "label": "text-red-100",
+        "value": "tsz-text-red-100"
+    },
+    {
+        "label": "text-red-200",
+        "value": "tsz-text-red-200"
+    },
+    {
+        "label": "text-red-300",
+        "value": "tsz-text-red-300"
+    },
+    {
+        "label": "text-red-400",
+        "value": "tsz-text-red-400"
+    },
+    {
+        "label": "text-red-500",
+        "value": "tsz-text-red-500"
+    },
+    {
+        "label": "text-red-600",
+        "value": "tsz-text-red-600"
+    },
+    {
+        "label": "text-red-700",
+        "value": "tsz-text-red-700"
+    },
+    {
+        "label": "text-red-800",
+        "value": "tsz-text-red-800"
+    },
+    {
+        "label": "text-red-900",
+        "value": "tsz-text-red-900"
+    },
+    {
+        "label": "text-red-950",
+        "value": "tsz-text-red-950"
+    },
+    {
+        "label": "text-orange-50",
+        "value": "tsz-text-orange-50"
+    },
+    {
+        "label": "text-orange-100",
+        "value": "tsz-text-orange-100"
+    },
+    {
+        "label": "text-orange-200",
+        "value": "tsz-text-orange-200"
+    },
+    {
+        "label": "text-orange-300",
+        "value": "tsz-text-orange-300"
+    },
+    {
+        "label": "text-orange-400",
+        "value": "tsz-text-orange-400"
+    },
+    {
+        "label": "text-orange-500",
+        "value": "tsz-text-orange-500"
+    },
+    {
+        "label": "text-orange-600",
+        "value": "tsz-text-orange-600"
+    },
+    {
+        "label": "text-orange-700",
+        "value": "tsz-text-orange-700"
+    },
+    {
+        "label": "text-orange-800",
+        "value": "tsz-text-orange-800"
+    },
+    {
+        "label": "text-orange-900",
+        "value": "tsz-text-orange-900"
+    },
+    {
+        "label": "text-orange-950",
+        "value": "tsz-text-orange-950"
+    },
+    {
+        "label": "text-amber-50",
+        "value": "tsz-text-amber-50"
+    },
+    {
+        "label": "text-amber-100",
+        "value": "tsz-text-amber-100"
+    },
+    {
+        "label": "text-amber-200",
+        "value": "tsz-text-amber-200"
+    },
+    {
+        "label": "text-amber-300",
+        "value": "tsz-text-amber-300"
+    },
+    {
+        "label": "text-amber-400",
+        "value": "tsz-text-amber-400"
+    },
+    {
+        "label": "text-amber-500",
+        "value": "tsz-text-amber-500"
+    },
+    {
+        "label": "text-amber-600",
+        "value": "tsz-text-amber-600"
+    },
+    {
+        "label": "text-amber-700",
+        "value": "tsz-text-amber-700"
+    },
+    {
+        "label": "text-amber-800",
+        "value": "tsz-text-amber-800"
+    },
+    {
+        "label": "text-amber-900",
+        "value": "tsz-text-amber-900"
+    },
+    {
+        "label": "text-amber-950",
+        "value": "tsz-text-amber-950"
+    },
+    {
+        "label": "text-yellow-50",
+        "value": "tsz-text-yellow-50"
+    },
+    {
+        "label": "text-yellow-100",
+        "value": "tsz-text-yellow-100"
+    },
+    {
+        "label": "text-yellow-200",
+        "value": "tsz-text-yellow-200"
+    },
+    {
+        "label": "text-yellow-300",
+        "value": "tsz-text-yellow-300"
+    },
+    {
+        "label": "text-yellow-400",
+        "value": "tsz-text-yellow-400"
+    },
+    {
+        "label": "text-yellow-500",
+        "value": "tsz-text-yellow-500"
+    },
+    {
+        "label": "text-yellow-600",
+        "value": "tsz-text-yellow-600"
+    },
+    {
+        "label": "text-yellow-700",
+        "value": "tsz-text-yellow-700"
+    },
+    {
+        "label": "text-yellow-800",
+        "value": "tsz-text-yellow-800"
+    },
+    {
+        "label": "text-yellow-900",
+        "value": "tsz-text-yellow-900"
+    },
+    {
+        "label": "text-yellow-950",
+        "value": "tsz-text-yellow-950"
+    },
+    {
+        "label": "text-lime-50",
+        "value": "tsz-text-lime-50"
+    },
+    {
+        "label": "text-lime-100",
+        "value": "tsz-text-lime-100"
+    },
+    {
+        "label": "text-lime-200",
+        "value": "tsz-text-lime-200"
+    },
+    {
+        "label": "text-lime-300",
+        "value": "tsz-text-lime-300"
+    },
+    {
+        "label": "text-lime-400",
+        "value": "tsz-text-lime-400"
+    },
+    {
+        "label": "text-lime-500",
+        "value": "tsz-text-lime-500"
+    },
+    {
+        "label": "text-lime-600",
+        "value": "tsz-text-lime-600"
+    },
+    {
+        "label": "text-lime-700",
+        "value": "tsz-text-lime-700"
+    },
+    {
+        "label": "text-lime-800",
+        "value": "tsz-text-lime-800"
+    },
+    {
+        "label": "text-lime-900",
+        "value": "tsz-text-lime-900"
+    },
+    {
+        "label": "text-lime-950",
+        "value": "tsz-text-lime-950"
+    },
+    {
+        "label": "text-green-50",
+        "value": "tsz-text-green-50"
+    },
+    {
+        "label": "text-green-100",
+        "value": "tsz-text-green-100"
+    },
+    {
+        "label": "text-green-200",
+        "value": "tsz-text-green-200"
+    },
+    {
+        "label": "text-green-300",
+        "value": "tsz-text-green-300"
+    },
+    {
+        "label": "text-green-400",
+        "value": "tsz-text-green-400"
+    },
+    {
+        "label": "text-green-500",
+        "value": "tsz-text-green-500"
+    },
+    {
+        "label": "text-green-600",
+        "value": "tsz-text-green-600"
+    },
+    {
+        "label": "text-green-700",
+        "value": "tsz-text-green-700"
+    },
+    {
+        "label": "text-green-800",
+        "value": "tsz-text-green-800"
+    },
+    {
+        "label": "text-green-900",
+        "value": "tsz-text-green-900"
+    },
+    {
+        "label": "text-green-950",
+        "value": "tsz-text-green-950"
+    },
+    {
+        "label": "text-emerald-50",
+        "value": "tsz-text-emerald-50"
+    },
+    {
+        "label": "text-emerald-100",
+        "value": "tsz-text-emerald-100"
+    },
+    {
+        "label": "text-emerald-200",
+        "value": "tsz-text-emerald-200"
+    },
+    {
+        "label": "text-emerald-300",
+        "value": "tsz-text-emerald-300"
+    },
+    {
+        "label": "text-emerald-400",
+        "value": "tsz-text-emerald-400"
+    },
+    {
+        "label": "text-emerald-500",
+        "value": "tsz-text-emerald-500"
+    },
+    {
+        "label": "text-emerald-600",
+        "value": "tsz-text-emerald-600"
+    },
+    {
+        "label": "text-emerald-700",
+        "value": "tsz-text-emerald-700"
+    },
+    {
+        "label": "text-emerald-800",
+        "value": "tsz-text-emerald-800"
+    },
+    {
+        "label": "text-emerald-900",
+        "value": "tsz-text-emerald-900"
+    },
+    {
+        "label": "text-emerald-950",
+        "value": "tsz-text-emerald-950"
+    },
+    {
+        "label": "text-teal-50",
+        "value": "tsz-text-teal-50"
+    },
+    {
+        "label": "text-teal-100",
+        "value": "tsz-text-teal-100"
+    },
+    {
+        "label": "text-teal-200",
+        "value": "tsz-text-teal-200"
+    },
+    {
+        "label": "text-teal-300",
+        "value": "tsz-text-teal-300"
+    },
+    {
+        "label": "text-teal-400",
+        "value": "tsz-text-teal-400"
+    },
+    {
+        "label": "text-teal-500",
+        "value": "tsz-text-teal-500"
+    },
+    {
+        "label": "text-teal-600",
+        "value": "tsz-text-teal-600"
+    },
+    {
+        "label": "text-teal-700",
+        "value": "tsz-text-teal-700"
+    },
+    {
+        "label": "text-teal-800",
+        "value": "tsz-text-teal-800"
+    },
+    {
+        "label": "text-teal-900",
+        "value": "tsz-text-teal-900"
+    },
+    {
+        "label": "text-teal-950",
+        "value": "tsz-text-teal-950"
+    },
+    {
+        "label": "text-cyan-50",
+        "value": "tsz-text-cyan-50"
+    },
+    {
+        "label": "text-cyan-100",
+        "value": "tsz-text-cyan-100"
+    },
+    {
+        "label": "text-cyan-200",
+        "value": "tsz-text-cyan-200"
+    },
+    {
+        "label": "text-cyan-300",
+        "value": "tsz-text-cyan-300"
+    },
+    {
+        "label": "text-cyan-400",
+        "value": "tsz-text-cyan-400"
+    },
+    {
+        "label": "text-cyan-500",
+        "value": "tsz-text-cyan-500"
+    },
+    {
+        "label": "text-cyan-600",
+        "value": "tsz-text-cyan-600"
+    },
+    {
+        "label": "text-cyan-700",
+        "value": "tsz-text-cyan-700"
+    },
+    {
+        "label": "text-cyan-800",
+        "value": "tsz-text-cyan-800"
+    },
+    {
+        "label": "text-cyan-900",
+        "value": "tsz-text-cyan-900"
+    },
+    {
+        "label": "text-cyan-950",
+        "value": "tsz-text-cyan-950"
+    },
+    {
+        "label": "text-sky-50",
+        "value": "tsz-text-sky-50"
+    },
+    {
+        "label": "text-sky-100",
+        "value": "tsz-text-sky-100"
+    },
+    {
+        "label": "text-sky-200",
+        "value": "tsz-text-sky-200"
+    },
+    {
+        "label": "text-sky-300",
+        "value": "tsz-text-sky-300"
+    },
+    {
+        "label": "text-sky-400",
+        "value": "tsz-text-sky-400"
+    },
+    {
+        "label": "text-sky-500",
+        "value": "tsz-text-sky-500"
+    },
+    {
+        "label": "text-sky-600",
+        "value": "tsz-text-sky-600"
+    },
+    {
+        "label": "text-sky-700",
+        "value": "tsz-text-sky-700"
+    },
+    {
+        "label": "text-sky-800",
+        "value": "tsz-text-sky-800"
+    },
+    {
+        "label": "text-sky-900",
+        "value": "tsz-text-sky-900"
+    },
+    {
+        "label": "text-sky-950",
+        "value": "tsz-text-sky-950"
+    },
+    {
+        "label": "text-blue-50",
+        "value": "tsz-text-blue-50"
+    },
+    {
+        "label": "text-blue-100",
+        "value": "tsz-text-blue-100"
+    },
+    {
+        "label": "text-blue-200",
+        "value": "tsz-text-blue-200"
+    },
+    {
+        "label": "text-blue-300",
+        "value": "tsz-text-blue-300"
+    },
+    {
+        "label": "text-blue-400",
+        "value": "tsz-text-blue-400"
+    },
+    {
+        "label": "text-blue-500",
+        "value": "tsz-text-blue-500"
+    },
+    {
+        "label": "text-blue-600",
+        "value": "tsz-text-blue-600"
+    },
+    {
+        "label": "text-blue-700",
+        "value": "tsz-text-blue-700"
+    },
+    {
+        "label": "text-blue-800",
+        "value": "tsz-text-blue-800"
+    },
+    {
+        "label": "text-blue-900",
+        "value": "tsz-text-blue-900"
+    },
+    {
+        "label": "text-blue-950",
+        "value": "tsz-text-blue-950"
+    },
+    {
+        "label": "text-indigo-50",
+        "value": "tsz-text-indigo-50"
+    },
+    {
+        "label": "text-indigo-100",
+        "value": "tsz-text-indigo-100"
+    },
+    {
+        "label": "text-indigo-200",
+        "value": "tsz-text-indigo-200"
+    },
+    {
+        "label": "text-indigo-300",
+        "value": "tsz-text-indigo-300"
+    },
+    {
+        "label": "text-indigo-400",
+        "value": "tsz-text-indigo-400"
+    },
+    {
+        "label": "text-indigo-500",
+        "value": "tsz-text-indigo-500"
+    },
+    {
+        "label": "text-indigo-600",
+        "value": "tsz-text-indigo-600"
+    },
+    {
+        "label": "text-indigo-700",
+        "value": "tsz-text-indigo-700"
+    },
+    {
+        "label": "text-indigo-800",
+        "value": "tsz-text-indigo-800"
+    },
+    {
+        "label": "text-indigo-900",
+        "value": "tsz-text-indigo-900"
+    },
+    {
+        "label": "text-indigo-950",
+        "value": "tsz-text-indigo-950"
+    },
+    {
+        "label": "text-violet-50",
+        "value": "tsz-text-violet-50"
+    },
+    {
+        "label": "text-violet-100",
+        "value": "tsz-text-violet-100"
+    },
+    {
+        "label": "text-violet-200",
+        "value": "tsz-text-violet-200"
+    },
+    {
+        "label": "text-violet-300",
+        "value": "tsz-text-violet-300"
+    },
+    {
+        "label": "text-violet-400",
+        "value": "tsz-text-violet-400"
+    },
+    {
+        "label": "text-violet-500",
+        "value": "tsz-text-violet-500"
+    },
+    {
+        "label": "text-violet-600",
+        "value": "tsz-text-violet-600"
+    },
+    {
+        "label": "text-violet-700",
+        "value": "tsz-text-violet-700"
+    },
+    {
+        "label": "text-violet-800",
+        "value": "tsz-text-violet-800"
+    },
+    {
+        "label": "text-violet-900",
+        "value": "tsz-text-violet-900"
+    },
+    {
+        "label": "text-violet-950",
+        "value": "tsz-text-violet-950"
+    },
+    {
+        "label": "text-purple-50",
+        "value": "tsz-text-purple-50"
+    },
+    {
+        "label": "text-purple-100",
+        "value": "tsz-text-purple-100"
+    },
+    {
+        "label": "text-purple-200",
+        "value": "tsz-text-purple-200"
+    },
+    {
+        "label": "text-purple-300",
+        "value": "tsz-text-purple-300"
+    },
+    {
+        "label": "text-purple-400",
+        "value": "tsz-text-purple-400"
+    },
+    {
+        "label": "text-purple-500",
+        "value": "tsz-text-purple-500"
+    },
+    {
+        "label": "text-purple-600",
+        "value": "tsz-text-purple-600"
+    },
+    {
+        "label": "text-purple-700",
+        "value": "tsz-text-purple-700"
+    },
+    {
+        "label": "text-purple-800",
+        "value": "tsz-text-purple-800"
+    },
+    {
+        "label": "text-purple-900",
+        "value": "tsz-text-purple-900"
+    },
+    {
+        "label": "text-purple-950",
+        "value": "tsz-text-purple-950"
+    },
+    {
+        "label": "text-fuchsia-50",
+        "value": "tsz-text-fuchsia-50"
+    },
+    {
+        "label": "text-fuchsia-100",
+        "value": "tsz-text-fuchsia-100"
+    },
+    {
+        "label": "text-fuchsia-200",
+        "value": "tsz-text-fuchsia-200"
+    },
+    {
+        "label": "text-fuchsia-300",
+        "value": "tsz-text-fuchsia-300"
+    },
+    {
+        "label": "text-fuchsia-400",
+        "value": "tsz-text-fuchsia-400"
+    },
+    {
+        "label": "text-fuchsia-500",
+        "value": "tsz-text-fuchsia-500"
+    },
+    {
+        "label": "text-fuchsia-600",
+        "value": "tsz-text-fuchsia-600"
+    },
+    {
+        "label": "text-fuchsia-700",
+        "value": "tsz-text-fuchsia-700"
+    },
+    {
+        "label": "text-fuchsia-800",
+        "value": "tsz-text-fuchsia-800"
+    },
+    {
+        "label": "text-fuchsia-900",
+        "value": "tsz-text-fuchsia-900"
+    },
+    {
+        "label": "text-fuchsia-950",
+        "value": "tsz-text-fuchsia-950"
+    },
+    {
+        "label": "text-pink-50",
+        "value": "tsz-text-pink-50"
+    },
+    {
+        "label": "text-pink-100",
+        "value": "tsz-text-pink-100"
+    },
+    {
+        "label": "text-pink-200",
+        "value": "tsz-text-pink-200"
+    },
+    {
+        "label": "text-pink-300",
+        "value": "tsz-text-pink-300"
+    },
+    {
+        "label": "text-pink-400",
+        "value": "tsz-text-pink-400"
+    },
+    {
+        "label": "text-pink-500",
+        "value": "tsz-text-pink-500"
+    },
+    {
+        "label": "text-pink-600",
+        "value": "tsz-text-pink-600"
+    },
+    {
+        "label": "text-pink-700",
+        "value": "tsz-text-pink-700"
+    },
+    {
+        "label": "text-pink-800",
+        "value": "tsz-text-pink-800"
+    },
+    {
+        "label": "text-pink-900",
+        "value": "tsz-text-pink-900"
+    },
+    {
+        "label": "text-pink-950",
+        "value": "tsz-text-pink-950"
+    },
+    {
+        "label": "text-rose-50",
+        "value": "tsz-text-rose-50"
+    },
+    {
+        "label": "text-rose-100",
+        "value": "tsz-text-rose-100"
+    },
+    {
+        "label": "text-rose-200",
+        "value": "tsz-text-rose-200"
+    },
+    {
+        "label": "text-rose-300",
+        "value": "tsz-text-rose-300"
+    },
+    {
+        "label": "text-rose-400",
+        "value": "tsz-text-rose-400"
+    },
+    {
+        "label": "text-rose-500",
+        "value": "tsz-text-rose-500"
+    },
+    {
+        "label": "text-rose-600",
+        "value": "tsz-text-rose-600"
+    },
+    {
+        "label": "text-rose-700",
+        "value": "tsz-text-rose-700"
+    },
+    {
+        "label": "text-rose-800",
+        "value": "tsz-text-rose-800"
+    },
+    {
+        "label": "text-rose-900",
+        "value": "tsz-text-rose-900"
+    },
+    {
+        "label": "text-rose-950",
+        "value": "tsz-text-rose-950"
+    }
+]

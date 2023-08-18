@@ -153,6 +153,7 @@ class applicationsTableSeeder extends Seeder
                 'name' => 'Main',
                 'display_name' => 'Main Application',
                 'unique_identity' => uniqid(),
+                'active_vye' => null,
                 'type' => 'main',
                 'space_id' => $space->id,
             ]);

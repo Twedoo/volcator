@@ -1,0 +1,978 @@
+[
+    {
+        "label": "bg-black",
+        "value": "background-color: rgb(0 0 0)"
+    },
+    {
+        "label": "bg-white",
+        "value": "background-color: rgb(255 255 255)"
+    },
+    {
+        "label": "bg-slate-50",
+        "value": "background-color: rgb(248 250 252)"
+    },
+    {
+        "label": "bg-slate-100",
+        "value": "background-color: rgb(241 245 249)"
+    },
+    {
+        "label": "bg-slate-200",
+        "value": "background-color: rgb(226 232 240)"
+    },
+    {
+        "label": "bg-slate-300",
+        "value": "background-color: rgb(203 213 225)"
+    },
+    {
+        "label": "bg-slate-400",
+        "value": "background-color: rgb(148 163 184)"
+    },
+    {
+        "label": "bg-slate-500",
+        "value": "background-color: rgb(100 116 139)"
+    },
+    {
+        "label": "bg-slate-600",
+        "value": "background-color: rgb(71 85 105)"
+    },
+    {
+        "label": "bg-slate-700",
+        "value": "background-color: rgb(51 65 85)"
+    },
+    {
+        "label": "bg-slate-800",
+        "value": "background-color: rgb(30 41 59)"
+    },
+    {
+        "label": "bg-slate-900",
+        "value": "background-color: rgb(15 23 42)"
+    },
+    {
+        "label": "bg-slate-950",
+        "value": "background-color: rgb(2 6 23)"
+    },
+    {
+        "label": "bg-gray-50",
+        "value": "background-color: rgb(249 250 251)"
+    },
+    {
+        "label": "bg-gray-100",
+        "value": "background-color: rgb(243 244 246)"
+    },
+    {
+        "label": "bg-gray-200",
+        "value": "background-color: rgb(229 231 235)"
+    },
+    {
+        "label": "bg-gray-300",
+        "value": "background-color: rgb(209 213 219)"
+    },
+    {
+        "label": "bg-gray-400",
+        "value": "background-color: rgb(156 163 175)"
+    },
+    {
+        "label": "bg-gray-500",
+        "value": "background-color: rgb(107 114 128)"
+    },
+    {
+        "label": "bg-gray-600",
+        "value": "background-color: rgb(75 85 99)"
+    },
+    {
+        "label": "bg-gray-700",
+        "value": "background-color: rgb(55 65 81)"
+    },
+    {
+        "label": "bg-gray-800",
+        "value": "background-color: rgb(31 41 55)"
+    },
+    {
+        "label": "bg-gray-900",
+        "value": "background-color: rgb(17 24 39)"
+    },
+    {
+        "label": "bg-gray-950",
+        "value": "background-color: rgb(3 7 18)"
+    },
+    {
+        "label": "bg-zinc-50",
+        "value": "background-color: rgb(250 250 250)"
+    },
+    {
+        "label": "bg-zinc-100",
+        "value": "background-color: rgb(244 244 245)"
+    },
+    {
+        "label": "bg-zinc-200",
+        "value": "background-color: rgb(228 228 231)"
+    },
+    {
+        "label": "bg-zinc-300",
+        "value": "background-color: rgb(212 212 216)"
+    },
+    {
+        "label": "bg-zinc-400",
+        "value": "background-color: rgb(161 161 170)"
+    },
+    {
+        "label": "bg-zinc-500",
+        "value": "background-color: rgb(113 113 122)"
+    },
+    {
+        "label": "bg-zinc-600",
+        "value": "background-color: rgb(82 82 91)"
+    },
+    {
+        "label": "bg-zinc-700",
+        "value": "background-color: rgb(63 63 70)"
+    },
+    {
+        "label": "bg-zinc-800",
+        "value": "background-color: rgb(39 39 42)"
+    },
+    {
+        "label": "bg-zinc-900",
+        "value": "background-color: rgb(24 24 27)"
+    },
+    {
+        "label": "bg-zinc-950",
+        "value": "background-color: rgb(9 9 11)"
+    },
+    {
+        "label": "bg-neutral-50",
+        "value": "background-color: rgb(250 250 250)"
+    },
+    {
+        "label": "bg-neutral-100",
+        "value": "background-color: rgb(245 245 245)"
+    },
+    {
+        "label": "bg-neutral-200",
+        "value": "background-color: rgb(229 229 229)"
+    },
+    {
+        "label": "bg-neutral-300",
+        "value": "background-color: rgb(212 212 212)"
+    },
+    {
+        "label": "bg-neutral-400",
+        "value": "background-color: rgb(163 163 163)"
+    },
+    {
+        "label": "bg-neutral-500",
+        "value": "background-color: rgb(115 115 115)"
+    },
+    {
+        "label": "bg-neutral-600",
+        "value": "background-color: rgb(82 82 82)"
+    },
+    {
+        "label": "bg-neutral-700",
+        "value": "background-color: rgb(64 64 64)"
+    },
+    {
+        "label": "bg-neutral-800",
+        "value": "background-color: rgb(38 38 38)"
+    },
+    {
+        "label": "bg-neutral-900",
+        "value": "background-color: rgb(23 23 23)"
+    },
+    {
+        "label": "bg-neutral-950",
+        "value": "background-color: rgb(10 10 10)"
+    },
+    {
+        "label": "bg-stone-50",
+        "value": "background-color: rgb(250 250 249)"
+    },
+    {
+        "label": "bg-stone-100",
+        "value": "background-color: rgb(245 245 244)"
+    },
+    {
+        "label": "bg-stone-200",
+        "value": "background-color: rgb(231 229 228)"
+    },
+    {
+        "label": "bg-stone-300",
+        "value": "background-color: rgb(214 211 209)"
+    },
+    {
+        "label": "bg-stone-400",
+        "value": "background-color: rgb(168 162 158)"
+    },
+    {
+        "label": "bg-stone-500",
+        "value": "background-color: rgb(120 113 108)"
+    },
+    {
+        "label": "bg-stone-600",
+        "value": "background-color: rgb(87 83 78)"
+    },
+    {
+        "label": "bg-stone-700",
+        "value": "background-color: rgb(68 64 60)"
+    },
+    {
+        "label": "bg-stone-800",
+        "value": "background-color: rgb(41 37 36)"
+    },
+    {
+        "label": "bg-stone-900",
+        "value": "background-color: rgb(28 25 23)"
+    },
+    {
+        "label": "bg-stone-950",
+        "value": "background-color: rgb(12 10 9)"
+    },
+    {
+        "label": "bg-red-50",
+        "value": "background-color: rgb(254 242 242)"
+    },
+    {
+        "label": "bg-red-100",
+        "value": "background-color: rgb(254 226 226)"
+    },
+    {
+        "label": "bg-red-200",
+        "value": "background-color: rgb(254 202 202)"
+    },
+    {
+        "label": "bg-red-300",
+        "value": "background-color: rgb(252 165 165)"
+    },
+    {
+        "label": "bg-red-400",
+        "value": "background-color: rgb(248 113 113)"
+    },
+    {
+        "label": "bg-red-500",
+        "value": "background-color: rgb(239 68 68)"
+    },
+    {
+        "label": "bg-red-600",
+        "value": "background-color: rgb(220 38 38)"
+    },
+    {
+        "label": "bg-red-700",
+        "value": "background-color: rgb(185 28 28)"
+    },
+    {
+        "label": "bg-red-800",
+        "value": "background-color: rgb(153 27 27)"
+    },
+    {
+        "label": "bg-red-900",
+        "value": "background-color: rgb(127 29 29)"
+    },
+    {
+        "label": "bg-red-950",
+        "value": "background-color: rgb(69 10 10)"
+    },
+    {
+        "label": "bg-orange-50",
+        "value": "background-color: rgb(255 247 237)"
+    },
+    {
+        "label": "bg-orange-100",
+        "value": "background-color: rgb(255 237 213)"
+    },
+    {
+        "label": "bg-orange-200",
+        "value": "background-color: rgb(254 215 170)"
+    },
+    {
+        "label": "bg-orange-300",
+        "value": "background-color: rgb(253 186 116)"
+    },
+    {
+        "label": "bg-orange-400",
+        "value": "background-color: rgb(251 146 60)"
+    },
+    {
+        "label": "bg-orange-500",
+        "value": "background-color: rgb(249 115 22)"
+    },
+    {
+        "label": "bg-orange-600",
+        "value": "background-color: rgb(234 88 12)"
+    },
+    {
+        "label": "bg-orange-700",
+        "value": "background-color: rgb(194 65 12)"
+    },
+    {
+        "label": "bg-orange-800",
+        "value": "background-color: rgb(154 52 18)"
+    },
+    {
+        "label": "bg-orange-900",
+        "value": "background-color: rgb(124 45 18)"
+    },
+    {
+        "label": "bg-orange-950",
+        "value": "background-color: rgb(67 20 7)"
+    },
+    {
+        "label": "bg-amber-50",
+        "value": "background-color: rgb(255 251 235)"
+    },
+    {
+        "label": "bg-amber-100",
+        "value": "background-color: rgb(254 243 199)"
+    },
+    {
+        "label": "bg-amber-200",
+        "value": "background-color: rgb(253 230 138)"
+    },
+    {
+        "label": "bg-amber-300",
+        "value": "background-color: rgb(252 211 77)"
+    },
+    {
+        "label": "bg-amber-400",
+        "value": "background-color: rgb(251 191 36)"
+    },
+    {
+        "label": "bg-amber-500",
+        "value": "background-color: rgb(245 158 11)"
+    },
+    {
+        "label": "bg-amber-600",
+        "value": "background-color: rgb(217 119 6)"
+    },
+    {
+        "label": "bg-amber-700",
+        "value": "background-color: rgb(180 83 9)"
+    },
+    {
+        "label": "bg-amber-800",
+        "value": "background-color: rgb(146 64 14)"
+    },
+    {
+        "label": "bg-amber-900",
+        "value": "background-color: rgb(120 53 15)"
+    },
+    {
+        "label": "bg-amber-950",
+        "value": "background-color: rgb(69 26 3)"
+    },
+    {
+        "label": "bg-yellow-50",
+        "value": "background-color: rgb(254 252 232)"
+    },
+    {
+        "label": "bg-yellow-100",
+        "value": "background-color: rgb(254 249 195)"
+    },
+    {
+        "label": "bg-yellow-200",
+        "value": "background-color: rgb(254 240 138)"
+    },
+    {
+        "label": "bg-yellow-300",
+        "value": "background-color: rgb(253 224 71)"
+    },
+    {
+        "label": "bg-yellow-400",
+        "value": "background-color: rgb(250 204 21)"
+    },
+    {
+        "label": "bg-yellow-500",
+        "value": "background-color: rgb(234 179 8)"
+    },
+    {
+        "label": "bg-yellow-600",
+        "value": "background-color: rgb(202 138 4)"
+    },
+    {
+        "label": "bg-yellow-700",
+        "value": "background-color: rgb(161 98 7)"
+    },
+    {
+        "label": "bg-yellow-800",
+        "value": "background-color: rgb(133 77 14)"
+    },
+    {
+        "label": "bg-yellow-900",
+        "value": "background-color: rgb(113 63 18)"
+    },
+    {
+        "label": "bg-yellow-950",
+        "value": "background-color: rgb(66 32 6)"
+    },
+    {
+        "label": "bg-lime-50",
+        "value": "background-color: rgb(247 254 231)"
+    },
+    {
+        "label": "bg-lime-100",
+        "value": "background-color: rgb(236 252 203)"
+    },
+    {
+        "label": "bg-lime-200",
+        "value": "background-color: rgb(217 249 157)"
+    },
+    {
+        "label": "bg-lime-300",
+        "value": "background-color: rgb(190 242 100)"
+    },
+    {
+        "label": "bg-lime-400",
+        "value": "background-color: rgb(163 230 53)"
+    },
+    {
+        "label": "bg-lime-500",
+        "value": "background-color: rgb(132 204 22)"
+    },
+    {
+        "label": "bg-lime-600",
+        "value": "background-color: rgb(101 163 13)"
+    },
+    {
+        "label": "bg-lime-700",
+        "value": "background-color: rgb(77 124 15)"
+    },
+    {
+        "label": "bg-lime-800",
+        "value": "background-color: rgb(63 98 18)"
+    },
+    {
+        "label": "bg-lime-900",
+        "value": "background-color: rgb(54 83 20)"
+    },
+    {
+        "label": "bg-lime-950",
+        "value": "background-color: rgb(26 46 5)"
+    },
+    {
+        "label": "bg-green-50",
+        "value": "background-color: rgb(240 253 244)"
+    },
+    {
+        "label": "bg-green-100",
+        "value": "background-color: rgb(220 252 231)"
+    },
+    {
+        "label": "bg-green-200",
+        "value": "background-color: rgb(187 247 208)"
+    },
+    {
+        "label": "bg-green-300",
+        "value": "background-color: rgb(134 239 172)"
+    },
+    {
+        "label": "bg-green-400",
+        "value": "background-color: rgb(74 222 128)"
+    },
+    {
+        "label": "bg-green-500",
+        "value": "background-color: rgb(34 197 94)"
+    },
+    {
+        "label": "bg-green-600",
+        "value": "background-color: rgb(22 163 74)"
+    },
+    {
+        "label": "bg-green-700",
+        "value": "background-color: rgb(21 128 61)"
+    },
+    {
+        "label": "bg-green-800",
+        "value": "background-color: rgb(22 101 52)"
+    },
+    {
+        "label": "bg-green-900",
+        "value": "background-color: rgb(20 83 45)"
+    },
+    {
+        "label": "bg-green-950",
+        "value": "background-color: rgb(5 46 22)"
+    },
+    {
+        "label": "bg-emerald-50",
+        "value": "background-color: rgb(236 253 245)"
+    },
+    {
+        "label": "bg-emerald-100",
+        "value": "background-color: rgb(209 250 229)"
+    },
+    {
+        "label": "bg-emerald-200",
+        "value": "background-color: rgb(167 243 208)"
+    },
+    {
+        "label": "bg-emerald-300",
+        "value": "background-color: rgb(110 231 183)"
+    },
+    {
+        "label": "bg-emerald-400",
+        "value": "background-color: rgb(52 211 153)"
+    },
+    {
+        "label": "bg-emerald-500",
+        "value": "background-color: rgb(16 185 129)"
+    },
+    {
+        "label": "bg-emerald-600",
+        "value": "background-color: rgb(5 150 105)"
+    },
+    {
+        "label": "bg-emerald-700",
+        "value": "background-color: rgb(4 120 87)"
+    },
+    {
+        "label": "bg-emerald-800",
+        "value": "background-color: rgb(6 95 70)"
+    },
+    {
+        "label": "bg-emerald-900",
+        "value": "background-color: rgb(6 78 59)"
+    },
+    {
+        "label": "bg-emerald-950",
+        "value": "background-color: rgb(2 44 34)"
+    },
+    {
+        "label": "bg-teal-50",
+        "value": "background-color: rgb(240 253 250)"
+    },
+    {
+        "label": "bg-teal-100",
+        "value": "background-color: rgb(204 251 241)"
+    },
+    {
+        "label": "bg-teal-200",
+        "value": "background-color: rgb(153 246 228)"
+    },
+    {
+        "label": "bg-teal-300",
+        "value": "background-color: rgb(94 234 212)"
+    },
+    {
+        "label": "bg-teal-400",
+        "value": "background-color: rgb(45 212 191)"
+    },
+    {
+        "label": "bg-teal-500",
+        "value": "background-color: rgb(20 184 166)"
+    },
+    {
+        "label": "bg-teal-600",
+        "value": "background-color: rgb(13 148 136)"
+    },
+    {
+        "label": "bg-teal-700",
+        "value": "background-color: rgb(15 118 110)"
+    },
+    {
+        "label": "bg-teal-800",
+        "value": "background-color: rgb(17 94 89)"
+    },
+    {
+        "label": "bg-teal-900",
+        "value": "background-color: rgb(19 78 74)"
+    },
+    {
+        "label": "bg-teal-950",
+        "value": "background-color: rgb(4 47 46)"
+    },
+    {
+        "label": "bg-cyan-50",
+        "value": "background-color: rgb(236 254 255)"
+    },
+    {
+        "label": "bg-cyan-100",
+        "value": "background-color: rgb(207 250 254)"
+    },
+    {
+        "label": "bg-cyan-200",
+        "value": "background-color: rgb(165 243 252)"
+    },
+    {
+        "label": "bg-cyan-300",
+        "value": "background-color: rgb(103 232 249)"
+    },
+    {
+        "label": "bg-cyan-400",
+        "value": "background-color: rgb(34 211 238)"
+    },
+    {
+        "label": "bg-cyan-500",
+        "value": "background-color: rgb(6 182 212)"
+    },
+    {
+        "label": "bg-cyan-600",
+        "value": "background-color: rgb(8 145 178)"
+    },
+    {
+        "label": "bg-cyan-700",
+        "value": "background-color: rgb(14 116 144)"
+    },
+    {
+        "label": "bg-cyan-800",
+        "value": "background-color: rgb(21 94 117)"
+    },
+    {
+        "label": "bg-cyan-900",
+        "value": "background-color: rgb(22 78 99)"
+    },
+    {
+        "label": "bg-cyan-950",
+        "value": "background-color: rgb(8 51 68)"
+    },
+    {
+        "label": "bg-sky-50",
+        "value": "background-color: rgb(240 249 255)"
+    },
+    {
+        "label": "bg-sky-100",
+        "value": "background-color: rgb(224 242 254)"
+    },
+    {
+        "label": "bg-sky-200",
+        "value": "background-color: rgb(186 230 253)"
+    },
+    {
+        "label": "bg-sky-300",
+        "value": "background-color: rgb(125 211 252)"
+    },
+    {
+        "label": "bg-sky-400",
+        "value": "background-color: rgb(56 189 248)"
+    },
+    {
+        "label": "bg-sky-500",
+        "value": "background-color: rgb(14 165 233)"
+    },
+    {
+        "label": "bg-sky-600",
+        "value": "background-color: rgb(2 132 199)"
+    },
+    {
+        "label": "bg-sky-700",
+        "value": "background-color: rgb(3 105 161)"
+    },
+    {
+        "label": "bg-sky-800",
+        "value": "background-color: rgb(7 89 133)"
+    },
+    {
+        "label": "bg-sky-900",
+        "value": "background-color: rgb(12 74 110)"
+    },
+    {
+        "label": "bg-sky-950",
+        "value": "background-color: rgb(8 47 73)"
+    },
+    {
+        "label": "bg-blue-50",
+        "value": "background-color: rgb(239 246 255)"
+    },
+    {
+        "label": "bg-blue-100",
+        "value": "background-color: rgb(219 234 254)"
+    },
+    {
+        "label": "bg-blue-200",
+        "value": "background-color: rgb(191 219 254)"
+    },
+    {
+        "label": "bg-blue-300",
+        "value": "background-color: rgb(147 197 253)"
+    },
+    {
+        "label": "bg-blue-400",
+        "value": "background-color: rgb(96 165 250)"
+    },
+    {
+        "label": "bg-blue-500",
+        "value": "background-color: rgb(59 130 246)"
+    },
+    {
+        "label": "bg-blue-600",
+        "value": "background-color: rgb(37 99 235)"
+    },
+    {
+        "label": "bg-blue-700",
+        "value": "background-color: rgb(29 78 216)"
+    },
+    {
+        "label": "bg-blue-800",
+        "value": "background-color: rgb(30 64 175)"
+    },
+    {
+        "label": "bg-blue-900",
+        "value": "background-color: rgb(30 58 138)"
+    },
+    {
+        "label": "bg-blue-950",
+        "value": "background-color: rgb(23 37 84)"
+    },
+    {
+        "label": "bg-indigo-50",
+        "value": "background-color: rgb(238 242 255)"
+    },
+    {
+        "label": "bg-indigo-100",
+        "value": "background-color: rgb(224 231 255)"
+    },
+    {
+        "label": "bg-indigo-200",
+        "value": "background-color: rgb(199 210 254)"
+    },
+    {
+        "label": "bg-indigo-300",
+        "value": "background-color: rgb(165 180 252)"
+    },
+    {
+        "label": "bg-indigo-400",
+        "value": "background-color: rgb(129 140 248)"
+    },
+    {
+        "label": "bg-indigo-500",
+        "value": "background-color: rgb(99 102 241)"
+    },
+    {
+        "label": "bg-indigo-600",
+        "value": "background-color: rgb(79 70 229)"
+    },
+    {
+        "label": "bg-indigo-700",
+        "value": "background-color: rgb(67 56 202)"
+    },
+    {
+        "label": "bg-indigo-800",
+        "value": "background-color: rgb(55 48 163)"
+    },
+    {
+        "label": "bg-indigo-900",
+        "value": "background-color: rgb(49 46 129)"
+    },
+    {
+        "label": "bg-indigo-950",
+        "value": "background-color: rgb(30 27 75)"
+    },
+    {
+        "label": "bg-violet-50",
+        "value": "background-color: rgb(245 243 255)"
+    },
+    {
+        "label": "bg-violet-100",
+        "value": "background-color: rgb(237 233 254)"
+    },
+    {
+        "label": "bg-violet-200",
+        "value": "background-color: rgb(221 214 254)"
+    },
+    {
+        "label": "bg-violet-300",
+        "value": "background-color: rgb(196 181 253)"
+    },
+    {
+        "label": "bg-violet-400",
+        "value": "background-color: rgb(167 139 250)"
+    },
+    {
+        "label": "bg-violet-500",
+        "value": "background-color: rgb(139 92 246)"
+    },
+    {
+        "label": "bg-violet-600",
+        "value": "background-color: rgb(124 58 237)"
+    },
+    {
+        "label": "bg-violet-700",
+        "value": "background-color: rgb(109 40 217)"
+    },
+    {
+        "label": "bg-violet-800",
+        "value": "background-color: rgb(91 33 182)"
+    },
+    {
+        "label": "bg-violet-900",
+        "value": "background-color: rgb(76 29 149)"
+    },
+    {
+        "label": "bg-violet-950",
+        "value": "background-color: rgb(46 16 101)"
+    },
+    {
+        "label": "bg-purple-50",
+        "value": "background-color: rgb(250 245 255)"
+    },
+    {
+        "label": "bg-purple-100",
+        "value": "background-color: rgb(243 232 255)"
+    },
+    {
+        "label": "bg-purple-200",
+        "value": "background-color: rgb(233 213 255)"
+    },
+    {
+        "label": "bg-purple-300",
+        "value": "background-color: rgb(216 180 254)"
+    },
+    {
+        "label": "bg-purple-400",
+        "value": "background-color: rgb(192 132 252)"
+    },
+    {
+        "label": "bg-purple-500",
+        "value": "background-color: rgb(168 85 247)"
+    },
+    {
+        "label": "bg-purple-600",
+        "value": "background-color: rgb(147 51 234)"
+    },
+    {
+        "label": "bg-purple-700",
+        "value": "background-color: rgb(126 34 206)"
+    },
+    {
+        "label": "bg-purple-800",
+        "value": "background-color: rgb(107 33 168)"
+    },
+    {
+        "label": "bg-purple-900",
+        "value": "background-color: rgb(88 28 135)"
+    },
+    {
+        "label": "bg-purple-950",
+        "value": "background-color: rgb(59 7 100)"
+    },
+    {
+        "label": "bg-fuchsia-50",
+        "value": "background-color: rgb(253 244 255)"
+    },
+    {
+        "label": "bg-fuchsia-100",
+        "value": "background-color: rgb(250 232 255)"
+    },
+    {
+        "label": "bg-fuchsia-200",
+        "value": "background-color: rgb(245 208 254)"
+    },
+    {
+        "label": "bg-fuchsia-300",
+        "value": "background-color: rgb(240 171 252)"
+    },
+    {
+        "label": "bg-fuchsia-400",
+        "value": "background-color: rgb(232 121 249)"
+    },
+    {
+        "label": "bg-fuchsia-500",
+        "value": "background-color: rgb(217 70 239)"
+    },
+    {
+        "label": "bg-fuchsia-600",
+        "value": "background-color: rgb(192 38 211)"
+    },
+    {
+        "label": "bg-fuchsia-700",
+        "value": "background-color: rgb(162 28 175)"
+    },
+    {
+        "label": "bg-fuchsia-800",
+        "value": "background-color: rgb(134 25 143)"
+    },
+    {
+        "label": "bg-fuchsia-900",
+        "value": "background-color: rgb(112 26 117)"
+    },
+    {
+        "label": "bg-fuchsia-950",
+        "value": "background-color: rgb(74 4 78)"
+    },
+    {
+        "label": "bg-pink-50",
+        "value": "background-color: rgb(253 242 248)"
+    },
+    {
+        "label": "bg-pink-100",
+        "value": "background-color: rgb(252 231 243)"
+    },
+    {
+        "label": "bg-pink-200",
+        "value": "background-color: rgb(251 207 232)"
+    },
+    {
+        "label": "bg-pink-300",
+        "value": "background-color: rgb(249 168 212)"
+    },
+    {
+        "label": "bg-pink-400",
+        "value": "background-color: rgb(244 114 182)"
+    },
+    {
+        "label": "bg-pink-500",
+        "value": "background-color: rgb(236 72 153)"
+    },
+    {
+        "label": "bg-pink-600",
+        "value": "background-color: rgb(219 39 119)"
+    },
+    {
+        "label": "bg-pink-700",
+        "value": "background-color: rgb(190 24 93)"
+    },
+    {
+        "label": "bg-pink-800",
+        "value": "background-color: rgb(157 23 77)"
+    },
+    {
+        "label": "bg-pink-900",
+        "value": "background-color: rgb(131 24 67)"
+    },
+    {
+        "label": "bg-pink-950",
+        "value": "background-color: rgb(80 7 36)"
+    },
+    {
+        "label": "bg-rose-50",
+        "value": "background-color: rgb(255 241 242)"
+    },
+    {
+        "label": "bg-rose-100",
+        "value": "background-color: rgb(255 228 230)"
+    },
+    {
+        "label": "bg-rose-200",
+        "value": "background-color: rgb(254 205 211)"
+    },
+    {
+        "label": "bg-rose-300",
+        "value": "background-color: rgb(253 164 175)"
+    },
+    {
+        "label": "bg-rose-400",
+        "value": "background-color: rgb(251 113 133)"
+    },
+    {
+        "label": "bg-rose-500",
+        "value": "background-color: rgb(244 63 94)"
+    },
+    {
+        "label": "bg-rose-600",
+        "value": "background-color: rgb(225 29 72)"
+    },
+    {
+        "label": "bg-rose-700",
+        "value": "background-color: rgb(190 18 60)"
+    },
+    {
+        "label": "bg-rose-800",
+        "value": "background-color: rgb(159 18 57)"
+    },
+    {
+        "label": "bg-rose-900",
+        "value": "background-color: rgb(136 19 55)"
+    },
+    {
+        "label": "bg-rose-950",
+        "value": "background-color: rgb(76 5 25)"
+    }
+]
