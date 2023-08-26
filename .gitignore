@@ -23,3 +23,27 @@ Thumbs.db
 /node_modules
 node_modules
 
+src/Modules/Vye/Views/Vue
+src/Modules/Vye/.env*
+src/Modules/Vye/.eslintignore
+src/Modules/Vye/.eslintrc.js
+src/Modules/Vye/.lintstagedrc.js
+src/Modules/Vye/.prettierignore
+src/Modules/Vye/.prettierrc.json
+src/Modules/Vye/.stylelintrc.js
+src/Modules/Vye/docker-compose.yaml
+src/Modules/Vye/docker-compose.yml
+src/Modules/Vye/index.html
+src/Modules/Vye/package.json
+src/Modules/Vye/postcss.config.js
+src/Modules/Vye/README.md
+src/Modules/Vye/start-dev.sh
+src/Modules/Vye/stats.html
+src/Modules/Vye/tailwind.ide.config.js
+src/Modules/Vye/tailwind.stone.config.js
+src/Modules/Vye/vite.config.js
+src/Modules/Vye/vite-dev.config.js
+src/Modules/Vye/vite-lib.config.js
+src/Modules/Vye/vite-lib-render.config.js
+src/Modules/Vye/yarn.lock
+src/Modules/Vye/yarn-error.log
