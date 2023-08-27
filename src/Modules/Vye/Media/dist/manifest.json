@@ -1,0 +1,19 @@
+{
+  "Views/Vue/index.html": {
+    "file": "app.js",
+    "src": "Views/Vue/index.html",
+    "isEntry": true,
+    "imports": [
+      "_vendor.fd202402.js"
+    ],
+    "css": [
+      "assets/main.65dc7e33.css"
+    ]
+  },
+  "_vendor.fd202402.js": {
+    "file": "assets/vendor.fd202402.js",
+    "css": [
+      "assets/vendor.64c7b29f.css"
+    ]
+  }
+}

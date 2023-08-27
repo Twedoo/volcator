@@ -1,7 +1,0 @@
-services:
-  backend:
-    image: "node:latest"
-    user: "root"
-    tty: true
-    volumes:
-      - "./:/app"
