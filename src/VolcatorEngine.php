@@ -370,7 +370,10 @@ class VolcatorEngine
         if (strpos($getPath, app('urlBack')) !== false) {
             $nameModelClass = explode(app('urlBack') . '/', $getPath);
             if ($nameModelClass[1]) {
-                $menu = Menuback::where('route_link', strtolower($nameModelClass[1]))->first()->route_link;
+                $query = Menuback::where('route_link', strtolower($nameModelClass[1]))->first();
+                if ($query) {
+                    $menu = $query->route_link;
+                }
             }
             $routeModule = $menu ? $menu : null;
         }
