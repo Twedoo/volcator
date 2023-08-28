@@ -40,4 +40,9 @@ class Vye extends Controller
     {
         return view('Vye::Builder.builder');
     }
+
+    public function preview($application = null)
+    {
+        return view('Vye::Builder.preview');
+    }
 }

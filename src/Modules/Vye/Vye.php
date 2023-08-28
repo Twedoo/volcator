@@ -38,9 +38,12 @@ class Vye extends VolcatorStructure
      */
     public function js()
     {
+        //        if (str_contains(self::route(), 'builder') && str_contains(self::route(), 'vye')) {
+//            // Faites quelque chose si la route contient à la fois 'builder' et 'vye'
+//        } preg_match('builder/vye/preview', self::route())
         $js = null;
-        $jsModule['module-1'] = self::route() == 'builder/vye' ? 'dist/app.js' : '';
-        $jsModule['module-2'] = self::route() == 'builder/vye' ?
+        $jsModule['module-1'] = self::route() == 'builder/vye' || self::route() == null ? 'dist/app.js' : '';
+        $jsModule['module-2'] = self::route() == 'builder/vye' || self::route() == null ?
             preg_filter('/^/', 'dist/assets/', preg_grep('~\.(js)$~', scandir(__DIR__ . "/Media/dist/assets/")))
             : '';
         $jsModule = array_merge((array)$jsModule['module-1'], $jsModule['module-2']);
@@ -70,7 +73,7 @@ class Vye extends VolcatorStructure
 //
 //            }
 //        }
-        $css = self::route() == 'builder/vye' ? preg_filter('/^/', 'dist/assets/', preg_grep('~\.(css)$~', scandir(__DIR__ . "/Media/dist/assets/"))) : '';
+        $css = self::route() == 'builder/vye' || self::route() == null ? preg_filter('/^/', 'dist/assets/', preg_grep('~\.(css)$~', scandir(__DIR__ . "/Media/dist/assets/"))) : '';
 
         return $css;
     }
