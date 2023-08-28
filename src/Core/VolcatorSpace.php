@@ -97,6 +97,7 @@ class VolcatorSpace
             'name' => 'Main',
             'display_name' => 'Main Application',
             'unique_identity' => uniqid(),
+            'active_vye' => null,
             'space_id' => $space->id,
             'type' => 'main',
             'created_by' => $user->name,

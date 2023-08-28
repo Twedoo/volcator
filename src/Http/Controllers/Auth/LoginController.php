@@ -43,7 +43,6 @@ class LoginController extends Controller
     {
         if (Auth::user()->type != null) {
             $token = Auth::user()->createToken('auth_token')->plainTextToken;
-//            Session::put('access_token', $token);
             Cache::put('access_token', $token);
             return redirect(app('urlBack'));
         }
@@ -62,6 +61,7 @@ class LoginController extends Controller
             return redirect('login');
         }
 
+        Session::put('access_token', null);
         if (Auth::user()->type != null) {
             $current_user = Auth::user()->id;
             $applocale = Session::get('applocale');

@@ -1,0 +1,19 @@
+{
+  "src/index.html": {
+    "file": "app.js",
+    "src": "src/index.html",
+    "isEntry": true,
+    "imports": [
+      "_vendor.878ecd27.js"
+    ],
+    "css": [
+      "assets/main.303ce666.css"
+    ]
+  },
+  "_vendor.878ecd27.js": {
+    "file": "assets/vendor.878ecd27.js",
+    "css": [
+      "assets/vendor.64c7b29f.css"
+    ]
+  }
+}

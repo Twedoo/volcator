@@ -1,0 +1,8 @@
+stone:
+  menu:
+    - name_menu: 'volcator_builder_vye'
+      route_link: 'builder/vye'
+      mb_permission: 'Permission-volcator-vye'
+    - name_menu: 'volcator_preview_vye'
+      route_link: 'builder/vye/preview'
+      mb_permission: 'Permission-volcator-vye'

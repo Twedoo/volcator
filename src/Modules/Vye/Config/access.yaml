@@ -1,0 +1,11 @@
+stone:
+  roles:
+      - name: 'Role-Volcator-Vye'
+        display_name: 'Volcator Vye'
+        description: 'Builder front website with zero code'
+        type: 'main'
+        permissions:
+
+          - name: 'Permission-volcator-vye'
+            display_name: 'Access Volcator Vye'
+            description: 'Permission Builder Volcator Vye'

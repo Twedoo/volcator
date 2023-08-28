@@ -34,6 +34,9 @@ class LoginSuccessful
     public function handle(Login $event)
     {
         $current_user = Auth::user()->id;
+        Session::put('access_token', Cache::get('access_token', null));
+        Cache::put('access_token', null);
+
         if (Cache::has('space-'.$current_user)) {
             Session::put('space', Cache::get('space-'.$current_user));
         } else {

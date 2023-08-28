@@ -8,7 +8,7 @@ use Twedoo\VolcatorGuard\Models\User;
 class Applications extends Model
 {
     protected $fillable = [
-        'name', 'display_name', 'unique_identity', 'type', 'space_id', 'enable', 'image', 'created_by'
+        'name', 'display_name', 'unique_identity', 'active_vye', 'type', 'space_id', 'enable', 'image', 'created_by'
     ];
 
     protected $table = "applications";

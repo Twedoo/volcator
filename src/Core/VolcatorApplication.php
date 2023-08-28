@@ -330,6 +330,7 @@ class VolcatorApplication
                 'name' => request('name'),
                 'display_name' => request('display_name'),
                 'unique_identity' => uniqid(),
+                'active_vye' => null,
                 'type' => 'custom',
                 'space_id' => VolcatorSpace::getCurrentSpaceId(),
             ]);
@@ -472,6 +473,16 @@ class VolcatorApplication
     public static function isUserInCurrentApplication($user)
     {
         return Db::table('applications_user')->where('user_id', $user)->whereIn('application_id', VolcatorApplication::getCurrentApplicationId())->get()->isNotEmpty();
+    }
+
+    /**
+     * @param $user
+     * @param $current_application_core_id
+     * @return mixed
+     */
+    public static function isUserInCurrentApplicationApi($user, $current_application_core_id)
+    {
+        return Db::table('applications_user')->where('user_id', $user)->whereIn('application_id', $current_application_core_id)->get()->isNotEmpty();
     }
 
     /**
