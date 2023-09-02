@@ -38,9 +38,6 @@ class Vye extends VolcatorStructure
      */
     public function js()
     {
-        //        if (str_contains(self::route(), 'builder') && str_contains(self::route(), 'vye')) {
-//            // Faites quelque chose si la route contient à la fois 'builder' et 'vye'
-//        } preg_match('builder/vye/preview', self::route())
         $js = null;
         $jsModule['module-1'] = self::route() == 'builder/vye' || self::route() == null ? 'dist/app.js' : '';
         $jsModule['module-2'] = self::route() == 'builder/vye' || self::route() == null ?
@@ -58,34 +55,10 @@ class Vye extends VolcatorStructure
      */
     public function css()
     {
-//        $css = null;
-//        if (self::route() == 'builder/vye') {
-//            $viteCss = false;
-//            $file = __DIR__ . '/Media/dist/manifest.json';
-//            if (file_exists($file)) {
-//                $viteCss = json_decode(file_get_contents($file), true);
-//            }
-//            if ($viteCss) {
-//                foreach ($viteCss as $file) {
-//                    $css[] = $this->searchMultiArray('css', $file);
-//                }
-//                $css = preg_filter('/^/', 'dist/', call_user_func_array('array_merge', $css));
-//
-//            }
-//        }
-        $css = self::route() == 'builder/vye' || self::route() == null ? preg_filter('/^/', 'dist/assets/', preg_grep('~\.(css)$~', scandir(__DIR__ . "/Media/dist/assets/"))) : '';
-
-        return $css;
+        return self::route() == 'builder/vye' || self::route() == null ?
+            preg_filter('/^/', 'dist/assets/', preg_grep('~\.(css)$~', scandir(__DIR__ . "/Media/dist/assets/")))
+            : '';
     }
-
-//    public function searchMultiArray($val, $array) {
-//        foreach ($array as $key => $element) {
-//            if ($key == $val) {
-//                return $element;
-//            }
-//        }
-//        return null;
-//    }
 
     /**
      * @param $idModule
