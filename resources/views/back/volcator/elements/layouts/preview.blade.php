@@ -46,21 +46,14 @@
             background-color: #0c0c1b;
         }
     </style>
-    <script>
-        $(document).ready(function () {
-            $('.initial__loading').delay(200).fadeOut(400)
-        })
-    </script>
+    {!! VolcatorMediaStyle::cssMediaHookSpecificVolcator("Vye", "Twedoo\\Volcator\\") !!}
     {!! VolcatorMediaStyle::cssMediaHook() !!}
 </head>
 
 <body class="cui__layout--cardsShadow cui__menuLeft--dark cui__menuTop--dark">
 @yield('content')
 </body>
-<script>
-    $(document).ready(function(){
-        $('.dropify-picture-space').dropify();
-    });
-</script>
+{!! VolcatorMediaStyle::jsMediaHookSpecificVolcator("Vye", "Twedoo\\Volcator\\") !!}
 {!! VolcatorMediaStyle::jsMediaHook() !!}
+
 </html>
