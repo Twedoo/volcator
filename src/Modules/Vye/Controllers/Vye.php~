@@ -41,7 +41,7 @@ class Vye extends Controller
         return view('Vye::Builder.builder');
     }
 
-    public function preview($volcator_application = null, $application = null)
+    public function preview($application = null)
     {
         return view('Vye::Builder.preview');
     }
