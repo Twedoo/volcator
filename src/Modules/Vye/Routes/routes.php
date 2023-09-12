@@ -16,7 +16,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
                     'middleware' => ['permission:'. Config::get('volcator.PERMISSION_VOLCATOR_VYE')]
                 ])->where('any', '.*');
 
-            Route::get('builder/vye/preview/{application}',
+            Route::get('builder/vye/preview/{volcator_application}/{application}',
                 [
                     'as' => app('urlBack') . '.volcator.vye.preview',
                     'uses' => 'Vye@preview',
