@@ -20,10 +20,12 @@ class VolcatorRouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
         if (!$this->app->runningInConsole()) {
             if($this->app->environment('production')) {
                 URL::forceScheme('https');
             }
+
 
             $segment_one = Request()->segment(1);
             $segment_two = Request()->segment(2);
@@ -38,8 +40,14 @@ class VolcatorRouteServiceProvider extends ServiceProvider
             if ($segment_one == config()["params"]["TW_APP_BACK_PREFIX"] || 'invite/'.config()["params"]["TW_APP_BACK_PREFIX"] == $segment_one.'/'.$segment_two) {
                 $path =   '../resources/views/back/' . config()["params"]["TW_APP_TEMPLATE_BACK"];
             } else {
-                $path =   'resources/views/front/' . config()["params"]["TW_APP_TEMPLATE_FRONT"];
+                /** comment this route in file routes/web.php
+                 * Route::get('/', function () {
+                 *    return view('welcome');
+                 * });
+                 */
+                $path =   '../resources/views/front/' . config()["params"]["TW_APP_TEMPLATE_FRONT"];
             }
+
             view()->addLocation($path);
 
             $singletonConfig = [
