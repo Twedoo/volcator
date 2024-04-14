@@ -11,7 +11,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return 'To do : Front !';
+//        return 'To do : Front !';
         return view('elements.home.index');
     }
 }
