@@ -68,7 +68,7 @@ class VolcatorServiceProvider extends ServiceProvider
         ], 'volcator-config');
 
         $this->publishes([
-            __DIR__.'/../resources/views/back' => resource_path('views/back'),
+            __DIR__.'/../resources/views' => resource_path('views'),
         ], 'volcator-views');
 
         $this->publishes([
