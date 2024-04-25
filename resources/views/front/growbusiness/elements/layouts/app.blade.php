@@ -5,11 +5,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $metaTitle }}</title>
-    <meta name="keywords" content="{{ $metaKeywords }}">
-    <meta name="description" content="{{ $metaDescription }}">
+    <title>{{ $page_data->base_meta_title }} | PrestAIs</title>
+    <meta name="keywords" content="{{ $page_data->base_meta_keywords }}">
+    <meta name="description" content="{{ $page_data->base_meta_description }}">
     <meta name="author" content="Prestais">
 
+    <script src="{{ asset(app('front').'/assets/js/jquery/dist/jquery.min.js') }}"></script>
     <link rel="shortcut icon" href="{{ asset(app('front').'/assets/img/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset(app('front').'/assets/css/plugins.css') }}">
     <link rel="stylesheet" href="{{ asset(app('front').'/assets/css/style.css') }}">
@@ -34,9 +35,7 @@
     @include('elements.layouts.navbar')
     @yield('content')
     @include('elements.layouts.footer')
-
     <script src="{{ asset(app('front').'/assets/js/plugins.js') }}"></script>
     <script src="{{ asset(app('front').'/assets/js/theme.js') }}"></script>
-
 </body>
 </html>

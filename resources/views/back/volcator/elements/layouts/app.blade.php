@@ -17,6 +17,7 @@
     <link rel="icon" type="image/png" href="{{ asset(app('back').'/assets/components/kit/core/img/favicon.ico') }}" />
     <link href="https://fonts.googleapis.com/css?family=Mukta:400,700,800&display=swap" rel="stylesheet">
 
+
     <!-- VENDORS -->
     <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/vendors/bootstrap/dist/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset(app('back').'/assets/vendors/perfect-scrollbar/css/perfect-scrollbar.css') }}">
@@ -568,4 +569,6 @@
     document.querySelector('#create_space_form').addEventListener("submit", spaceVolcatorFormSubmit, false);
 </script>
 {!! VolcatorMediaStyle::jsMediaHook() !!}
+<script type="module"  src="{{ asset(app('back').'/assets/vue/public/js/app.js') }}"></script>
+
 </html>

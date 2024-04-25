@@ -2,28 +2,18 @@
     <nav class="navbar navbar-expand-lg center-nav transparent navbar-light">
         <div class="container flex-lg-row flex-nowrap align-items-center">
             <div class="navbar-brand w-100">
-                <a href="{{ route('pages.blog.index') }}">
-                    <img src="{{ asset(app('front').'/assets/img/prestais.png') }}" srcset="./assets/img/logo-dark@2x.png 2x" alt="" style="width: 35%"/>
+                <a href="{{ route(app('urlFront') . '.pages.easycms.dispatcher', '/') }}">
+                    <img src="{{ asset(app('front').'/assets/img/prestais.png') }}" alt="" style="width: 133px; height: 75px"/>
                 </a>
             </div>
             <div class="navbar-collapse offcanvas offcanvas-nav offcanvas-start">
                 <div class="offcanvas-body ms-lg-auto d-flex flex-column h-100">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pages.blog.products') }}">Products</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="{{ route('pages.blog.index') }}/#watch-video">Demo</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="{{ route('pages.blog.index') }}/#pricing-plan">Pricing</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="{{ route('pages.blog.blog') }}">Blog</a>
-                        </li>
-                        <li class="nav-item dropdown dropdown-mega">
-                            <a class="nav-link" href="{{ route('pages.blog.documentation') }}">Documentation</a>
-                        </li>
+                        @foreach($menus as $key => $menu)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route(app('urlFront') . '.pages.easycms.dispatcher', $menu->route) }}">{{ $menu->{$lang.'_trans'} }}</a>
+                            </li>
+                        @endforeach
                     </ul>
                     <!-- /.navbar-nav -->
                     <div class="offcanvas-footer d-lg-none">
@@ -44,16 +34,18 @@
                 </div>
                 <!-- /.offcanvas-body -->
             </div>
+
             <div class="navbar-other w-100 d-flex ms-auto">
                 <ul class="navbar-nav flex-row align-items-center ms-auto">
                     <li class="nav-item dropdown language-select text-uppercase">
-                        <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">En</a>
-<!--                        <a class="nav-link dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">En</a>-->
-<!--                        <ul class="dropdown-menu">-->
-<!--                            <li class="nav-item"><a class="dropdown-item" href="#">En</a></li>-->
-<!--                            <li class="nav-item"><a class="dropdown-item" href="#">De</a></li>-->
-<!--                            <li class="nav-item"><a class="dropdown-item" href="#">Es</a></li>-->
-<!--                        </ul>-->
+                        <a class="nav-link dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{App::getLocale()}}</a>
+                        <ul class="dropdown-menu">
+                            @foreach($list_languages as $key => $language)
+                                @if(App::getLocale() != $key)
+                                    <li class="nav-item"><a class="dropdown-item" href="{{ route('lang.switch', $key) }}">{{ $language }}</a></li>
+                                @endif
+                            @endforeach
+                        </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-info"><i class="uil uil-info-circle"></i></a></li>
                     <li class="nav-item d-lg-none">
