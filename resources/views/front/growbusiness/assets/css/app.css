@@ -554,48 +554,6 @@ video {
   --tw-contain-style:  ;
 }
 
-.pai-container {
-  width: 100%;
-}
-
-@media (min-width: 640px) {
-  .pai-container {
-    max-width: 640px;
-  }
-}
-
-@media (min-width: 768px) {
-  .pai-container {
-    max-width: 768px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .pai-container {
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .pai-container {
-    max-width: 1280px;
-  }
-}
-
-@media (min-width: 1536px) {
-  .pai-container {
-    max-width: 1536px;
-  }
-}
-
-.pai-col-span-4 {
-  grid-column: span 4 / span 4;
-}
-
-.pai-col-start-2 {
-  grid-column-start: 2;
-}
-
 .pai-mb-10 {
   margin-bottom: 2.5rem;
 }
@@ -606,6 +564,10 @@ video {
 
 .pai-mb-2 {
   margin-bottom: 0.5rem;
+}
+
+.pai-mb-8 {
+  margin-bottom: 2rem;
 }
 
 .pai-ml-6 {
@@ -632,14 +594,6 @@ video {
   margin-top: 2rem;
 }
 
-.pai-mb-20 {
-  margin-bottom: 5rem;
-}
-
-.pai-mb-8 {
-  margin-bottom: 2rem;
-}
-
 .pai-flex {
   display: flex;
 }
@@ -652,53 +606,24 @@ video {
   height: 4rem;
 }
 
-.pai-h-screen {
-  height: 100vh;
-}
-
-.pai-w-64 {
-  width: 16rem;
-}
-
-.pai-w-80 {
-  width: 20rem;
+.pai-w-9\/12 {
+  width: 75%;
 }
 
 .pai-w-96 {
   width: 24rem;
 }
 
-.pai-w-fit {
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.pai-w-dvw {
-  width: 100dvw;
-}
-
-.pai-w-9\/12 {
-  width: 75%;
-}
-
-.pai-w-7\/12 {
-  width: 58.333333%;
-}
-
-.pai-w-10\/12 {
-  width: 83.333333%;
-}
-
 .pai-grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
-.pai-grid-cols-6 {
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-}
-
 .pai-items-center {
   align-items: center;
+}
+
+.pai-justify-end {
+  justify-content: flex-end;
 }
 
 .pai-justify-center {
@@ -711,10 +636,6 @@ video {
 
 .pai-justify-around {
   justify-content: space-around;
-}
-
-.pai-gap-4 {
-  gap: 1rem;
 }
 
 .pai-gap-x-10 {
@@ -739,36 +660,20 @@ video {
   text-overflow: ellipsis;
 }
 
-.pai-text-pretty {
-  text-wrap: pretty;
-}
-
 .pai-rounded-xl {
   border-radius: 0.75rem;
-}
-
-.pai-pl-4 {
-  padding-left: 1rem;
 }
 
 .pai-pb-6 {
   padding-bottom: 1.5rem;
 }
 
-.pai-pt-6 {
-  padding-top: 1.5rem;
+.pai-pl-4 {
+  padding-left: 1rem;
 }
 
 .pai-pt-12 {
   padding-top: 3rem;
-}
-
-.pai-pt-16 {
-  padding-top: 4rem;
-}
-
-.pai-pt-8 {
-  padding-top: 2rem;
 }
 
 .pai-text-center {
@@ -787,14 +692,6 @@ video {
 
 .pai-font-extrabold {
   font-weight: 800;
-}
-
-.pai-leading-loose {
-  line-height: 2;
-}
-
-.pai-leading-7 {
-  line-height: 1.75rem;
 }
 
 .pai-text-black {
@@ -822,78 +719,6 @@ video {
   hostname: port;
 }
 
-@media (min-width: 640px) {
-  .sm\:pai-container {
-    width: 100%;
-  }
-
-  @media (min-width: 640px) {
-    .sm\:pai-container {
-      max-width: 640px;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .sm\:pai-container {
-      max-width: 768px;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .sm\:pai-container {
-      max-width: 1024px;
-    }
-  }
-
-  @media (min-width: 1280px) {
-    .sm\:pai-container {
-      max-width: 1280px;
-    }
-  }
-
-  @media (min-width: 1536px) {
-    .sm\:pai-container {
-      max-width: 1536px;
-    }
-  }
-}
-
-@media (min-width: 768px) {
-  .md\:pai-container {
-    width: 100%;
-  }
-
-  @media (min-width: 640px) {
-    .md\:pai-container {
-      max-width: 640px;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .md\:pai-container {
-      max-width: 768px;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .md\:pai-container {
-      max-width: 1024px;
-    }
-  }
-
-  @media (min-width: 1280px) {
-    .md\:pai-container {
-      max-width: 1280px;
-    }
-  }
-
-  @media (min-width: 1536px) {
-    .md\:pai-container {
-      max-width: 1536px;
-    }
-  }
-}
-
 .hover\:pai-scale-110:hover {
   --tw-scale-x: 1.1;
   --tw-scale-y: 1.1;
@@ -901,30 +726,11 @@ video {
 }
 
 @media (min-width: 768px) {
-  .md\:pai-mx-auto {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .md\:pai-mt-16 {
-    margin-top: 4rem;
-  }
-
   .md\:pai-mt-8 {
     margin-top: 2rem;
   }
 
   .md\:pai-grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .md\:pai-grid-cols-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1024px) {
-  .lg\:pai-grid-cols-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
