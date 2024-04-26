@@ -6,6 +6,7 @@ use App;
 use Illuminate\Support\Facades\Auth;
 use Twedoo\Volcator\Core\VolcatorApplication;
 use Twedoo\Volcator\Core\VolcatorSpace;
+use Twedoo\Volcator\Modules\Configurations\Models\confsettings;
 use Twedoo\Volcator\Modules\Notifications\Models\Notification as VolcatorPushNotification;
 
 class VolcatorPath
@@ -55,5 +56,27 @@ class VolcatorPath
         $params = preg_replace('/\s+/', '', $prepareRoute[1]);
         $route = VolcatorPath::switchSpaceByRoute($space, $application, $route, $params);
         return route($route['route'], $route['params']);
+    }
+
+    /**
+     * @param $file
+     * @return string
+     */
+    public static function publicAssets($file)
+    {
+        return public_path('shared/' . $file);
+    }
+
+    /**
+     * @return string
+     */
+    public static function getFrontendLogoPath()
+    {
+        $logo = null;
+        $volcatorBaseConfiguration = confsettings::first();
+        if ($volcatorBaseConfiguration) {
+            $logo = $volcatorBaseConfiguration->logo;
+        }
+        return $logo;
     }
 }

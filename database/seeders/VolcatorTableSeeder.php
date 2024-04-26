@@ -58,7 +58,7 @@ class VolcatorTableSeeder extends Seeder
             ],
             [
                 'name' => 'TW_APP_TEMPLATE_FRONT',
-                'value' => 'bluevolcator',
+                'value' => 'growbusiness',
                 'application' => 'main'
             ],
             [
@@ -68,7 +68,7 @@ class VolcatorTableSeeder extends Seeder
             ],
             [
                 'name' => 'TW_APP_FRONT_PREFIX',
-                'value' => '',
+                'value' => 'v',
                 'application' => 'main'
             ],
             [
@@ -421,10 +421,6 @@ class VolcatorTableSeeder extends Seeder
             [
                 'languages' => "Svenska",
                 'code_lang' => "sv",
-            ],
-            [
-                'languages' => "‏עברית‏",
-                'code_lang' => "il",
             ]
         ];
 

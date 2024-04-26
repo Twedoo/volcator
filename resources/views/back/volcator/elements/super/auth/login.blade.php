@@ -48,9 +48,9 @@
                             <strong>Welcome to {{ app('APP_NAME') }}</strong>
                         </h1>
                         <p class="mb-4">
-                            {{ app('APP_NAME') }} {{  trans('Configurations::Configurations/Configurations.description_app_volcator_space')   }}
+                            {{ app('APP_NAME') }} {{ trans('Configurations::Configurations/Configurations.description_app_volcator_space') }}
                             <br />
-                            {{  trans('Configurations::Configurations/Configurations.description_app_volcator_space_two')   }}
+                            {{ trans('Configurations::Configurations/Configurations.description_app_volcator_space_two') }}
                         </p>
                     </div>
                     <div class="card cui__auth__boxContainer">

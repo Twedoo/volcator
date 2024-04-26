@@ -562,6 +562,14 @@ video {
   margin-bottom: 3.5rem;
 }
 
+.pai-mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.pai-mb-8 {
+  margin-bottom: 2rem;
+}
+
 .pai-ml-6 {
   margin-left: 1.5rem;
 }
@@ -590,24 +598,98 @@ video {
   display: flex;
 }
 
+.pai-grid {
+  display: grid;
+}
+
+.pai-h-16 {
+  height: 4rem;
+}
+
+.pai-w-64 {
+  width: 16rem;
+}
+
+.pai-w-9\/12 {
+  width: 75%;
+}
+
+.pai-w-96 {
+  width: 24rem;
+}
+
+.pai-w-80 {
+  width: 20rem;
+}
+
+.pai-w-full {
+  width: 100%;
+}
+
+.pai-grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
 .pai-items-center {
   align-items: center;
+}
+
+.pai-justify-end {
+  justify-content: flex-end;
+}
+
+.pai-justify-center {
+  justify-content: center;
+}
+
+.pai-justify-between {
+  justify-content: space-between;
 }
 
 .pai-justify-around {
   justify-content: space-around;
 }
 
+.pai-gap-x-10 {
+  -moz-column-gap: 2.5rem;
+       column-gap: 2.5rem;
+}
+
+.pai-gap-x-14 {
+  -moz-column-gap: 3.5rem;
+       column-gap: 3.5rem;
+}
+
 .pai-self-center {
   align-self: center;
 }
 
-.pai-pl-10 {
-  padding-left: 2.5rem;
+.pai-overflow-hidden {
+  overflow: hidden;
+}
+
+.pai-text-ellipsis {
+  text-overflow: ellipsis;
+}
+
+.pai-rounded-xl {
+  border-radius: 0.75rem;
+}
+
+.pai-pb-6 {
+  padding-bottom: 1.5rem;
 }
 
 .pai-pl-4 {
   padding-left: 1rem;
+}
+
+.pai-pt-12 {
+  padding-top: 3rem;
+}
+
+.pai-text-center {
+  text-align: center;
 }
 
 .pai-text-2xl {
@@ -631,4 +713,36 @@ video {
 
 .pai-opacity-25 {
   opacity: 0.25;
+}
+
+.pai-transition {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.pai-duration-500 {
+  transition-duration: 500ms;
+}
+
+.\[hostname\:port\] {
+  hostname: port;
+}
+
+.hover\:pai-scale-110:hover {
+  --tw-scale-x: 1.1;
+  --tw-scale-y: 1.1;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+@media (min-width: 768px) {
+  .md\:pai-mt-8 {
+    margin-top: 2rem;
+  }
+
+  .md\:pai-grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }

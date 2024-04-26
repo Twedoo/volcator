@@ -12,7 +12,7 @@
                     <span>
                         <span class="cui__breadcrumbs__arrow"></span>
                         <strong
-                            class="cui__breadcrumbs__current"> [TODO : name application]</strong>
+                            class="cui__breadcrumbs__current"> {{ VolcatorTranslation::transDynTable('sitename','confsettings_langs',App::getLocale()) }}</strong>
                     </span>
                 </div>
             </div>
@@ -89,7 +89,7 @@
                                                                     {{ trans('Configurations::Configurations/Settings.logo') }}
                                                                 </label>
 
-                                                                <img src="{{ asset('public/images/upload/img/'.$setbase->logo )}}"
+                                                                <img src="{{  asset('/shared/'.$setbase->logo )}}"
                                                                      width="5%"/>
 
                                                                 <!-- custom file upload -->

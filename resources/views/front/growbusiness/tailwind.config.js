@@ -6,7 +6,7 @@ module.exports = {
     important: false,
     separator: ':',
     purge: {
-        content: ["./elements/**/*.{php, html,js}"],
+        content: ["./elements/**/*.{php, html,js}", "./../../../../app/Modules/EasyCMS/**/*.{php, html,js}"],
         options: {
             whitelist: [
                 'body',

@@ -1,0 +1,36 @@
+Arguments: 
+  /home/proox/.nvm/versions/node/v16.17.0/bin/node /home/proox/.nvm/versions/node/v16.17.0/bin/yarn init
+
+PATH: 
+  /home/proox/.rbenv/shims:/home/proox/.rbenv/bin:/home/proox/.rbenv/shims:/home/proox/.rbenv/bin:/home/proox/.nvm/versions/node/v16.17.0/bin:/home/proox/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-17-oracle/bin:/usr/lib/jvm/java-17-oracle/db/bin:/home/proox/.rvm/bin:/home/proox/.config/composer/vendor/bin:/usr/share/maven/bin:/home/proox/.rvm/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.17.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (/home/proox/.nvm/versions/node/v16.17.0/lib/node_modules/yarn/lib/cli.js:137150:13)
+      at Interface.emit (node:events:513:28)
+      at Interface._ttyWrite (node:readline:1085:16)
+      at ReadStream.onkeypress (node:readline:291:10)
+      at ReadStream.emit (node:events:513:28)
+      at emitKeys (node:internal/readline/utils:357:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (node:internal/readline/emitKeypressEvents:61:36)
+      at ReadStream.emit (node:events:513:28)
+      at addChunk (node:internal/streams/readable:315:12)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

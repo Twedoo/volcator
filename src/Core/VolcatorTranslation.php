@@ -273,6 +273,66 @@ class VolcatorTranslation
         return false;
     }
 
+
+    /**
+     * @param $id
+     * @param $table_name
+     * @param $column_name
+     * @param $lang
+     * @return mixed
+     */
+    public static function dynamicTranslate($id, $table_name, $column_name, $lang)
+    {
+        for ($i = 0; $i < strlen($table_name); $i++) {
+            $word[] = $table_name[$i];
+        }
+
+        $language = $lang . '_trans';
+        $table = implode("", $word);
+        $handel = DB::table($table)->where($column_name, $id)->first();
+        if ($handel != null) {
+            return $handel->$language;
+        }
+        return false;
+    }
+
+    /**
+     * @param $inputs
+     * @param $table
+     * @param $table_lang
+     * @param $id_table
+     * @param $reference_parent_in_lang_table
+     * @return bool
+     */
+    public static function saveDynamicTranslate($inputs, $table, $table_lang, $id_table, $reference_parent_in_lang_table)
+    {
+        foreach ($inputs as $key => $value) {
+            if ($value) {
+                $target_lang = substr($key, -3);
+                $column_name = substr($key, 0,-3);
+                if (strpos($target_lang, '_') !== false) {
+                    $column_lang = substr($key, -2) . '_trans';
+                    $refreshCmsPage = DB::table($table)->where('id', $id_table)->first();
+                    $isCreated = DB::table($table_lang)->where('id', $refreshCmsPage->$column_name)->first();
+
+                    if ($isCreated) {
+                        DB::table($table_lang)->where('id', $refreshCmsPage->$column_name)->update([
+                            $column_lang => $value
+                        ]);
+                    } else {
+                        $cmsPageLang = DB::table($table_lang)->insertGetId([
+                            $column_lang => $value,
+                            $reference_parent_in_lang_table => $id_table,
+                        ]);
+                        DB::table($table)->where('id', $id_table)->update([
+                            $column_name => $cmsPageLang
+                        ]);
+                    }
+                }
+            }
+        }
+        return true;
+    }
     /**
      * @param $notification
      * @param null $local
