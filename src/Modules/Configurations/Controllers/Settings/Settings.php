@@ -3,6 +3,7 @@
 namespace Modules\Configurations\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
+use Twedoo\Volcator\Core\Utils\VolcatorPath;
 use Twedoo\Volcator\Models\Languages;
 use Twedoo\Volcator\Modules\Configurations\Models\confsettings;
 use Twedoo\Volcator\Modules\Configurations\Models\confsettings_langs;
@@ -86,10 +87,11 @@ class Settings extends Controller
                 return back()->withInput()->withErrors($validate);
             } else {
 
-                $file = $request->file('logo');
+                $file = $request->file('image_space_volcator');
+
                 if ($file != "") {
-                    $path = public_path() . '/images/upload/img';
-                    $filename = time() . '.' . $file->getClientOriginalExtension();
+                    $path = VolcatorPath::publicAssets(null);
+                    $filename = $file->getClientOriginalName();
                     if ($file->move($path, $filename)) {
                         $setbase->logo = $filename;
                     }
@@ -168,13 +170,12 @@ class Settings extends Controller
             }
 
             $setbase->email = $request->input('email');
-            $file = $request->file('logo');
-
+            $file = $request->file('image_space_volcator');
 
             if ($file != "") {
-                $path = public_path() . '/images/upload/img';
-                $filename = time() . '.' . $file->getClientOriginalExtension();
-                if ($file->move($path, $filename)) {
+                $path = VolcatorPath::publicAssets(null);
+                $filename = $file->getClientOriginalName();
+                if ($file->move($path, $file)) {
                     $setbase->logo = $filename;
                 }
             }
@@ -185,7 +186,7 @@ class Settings extends Controller
             $titconfig = ["sitename", "keyword", "descriptionweb", "msgmaintenance"];
 
             foreach ($titconfig as $key => $value) {
-                $setbasevar = new \App\Modules\Configurations\Models\confsettings_langs;
+                $setbasevar = new confsettings_langs;
                 $setbasevar->title_trans = $value;
                 $setbasevar->id_ref = $setbase->id;
                 $setbasevar->save();
@@ -223,7 +224,7 @@ class Settings extends Controller
                 default:
                     \Toastr::success(trans('Configurations::Configurations/Settings.success_add'), trans('Configurations::Configurations/Settings.success'), ["positionClass" => "toast-top-right"]);
             }
-            return redirect()->route(app('urlBack') . '.config.settings.create');
+            return redirect()->route(app('urlBack') . '.config.settings.index');
         }
 
     }

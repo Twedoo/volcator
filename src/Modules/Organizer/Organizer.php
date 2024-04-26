@@ -4,9 +4,10 @@ namespace Twedoo\Volcator\Organizer;
 
 use Config;
 use Twedoo\Volcator\Core\VolcatorApplication;
+use Twedoo\Volcator\Modules\Configurations\Models\Theme;
 use Twedoo\Volcator\Organizer\Models\Volcators;
+use Illuminate\Support\Facades\File;
 use DB;
-use File;
 use Illuminate\Http\Request;
 use VolcatorPath;
 use VolcatorStructure;
@@ -80,6 +81,27 @@ class Organizer extends VolcatorStructure
                 if ($zipper->open($path . $filename, ZipArchive::CREATE) == true) {
                     $zipper->extractTo($path);
                     unlink($path . $filename);
+
+
+                    // Check if template folder exists and is not empty
+                    $templatePath = $path . 'template/';
+                    if (File::exists($templatePath) && File::isDirectory($templatePath)) {
+                        // Check for front template folder
+                        $frontTemplatePath = $templatePath . 'front/';
+                        if (File::exists($frontTemplatePath) && File::isDirectory($frontTemplatePath)) {
+                            // Copy contents of front template folder to Laravel resources/views/front folder
+                            $laravelFrontPath = resource_path('views/front/');
+                            File::copyDirectory($frontTemplatePath, $laravelFrontPath);
+                        }
+
+                        // Check for back template folder
+                        $backTemplatePath = $templatePath . 'back/';
+                        if (File::exists($backTemplatePath) && File::isDirectory($backTemplatePath)) {
+                            // Copy contents of back template folder to Laravel resources/views/back folder
+                            $laravelBackPath = resource_path('views/back/');
+                            File::copyDirectory($backTemplatePath, $laravelBackPath);
+                        }
+                    }
 
                     if (\App::getLocale() == 'ar' || \App::getLocale() == 'ur') {
                         \Toastr::success(trans('Organizer::Organizer/Organizer.success_add_modules'), trans('Organizer::Organizer/Organizer.success'), ["positionClass" => "toast-top-left"]);
@@ -191,7 +213,13 @@ class Organizer extends VolcatorStructure
     public function uninstallModule($module)
     {
         if ($this->isMainInstalled($module) == null) {
+            $module_id = Volcators::where('name', $module)->first()->id;
             if (VolcatorEngine::uninstallVolcator($module)) {
+                $theme = Theme::where('volcator_id', $module_id)->first();
+                if ($theme && $theme->is_delete) {
+                    $volcatorTemplatePath = resource_path("views/$theme->scoupe");
+                    File::deleteDirectory($volcatorTemplatePath . '/' . $theme->name);
+                }
                 VolcatorLanguage::displayNotificationProgress(
                     'success',
                     trans('Organizer::Organizer/Organizer.success_uninstallmodule'),

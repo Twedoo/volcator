@@ -3,6 +3,7 @@
 namespace Twedoo\Volcator;
 
 use App;
+use Illuminate\Support\Facades\File;
 use SebastianBergmann\ObjectEnumerator\Fixtures\ExceptionThrower;
 use Symfony\Component\Yaml\Yaml;
 use Throwable;
@@ -92,6 +93,16 @@ class VolcatorEngine
         $namespace = self::namespaceResolve($module);
 
         if ($namespace && $namespace !== 1) {
+
+            $volcator_data = VolcatorEngine::loadVolcatorConfigYaml($pathConfig, 'volcator');
+            $createVolcator = VolcatorEngine::createVolcator($volcator_data, substr($namespace, 0, -1));
+
+            $menu_data = VolcatorEngine::loadVolcatorConfigYaml($pathConfig, 'menu');
+            VolcatorEngine::createMenu($menu_data, $createVolcator);
+
+            $access_data = VolcatorEngine::loadVolcatorConfigYaml($pathConfig, 'access');
+            VolcatorEngine::createAccess($access_data, $createVolcator);
+
             \App::call($namespace . $module . '\\' . 'Config' . '\\' . 'Schema' . '\\' . 'SchemaCreate@runSchemas');
         } else {
             if ($namespace === 1) {
@@ -100,15 +111,6 @@ class VolcatorEngine
                 throw new BadRequestHttpException(" Not found Module folder '".$module."' in App\Modules directory !");
             }
         }
-
-        $volcator_data = VolcatorEngine::loadVolcatorConfigYaml($pathConfig, 'volcator');
-        $createVolcator = VolcatorEngine::createVolcator($volcator_data, substr($namespace, 0, -1));
-
-        $menu_data = VolcatorEngine::loadVolcatorConfigYaml($pathConfig, 'menu');
-        VolcatorEngine::createMenu($menu_data, $createVolcator);
-
-        $access_data = VolcatorEngine::loadVolcatorConfigYaml($pathConfig, 'access');
-        VolcatorEngine::createAccess($access_data, $createVolcator);
 
         if (!$console) {
             return self::afterCheckInstall($reinstall);
@@ -244,8 +246,7 @@ class VolcatorEngine
             else
                 unlink($file);
         }
-//        self::deleteConfigModule(ucfirst($module));
-        rmdir($dirPath);
+        File::deleteDirectory($dirPath);
     }
 
     /**

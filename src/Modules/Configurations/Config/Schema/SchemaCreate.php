@@ -52,6 +52,19 @@ class SchemaCreate
             });
         }
 
+        if (!Schema::hasTable(strtolower('themes'))) {
+            Schema::create('themes', function ($table) {
+                $table->increments('id');
+                $table->string('name');
+                $table->string('scope');
+                $table->boolean('is_public')->default(true);
+                $table->boolean('is_delete')->nullable()->default(false);
+                $table->integer('volcator_id');
+                $table->timestamps();
+            });
+        }
+
+
         $seeder = new ConfigurationsTableSeeder();
         $seeder->run();
     }

@@ -4,6 +4,7 @@ namespace Modules\Configurations\Controllers\Languages;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use Twedoo\Volcator\Core\VolcatorTranslation;
 use Twedoo\Volcator\Organizer\Models\Volcators;
 use App\Transglobals;
 use Artisan;
@@ -12,12 +13,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use VolcatorEngine;
 use VolcatorLanguage;
-use VolcatorTranslation;
 use Route;
 use Schema;
 use Session;
 use Validator;
-
 
 class Languages extends Controller
 {
@@ -71,7 +70,7 @@ class Languages extends Controller
         $wordsToTrans = VolcatorTranslation::getFile($request->moduleTranslate, $request->lang, $file);
         $getFiles = VolcatorTranslation::getFiles($request->moduleTranslate, $request->lang, $file);
         $getKeyWord = VolcatorTranslation::getKeyFile($request->moduleTranslate, $request->lang, $file);
-        $getModuleName = modules::where('im_name_modules', $request->moduleTranslate)->first();
+        $getModuleName = Volcators::where('id', $request->moduleTranslate)->first();
 
         return view('Configurations::Languages.Backend.transbackend', compact('getModuleName', $getModuleName))
             ->with('currentPath', $getPath)
