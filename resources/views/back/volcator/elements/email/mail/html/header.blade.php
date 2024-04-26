@@ -2,8 +2,7 @@
     <td class="header">
         <a href="{{ $url }}" style="display: inline-block;">
             @if (trim($slot) === 'Laravel')
-                {{--<img src="{{ }}" class="logo" alt="Twedoo Volcator Logo">--}}
-                <img src="data:image/png;base64,{{base64_encode(file_get_contents('http://'.request()->getHost().'/resources/views/back/volcator/assets/images/volcator-logo.png' ))}}" class="logo" alt="Twedoo Volcator Logo">
+                <img src="https://prestais.com/resources/views/front/growbusiness/assets/img/prestais.png" class="logo" alt="PrestAIs" style="width: 133px; height: 75px">
             @else
                 {{ $slot }}
             @endif

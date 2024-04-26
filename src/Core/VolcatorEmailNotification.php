@@ -60,8 +60,10 @@ class VolcatorEmailNotification extends Notification
             $send->action($this->email['action'], $this->email['action_uri']);
         }
 
-        if (isset($this->email['template'])) {
+        if (!isset($this->email['template'])) {
             $send->markdown('elements.email.notifications.email');
+        } else {
+            $send->markdown($this->email['template']);
         }
 
         $send->line($this->email['last_line']);

@@ -15,24 +15,18 @@
                             </li>
                         @endforeach
                     </ul>
-                    <!-- /.navbar-nav -->
                     <div class="offcanvas-footer d-lg-none">
                         <div>
                             <a href="mailto:first.last@email.com" class="link-inverse">contact@prestais.com</a>
-                            <br /> 00 (123) 456 78 90 <br />
+                            <br /> +33 07 76 73 68 60 <br />
                             <nav class="nav social social-white mt-4">
-                                <a href="#"><i class="uil uil-twitter"></i></a>
-                                <a href="#"><i class="uil uil-facebook-f"></i></a>
-                                <a href="#"><i class="uil uil-dribbble"></i></a>
-                                <a href="#"><i class="uil uil-instagram"></i></a>
-                                <a href="#"><i class="uil uil-youtube"></i></a>
+                                <a href="https://t.me/prestais_official" target="_blank" href="#"><i class="uil uil-telegram"></i></a>
+                                <a href="https://www.youtube.com/@HoussemMAAMRIA" target="_blank"><i class="uil uil-youtube"></i></a>
+                                <a href="https://twitter.com/houssem_maamria" target="_blank"><i class="uil uil-twitter"></i></a>
                             </nav>
-                            <!-- /.social -->
                         </div>
                     </div>
-                    <!-- /.offcanvas-footer -->
                 </div>
-                <!-- /.offcanvas-body -->
             </div>
 
             <div class="navbar-other w-100 d-flex ms-auto">
@@ -64,7 +58,8 @@
         </div>
         <div class="offcanvas-body pb-6">
             <div class="widget mb-8">
-                <p>We are driven by our passion for AI technology and its transformative potential. Our primary goal is to develop innovative modules that cater to the unique needs of our clients, harnessing the power of artificial intelligence to propel businesses forward in the new digital age.
+                <p>
+                    {{ trans('EasyCMS::Front/Front.About_US') }}
                 </p>
             </div>
             <!-- /.widget -->

@@ -606,12 +606,24 @@ video {
   height: 4rem;
 }
 
+.pai-w-64 {
+  width: 16rem;
+}
+
 .pai-w-9\/12 {
   width: 75%;
 }
 
 .pai-w-96 {
   width: 24rem;
+}
+
+.pai-w-80 {
+  width: 20rem;
+}
+
+.pai-w-full {
+  width: 100%;
 }
 
 .pai-grid-cols-1 {
