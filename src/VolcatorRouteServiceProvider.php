@@ -54,7 +54,7 @@ class VolcatorRouteServiceProvider extends ServiceProvider
                 'APP_NAME' => config()["params"]["TW_APP_NAME"],
                 'back' => $path,
                 'front' => $path,
-                'urlBack' => config()["params"]["TW_APP_BACK_PREFIX"],
+                'urlBack' => config()["params"]["TW_APP_BACK_PREFIX"].'/v',
                 'urlFront' => config()["params"]["TW_APP_FRONT_PREFIX"],
                 'module' => config()["params"]["TW_APP_MODULE"],
             ];

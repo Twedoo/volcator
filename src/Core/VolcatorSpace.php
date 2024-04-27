@@ -147,7 +147,12 @@ class VolcatorSpace
     public static function getUsersByCurrentApplicationCurrentSpace()
     {
         $user = auth()->user();
-        return User::join('applications_user', 'applications_user.user_id', 'users.id')->where('users.id', '!=', $user->id)->where('applications_user.application_id', VolcatorApplication::getCurrentApplicationId())->groupBy('users.id')->get(['users.*']);
+        \DB::statement("SET SQL_MODE=''");
+        return User::join('applications_user', 'applications_user.user_id', 'users.id')
+            ->where('users.id', '!=', $user->id)
+            ->where('applications_user.application_id', VolcatorApplication::getCurrentApplicationId())
+            ->groupBy('users.id')
+            ->get(['users.*']);
     }
 
     /**
